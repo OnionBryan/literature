@@ -1588,51 +1588,166 @@
                 </div>
 
                 <div class="insight-box" style="margin-top: 30px;">
-                    <h3 style="margin-top: 0;">💡 Understanding the Metrics</h3>
-                    <div class="grid">
-                        <div class="card">
-                            <h4>Network Density</h4>
-                            <p><strong>What it measures:</strong> Percentage of all possible connections that actually exist.</p>
-                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
-                                <strong>Interpretation:</strong><br>
-                                • <strong>Low (0-30%):</strong> Sparse network, diverse connections, high potential for bridging<br>
-                                • <strong>Medium (30-60%):</strong> Balanced - some clustering, some diversity<br>
-                                • <strong>High (60-100%):</strong> Dense cluster, everyone knows everyone, high information redundancy
+                    <h3 style="margin-top: 0; font-size: 1.8em; color: #1e3c72;">💡 Understanding the Metrics</h3>
+                    <p style="font-size: 1.05em; color: #64748b; margin-bottom: 30px; line-height: 1.7;">
+                        Each metric reveals different aspects of your network structure. Here's how to interpret the numbers you see above.
+                    </p>
+
+                    <div class="grid" style="gap: 30px;">
+                        <!-- Network Density -->
+                        <div class="card" style="background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #3b82f6; padding: 28px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">📊</div>
+                                <h4 style="margin: 0; font-size: 1.4em; color: #1e3c72;">Network Density</h4>
                             </div>
-                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Optimal: 20-40% for job searching - enough connections without redundancy</em></p>
+
+                            <p style="font-size: 1.05em; line-height: 1.7; margin-bottom: 18px; color: #334155;">
+                                <strong style="color: #1e3c72;">What it measures:</strong> Percentage of all possible connections that actually exist in your network.
+                            </p>
+
+                            <div class="illustrative-only" style="margin-top: 18px; padding: 18px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%); border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-weight: 700; color: #1e3c72; margin-bottom: 12px; font-size: 1.05em; letter-spacing: 0.3px;">ILLUSTRATIVE THRESHOLDS:</div>
+                                <div style="line-height: 2; font-size: 0.95em;">
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #0ea5e9;">Low (0-30%):</span>
+                                        <span style="color: #475569;">Sparse network, diverse connections, high bridging potential</span>
+                                    </div>
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #3b82f6;">Medium (30-60%):</span>
+                                        <span style="color: #475569;">Balanced mix of clustering and diversity</span>
+                                    </div>
+                                    <div>
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #1e40af;">High (60-100%):</span>
+                                        <span style="color: #475569;">Dense cluster, high information redundancy</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="research-warning" style="display: none; margin-top: 18px; padding: 18px; background: #f0fdf4; border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-weight: 700; color: #166534; margin-bottom: 8px;">✅ RESEARCH FINDING:</div>
+                                <p style="margin: 0; color: #166534; line-height: 1.7;">Interpretation is context-dependent. Compare your network's density to a random network of the same size. Higher density = more clustering, lower density = more potential for bridges.</p>
+                            </div>
+
+                            <p style="margin-top: 15px; font-size: 0.95em; color: #64748b; font-style: italic; line-height: 1.6;">
+                                💡 Research shows no universal "optimal" - large networks tend to be sparse, interpretation depends on network size and purpose.
+                            </p>
                         </div>
-                        <div class="card">
-                            <h4>Bridges</h4>
-                            <p><strong>What it measures:</strong> Weak ties that are the only connection between otherwise disconnected groups.</p>
-                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
-                                <strong>Interpretation:</strong><br>
-                                • <strong>0 bridges:</strong> All groups already connected, limited novel information<br>
-                                • <strong>1-2 bridges:</strong> Some access to different circles<br>
-                                • <strong>3+ bridges:</strong> Excellent diversity, access to multiple distinct groups
+
+                        <!-- Bridges -->
+                        <div class="card" style="background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #10b981; padding: 28px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">🌉</div>
+                                <h4 style="margin: 0; font-size: 1.4em; color: #1e3c72;">Bridges</h4>
                             </div>
-                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Granovetter's key insight: Bridges provide access to non-redundant information!</em></p>
+
+                            <p style="font-size: 1.05em; line-height: 1.7; margin-bottom: 18px; color: #334155;">
+                                <strong style="color: #1e3c72;">What it measures:</strong> Weak ties that are the only connection between otherwise disconnected groups.
+                            </p>
+
+                            <div class="illustrative-only" style="margin-top: 18px; padding: 18px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%); border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-weight: 700; color: #1e3c72; margin-bottom: 12px; font-size: 1.05em; letter-spacing: 0.3px;">ILLUSTRATIVE THRESHOLDS:</div>
+                                <div style="line-height: 2; font-size: 0.95em;">
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 100px; font-weight: 600; color: #ef4444;">0 bridges:</span>
+                                        <span style="color: #475569;">Limited novel information access</span>
+                                    </div>
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 100px; font-weight: 600; color: #f59e0b;">1-2 bridges:</span>
+                                        <span style="color: #475569;">Some access to different circles</span>
+                                    </div>
+                                    <div>
+                                        <span style="display: inline-block; width: 100px; font-weight: 600; color: #10b981;">3+ bridges:</span>
+                                        <span style="color: #475569;">Excellent diversity, multiple distinct groups</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="research-warning" style="display: none; margin-top: 18px; padding: 18px; background: #f0fdf4; border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-weight: 700; color: #166534; margin-bottom: 8px;">✅ GRANOVETTER'S KEY INSIGHT:</div>
+                                <p style="margin: 0; color: #166534; line-height: 1.7;">Bridges connect otherwise disconnected groups, providing access to non-redundant information. More bridges = more diverse information sources. No empirical threshold for "optimal" number exists.</p>
+                            </div>
+
+                            <p style="margin-top: 15px; font-size: 0.95em; color: #64748b; font-style: italic; line-height: 1.6;">
+                                🔬 Granovetter's core finding: Weak ties act as bridges between social clusters, enabling information flow across groups.
+                            </p>
                         </div>
-                        <div class="card">
-                            <h4>Clustering Coefficient</h4>
-                            <p><strong>What it measures:</strong> How much your friends are also friends with each other (triadic closure).</p>
-                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
-                                <strong>Interpretation:</strong><br>
-                                • <strong>Low (0-30%):</strong> Spread-out network, friends in different circles (good for jobs)<br>
-                                • <strong>Medium (30-60%):</strong> Mix of closed groups and diverse ties<br>
-                                • <strong>High (60-100%):</strong> Tight-knit group, "forbidden triads" everywhere, information redundancy
+
+                        <!-- Clustering Coefficient -->
+                        <div class="card" style="background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #f59e0b; padding: 28px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">🔗</div>
+                                <h4 style="margin: 0; font-size: 1.4em; color: #1e3c72;">Clustering Coefficient</h4>
                             </div>
-                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Lower clustering = more bridges = more diverse information sources</em></p>
+
+                            <p style="font-size: 1.05em; line-height: 1.7; margin-bottom: 18px; color: #334155;">
+                                <strong style="color: #1e3c72;">What it measures:</strong> How much your friends are also friends with each other (triadic closure).
+                            </p>
+
+                            <div class="illustrative-only" style="margin-top: 18px; padding: 18px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%); border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="font-weight: 700; color: #1e3c72; margin-bottom: 12px; font-size: 1.05em; letter-spacing: 0.3px;">ILLUSTRATIVE THRESHOLDS:</div>
+                                <div style="line-height: 2; font-size: 0.95em;">
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #10b981;">Low (0-30%):</span>
+                                        <span style="color: #475569;">Spread-out, friends in different circles</span>
+                                    </div>
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #f59e0b;">Medium (30-60%):</span>
+                                        <span style="color: #475569;">Mix of closed groups and diverse ties</span>
+                                    </div>
+                                    <div>
+                                        <span style="display: inline-block; width: 120px; font-weight: 600; color: #ef4444;">High (60-100%):</span>
+                                        <span style="color: #475569;">Tight-knit, "forbidden triads", redundancy</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="research-warning" style="display: none; margin-top: 18px; padding: 18px; background: #f0fdf4; border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-weight: 700; color: #166534; margin-bottom: 8px;">✅ RESEARCH FINDING:</div>
+                                <p style="margin: 0; color: #166534; line-height: 1.7;">Compare to random network baseline. Higher clustering than random = more "small-world" properties. Triadic closure principle: if A-B and A-C are strong, B-C will form (creating redundancy).</p>
+                            </div>
+
+                            <p style="margin-top: 15px; font-size: 0.95em; color: #64748b; font-style: italic; line-height: 1.6;">
+                                📚 Watts-Strogatz research: Small-world networks have high clustering but short path lengths. Compare to random baseline, not absolute values.
+                            </p>
                         </div>
-                        <div class="card">
-                            <h4>Weak Tie Ratio</h4>
-                            <p><strong>What it measures:</strong> Percentage of all connections that are weak ties (vs. strong ties).</p>
-                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
-                                <strong>Interpretation:</strong><br>
-                                • <strong>Low (0-20%):</strong> Too few weak ties, missing diverse opportunities<br>
-                                • <strong>Medium (20-50%):</strong> Balanced network with good diversity<br>
-                                • <strong>High (50-100%):</strong> Excellent for information access, many distant contacts
+
+                        <!-- Weak Tie Ratio -->
+                        <div class="card" style="background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #8b5cf6; padding: 28px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">📈</div>
+                                <h4 style="margin: 0; font-size: 1.4em; color: #1e3c72;">Weak Tie Ratio</h4>
                             </div>
-                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Study finding: 83.4% of jobs came through weak/moderate ties, not strong ties!</em></p>
+
+                            <p style="font-size: 1.05em; line-height: 1.7; margin-bottom: 18px; color: #334155;">
+                                <strong style="color: #1e3c72;">What it measures:</strong> Percentage of all connections that are weak ties (vs. strong ties).
+                            </p>
+
+                            <div class="illustrative-only" style="margin-top: 18px; padding: 18px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%); border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                                <div style="font-weight: 700; color: #1e3c72; margin-bottom: 12px; font-size: 1.05em; letter-spacing: 0.3px;">ILLUSTRATIVE THRESHOLDS:</div>
+                                <div style="line-height: 2; font-size: 0.95em;">
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 110px; font-weight: 600; color: #ef4444;">Low (0-20%):</span>
+                                        <span style="color: #475569;">Too few weak ties, missing opportunities</span>
+                                    </div>
+                                    <div style="margin-bottom: 8px;">
+                                        <span style="display: inline-block; width: 110px; font-weight: 600; color: #3b82f6;">Medium (20-50%):</span>
+                                        <span style="color: #475569;">Balanced network with good diversity</span>
+                                    </div>
+                                    <div>
+                                        <span style="display: inline-block; width: 110px; font-weight: 600; color: #10b981;">High (50-100%):</span>
+                                        <span style="color: #475569;">Excellent information access, many contacts</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="research-warning" style="display: none; margin-top: 18px; padding: 18px; background: #f0fdf4; border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-weight: 700; color: #166534; margin-bottom: 8px;">✅ EMPIRICAL FINDING:</div>
+                                <p style="margin: 0; color: #166534; line-height: 1.7;"><strong>83.4% of jobs</strong> came through weak/moderate ties, not strong ties (Granovetter, 1973). Higher weak tie ratio generally correlates with more diverse information access, but no universal "optimal" percentage exists.</p>
+                            </div>
+
+                            <p style="margin-top: 15px; font-size: 0.95em; color: #64748b; font-style: italic; line-height: 1.6;">
+                                ⭐ Granovetter's seminal finding: 16.7% strong / 55.6% moderate / 27.8% weak in successful job searches (N=54).
+                            </p>
                         </div>
                     </div>
                 </div>
