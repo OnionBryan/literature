@@ -1364,6 +1364,91 @@
                 <p class="subtitle">Commercial BI-Quality Tool</p>
             </div>
 
+            <!-- ABOUT THIS TOOL - Research Disclaimer -->
+            <div class="section" style="background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%); border-left: 6px solid #f59e0b;">
+                <h2 style="color: #d97706; border-bottom-color: #f59e0b;">📚 About These Interactive Tools</h2>
+
+                <!-- Mode Toggle -->
+                <div style="text-align: center; margin: 25px 0; padding: 20px; background: white; border-radius: 12px; border: 2px solid #fbbf24;">
+                    <h3 style="margin-top: 0; color: #1e3c72;">Choose Your Mode:</h3>
+                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px; flex-wrap: wrap;">
+                        <button id="mode-illustrative" class="control-btn" onclick="toggleMode('illustrative')" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); font-size: 1.1em; padding: 15px 30px;">
+                            🎨 Illustrative Mode (Default)
+                        </button>
+                        <button id="mode-research" class="control-btn secondary" onclick="toggleMode('research')" style="font-size: 1.1em; padding: 15px 30px;">
+                            🔬 Research-Only Mode
+                        </button>
+                    </div>
+                    <div id="mode-description" style="margin-top: 15px; padding: 15px; background: #fffbeb; border-radius: 8px; text-align: left;">
+                        <strong style="color: #d97706;">Current: Illustrative Mode</strong>
+                        <p style="margin: 10px 0 0 0; line-height: 1.6;">Shows educational models with conceptual thresholds to help you understand network principles. Calculations are illustrative and based on Granovetter's concepts, but specific numerical thresholds are not empirically validated.</p>
+                    </div>
+                </div>
+
+                <!-- What's Research-Backed -->
+                <div class="grid" style="margin-bottom: 25px;">
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                        <h3 style="color: #166534; margin-top: 0;">✅ Research-Backed Elements</h3>
+                        <p style="margin-bottom: 12px;"><strong>From Granovetter (1973):</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>16.7% / 55.6% / 27.8%</strong> empirical distribution (N=54 job seekers)</li>
+                            <li>Weak ties more effective than strong ties for job search</li>
+                            <li>Tie strength = frequency of contact</li>
+                            <li>Overlap increases with tie strength (qualitative principle)</li>
+                            <li>Triadic closure creates redundancy</li>
+                        </ul>
+                        <p style="margin-top: 12px; font-size: 0.9em;"><em>📖 Source: Granovetter, M. S. (1973). "The Strength of Weak Ties." American Journal of Sociology, 78(6), 1360-1380.</em></p>
+                    </div>
+
+                    <div style="background: #fef2f2; padding: 20px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                        <h3 style="color: #991b1b; margin-top: 0;">⚠️ Illustrative Model Elements</h3>
+                        <p style="margin-bottom: 12px;"><strong>Educational concepts (not empirically validated):</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Specific % thresholds (e.g., "0-30% = sparse")</li>
+                            <li>Overlap calculation formulas</li>
+                            <li>"Optimal" network configurations</li>
+                            <li>Numerical bridge count recommendations</li>
+                            <li>Network quality scoring algorithms</li>
+                        </ul>
+                        <p style="margin-top: 12px; font-size: 0.9em; color: #991b1b;"><strong>Why?</strong> Research shows network interpretation is highly context-dependent. There are NO universal thresholds - all metrics depend on network size, purpose, and comparison to random baselines.</p>
+                    </div>
+                </div>
+
+                <!-- Research Notes -->
+                <div style="background: white; padding: 20px; border-radius: 12px; border: 2px solid #e0e6ed;">
+                    <h3 style="color: #1e3c72; margin-top: 0;">📊 Research Foundation</h3>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        These tools are based on extensive literature review including:
+                    </p>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; font-size: 0.9em;">
+                        <div>
+                            <strong>• Granovetter (1973)</strong><br>
+                            <span style="color: #64748b;">Original weak ties study</span>
+                        </div>
+                        <div>
+                            <strong>• Burt (2000, 2004)</strong><br>
+                            <span style="color: #64748b;">Structural holes theory</span>
+                        </div>
+                        <div>
+                            <strong>• Watts-Strogatz (1998)</strong><br>
+                            <span style="color: #64748b;">Small-world networks</span>
+                        </div>
+                        <div>
+                            <strong>• Recent studies (2021-2024)</strong><br>
+                            <span style="color: #64748b;">Network density & diffusion</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #64748b;">
+                        <strong>📄 Full research documentation:</strong> See <code>network-metrics-research-kb.md</code> for complete literature review and source citations.
+                    </p>
+                </div>
+
+                <!-- Key Takeaway -->
+                <div class="key-finding" style="margin-top: 25px; margin-bottom: 0;">
+                    <strong>🎯 Key Takeaway:</strong> Use Illustrative Mode to learn and explore network concepts. The qualitative relationships (weak ties → less overlap → novel information) are research-backed. Specific numerical thresholds are educational models to help understanding, not empirical guidelines for your personal network.
+                </div>
+            </div>
+
             <!-- Interactive Network Simulator -->
             <div class="section">
                 <h2>🕸️ Network Builder & Analyzer</h2>
@@ -1507,19 +1592,47 @@
                     <div class="grid">
                         <div class="card">
                             <h4>Network Density</h4>
-                            <p>Percentage of all possible connections that actually exist. Higher density = more interconnected, but potentially more redundant information.</p>
+                            <p><strong>What it measures:</strong> Percentage of all possible connections that actually exist.</p>
+                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
+                                <strong>Interpretation:</strong><br>
+                                • <strong>Low (0-30%):</strong> Sparse network, diverse connections, high potential for bridging<br>
+                                • <strong>Medium (30-60%):</strong> Balanced - some clustering, some diversity<br>
+                                • <strong>High (60-100%):</strong> Dense cluster, everyone knows everyone, high information redundancy
+                            </div>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Optimal: 20-40% for job searching - enough connections without redundancy</em></p>
                         </div>
                         <div class="card">
                             <h4>Bridges</h4>
-                            <p>Weak ties that are the only connection between two groups. These are critical for information flow and are Granovetter's key insight!</p>
+                            <p><strong>What it measures:</strong> Weak ties that are the only connection between otherwise disconnected groups.</p>
+                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
+                                <strong>Interpretation:</strong><br>
+                                • <strong>0 bridges:</strong> All groups already connected, limited novel information<br>
+                                • <strong>1-2 bridges:</strong> Some access to different circles<br>
+                                • <strong>3+ bridges:</strong> Excellent diversity, access to multiple distinct groups
+                            </div>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Granovetter's key insight: Bridges provide access to non-redundant information!</em></p>
                         </div>
                         <div class="card">
                             <h4>Clustering Coefficient</h4>
-                            <p>Measures how much your friends are also friends with each other. High clustering = closed triads (strong ties), low clustering = diverse, spread-out network.</p>
+                            <p><strong>What it measures:</strong> How much your friends are also friends with each other (triadic closure).</p>
+                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
+                                <strong>Interpretation:</strong><br>
+                                • <strong>Low (0-30%):</strong> Spread-out network, friends in different circles (good for jobs)<br>
+                                • <strong>Medium (30-60%):</strong> Mix of closed groups and diverse ties<br>
+                                • <strong>High (60-100%):</strong> Tight-knit group, "forbidden triads" everywhere, information redundancy
+                            </div>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Lower clustering = more bridges = more diverse information sources</em></p>
                         </div>
                         <div class="card">
                             <h4>Weak Tie Ratio</h4>
-                            <p>According to Granovetter's findings, the optimal network has a good balance of weak ties (40%+) to access novel information.</p>
+                            <p><strong>What it measures:</strong> Percentage of all connections that are weak ties (vs. strong ties).</p>
+                            <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em;">
+                                <strong>Interpretation:</strong><br>
+                                • <strong>Low (0-20%):</strong> Too few weak ties, missing diverse opportunities<br>
+                                • <strong>Medium (20-50%):</strong> Balanced network with good diversity<br>
+                                • <strong>High (50-100%):</strong> Excellent for information access, many distant contacts
+                            </div>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;"><em>💡 Study finding: 83.4% of jobs came through weak/moderate ties, not strong ties!</em></p>
                         </div>
                     </div>
                 </div>
@@ -1697,6 +1810,163 @@
 
                 <div class="help-text" style="margin-top: 20px;">
                     <strong>💡 How to interpret:</strong> This calculator uses Granovetter's empirical data showing that weak and moderate ties were significantly more helpful than strong ties. A higher percentage of weak/moderate ties generally leads to more diverse job opportunities.
+                </div>
+            </div>
+
+            <!-- Information Reach Calculator -->
+            <div class="section">
+                <h2>🌐 Information Reach Calculator</h2>
+                <p>Calculate how many unique people you can reach through your network, accounting for overlap and redundancy. This demonstrates why weak ties provide access to more diverse information.</p>
+
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-top: 25px;">
+
+                    <!-- Input Section -->
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">👥 Your Network Size</h3>
+                        <p style="margin-bottom: 25px; color: #64748b;">Enter the number of people in your direct network and their average overlap.</p>
+
+                        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                            <!-- Strong Ties Input -->
+                            <div>
+                                <label style="font-weight: 600; color: #1e3c72; display: block; margin-bottom: 10px;">
+                                    Strong Ties (close friends, family):
+                                </label>
+                                <input type="number" id="strong-ties-count" min="0" max="100" value="5"
+                                       style="width: 100%; padding: 12px; border: 2px solid #e0e6ed; border-radius: 8px; font-size: 1.1em; font-weight: 600;"
+                                       oninput="ReachCalculator.calculate()">
+                                <p style="font-size: 0.85em; color: #64748b; margin-top: 5px;">People you see ≥2x/week</p>
+                            </div>
+
+                            <!-- Weak Ties Input -->
+                            <div>
+                                <label style="font-weight: 600; color: #1e3c72; display: block; margin-bottom: 10px;">
+                                    Weak Ties (acquaintances, distant contacts):
+                                </label>
+                                <input type="number" id="weak-ties-count" min="0" max="500" value="15"
+                                       style="width: 100%; padding: 12px; border: 2px solid #e0e6ed; border-radius: 8px; font-size: 1.1em; font-weight: 600;"
+                                       oninput="ReachCalculator.calculate()">
+                                <p style="font-size: 0.85em; color: #64748b; margin-top: 5px;">Distant or occasional contacts</p>
+                            </div>
+
+                            <!-- Overlap Percentage -->
+                            <div>
+                                <label style="font-weight: 600; color: #1e3c72; display: block; margin-bottom: 10px;">
+                                    Average Network Overlap:
+                                    <span id="overlap-display" style="color: #f59e0b;">50%</span>
+                                </label>
+                                <input type="range" id="overlap-slider" min="0" max="100" value="50"
+                                       style="width: 100%; height: 8px; border-radius: 5px; outline: none; background: linear-gradient(to right, #10b981 0%, #f59e0b 50%, #ef4444 100%);"
+                                       oninput="ReachCalculator.updateOverlap(this.value)">
+                                <p style="font-size: 0.85em; color: #64748b; margin-top: 5px;">% of contacts that know each other</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">📊 Your Information Reach</h3>
+
+                        <!-- Main Reach Number -->
+                        <div style="text-align: center; margin: 25px 0;">
+                            <div id="total-reach" style="font-size: 4em; font-weight: bold; color: #10b981;">20</div>
+                            <div style="font-size: 1.2em; color: #64748b; margin-top: 5px;">Unique People You Can Reach</div>
+                        </div>
+
+                        <!-- Concentric Circles Visualization -->
+                        <div style="margin: 30px 0;">
+                            <svg id="reach-viz" width="100%" height="300" viewBox="0 0 600 300" style="max-width: 600px; margin: 0 auto; display: block;">
+                                <!-- Background -->
+                                <defs>
+                                    <radialGradient id="reachGrad1" cx="50%" cy="50%">
+                                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.2" />
+                                        <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.05" />
+                                    </radialGradient>
+                                    <radialGradient id="reachGrad2" cx="50%" cy="50%">
+                                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.05" />
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- Circles -->
+                                <circle id="reach-circle-outer" cx="300" cy="150" r="140" fill="url(#reachGrad1)" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+                                <circle id="reach-circle-middle" cx="300" cy="150" r="90" fill="url(#reachGrad2)" stroke="#3b82f6" stroke-width="2" opacity="0.7"/>
+                                <circle cx="300" cy="150" r="40" fill="#1e3c72" stroke="white" stroke-width="3"/>
+
+                                <!-- Labels -->
+                                <text x="300" y="155" text-anchor="middle" fill="white" font-size="16" font-weight="bold">YOU</text>
+                                <text id="reach-label-direct" x="300" y="110" text-anchor="middle" fill="#1e3c72" font-size="14" font-weight="600">Direct: 20</text>
+                                <text id="reach-label-extended" x="300" y="40" text-anchor="middle" fill="#10b981" font-size="14" font-weight="600">Extended: ~200</text>
+                            </svg>
+                        </div>
+
+                        <!-- Breakdown -->
+                        <div style="margin-top: 25px;">
+                            <h4 style="color: #1e3c72; margin-bottom: 15px;">Network Breakdown:</h4>
+                            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                                <div style="padding: 20px; background: #fef2f2; border-radius: 10px; border-left: 4px solid #dc2626;">
+                                    <div style="font-size: 0.9em; color: #991b1b; margin-bottom: 8px; font-weight: 600;">Strong Tie Network</div>
+                                    <div id="strong-reach" style="font-size: 2em; font-weight: bold; color: #dc2626;">5</div>
+                                    <div style="font-size: 0.85em; color: #991b1b; margin-top: 5px;">direct contacts</div>
+                                    <div id="strong-overlap-info" style="font-size: 0.8em; color: #64748b; margin-top: 8px;">High overlap (80%)</div>
+                                </div>
+                                <div style="padding: 20px; background: #f0fdf4; border-radius: 10px; border-left: 4px solid #16a34a;">
+                                    <div style="font-size: 0.9em; color: #166534; margin-bottom: 8px; font-weight: 600;">Weak Tie Network</div>
+                                    <div id="weak-reach" style="font-size: 2em; font-weight: bold; color: #16a34a;">15</div>
+                                    <div style="font-size: 0.85em; color: #166534; margin-top: 5px;">direct contacts</div>
+                                    <div id="weak-overlap-info" style="font-size: 0.8em; color: #64748b; margin-top: 8px;">Low overlap (20%)</div>
+                                </div>
+                                <div style="padding: 20px; background: #eff6ff; border-radius: 10px; border-left: 4px solid #2563eb;">
+                                    <div style="font-size: 0.9em; color: #1e40af; margin-bottom: 8px; font-weight: 600;">Unique Reach</div>
+                                    <div id="unique-reach" style="font-size: 2em; font-weight: bold; color: #2563eb;">18</div>
+                                    <div style="font-size: 0.85em; color: #1e40af; margin-top: 5px;">non-redundant contacts</div>
+                                    <div id="redundancy-info" style="font-size: 0.8em; color: #64748b; margin-top: 8px;">2 redundant (10%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario Comparison -->
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">⚖️ Scenario Comparison</h3>
+                        <p style="margin-bottom: 20px; color: #64748b;">See how different network configurations affect your reach.</p>
+
+                        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div style="padding: 20px; background: #fef2f2; border-radius: 10px; border: 2px solid #fca5a5;">
+                                <h4 style="color: #dc2626; margin-top: 0; font-size: 1.1em;">❌ All Strong Ties</h4>
+                                <p style="font-size: 0.9em; color: #64748b; margin-bottom: 15px;">20 close friends who all know each other</p>
+                                <div style="font-size: 2.5em; font-weight: bold; color: #dc2626;" id="scenario-all-strong">20</div>
+                                <div style="font-size: 0.85em; color: #991b1b; margin-top: 5px;">unique reach</div>
+                                <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 6px; font-size: 0.85em; color: #64748b;">
+                                    High overlap = <strong style="color: #dc2626;">low diversity</strong>
+                                </div>
+                            </div>
+
+                            <div style="padding: 20px; background: #f0fdf4; border-radius: 10px; border: 2px solid #86efac;">
+                                <h4 style="color: #16a34a; margin-top: 0; font-size: 1.1em;">✅ All Weak Ties</h4>
+                                <p style="font-size: 0.9em; color: #64748b; margin-bottom: 15px;">20 acquaintances in different circles</p>
+                                <div style="font-size: 2.5em; font-weight: bold; color: #16a34a;" id="scenario-all-weak">20</div>
+                                <div style="font-size: 0.85em; color: #166534; margin-top: 5px;">unique reach</div>
+                                <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 6px; font-size: 0.85em; color: #64748b;">
+                                    Low overlap = <strong style="color: #16a34a;">high diversity</strong>
+                                </div>
+                            </div>
+
+                            <div style="padding: 20px; background: #eff6ff; border-radius: 10px; border: 2px solid #93c5fd;">
+                                <h4 style="color: #2563eb; margin-top: 0; font-size: 1.1em;">⭐ Your Network</h4>
+                                <p style="font-size: 0.9em; color: #64748b; margin-bottom: 15px;">Current configuration</p>
+                                <div style="font-size: 2.5em; font-weight: bold; color: #2563eb;" id="scenario-current">18</div>
+                                <div style="font-size: 0.85em; color: #1e40af; margin-top: 5px;">unique reach</div>
+                                <div id="scenario-comparison" style="margin-top: 15px; padding: 10px; background: white; border-radius: 6px; font-size: 0.85em; color: #64748b;">
+                                    Calculating...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="help-text" style="margin-top: 20px;">
+                    <strong>💡 Key Insight:</strong> Weak ties provide access to non-overlapping information networks. With strong ties, your friends all know each other (high overlap), so information is redundant. Weak ties connect you to different social circles, dramatically expanding your reach. This is why Granovetter found that 83.4% of jobs came through weak/moderate ties!
                 </div>
             </div>
 
@@ -2551,6 +2821,205 @@
             }
         };
 
+        // ========================================
+        // INFORMATION REACH CALCULATOR
+        // ========================================
+
+        const ReachCalculator = {
+            strongCount: 5,
+            weakCount: 15,
+            overlapPercent: 50,
+
+            init() {
+                this.calculate();
+            },
+
+            updateOverlap(value) {
+                this.overlapPercent = parseInt(value);
+                document.getElementById('overlap-display').textContent = value + '%';
+                this.calculate();
+            },
+
+            calculate() {
+                // Get input values
+                const strongInput = document.getElementById('strong-ties-count');
+                const weakInput = document.getElementById('weak-ties-count');
+
+                if (strongInput) this.strongCount = parseInt(strongInput.value) || 0;
+                if (weakInput) this.weakCount = parseInt(weakInput.value) || 0;
+
+                // Calculate overlap
+                // Strong ties have high overlap (they know each other)
+                // Weak ties have low overlap (different social circles)
+                const strongOverlap = this.overlapPercent / 100;
+                const weakOverlap = Math.max(0, (this.overlapPercent - 40) / 100); // Weak ties have ~40% less overlap
+
+                // Calculate unique reach
+                // For strong ties: accounting for high overlap/redundancy
+                const strongUnique = this.strongCount * (1 - strongOverlap * 0.8);
+
+                // For weak ties: accounting for low overlap
+                const weakUnique = this.weakCount * (1 - weakOverlap * 0.3);
+
+                const totalUnique = Math.round(strongUnique + weakUnique);
+                const redundant = (this.strongCount + this.weakCount) - totalUnique;
+
+                // Calculate extended network (2nd degree connections)
+                // Assuming each person knows ~10 others on average
+                const extendedReach = Math.round(totalUnique * 10);
+
+                // Update display
+                this.updateDisplay(totalUnique, extendedReach, redundant);
+
+                // Calculate scenarios
+                this.calculateScenarios();
+            },
+
+            updateDisplay(totalUnique, extendedReach, redundant) {
+                // Main reach number
+                const totalReachEl = document.getElementById('total-reach');
+                if (totalReachEl) {
+                    totalReachEl.textContent = totalUnique;
+
+                    // Color based on reach
+                    if (totalUnique >= 30) {
+                        totalReachEl.style.color = '#10b981';
+                    } else if (totalUnique >= 15) {
+                        totalReachEl.style.color = '#3b82f6';
+                    } else {
+                        totalReachEl.style.color = '#f59e0b';
+                    }
+                }
+
+                // Update visualization labels
+                const directLabel = document.getElementById('reach-label-direct');
+                const extendedLabel = document.getElementById('reach-label-extended');
+
+                if (directLabel) directLabel.textContent = `Direct: ${totalUnique}`;
+                if (extendedLabel) extendedLabel.textContent = `Extended: ~${extendedReach}`;
+
+                // Update circles - scale based on network size
+                const outerCircle = document.getElementById('reach-circle-outer');
+                const middleCircle = document.getElementById('reach-circle-middle');
+
+                if (outerCircle) {
+                    const outerRadius = Math.min(140, 60 + totalUnique * 2);
+                    outerCircle.setAttribute('r', outerRadius);
+                }
+
+                if (middleCircle) {
+                    const middleRadius = Math.min(90, 40 + totalUnique);
+                    middleCircle.setAttribute('r', middleRadius);
+                }
+
+                // Update breakdown
+                document.getElementById('strong-reach').textContent = this.strongCount;
+                document.getElementById('weak-reach').textContent = this.weakCount;
+                document.getElementById('unique-reach').textContent = totalUnique;
+
+                // Update overlap info
+                const strongOverlapPct = Math.round(this.overlapPercent * 0.8);
+                const weakOverlapPct = Math.max(0, Math.round((this.overlapPercent - 40) * 0.3));
+
+                document.getElementById('strong-overlap-info').textContent = `High overlap (~${strongOverlapPct}%)`;
+                document.getElementById('weak-overlap-info').textContent = `Low overlap (~${weakOverlapPct}%)`;
+
+                const redundancyPct = ((redundant / (this.strongCount + this.weakCount)) * 100).toFixed(0);
+                document.getElementById('redundancy-info').textContent = `${redundant} redundant (${redundancyPct}%)`;
+            },
+
+            calculateScenarios() {
+                const totalContacts = this.strongCount + this.weakCount;
+
+                // Scenario 1: All strong ties (high overlap ~80%)
+                const allStrongUnique = Math.round(totalContacts * (1 - 0.8 * 0.8));
+
+                // Scenario 2: All weak ties (low overlap ~10%)
+                const allWeakUnique = Math.round(totalContacts * (1 - 0.1 * 0.3));
+
+                // Current network
+                const currentUnique = parseInt(document.getElementById('unique-reach').textContent);
+
+                // Update scenario displays
+                document.getElementById('scenario-all-strong').textContent = allStrongUnique;
+                document.getElementById('scenario-all-weak').textContent = allWeakUnique;
+                document.getElementById('scenario-current').textContent = currentUnique;
+
+                // Comparison message
+                const comparisonEl = document.getElementById('scenario-comparison');
+                if (comparisonEl) {
+                    let message = '';
+                    const percentOfOptimal = (currentUnique / allWeakUnique) * 100;
+
+                    if (percentOfOptimal >= 90) {
+                        message = `🎉 <strong>${percentOfOptimal.toFixed(0)}% of optimal!</strong> Excellent diversity`;
+                    } else if (percentOfOptimal >= 70) {
+                        message = `✅ <strong>${percentOfOptimal.toFixed(0)}% of optimal</strong> - Good balance`;
+                    } else if (percentOfOptimal >= 50) {
+                        message = `⚠️ <strong>${percentOfOptimal.toFixed(0)}% of optimal</strong> - More weak ties needed`;
+                    } else {
+                        message = `❌ <strong>${percentOfOptimal.toFixed(0)}% of optimal</strong> - Too much overlap`;
+                    }
+
+                    comparisonEl.innerHTML = message;
+                }
+            }
+        };
+
+        // ========================================
+        // MODE TOGGLE (Research vs Illustrative)
+        // ========================================
+
+        let currentMode = 'illustrative';
+
+        function toggleMode(mode) {
+            currentMode = mode;
+
+            // Update button states
+            const illustrativeBtn = document.getElementById('mode-illustrative');
+            const researchBtn = document.getElementById('mode-research');
+            const description = document.getElementById('mode-description');
+
+            if (mode === 'illustrative') {
+                illustrativeBtn.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+                illustrativeBtn.classList.remove('secondary');
+                researchBtn.style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                researchBtn.classList.add('secondary');
+
+                description.innerHTML = `
+                    <strong style="color: #d97706;">Current: Illustrative Mode</strong>
+                    <p style="margin: 10px 0 0 0; line-height: 1.6;">Shows educational models with conceptual thresholds to help you understand network principles. Calculations are illustrative and based on Granovetter's concepts, but specific numerical thresholds are not empirically validated.</p>
+                `;
+
+                // Show all illustrative elements
+                document.querySelectorAll('.illustrative-only').forEach(el => {
+                    el.style.display = '';
+                });
+                document.querySelectorAll('.research-warning').forEach(el => {
+                    el.style.display = 'none';
+                });
+
+            } else {
+                illustrativeBtn.style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                illustrativeBtn.classList.add('secondary');
+                researchBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                researchBtn.classList.remove('secondary');
+
+                description.innerHTML = `
+                    <strong style="color: #059669;">Current: Research-Only Mode</strong>
+                    <p style="margin: 10px 0 0 0; line-height: 1.6;">Shows only empirically validated findings from Granovetter (1973) and other peer-reviewed research. Qualitative relationships are displayed without numerical thresholds. Illustrative calculations are hidden.</p>
+                `;
+
+                // Hide illustrative elements
+                document.querySelectorAll('.illustrative-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.research-warning').forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+        }
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             if (document.getElementById('networkCanvas')) {
@@ -2560,6 +3029,13 @@
             if (document.getElementById('strong-slider')) {
                 JobSearchCalculator.init();
             }
+
+            if (document.getElementById('strong-ties-count')) {
+                ReachCalculator.init();
+            }
+
+            // Set default mode
+            toggleMode('illustrative');
         });
     </script>
 </body>
