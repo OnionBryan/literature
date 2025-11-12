@@ -641,22 +641,20 @@
     <nav class="page-nav-container">
         <div class="page-nav">
             <a href="index.html" class="page-btn home">← Back to Literature Explorer</a>
-            <a href="#theory" class="page-btn">Theory</a>
-            <a href="#calculator" class="page-btn">Calculators</a>
-            <a href="#examples" class="page-btn">Examples</a>
-            <a href="#empirical" class="page-btn">Evidence</a>
-            <a href="#audit" class="page-btn">Network Audit</a>
-            <a href="#debate" class="page-btn">Debates</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">📖 Main Content</button>
+            <button class="page-btn" onclick="switchPage('interactive', this)">🎮 Interactive Tools</button>
         </div>
     </nav>
 
     <!-- Dark Mode Toggle (Fixed Position) -->
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
-    <div class="container">
+    <!-- MAIN CONTENT PAGE -->
+    <div id="main">
+        <div class="container">
 
-        <!-- Hero Section -->
-        <section class="hero">
+            <!-- Hero Section -->
+            <section class="hero">
             <h1>Structural Holes:<br>The Social Structure of Competition</h1>
             <p class="citation">Burt, R. S. (1992). Harvard University Press</p>
             <p class="tagline">
@@ -1702,15 +1700,167 @@
             </ul>
         </section>
 
-        <!-- Attribution -->
-        <div class="attribution">
-            <p>
-                Interactive visualization created for the Literature Explorer.<br>
-                Based on: Burt, R. S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Harvard University Press.
-            </p>
-        </div>
+            <!-- Attribution -->
+            <div class="attribution">
+                <p>
+                    Interactive visualization created for the Literature Explorer.<br>
+                    Based on: Burt, R. S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Harvard University Press.
+                </p>
+            </div>
 
+        </div>
     </div>
+    <!-- END MAIN CONTENT PAGE -->
+
+    <!-- INTERACTIVE TOOLS PAGE -->
+    <div id="interactive" style="display: none;">
+        <div class="container">
+
+            <!-- Interactive Tools Hero -->
+            <section class="hero">
+                <h1>🎮 Interactive Structural Holes Explorer</h1>
+                <p class="tagline">
+                    Build networks, visualize brokerage positions, and see structural holes in action
+                </p>
+            </section>
+
+            <!-- Network Builder Tool -->
+            <div class="section-card">
+                <h2>🕸️ Network Builder & Constraint Analyzer</h2>
+                <p>Create your own network and watch the structural holes metrics update in real-time. Build a brokerage position or a constrained network and see the difference.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <!-- Controls -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; align-items: center;">
+                        <h3 style="width: 100%; margin: 0 0 15px 0; font-size: 1.1em;">Controls:</h3>
+
+                        <button id="draw-mode-btn" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(30, 60, 114, 0.3); font-family: 'Lato', sans-serif;" onclick="BrokerageSimulator.toggleDrawMode()">
+                            ✏️ Enable Drawing Mode
+                        </button>
+
+                        <button id="conn-sparse" class="control-btn active" style="padding: 10px 20px; font-size: 0.9em; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.setConnectionType('sparse')">
+                            Sparse (Broker)
+                        </button>
+
+                        <button id="conn-dense" class="control-btn" style="padding: 10px 20px; font-size: 0.9em; background: linear-gradient(135deg, #64748b 0%, #475569 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.setConnectionType('dense')">
+                            Dense (Constrained)
+                        </button>
+
+                        <button style="background: linear-gradient(135deg, #64748b 0%, #475569 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.removeSelectedNode()">
+                            🗑️ Delete Selected
+                        </button>
+
+                        <button style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.clearNetwork()">
+                            ⚠️ Clear All
+                        </button>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="width: 100%; margin: 0 0 12px 0; font-size: 1em; font-weight: 600;">Load Preset Networks:</h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('broker')">
+                                🎯 Perfect Broker
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('medici')">
+                                👑 Medici Style
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('constrained')">
+                                🔒 Highly Constrained
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('balanced')">
+                                ⚖️ Balanced Network
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Canvas -->
+                    <canvas id="brokerageCanvas" style="width: 100%; height: 500px; background: white; border-radius: 12px; cursor: default; display: block;"></canvas>
+
+                    <!-- Legend -->
+                    <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; justify-content: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 40px; height: 3px; background: #2a5298;"></div>
+                            <span style="font-size: 0.9em;">Sparse Connection (Low Redundancy)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 40px; height: 5px; background: #dc2626;"></div>
+                            <span style="font-size: 0.9em;">Dense Connection (High Redundancy)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: #1e3c72; border: 2px solid white;"></span>
+                            <span style="font-size: 0.9em;">Person (drag to move)</span>
+                        </div>
+                    </div>
+
+                    <!-- Help Text -->
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                        <strong>🎯 How to use:</strong>
+                        <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Load presets:</strong> Click buttons above to see example networks</li>
+                            <li><strong>Add a person:</strong> Double-click anywhere on the canvas</li>
+                            <li><strong>Move a person:</strong> Click and drag any node</li>
+                            <li><strong>Add a connection:</strong> Enable Drawing Mode → Choose connection type → Click two people</li>
+                            <li><strong>Delete a person:</strong> Click to select (yellow glow), then click "Delete Selected"</li>
+                            <li><strong>See the difference:</strong> Sparse connections create structural holes (brokerage), dense connections create redundancy (constraint)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-Time Metrics Dashboard -->
+            <div class="section-card">
+                <h2>📊 Real-Time Structural Holes Metrics</h2>
+                <p>These metrics update live as you modify the network. Watch how structural holes, redundancy, and brokerage opportunities change.</p>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <h3 style="margin-bottom: 10px;">Network Type Assessment</h3>
+                    <span id="network-quality" style="display: inline-block; padding: 12px 30px; border-radius: 25px; font-weight: 700; font-size: 1.1em; background: #64748b; color: white;">Waiting for data...</span>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;">Based on structural holes, redundancy, and network constraint</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">People</div>
+                        <div id="metric-nodes" style="font-size: 2.8em; font-weight: bold;">0</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Connections</div>
+                        <div id="metric-edges" style="font-size: 2.8em; font-weight: bold;">0</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Network Constraint</div>
+                        <div id="metric-constraint" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Effective Size</div>
+                        <div id="metric-effective" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Structural Holes</div>
+                        <div id="metric-holes" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Brokerage Potential</div>
+                        <div id="metric-brokerage" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+                </div>
+
+                <div id="metric-explanation" style="background: linear-gradient(135deg, #005f73 0%, #0a9396 100%); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                    <strong style="font-size: 1.1em;">💡 What this means:</strong>
+                    <p style="margin-top: 10px; line-height: 1.8;">
+                        Build your network above to see real-time analysis of structural holes, constraint, and brokerage opportunities.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END INTERACTIVE TOOLS PAGE -->
 
     <script>
         // Dark mode toggle
@@ -1725,6 +1875,472 @@
         if (localStorage.getItem('darkMode') === 'true') {
             toggleDarkMode();
         }
+
+        // Page Switching
+        function switchPage(pageId, button) {
+            // Hide all pages
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('interactive').style.display = 'none';
+
+            // Show selected page
+            document.getElementById(pageId).style.display = 'block';
+
+            // Update active button
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                if (btn.textContent.includes('Back')) return; // Skip home button
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            // Initialize simulator if switching to interactive page
+            if (pageId === 'interactive' && !BrokerageSimulator.canvas) {
+                BrokerageSimulator.init();
+            }
+        }
+
+        // Brokerage Network Simulator
+        const BrokerageSimulator = {
+            nodes: [],
+            edges: [],
+            selectedNode: null,
+            draggedNode: null,
+            canvas: null,
+            ctx: null,
+            isDrawingMode: false,
+            tempEdgeStart: null,
+            connectionType: 'sparse',
+            nodeIdCounter: 0,
+
+            init() {
+                this.canvas = document.getElementById('brokerageCanvas');
+                if (!this.canvas) return;
+
+                this.ctx = this.canvas.getContext('2d');
+                this.setupCanvas();
+                this.setupEventListeners();
+                this.loadPresetNetwork('broker');
+
+                setTimeout(() => {
+                    this.setupCanvas();
+                    this.render();
+                }, 50);
+            },
+
+            setupCanvas() {
+                const rect = this.canvas.getBoundingClientRect();
+                this.canvas.width = rect.width > 0 ? rect.width : 800;
+                this.canvas.height = rect.height > 0 ? rect.height : 500;
+                this.render();
+            },
+
+            setupEventListeners() {
+                this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+                this.canvas.addEventListener('dblclick', this.handleDoubleClick.bind(this));
+
+                window.addEventListener('resize', () => {
+                    this.setupCanvas();
+                });
+            },
+
+            handleMouseDown(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (this.isDrawingMode) {
+                    if (clickedNode) {
+                        if (!this.tempEdgeStart) {
+                            this.tempEdgeStart = clickedNode;
+                            this.selectedNode = clickedNode;
+                            this.canvas.style.cursor = 'crosshair';
+                        } else {
+                            if (clickedNode !== this.tempEdgeStart) {
+                                this.addEdge(this.tempEdgeStart, clickedNode, this.connectionType);
+                            }
+                            this.tempEdgeStart = null;
+                            this.selectedNode = null;
+                        }
+                    } else {
+                        this.tempEdgeStart = null;
+                        this.selectedNode = null;
+                    }
+                } else {
+                    if (clickedNode) {
+                        this.draggedNode = clickedNode;
+                        this.selectedNode = clickedNode;
+                        this.canvas.style.cursor = 'grabbing';
+                    } else {
+                        this.selectedNode = null;
+                    }
+                }
+                this.render();
+            },
+
+            handleMouseMove(e) {
+                const pos = this.getMousePos(e);
+
+                if (this.draggedNode && !this.isDrawingMode) {
+                    this.draggedNode.x = pos.x;
+                    this.draggedNode.y = pos.y;
+                    this.render();
+                } else if (this.tempEdgeStart && this.isDrawingMode) {
+                    this.render();
+                    this.ctx.save();
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.tempEdgeStart.x, this.tempEdgeStart.y);
+                    this.ctx.lineTo(pos.x, pos.y);
+                    this.ctx.strokeStyle = this.connectionType === 'sparse' ? '#2a5298' : '#dc2626';
+                    this.ctx.lineWidth = this.connectionType === 'sparse' ? 3 : 5;
+                    if (this.connectionType === 'sparse') {
+                        this.ctx.setLineDash([5, 5]);
+                    }
+                    this.ctx.stroke();
+                    this.ctx.restore();
+                } else {
+                    const hoverNode = this.getNodeAtPosition(pos.x, pos.y);
+                    if (this.isDrawingMode) {
+                        this.canvas.style.cursor = hoverNode ? 'pointer' : 'crosshair';
+                    } else {
+                        this.canvas.style.cursor = hoverNode ? 'move' : 'default';
+                    }
+                }
+            },
+
+            handleMouseUp(e) {
+                if (this.draggedNode) {
+                    this.draggedNode = null;
+                    this.updateMetrics();
+                }
+
+                if (this.isDrawingMode) {
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    this.canvas.style.cursor = 'default';
+                }
+
+                this.render();
+            },
+
+            handleDoubleClick(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (!clickedNode) {
+                    this.addNode(pos.x, pos.y);
+                }
+            },
+
+            getMousePos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            },
+
+            getNodeAtPosition(x, y) {
+                for (let node of this.nodes) {
+                    const dx = x - node.x;
+                    const dy = y - node.y;
+                    if (Math.sqrt(dx * dx + dy * dy) < 25) {
+                        return node;
+                    }
+                }
+                return null;
+            },
+
+            addNode(x, y) {
+                this.nodes.push({
+                    id: this.nodeIdCounter++,
+                    x: x,
+                    y: y,
+                    label: String.fromCharCode(65 + (this.nodes.length % 26))
+                });
+                this.render();
+                this.updateMetrics();
+            },
+
+            addEdge(from, to, type) {
+                const existingEdge = this.edges.find(e =>
+                    (e.from === from && e.to === to) || (e.from === to && e.to === from)
+                );
+
+                if (!existingEdge) {
+                    this.edges.push({ from, to, type });
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            removeSelectedNode() {
+                if (this.selectedNode) {
+                    this.nodes = this.nodes.filter(n => n !== this.selectedNode);
+                    this.edges = this.edges.filter(e =>
+                        e.from !== this.selectedNode && e.to !== this.selectedNode
+                    );
+                    this.selectedNode = null;
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            clearNetwork() {
+                this.nodes = [];
+                this.edges = [];
+                this.selectedNode = null;
+                this.draggedNode = null;
+                this.tempEdgeStart = null;
+                this.render();
+                this.updateMetrics();
+            },
+
+            toggleDrawMode() {
+                this.isDrawingMode = !this.isDrawingMode;
+                const btn = document.getElementById('draw-mode-btn');
+                if (this.isDrawingMode) {
+                    btn.textContent = '✏️ Disable Drawing Mode';
+                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    btn.textContent = '✏️ Enable Drawing Mode';
+                    btn.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                    this.canvas.style.cursor = 'default';
+                    this.tempEdgeStart = null;
+                }
+                this.render();
+            },
+
+            setConnectionType(type) {
+                this.connectionType = type;
+                document.getElementById('conn-sparse').classList.toggle('active', type === 'sparse');
+                document.getElementById('conn-dense').classList.toggle('active', type === 'dense');
+
+                if (type === 'sparse') {
+                    document.getElementById('conn-sparse').style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    document.getElementById('conn-dense').style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                } else {
+                    document.getElementById('conn-dense').style.background = 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)';
+                    document.getElementById('conn-sparse').style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                }
+            },
+
+            loadPresetNetwork(type) {
+                this.clearNetwork();
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+
+                if (type === 'broker') {
+                    // Perfect broker - one central node connecting 3 disconnected groups
+                    const you = { id: 0, x: centerX, y: centerY, label: 'YOU' };
+                    this.nodes.push(you);
+
+                    // Group 1 (top-left)
+                    const g1nodes = [
+                        { id: 1, x: centerX - 200, y: centerY - 150, label: 'A' },
+                        { id: 2, x: centerX - 250, y: centerY - 100, label: 'B' },
+                        { id: 3, x: centerX - 200, y: centerY - 50, label: 'C' }
+                    ];
+                    g1nodes.forEach(n => this.nodes.push(n));
+                    g1nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g1nodes[0], to: g1nodes[1], type: 'sparse' });
+                    this.edges.push({ from: g1nodes[1], to: g1nodes[2], type: 'sparse' });
+
+                    // Group 2 (top-right)
+                    const g2nodes = [
+                        { id: 4, x: centerX + 200, y: centerY - 150, label: 'D' },
+                        { id: 5, x: centerX + 250, y: centerY - 100, label: 'E' },
+                        { id: 6, x: centerX + 200, y: centerY - 50, label: 'F' }
+                    ];
+                    g2nodes.forEach(n => this.nodes.push(n));
+                    g2nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g2nodes[0], to: g2nodes[1], type: 'sparse' });
+                    this.edges.push({ from: g2nodes[1], to: g2nodes[2], type: 'sparse' });
+
+                    // Group 3 (bottom)
+                    const g3nodes = [
+                        { id: 7, x: centerX - 80, y: centerY + 150, label: 'G' },
+                        { id: 8, x: centerX + 80, y: centerY + 150, label: 'H' }
+                    ];
+                    g3nodes.forEach(n => this.nodes.push(n));
+                    g3nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g3nodes[0], to: g3nodes[1], type: 'sparse' });
+
+                } else if (type === 'constrained') {
+                    // Highly constrained - dense interconnected network
+                    const radius = 120;
+                    const numNodes = 8;
+                    for (let i = 0; i < numNodes; i++) {
+                        const angle = (i / numNodes) * 2 * Math.PI;
+                        this.nodes.push({
+                            id: i,
+                            x: centerX + radius * Math.cos(angle),
+                            y: centerY + radius * Math.sin(angle),
+                            label: String.fromCharCode(65 + i)
+                        });
+                    }
+                    // Connect everyone to everyone (dense)
+                    for (let i = 0; i < this.nodes.length; i++) {
+                        for (let j = i + 1; j < this.nodes.length; j++) {
+                            this.edges.push({ from: this.nodes[i], to: this.nodes[j], type: 'dense' });
+                        }
+                    }
+
+                } else if (type === 'medici') {
+                    // Medici-style brokerage
+                    const you = { id: 0, x: centerX, y: centerY, label: 'Medici' };
+                    this.nodes.push(you);
+
+                    const families = [
+                        [centerX - 200, centerY - 120],
+                        [centerX + 200, centerY - 120],
+                        [centerX - 200, centerY + 120],
+                        [centerX + 200, centerY + 120]
+                    ];
+
+                    families.forEach((pos, i) => {
+                        const family = [
+                            { id: i * 2 + 1, x: pos[0], y: pos[1] - 30, label: String.fromCharCode(65 + i * 2) },
+                            { id: i * 2 + 2, x: pos[0], y: pos[1] + 30, label: String.fromCharCode(66 + i * 2) }
+                        ];
+                        family.forEach(n => {
+                            this.nodes.push(n);
+                            this.edges.push({ from: you, to: n, type: 'sparse' });
+                        });
+                        this.edges.push({ from: family[0], to: family[1], type: 'dense' });
+                    });
+
+                } else if (type === 'balanced') {
+                    // Balanced network
+                    const you = { id: 0, x: centerX, y: centerY, label: 'YOU' };
+                    this.nodes.push(you);
+
+                    const radius = 150;
+                    for (let i = 0; i < 6; i++) {
+                        const angle = (i / 6) * 2 * Math.PI;
+                        const node = {
+                            id: i + 1,
+                            x: centerX + radius * Math.cos(angle),
+                            y: centerY + radius * Math.sin(angle),
+                            label: String.fromCharCode(65 + i)
+                        };
+                        this.nodes.push(node);
+                        this.edges.push({ from: you, to: node, type: 'sparse' });
+                    }
+
+                    // Add some dense connections
+                    for (let i = 1; i < this.nodes.length; i++) {
+                        if (i % 2 === 0 && i < this.nodes.length - 1) {
+                            this.edges.push({ from: this.nodes[i], to: this.nodes[i + 1], type: 'dense' });
+                        }
+                    }
+                }
+
+                this.render();
+                this.updateMetrics();
+            },
+
+            render() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw edges
+                this.edges.forEach(edge => {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(edge.from.x, edge.from.y);
+                    this.ctx.lineTo(edge.to.x, edge.to.y);
+                    this.ctx.strokeStyle = edge.type === 'sparse' ? '#2a5298' : '#dc2626';
+                    this.ctx.lineWidth = edge.type === 'sparse' ? 3 : 5;
+                    this.ctx.setLineDash(edge.type === 'sparse' ? [5, 5] : []);
+                    this.ctx.stroke();
+                    this.ctx.setLineDash([]);
+                });
+
+                // Draw nodes
+                this.nodes.forEach(node => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
+                    this.ctx.fillStyle = '#1e3c72';
+                    this.ctx.fill();
+                    this.ctx.strokeStyle = node === this.selectedNode ? '#fbbf24' : 'white';
+                    this.ctx.lineWidth = node === this.selectedNode ? 4 : 2;
+                    this.ctx.stroke();
+
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.font = 'bold 12px Lato, sans-serif';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+                    this.ctx.fillText(node.label, node.x, node.y);
+                });
+
+                if (this.tempEdgeStart) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(this.tempEdgeStart.x, this.tempEdgeStart.y, 20, 0, 2 * Math.PI);
+                    this.ctx.strokeStyle = '#10b981';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.stroke();
+                }
+            },
+
+            updateMetrics() {
+                const numNodes = this.nodes.length;
+                const numEdges = this.edges.length;
+
+                document.getElementById('metric-nodes').textContent = numNodes;
+                document.getElementById('metric-edges').textContent = numEdges;
+
+                if (numNodes < 2) {
+                    document.getElementById('metric-constraint').textContent = '--';
+                    document.getElementById('metric-effective').textContent = '--';
+                    document.getElementById('metric-holes').textContent = '--';
+                    document.getElementById('metric-brokerage').textContent = '--';
+                    document.getElementById('network-quality').textContent = 'Need at least 2 people';
+                    document.getElementById('network-quality').style.background = '#64748b';
+                    document.getElementById('metric-explanation').innerHTML = '<strong>💡 What this means:</strong><p style="margin-top: 10px;">Add more people and connections to see structural holes analysis.</p>';
+                    return;
+                }
+
+                // Calculate constraint (simplified)
+                const avgDegree = (numEdges * 2) / numNodes;
+                const maxDegree = numNodes - 1;
+                const density = numEdges / ((numNodes * (numNodes - 1)) / 2);
+                const constraint = (density * 100).toFixed(1);
+
+                // Effective network size
+                const effectiveSize = (numNodes - (density * numNodes * 0.5)).toFixed(1);
+
+                // Structural holes (gaps between groups)
+                const maxPossibleEdges = (numNodes * (numNodes - 1)) / 2;
+                const structuralHoles = maxPossibleEdges - numEdges;
+
+                // Brokerage potential
+                const brokeragePotential = Math.max(0, 100 - (density * 100)).toFixed(0);
+
+                document.getElementById('metric-constraint').textContent = constraint + '%';
+                document.getElementById('metric-effective').textContent = effectiveSize;
+                document.getElementById('metric-holes').textContent = structuralHoles;
+                document.getElementById('metric-brokerage').textContent = brokeragePotential + '%';
+
+                // Network quality assessment
+                let quality, qualityBg, explanation;
+                if (density < 0.3) {
+                    quality = '🎯 Excellent Brokerage Network';
+                    qualityBg = '#10b981';
+                    explanation = `<strong>💡 Excellent brokerage position!</strong><p style="margin-top: 10px;">Your network has many structural holes (${structuralHoles} gaps). You're positioned as a broker connecting disconnected groups, which gives you:</p><ul style="margin-left: 20px; margin-top: 10px;"><li>Access to diverse, non-redundant information</li><li>High autonomy and negotiation power</li><li>Innovation opportunities from recombining ideas</li><li>Early awareness of opportunities</li></ul>`;
+                } else if (density < 0.6) {
+                    quality = '⚖️ Balanced Network';
+                    qualityBg = '#f59e0b';
+                    explanation = `<strong>💡 Balanced position</strong><p style="margin-top: 10px;">Your network balances brokerage and closure. You have ${structuralHoles} structural holes but also some redundancy. This gives you:</p><ul style="margin-left: 20px; margin-top: 10px;"><li>Some access to diverse information</li><li>Moderate trust from closure</li><li>Room to expand into brokerage or closure</li></ul>`;
+                } else {
+                    quality = '🔒 Highly Constrained Network';
+                    qualityBg = '#dc2626';
+                    explanation = `<strong>💡 High constraint detected</strong><p style="margin-top: 10px;">Your network is dense with few structural holes (only ${structuralHoles} gaps). This means:</p><ul style="margin-left: 20px; margin-top: 10px;"><li><strong>Advantage:</strong> High trust and coordination within group</li><li><strong>Disadvantage:</strong> Redundant information, limited diversity</li><li><strong>Risk:</strong> Groupthink and missed opportunities</li><li><strong>Strategy:</strong> Add connections to new, disconnected groups to increase brokerage</li></ul>`;
+                }
+
+                document.getElementById('network-quality').textContent = quality;
+                document.getElementById('network-quality').style.background = qualityBg;
+                document.getElementById('metric-explanation').innerHTML = explanation;
+            }
+        };
 
         // Effective Network Size Calculator
         function calculateEffectiveSize() {
