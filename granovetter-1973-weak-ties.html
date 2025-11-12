@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Strength of Weak Ties - Granovetter (1973)</title>
+    <!--
+      Review of:
+      Granovetter, M. S. (1973).
+      The Strength of Weak Ties.
+      American Journal of Sociology, 78(6), 1360-1380.
+
+      This is a PROCESS MODEL explaining the mechanism by which weak social ties
+      provide advantages in information diffusion and opportunity access.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, .definition-term, .result-box-label, .card h4, .breakdown-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Page Navigation */
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+        }
+
+        .page-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .header h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffffff, #d4e9fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .header .stats-preview {
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+        }
+
+        /* Section Styles */
+        .section {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #1e3c72;
+            font-size: 2.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: #2a5298;
+            margin: 25px 0 15px;
+            font-size: 1.6em;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        /* Card Styles */
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid #2a5298;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(30,60,114,0.15);
+            border-color: #2a5298;
+        }
+
+        .card h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        /* Stat Box Styles */
+        .stat-box {
+            background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);
+            color: #f1faee;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30,60,114,0.4);
+        }
+
+        .stat-value {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Key Finding Box */
+        .key-finding {
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 1.15em;
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.3);
+            border-left: 5px solid #d35400;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0, 95, 115, 0.3);
+        }
+
+        /* Tab System */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #f0f4f8;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .tab:hover {
+            background: #e0e6ed;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Process Flow Styles */
+        .process-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(30,60,114,0.2);
+        }
+
+        .process-number {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .process-content h4 {
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+
+        .process-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #2a5298;
+            margin: 10px 0;
+        }
+
+        /* Network Visualization */
+        .network-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .network-svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+
+        body.dark-mode .section {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .section h2,
+        body.dark-mode .section h3 {
+            color: #60a5fa;
+        }
+
+        body.dark-mode .card {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-top-color: #60a5fa;
+        }
+
+        body.dark-mode .card h4 {
+            color: #93c5fd;
+        }
+
+        body.dark-mode .process-step {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .process-content h4 {
+            color: #93c5fd;
+        }
+
+        body.dark-mode table {
+            background: #0f172a;
+        }
+
+        body.dark-mode th {
+            background: #1e3c72;
+        }
+
+        body.dark-mode td {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode tr:hover {
+            background: #334155;
+        }
+
+        body.dark-mode .tab {
+            background: #334155;
+            color: #e2e8f0;
+            border-color: #475569;
+        }
+
+        body.dark-mode .tab.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Attribution */
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <!-- Page Navigation -->
+    <div class="page-nav-container">
+        <div class="page-nav">
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Study Overview</button>
+            <button class="page-btn" onclick="switchPage('process', this)">Process Model & Theory</button>
+            <button class="page-btn" onclick="switchPage('analysis', this)">Empirical Findings</button>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE -->
+    <div id="main">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>The Strength of Weak Ties</h1>
+                <p class="subtitle">Bridging Social Cliques Through Casual Connections</p>
+                <p class="subtitle">Granovetter (1973) - A Process Model</p>
+                <div class="stats-preview">
+                    📊 282 Job Seekers | 🏆 One of the Most Cited Papers in Sociology
+                </div>
+            </div>
+
+            <!-- Key Statistics -->
+            <div class="section">
+                <h2>📊 Key Empirical Findings</h2>
+                <div class="grid">
+                    <div class="stat-box">
+                        <div class="stat-value">83.4%</div>
+                        <div class="stat-label">Found Jobs Through Weak or Moderate Ties</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">16.7%</div>
+                        <div class="stat-label">Found Jobs Through Strong Ties (≥2x/week contact)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">282</div>
+                        <div class="stat-label">Men Surveyed in Newton, Massachusetts</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">54</div>
+                        <div class="stat-label">Found Jobs Through Personal Contacts</div>
+                    </div>
+                </div>
+
+                <div class="key-finding">
+                    <strong>🎯 Core Finding:</strong> Weak ties—casual acquaintances seen occasionally or rarely—were significantly more helpful than strong ties (close friends and family) in helping people find new jobs. This contradicted the common assumption that close relationships are always more valuable.
+                </div>
+
+                <div class="insight-box">
+                    <p><strong>💡 Why This Matters:</strong> This paper revolutionized network theory by showing that the structure of social networks, not just the strength of individual relationships, determines access to information and opportunities. It provided the theoretical foundation for understanding how information diffuses through societies and how individuals can access resources beyond their immediate social circle.</p>
+                </div>
+            </div>
+
+            <!-- Model Type -->
+            <div class="section">
+                <h2>🔍 Model Type: Process Model</h2>
+                <p><strong>This is a PROCESS MODEL</strong> rather than a variance model. It explains the <em>mechanism</em> and <em>process</em> by which weak ties provide advantages:</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>What Process Models Do</h4>
+                        <p>Explain <strong>HOW</strong> and <strong>WHY</strong> something happens through a sequence of events or mechanisms. They focus on the underlying process that connects causes to effects.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Granovetter's Process</h4>
+                        <p>Explains how <strong>weak ties serve as bridges</strong> between dense social clusters, providing access to <strong>novel, non-redundant information</strong> that strong ties cannot provide due to network overlap.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Key Mechanism</h4>
+                        <p><strong>Structural bridging:</strong> Weak ties connect otherwise disconnected groups (local bridges), while strong ties create closed, redundant information networks (forbidden triads).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Concepts -->
+            <div class="section">
+                <h2>📚 Core Theoretical Concepts</h2>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Tie Strength Definition</h4>
+                        <p><strong>Definition:</strong> A combination of the amount of time, emotional intensity, intimacy (mutual confiding), and reciprocal services which characterize the tie.</p>
+                        <p style="margin-top: 10px;"><strong>Operationalized as:</strong> Frequency of contact</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Strong:</strong> ≥2 times per week</li>
+                            <li><strong>Moderate:</strong> >1x/year but <2x/week</li>
+                            <li><strong>Weak:</strong> ≤1 time per year</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>The Forbidden Triad</h4>
+                        <p>If person A has strong ties to both B and C, then B and C will almost certainly have a tie to each other (triadic closure). A triad where A-B and A-C are strong but B-C doesn't exist is "forbidden" because it's unstable and rare.</p>
+                        <p style="margin-top: 10px;"><strong>Implication:</strong> Strong ties create dense, closed clusters where everyone knows everyone.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Local Bridges</h4>
+                        <p><strong>Definition:</strong> A tie between two people that represents the <strong>only path</strong> (or shortest path) connecting their respective social circles.</p>
+                        <p style="margin-top: 10px;"><strong>Key insight:</strong> All bridges are weak ties. Strong ties cannot be bridges because the forbidden triad principle ensures redundant paths.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Overlap Principle</h4>
+                        <p>The degree of overlap in two individuals' friendship networks varies <strong>directly</strong> with the strength of their tie to one another.</p>
+                        <p style="margin-top: 10px;"><strong>Result:</strong> Strong ties = high overlap = redundant information. Weak ties = low overlap = novel information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implications -->
+            <div class="section">
+                <h2>🌍 Macro-Level Implications</h2>
+                <p>Granovetter's insight connects individual behavior to large-scale social structure:</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Information Diffusion</h4>
+                        <p>Weak ties are crucial for spreading information across a society. Without them, information would remain trapped in isolated cliques, slowing innovation and social change.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Social Fragmentation</h4>
+                        <p>Communities with few weak ties become fragmented into disconnected subgroups. This leads to polarization, miscommunication, and conflict between groups separated by race, class, or geography.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Opportunity & Mobility</h4>
+                        <p>Access to opportunities (jobs, resources, ideas) depends on network position. Those with diverse weak ties have systematic advantages over those embedded only in strong-tie networks.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Community Organization</h4>
+                        <p>Effective community organizing requires both strong ties (for trust and mobilization) and weak ties (for reaching new people and building coalitions across groups).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation & Attribution -->
+            <div class="attribution">
+                <p><strong>Original Paper:</strong> Granovetter, M. S. (1973). The Strength of Weak Ties. <em>American Journal of Sociology</em>, 78(6), 1360-1380.</p>
+                <p style="margin-top: 10px;">
+                    <a href="https://doi.org/10.1086/225469" target="_blank">DOI: 10.1086/225469</a> |
+                    <a href="https://scholar.google.com/scholar?q=The+Strength+of+Weak+Ties+Granovetter" target="_blank">Google Scholar</a>
+                </p>
+                <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                    Interactive review created for educational purposes. All findings and data from the original publication.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROCESS PAGE -->
+    <div id="process" style="display: none;">
+        <div class="container">
+            <div class="header">
+                <h1>The Process Model</h1>
+                <p class="subtitle">How Weak Ties Create Advantages Through Structural Bridging</p>
+            </div>
+
+            <!-- The Process -->
+            <div class="section">
+                <h2>⚙️ The Weak Ties Process Mechanism</h2>
+                <p>Granovetter's theory explains a multi-step process by which weak ties provide informational advantages:</p>
+
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-content">
+                            <h4>Network Formation</h4>
+                            <p>People naturally form strong ties with close friends and family who share similar backgrounds, interests, and social contexts.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-arrow">↓</div>
+
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-content">
+                            <h4>Triadic Closure Creates Clusters</h4>
+                            <p>The "forbidden triad" principle means that when A has strong ties to B and C, B and C will develop a tie. This creates dense, closed clusters of mutual friends.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-arrow">↓</div>
+
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <div class="process-content">
+                            <h4>Information Redundancy Within Clusters</h4>
+                            <p>Because everyone in a strong-tie cluster knows each other (high overlap), they share the same information pool. Information circulates internally but doesn't escape the cluster.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-arrow">↓</div>
+
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <div class="process-content">
+                            <h4>Weak Ties Act as Bridges</h4>
+                            <p>Weak ties (acquaintances, former colleagues) connect to different social clusters. They cannot form redundant paths (no forbidden triads), so they serve as unique bridges.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-arrow">↓</div>
+
+                    <div class="process-step">
+                        <div class="process-number">5</div>
+                        <div class="process-content">
+                            <h4>Novel Information Access</h4>
+                            <p>When seeking information (e.g., job openings), weak ties provide access to knowledge circulating in different social circles—information your close friends don't have.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-arrow">↓</div>
+
+                    <div class="process-step">
+                        <div class="process-number">6</div>
+                        <div class="process-content">
+                            <h4>Advantage Realization</h4>
+                            <p>Individuals with diverse weak-tie bridges gain systematic advantages: more job leads, faster access to innovations, greater influence across groups.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h3 style="margin-top: 0;">🔑 The Core Mechanism</h3>
+                    <p>The advantage of weak ties comes from their <strong>structural position</strong> in the network, not from the relationship itself. Weak ties provide access to <strong>non-redundant information</strong> because they bridge <strong>otherwise disconnected social clusters</strong>. Strong ties, despite being emotionally closer, provide <strong>redundant information</strong> because triadic closure creates overlap in what everyone already knows.</p>
+                </div>
+            </div>
+
+            <!-- Visual Network Comparison -->
+            <div class="section">
+                <h2>🕸️ Visual Comparison: Strong vs. Weak Tie Networks</h2>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Strong Tie Network (Closed Cluster)</h4>
+                        <div class="network-container">
+                            <svg class="network-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Dense cluster with all connections -->
+                                <line x1="150" y1="100" x2="100" y2="150" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="150" y1="100" x2="200" y2="150" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="150" y1="100" x2="150" y2="200" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="100" y1="150" x2="200" y2="150" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="100" y1="150" x2="150" y2="200" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="200" y1="150" x2="150" y2="200" stroke="#e74c3c" stroke-width="4"/>
+
+                                <!-- Nodes -->
+                                <circle cx="150" cy="100" r="15" fill="#c0392b"/>
+                                <circle cx="100" cy="150" r="15" fill="#c0392b"/>
+                                <circle cx="200" cy="150" r="15" fill="#c0392b"/>
+                                <circle cx="150" cy="200" r="15" fill="#c0392b"/>
+
+                                <!-- Labels -->
+                                <text x="150" y="105" text-anchor="middle" fill="white" font-size="12" font-weight="bold">YOU</text>
+                                <text x="100" y="155" text-anchor="middle" fill="white" font-size="12" font-weight="bold">A</text>
+                                <text x="200" y="155" text-anchor="middle" fill="white" font-size="12" font-weight="bold">B</text>
+                                <text x="150" y="205" text-anchor="middle" fill="white" font-size="12" font-weight="bold">C</text>
+                            </svg>
+                        </div>
+                        <p style="margin-top: 15px;"><strong>High Redundancy:</strong> Everyone knows everyone. Information circulates but doesn't escape. Triadic closure ensures all possible connections exist.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Weak Tie Network (Bridges)</h4>
+                        <div class="network-container">
+                            <svg class="network-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Left cluster -->
+                                <line x1="80" y1="150" x2="50" y2="100" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="80" y1="150" x2="50" y2="200" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="50" y1="100" x2="50" y2="200" stroke="#e74c3c" stroke-width="4"/>
+
+                                <!-- Bridge (weak tie) -->
+                                <line x1="80" y1="150" x2="200" y2="150" stroke="#27ae60" stroke-width="3" stroke-dasharray="5,5"/>
+
+                                <!-- Right cluster -->
+                                <line x1="200" y1="150" x2="280" y2="100" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="200" y1="150" x2="280" y2="200" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="280" y1="100" x2="280" y2="200" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="200" y1="150" x2="350" y2="150" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="280" y1="100" x2="350" y2="150" stroke="#e74c3c" stroke-width="4"/>
+                                <line x1="280" y1="200" x2="350" y2="150" stroke="#e74c3c" stroke-width="4"/>
+
+                                <!-- Nodes -->
+                                <circle cx="80" cy="150" r="15" fill="#c0392b"/>
+                                <circle cx="50" cy="100" r="12" fill="#c0392b"/>
+                                <circle cx="50" cy="200" r="12" fill="#c0392b"/>
+                                <circle cx="200" cy="150" r="15" fill="#27ae60"/>
+                                <circle cx="280" cy="100" r="12" fill="#2980b9"/>
+                                <circle cx="280" cy="200" r="12" fill="#2980b9"/>
+                                <circle cx="350" cy="150" r="12" fill="#2980b9"/>
+
+                                <!-- Labels -->
+                                <text x="80" y="155" text-anchor="middle" fill="white" font-size="12" font-weight="bold">YOU</text>
+                                <text x="200" y="155" text-anchor="middle" fill="white" font-size="10" font-weight="bold">BRIDGE</text>
+                            </svg>
+                        </div>
+                        <p style="margin-top: 15px;"><strong>Novel Information:</strong> The weak tie (green dashed line) is a bridge between clusters. It provides access to information circulating in a completely different social circle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theoretical Propositions -->
+            <div class="section">
+                <h2>📜 Core Theoretical Propositions</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Proposition</th>
+                            <th>Explanation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>P1: Triadic Closure</strong></td>
+                            <td>If A-B and A-C are strong ties, a B-C tie will develop. Strong ties lead to transitivity and network closure.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P2: All Bridges are Weak</strong></td>
+                            <td>Because strong ties create triadic closure, they cannot be bridges. Only weak ties can connect otherwise disconnected clusters.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P3: Overlap Varies with Strength</strong></td>
+                            <td>The proportion of A's friends who are also B's friends increases with the strength of the A-B tie.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P4: Information Advantage</strong></td>
+                            <td>Individuals with more weak-tie bridges have access to more diverse, non-redundant information.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P5: Macro Integration</strong></td>
+                            <td>Networks lacking weak ties fragment into isolated clusters, reducing overall social cohesion and information diffusion.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Process Model Framework:</strong> This page visualizes the theoretical mechanism proposed by Granovetter (1973)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANALYSIS PAGE -->
+    <div id="analysis" style="display: none;">
+        <div class="container">
+            <div class="header">
+                <h1>Empirical Evidence</h1>
+                <p class="subtitle">The Job Search Study & Findings</p>
+            </div>
+
+            <!-- Methodology -->
+            <div class="section">
+                <h2>🔬 Research Methodology</h2>
+
+                <div class="tabs">
+                    <button class="tab active" onclick="showMethodTab('sample')">Sample & Design</button>
+                    <button class="tab" onclick="showMethodTab('measures')">Measures</button>
+                    <button class="tab" onclick="showMethodTab('context')">Historical Context</button>
+                </div>
+
+                <div id="sample" class="tab-content active">
+                    <h3>Sample Characteristics</h3>
+                    <table>
+                        <tr>
+                            <th>Characteristic</th>
+                            <th>Details</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Sample Size</strong></td>
+                            <td>282 men</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Location</strong></td>
+                            <td>Newton, Massachusetts (Boston suburb)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Occupations</strong></td>
+                            <td>Professional, technical, and managerial workers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Personal Interviews</strong></td>
+                            <td>100 respondents (subset of 282)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data on Job Contacts</strong></td>
+                            <td>54 respondents who found jobs through personal contacts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Research Method</strong></td>
+                            <td>Survey questionnaire + follow-up personal interviews</td>
+                        </tr>
+                    </table>
+
+                    <div class="insight-box" style="margin-top: 20px;">
+                        <p><strong>Study Design:</strong> Granovetter surveyed men who had recently changed jobs, asking them how they found their new position. For those who used personal contacts, he measured the strength of the tie (frequency of contact) between the job-seeker and the person who provided the crucial information.</p>
+                    </div>
+                </div>
+
+                <div id="measures" class="tab-content">
+                    <h3>Measurement of Tie Strength</h3>
+                    <p><strong>Key Variable:</strong> Frequency of contact at the time the job information was obtained</p>
+
+                    <table style="margin-top: 20px;">
+                        <thead>
+                            <tr>
+                                <th>Tie Strength</th>
+                                <th>Frequency Definition</th>
+                                <th>Percentage of Jobs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Strong</strong></td>
+                                <td>Saw contact "often" (≥2 times per week)</td>
+                                <td><strong>16.7%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Moderate</strong></td>
+                                <td>Saw contact "occasionally" (>1x/year but <2x/week)</td>
+                                <td><strong>55.6%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Weak</strong></td>
+                                <td>Saw contact "rarely" (≤1 time per year)</td>
+                                <td><strong>27.8%</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="key-finding" style="margin-top: 20px;">
+                        <strong>Critical Finding:</strong> 83.4% of jobs obtained through personal contacts came from moderate or weak ties. Only 16.7% came from strong ties. This directly contradicted the intuition that close friends are the most helpful in job searches.
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Additional Findings</h3>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Those who found jobs through <strong>strong ties</strong> were far more likely to have experienced a period of unemployment between jobs</li>
+                        <li>Weak ties were more likely to provide information about job openings in <strong>different companies or industries</strong></li>
+                        <li>Information from weak ties was more often described as <strong>"novel"</strong> or <strong>"unexpected"</strong></li>
+                        <li>Strong ties tended to provide information the job seeker <strong>already knew</strong> or would have learned anyway</li>
+                    </ul>
+                </div>
+
+                <div id="context" class="tab-content">
+                    <h3>Historical Context & Publication</h3>
+
+                    <div class="card">
+                        <h4>Publication Journey</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>1969:</strong> Initially submitted to the <em>American Sociological Review</em> and rejected</li>
+                            <li><strong>1973:</strong> Published in the <em>American Journal of Sociology</em>, Vol. 78, No. 6, pp. 1360-1380</li>
+                            <li><strong>Impact:</strong> Became one of the most cited papers in sociology and formed the foundation for modern social network analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h4>Theoretical Innovation</h4>
+                        <p>Before Granovetter, social network research focused primarily on strong ties and cohesive groups. The idea that <strong>weak ties could be more valuable</strong> was counterintuitive and revolutionary.</p>
+                        <p style="margin-top: 10px;">Granovetter's key insight was to focus on the <strong>structure</strong> of networks rather than just the quality of individual relationships. He showed that your <strong>position</strong> in a network (whether you bridge clusters) matters more than the strength of any single relationship.</p>
+                    </div>
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h4>Modern Validation</h4>
+                        <p>A 2022 LinkedIn study with <strong>20 million users</strong> over 5 years—the largest empirical test of weak tie theory in history—confirmed Granovetter's hypothesis: weak ties were the most helpful for career advancement and job transitions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Results -->
+            <div class="section">
+                <h2>📈 Detailed Results Breakdown</h2>
+
+                <h3>Distribution of Job Finding Methods</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Count (N=54 with contact data)</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Strong Ties</strong> (≥2x/week)</td>
+                            <td>9</td>
+                            <td><strong>16.7%</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Moderate Ties</strong> (Occasional)</td>
+                            <td>30</td>
+                            <td><strong>55.6%</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Weak Ties</strong> (≤1x/year)</td>
+                            <td>15</td>
+                            <td><strong>27.8%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-finding" style="margin-top: 30px;">
+                    <strong>📊 Statistical Insight:</strong> If job information were distributed randomly across all contacts, we would expect strong ties to provide more leads (simply because people interact with them more often). Instead, the data showed the <em>opposite</em>: weak ties provided disproportionately more useful information relative to interaction frequency.
+                </div>
+            </div>
+
+            <!-- Qualitative Insights -->
+            <div class="section">
+                <h2>💬 Qualitative Insights from Interviews</h2>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Nature of Information from Weak Ties</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Job leads in different industries or companies</li>
+                            <li>Information the respondent "would never have heard otherwise"</li>
+                            <li>Contacts to people outside respondent's usual circle</li>
+                            <li>Opportunities that required "being in the right place at the right time"</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Nature of Information from Strong Ties</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Information respondent already knew</li>
+                            <li>Opportunities in same company or industry</li>
+                            <li>Redundant with other sources</li>
+                            <li>Emotional support but less novel information</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Why Weak Ties Were More Effective</h4>
+                        <p><strong>1. Different Social Circles:</strong> Weak ties connected respondents to people with different employers, industries, and professional networks.</p>
+                        <p style="margin-top: 10px;"><strong>2. Non-Redundant Information:</strong> Because weak ties don't share the same friendship networks, their information didn't overlap with what the job seeker already knew.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>The Role of Moderate Ties</h4>
+                        <p>The majority (55.6%) came from <strong>moderate ties</strong>—people seen "occasionally." These are the sweet spot: still recent enough to remember you and willing to help, but distant enough to have access to different information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implications -->
+            <div class="section">
+                <h2>🎯 Practical Implications</h2>
+
+                <div class="insight-box">
+                    <h3 style="margin-top: 0;">For Job Seekers</h3>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>Don't just rely on close friends:</strong> They likely know the same opportunities you do</li>
+                        <li><strong>Reconnect with old acquaintances:</strong> Former colleagues, classmates, and distant contacts have access to different information</li>
+                        <li><strong>Diversify your network:</strong> Seek contacts in different industries, companies, and geographic areas</li>
+                        <li><strong>Maintain weak ties:</strong> Occasional check-ins with distant contacts can pay dividends</li>
+                    </ul>
+                </div>
+
+                <div class="insight-box">
+                    <h3 style="margin-top: 0;">For Organizations</h3>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>Employee referral programs:</strong> Encourage employees to reach beyond their immediate circles</li>
+                        <li><strong>Cross-functional collaboration:</strong> Create opportunities for weak ties to form across departments</li>
+                        <li><strong>Alumni networks:</strong> Maintain connections with former employees who now work elsewhere</li>
+                        <li><strong>Information diffusion:</strong> Recognize that innovation spreads through weak ties, not just formal channels</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Data Source:</strong> All statistics and findings from Granovetter (1973), American Journal of Sociology</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Switching
+        function switchPage(pageId, button) {
+            // Hide all pages
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('process').style.display = 'none';
+            document.getElementById('analysis').style.display = 'none';
+
+            // Show selected page
+            document.getElementById(pageId).style.display = 'block';
+
+            // Update active button
+            const buttons = document.querySelectorAll('.page-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Tab Switching for Methodology
+        function showMethodTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.dark-mode-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                button.textContent = '☀️ Light Mode';
+            } else {
+                button.textContent = '🌙 Dark Mode';
+            }
+        }
+    </script>
+</body>
+</html>

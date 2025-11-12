@@ -110,7 +110,7 @@
     <script>
         const articles = [
             // Section: Social Network Theory & Social Capital (20 articles)
-            { id: 101, title: "The Strength of Weak Ties", authors: "Granovetter, M. S.", year: 1973, journal: "American Journal of Sociology", summary: "The foundational paper arguing that 'weak ties' (acquaintances) are often more valuable for accessing novel information and opportunities than 'strong ties' (close friends). Weak ties act as bridges between otherwise disconnected social circles, creating an information advantage. This is a core mechanism for how informal power and asymmetry arise from network structure.", link: "https://scholar.google.com/scholar?q=The+Strength+of+Weak+Ties+Granovetter", category: "Social Network Theory", tags: ["Weak Ties", "Social Capital", "Information Flow"] },
+            { id: 101, title: "The Strength of Weak Ties", authors: "Granovetter, M. S.", year: 1973, journal: "American Journal of Sociology", summary: "The foundational paper arguing that 'weak ties' (acquaintances) are often more valuable for accessing novel information and opportunities than 'strong ties' (close friends). Weak ties act as bridges between otherwise disconnected social circles, creating an information advantage. This is a core mechanism for how informal power and asymmetry arise from network structure.", link: "granovetter-1973-weak-ties.html", category: "Social Network Theory", tags: ["Weak Ties", "Social Capital", "Information Flow"] },
             { id: 102, title: "Structural Holes: The Social Structure of Competition", authors: "Burt, R. S.", year: 1992, journal: "Book", summary: "Burt's seminal work introduces 'structural holes,' the gaps between disconnected groups in a network. The individual who bridges this hole acts as a 'broker,' gaining immense power from controlling information flow and playing groups against each other. This is a purely structural theory of power, where advantage comes not from who you are, but where you sit in the network.", link: "https://scholar.google.com/scholar?q=Burt+Structural+Holes", category: "Social Network Theory", tags: ["Structural Holes", "Brokerage", "Competition", "Social Capital"] },
             { id: 103, title: "Social Capital in the Creation of Human Capital", authors: "Coleman, J. S.", year: 1988, journal: "American Journal of Sociology", summary: "Coleman conceptualized social capital as the value derived from social relationships, norms, and trust. Unlike Burt's focus on holes ('brokerage'), Coleman emphasized the benefits of 'closure'—dense, tight-knit networks where trust is high and norms are easily enforced. This form of social capital creates power through collective action and reliability.", link: "https://scholar.google.com/scholar?q=Social+Capital+in+the+Creation+of+Human+Capital", category: "Social Network Theory", tags: ["Social Capital", "Closure", "Trust", "Norms"] },
             { id: 104, title: "Centrality in Social Networks: Conceptual Clarification", authors: "Freeman, L. C.", year: 1979, journal: "Social Networks", summary: "This paper provides the definitive conceptual clarification of network 'centrality.' It defined degree (number of connections), closeness (how close to everyone else), and betweenness (how often you're on the shortest path between others). 'Betweenness centrality' is the mathematical operationalization of a broker, providing a quantitative way to identify powerful positions in a network.", link: "https://scholar.google.com/scholar?q=Centrality+in+Social+Networks+Conceptual+Clarification", category: "Social Network Theory", tags: ["Network Centrality", "Betweenness", "Brokerage", "Quantitative"] },
@@ -357,7 +357,15 @@
                             <span class="text-xs font-semibold text-slate-500">${article.category}</span>
                         </div>
                     `;
-                    card.addEventListener('click', () => openModal(article));
+                    card.addEventListener('click', () => {
+                        // If the article has a standalone review page (local .html file), navigate to it
+                        if (article.link.endsWith('.html')) {
+                            window.location.href = article.link;
+                        } else {
+                            // Otherwise, open the modal as usual
+                            openModal(article);
+                        }
+                    });
                     articleGrid.appendChild(card);
                 });
             };
