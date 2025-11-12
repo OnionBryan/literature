@@ -1429,13 +1429,21 @@
 
                     <!-- Help Text -->
                     <div class="help-text">
-                        <strong>How to use:</strong>
+                        <strong>🎯 How to use:</strong>
                         <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Load presets:</strong> Click the preset buttons above to instantly load example networks</li>
                             <li><strong>Add a person:</strong> Double-click anywhere on the canvas</li>
-                            <li><strong>Move a person:</strong> Click and drag any node</li>
-                            <li><strong>Add a connection:</strong> Enable drawing mode, select tie type (weak/strong), click a person, then click another person</li>
-                            <li><strong>Delete a person:</strong> Click to select (yellow glow), then click "Delete Selected"</li>
-                            <li><strong>Load presets:</strong> Try the preset networks to see different structures</li>
+                            <li><strong>Move a person:</strong> Click and drag any node (when drawing mode is OFF)</li>
+                            <li><strong>Add a connection:</strong>
+                                <ol style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Click "Enable Drawing Mode" button</li>
+                                    <li>Choose tie type (Weak Tie or Strong Tie)</li>
+                                    <li>Click the first person</li>
+                                    <li>Click the second person to create the connection</li>
+                                </ol>
+                            </li>
+                            <li><strong>Delete a person:</strong> Turn off drawing mode, click to select (yellow glow), then click "Delete Selected"</li>
+                            <li><strong>Clear everything:</strong> Click "Clear All" to start fresh</li>
                         </ul>
                     </div>
                 </div>
@@ -1652,12 +1660,19 @@
                 this.setupCanvas();
                 this.setupEventListeners();
                 this.loadPresetNetwork('basic');
+
+                // Force initial render
+                setTimeout(() => {
+                    this.setupCanvas();
+                    this.render();
+                }, 50);
             },
 
             setupCanvas() {
                 const rect = this.canvas.getBoundingClientRect();
-                this.canvas.width = rect.width;
-                this.canvas.height = rect.height;
+                // Ensure canvas has minimum dimensions
+                this.canvas.width = rect.width > 0 ? rect.width : 800;
+                this.canvas.height = rect.height > 0 ? rect.height : 600;
                 this.render();
             },
 
@@ -1678,8 +1693,25 @@
 
                 if (this.isDrawingMode) {
                     if (clickedNode) {
-                        this.tempEdgeStart = clickedNode;
-                        this.canvas.style.cursor = 'crosshair';
+                        if (!this.tempEdgeStart) {
+                            // First click - select starting node
+                            this.tempEdgeStart = clickedNode;
+                            this.selectedNode = clickedNode;
+                            this.canvas.style.cursor = 'crosshair';
+                            console.log('Selected start node:', clickedNode.label);
+                        } else {
+                            // Second click - create edge
+                            if (clickedNode !== this.tempEdgeStart) {
+                                this.addEdge(this.tempEdgeStart, clickedNode, this.edgeType);
+                                console.log('Created edge:', this.tempEdgeStart.label, '->', clickedNode.label);
+                            }
+                            this.tempEdgeStart = null;
+                            this.selectedNode = null;
+                        }
+                    } else {
+                        // Clicked empty space - cancel edge drawing
+                        this.tempEdgeStart = null;
+                        this.selectedNode = null;
                     }
                 } else {
                     if (clickedNode) {
@@ -1696,13 +1728,14 @@
             handleMouseMove(e) {
                 const pos = this.getMousePos(e);
 
-                if (this.draggedNode) {
+                if (this.draggedNode && !this.isDrawingMode) {
+                    // Only allow dragging when not in drawing mode
                     this.draggedNode.x = pos.x;
                     this.draggedNode.y = pos.y;
                     this.render();
-                } else if (this.tempEdgeStart) {
+                } else if (this.tempEdgeStart && this.isDrawingMode) {
+                    // Draw temporary edge line when in drawing mode
                     this.render();
-                    // Draw temporary edge line
                     this.ctx.save();
                     this.ctx.beginPath();
                     this.ctx.moveTo(this.tempEdgeStart.x, this.tempEdgeStart.y);
@@ -1715,27 +1748,31 @@
                     this.ctx.stroke();
                     this.ctx.restore();
                 } else {
-                    // Update cursor based on hover
+                    // Update cursor based on hover and mode
                     const hoverNode = this.getNodeAtPosition(pos.x, pos.y);
-                    this.canvas.style.cursor = hoverNode ? 'pointer' : 'default';
+                    if (this.isDrawingMode) {
+                        this.canvas.style.cursor = hoverNode ? 'pointer' : 'crosshair';
+                    } else {
+                        this.canvas.style.cursor = hoverNode ? 'move' : 'default';
+                    }
                 }
             },
 
             handleMouseUp(e) {
-                const pos = this.getMousePos(e);
-
-                if (this.tempEdgeStart) {
-                    const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
-                    if (clickedNode && clickedNode !== this.tempEdgeStart) {
-                        this.addEdge(this.tempEdgeStart, clickedNode, this.edgeType);
-                    }
-                    this.tempEdgeStart = null;
+                // Only handle drag completion, edge creation is in handleMouseDown
+                if (this.draggedNode) {
+                    this.draggedNode = null;
+                    this.updateMetrics();
                 }
 
-                this.draggedNode = null;
-                this.canvas.style.cursor = 'default';
+                // Reset cursor based on mode
+                if (this.isDrawingMode) {
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    this.canvas.style.cursor = 'default';
+                }
+
                 this.render();
-                this.updateMetrics();
             },
 
             handleDoubleClick(e) {
@@ -1823,6 +1860,10 @@
 
             loadPresetNetwork(type) {
                 this.clearNetwork();
+
+                // Ensure canvas is properly sized before creating network
+                this.setupCanvas();
+
                 const w = this.canvas.width;
                 const h = this.canvas.height;
                 const centerX = w / 2;
@@ -1909,8 +1950,11 @@
                     this.addEdge(this.nodes[5], this.nodes[9], 'weak');
                 }
 
-                this.render();
-                this.updateMetrics();
+                // Force render after loading preset
+                setTimeout(() => {
+                    this.render();
+                    this.updateMetrics();
+                }, 10);
             },
 
             render() {
