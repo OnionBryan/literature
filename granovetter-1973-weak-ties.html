@@ -589,6 +589,45 @@
             font-size: 0.9em;
         }
 
+        /* Timeline Scrubber Styling */
+        #timeline-scrubber {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        #timeline-scrubber::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        #timeline-scrubber::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.7);
+        }
+
+        #timeline-scrubber::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        #timeline-scrubber::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.7);
+        }
+
         #networkCanvas {
             width: 100%;
             height: 600px;
@@ -2088,113 +2127,306 @@
             <!-- Animated Triadic Closure Demo -->
             <div class="section">
                 <h2>🎬 Triadic Closure Animation</h2>
-                <p>Watch how "forbidden triads" form and understand why they create information redundancy. This is one of Granovetter's key theoretical insights.</p>
+                <p style="font-size: 1.1em; line-height: 1.7; color: #4b5563;">Watch how "forbidden triads" form and understand why they create information redundancy. This is one of Granovetter's key theoretical insights, visualized with all 16 triad types from the Holland & Leinhardt classification.</p>
 
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-top: 25px;">
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 35px; border-radius: 20px; margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
 
                     <!-- Scenario Tabs -->
-                    <div style="display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;">
-                        <button id="scenario-basic" class="control-btn" onclick="TriadicClosure.loadScenario('basic')" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
-                            Basic Triad
+                    <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+                        <button id="scenario-basic" class="control-btn" onclick="TriadicClosure.loadScenario('basic')"
+                                style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 15px 30px; font-size: 1.05em; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                            📊 Basic Triad
                         </button>
-                        <button id="scenario-weak-strong" class="control-btn secondary" onclick="TriadicClosure.loadScenario('weakStrong')">
-                            Weak → Strong
+                        <button id="scenario-weakStrong" class="control-btn secondary" onclick="TriadicClosure.loadScenario('weakStrong')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🌉 Weak → Strong
                         </button>
-                        <button id="scenario-multiple" class="control-btn secondary" onclick="TriadicClosure.loadScenario('multiple')">
-                            Multiple Triads
+                        <button id="scenario-multiple" class="control-btn secondary" onclick="TriadicClosure.loadScenario('multiple')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            📈 Dense vs Sparse
                         </button>
                     </div>
 
-                    <!-- Animation Container -->
-                    <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px;">
-                            <!-- SVG Animation -->
-                            <svg id="triad-animation" width="100%" height="400" viewBox="0 0 600 400" style="max-width: 600px;">
-                                <defs>
-                                    <!-- Gradient for nodes -->
-                                    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
-                                    </linearGradient>
+                    <!-- Main Visualization Area with Live Metrics -->
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 25px; margin-bottom: 30px;">
 
-                                    <!-- Glow effect for emphasis -->
-                                    <filter id="glow">
-                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                        <feMerge>
-                                            <feMergeNode in="coloredBlur"/>
-                                            <feMergeNode in="SourceGraphic"/>
-                                        </feMerge>
-                                    </filter>
+                        <!-- Left: Animation Container -->
+                        <div style="background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px; position: relative;">
+                                <!-- SVG Animation with Enhanced Visual Effects -->
+                                <svg id="triad-animation" width="100%" height="450" viewBox="0 0 600 450" style="max-width: 650px;">
+                                    <defs>
+                                        <!-- Enhanced gradients for nodes -->
+                                        <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+                                        </linearGradient>
 
-                                    <!-- Arrow marker for strong ties -->
-                                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                                        <polygon points="0 0, 10 3, 0 6" fill="#1e3c72" />
-                                    </marker>
-                                </defs>
+                                        <linearGradient id="nodeGradActive" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                        </linearGradient>
 
-                                <!-- Edges (drawn first, behind nodes) -->
-                                <g id="edges-group">
-                                    <!-- A-B edge (strong) -->
-                                    <line id="edge-ab" x1="200" y1="300" x2="400" y2="300"
-                                          stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
-                                          style="transition: stroke-width 0.5s ease, opacity 0.5s ease;" />
+                                        <!-- Glow effects for edges -->
+                                        <filter id="edgeGlow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
 
-                                    <!-- B-C edge (strong) -->
-                                    <line id="edge-bc" x1="400" y1="300" x2="300" y2="100"
-                                          stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
-                                          style="transition: stroke-width 0.5s ease, opacity 0.5s ease;" />
+                                        <filter id="strongGlow">
+                                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                            <feColorMatrix in="coloredBlur" type="matrix" values="0 0 0 0 0.11 0 0 0 0 0.235 0 0 0 0 0.447 0 0 0 0.5 0"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
 
-                                    <!-- A-C edge (the closure - starts invisible) -->
-                                    <line id="edge-ac" x1="200" y1="300" x2="300" y2="100"
-                                          stroke="#10b981" stroke-width="0" stroke-linecap="round" stroke-dasharray="8,8"
-                                          style="transition: stroke-width 0.5s ease, opacity 0.5s ease;" opacity="0" />
-                                </g>
+                                        <filter id="weakGlow">
+                                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                            <feColorMatrix in="coloredBlur" type="matrix" values="0 0 0 0 0.063 0 0 0 0 0.725 0 0 0 0 0.506 0 0 0 0.5 0"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
 
-                                <!-- Nodes (drawn last, on top) -->
-                                <g id="nodes-group">
-                                    <!-- Node A -->
-                                    <circle id="node-a" cx="200" cy="300" r="40" fill="url(#nodeGrad)" stroke="white" stroke-width="3" opacity="1"
-                                            style="transition: opacity 0.5s ease, filter 0.3s ease;" />
-                                    <text id="label-a" x="200" y="310" text-anchor="middle" fill="white" font-size="20" font-weight="bold" opacity="1"
-                                          style="transition: opacity 0.5s ease;">A</text>
+                                        <!-- Drop shadow for nodes -->
+                                        <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
+                                        </filter>
 
-                                    <!-- Node B -->
-                                    <circle id="node-b" cx="400" cy="300" r="40" fill="url(#nodeGrad)" stroke="white" stroke-width="3" opacity="1"
-                                            style="transition: opacity 0.5s ease, filter 0.3s ease;" />
-                                    <text id="label-b" x="400" y="310" text-anchor="middle" fill="white" font-size="20" font-weight="bold" opacity="1"
-                                          style="transition: opacity 0.5s ease;">B</text>
+                                        <!-- Pulse animation -->
+                                        <radialGradient id="pulseGrad">
+                                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+                                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
 
-                                    <!-- Node C -->
-                                    <circle id="node-c" cx="300" cy="100" r="40" fill="url(#nodeGrad)" stroke="white" stroke-width="3" opacity="1"
-                                            style="transition: opacity 0.5s ease, filter 0.3s ease;" />
-                                    <text id="label-c" x="300" y="110" text-anchor="middle" fill="white" font-size="20" font-weight="bold" opacity="1"
-                                          style="transition: opacity 0.5s ease;">C</text>
-                                </g>
+                                    <!-- Background grid (subtle) -->
+                                    <g opacity="0.08">
+                                        <line x1="0" y1="150" x2="600" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="300" x2="600" y2="300" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="150" y1="0" x2="150" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="300" y1="0" x2="300" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="450" y1="0" x2="450" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                    </g>
 
-                                <!-- Step indicator -->
-                                <text id="step-indicator" x="300" y="380" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">
-                                    Click Play to start
-                                </text>
-                            </svg>
+                                    <!-- Edges (drawn first, behind nodes) -->
+                                    <g id="edges-group">
+                                        <!-- A-B edge glow layer -->
+                                        <line id="edge-ab-glow" x1="200" y1="300" x2="400" y2="300"
+                                              stroke="#3b82f6" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-B edge main -->
+                                        <line id="edge-ab" x1="200" y1="300" x2="400" y2="300"
+                                              stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- B-C edge glow layer -->
+                                        <line id="edge-bc-glow" x1="400" y1="300" x2="300" y2="100"
+                                              stroke="#3b82f6" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- B-C edge main -->
+                                        <line id="edge-bc" x1="400" y1="300" x2="300" y2="100"
+                                              stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-C edge glow layer (the closure) -->
+                                        <line id="edge-ac-glow" x1="200" y1="300" x2="300" y2="100"
+                                              stroke="#10b981" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-C edge main (the closure) -->
+                                        <line id="edge-ac" x1="200" y1="300" x2="300" y2="100"
+                                              stroke="#10b981" stroke-width="0" stroke-linecap="round" stroke-dasharray="8,8" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+                                    </g>
+
+                                    <!-- Nodes (drawn last, on top) -->
+                                    <g id="nodes-group">
+                                        <!-- Node A pulse effect -->
+                                        <circle id="pulse-a" cx="200" cy="300" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node A -->
+                                        <circle id="node-a" cx="200" cy="300" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-a" x="200" y="310" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">A</text>
+
+                                        <!-- Node B pulse effect -->
+                                        <circle id="pulse-b" cx="400" cy="300" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node B -->
+                                        <circle id="node-b" cx="400" cy="300" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-b" x="400" y="310" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">B</text>
+
+                                        <!-- Node C pulse effect -->
+                                        <circle id="pulse-c" cx="300" cy="100" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node C -->
+                                        <circle id="node-c" cx="300" cy="100" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-c" x="300" y="110" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">C</text>
+                                    </g>
+
+                                    <!-- Legend -->
+                                    <g id="legend" transform="translate(20, 20)">
+                                        <rect width="180" height="85" fill="white" rx="8" opacity="0.95" filter="url(#nodeShadow)"/>
+                                        <text x="15" y="25" font-size="13" font-weight="bold" fill="#374151">Tie Types:</text>
+                                        <line x1="15" y1="40" x2="50" y2="40" stroke="#1e3c72" stroke-width="3" stroke-linecap="round"/>
+                                        <text x="60" y="45" font-size="12" fill="#6b7280">Strong Tie</text>
+                                        <line x1="15" y1="60" x2="50" y2="60" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-dasharray="6,4"/>
+                                        <text x="60" y="65" font-size="12" fill="#6b7280">Weak Tie</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Enhanced Timeline Scrubber -->
+                            <div style="margin: 25px 0;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600; min-width: 60px;">Timeline</span>
+                                    <div style="flex: 1; position: relative; height: 36px; background: #f1f5f9; border-radius: 18px; padding: 6px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);">
+                                        <!-- Progress segments -->
+                                        <div id="timeline-progress" style="position: absolute; top: 6px; left: 6px; height: 24px; background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%); border-radius: 12px; width: 0%; transition: width 0.3s ease; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);"></div>
+                                        <!-- Scrubber input -->
+                                        <input type="range" id="timeline-scrubber" min="0" max="3" value="0" step="1"
+                                               oninput="TriadicClosure.scrubToStep(parseInt(this.value))"
+                                               style="position: relative; width: 100%; height: 24px; -webkit-appearance: none; background: transparent; cursor: pointer; z-index: 10;">
+                                    </div>
+                                    <span id="timeline-label" style="font-size: 0.9em; color: #3b82f6; font-weight: 700; min-width: 70px; text-align: right;">Step 1/4</span>
+                                </div>
+                                <!-- Step markers -->
+                                <div id="step-markers" style="display: flex; justify-content: space-between; margin-top: 8px; padding: 0 70px; font-size: 0.75em; color: #94a3b8;">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Animation Controls with Speed -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; padding: 20px; background: #f8fafc; border-radius: 12px;">
+                                <div style="display: flex; gap: 10px; flex: 1; justify-content: center;">
+                                    <button id="btn-play" class="control-btn" onclick="TriadicClosure.play()"
+                                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 14px 32px; font-size: 1.05em; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                                        ▶️ Play
+                                    </button>
+                                    <button id="btn-pause" class="control-btn secondary" onclick="TriadicClosure.pause()"
+                                            style="padding: 14px 32px; font-size: 1.05em; display: none;">
+                                        ⏸️ Pause
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.reset()"
+                                            style="padding: 14px 32px; font-size: 1.05em;">
+                                        🔄 Reset
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.prevStep()"
+                                            style="padding: 14px 28px; font-size: 1.05em;">
+                                        ⏮️
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.nextStep()"
+                                            style="padding: 14px 28px; font-size: 1.05em;">
+                                        ⏭️
+                                    </button>
+                                </div>
+
+                                <!-- Speed Control -->
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600;">Speed:</span>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.setSpeed(0.5)" id="speed-0.5" style="padding: 8px 16px; font-size: 0.9em;">
+                                        0.5x
+                                    </button>
+                                    <button class="control-btn" onclick="TriadicClosure.setSpeed(1)" id="speed-1" style="padding: 8px 16px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        1x
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.setSpeed(2)" id="speed-2" style="padding: 8px 16px; font-size: 0.9em;">
+                                        2x
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Animation Controls -->
-                        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                            <button id="btn-play" class="control-btn" onclick="TriadicClosure.play()" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 12px 30px; font-size: 1.1em;">
-                                ▶️ Play
-                            </button>
-                            <button id="btn-pause" class="control-btn secondary" onclick="TriadicClosure.pause()" style="padding: 12px 30px; font-size: 1.1em; display: none;">
-                                ⏸️ Pause
-                            </button>
-                            <button class="control-btn secondary" onclick="TriadicClosure.reset()" style="padding: 12px 30px; font-size: 1.1em;">
-                                🔄 Reset
-                            </button>
-                            <button class="control-btn secondary" onclick="TriadicClosure.prevStep()" style="padding: 12px 30px; font-size: 1.1em;">
-                                ⏮️ Previous
-                            </button>
-                            <button class="control-btn secondary" onclick="TriadicClosure.nextStep()" style="padding: 12px 30px; font-size: 1.1em;">
-                                ⏭️ Next Step
-                            </button>
+                        <!-- Right: Live Metrics Panel -->
+                        <div style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #1f2937; border-bottom: 3px solid #3b82f6; padding-bottom: 12px;">📊 Live Network State</h3>
+
+                            <!-- Current Triad Type -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-size: 0.85em; color: #1e40af; font-weight: 600; margin-bottom: 6px;">TRIAD TYPE</div>
+                                <div id="live-triad-type" style="font-size: 1.8em; font-weight: 800; color: #1e3a8a; font-family: monospace; letter-spacing: 1px;">003</div>
+                                <div id="live-triad-name" style="font-size: 0.9em; color: #3b82f6; margin-top: 4px; font-weight: 500;">Empty</div>
+                            </div>
+
+                            <!-- M-A-N Breakdown -->
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 0.85em; color: #6b7280; font-weight: 600; margin-bottom: 10px;">M-A-N CLASSIFICATION</div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Mutual</div>
+                                        <div id="live-mutual" style="font-size: 1.3em; font-weight: 700; color: #1e40af;">0</div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Asymmetric</div>
+                                        <div id="live-asymmetric" style="font-size: 1.3em; font-weight: 700; color: #7c3aed;">0</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Null</div>
+                                        <div id="live-null" style="font-size: 1.3em; font-weight: 700; color: #475569;">3</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Connection Strength -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-size: 0.85em; color: #065f46; font-weight: 600; margin-bottom: 8px;">TIE STRENGTH</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                    <span style="font-size: 0.8em; color: #047857;">Strong</span>
+                                    <span id="live-strong-count" style="font-size: 0.9em; font-weight: 700; color: #065f46;">0</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-size: 0.8em; color: #047857;">Weak</span>
+                                    <span id="live-weak-count" style="font-size: 0.9em; font-weight: 700; color: #065f46;">0</span>
+                                </div>
+                            </div>
+
+                            <!-- Closure Status -->
+                            <div id="closure-status" style="padding: 15px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="font-size: 0.85em; color: #92400e; font-weight: 600; margin-bottom: 6px;">STATUS</div>
+                                <div id="closure-status-text" style="font-size: 0.95em; color: #78350f; line-height: 1.5; font-weight: 500;">Open structure</div>
+                            </div>
+
+                            <!-- Key Insight -->
+                            <div id="live-insight" style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 10px; border-left: 4px solid #ef4444;">
+                                <div style="font-size: 0.85em; color: #991b1b; font-weight: 600; margin-bottom: 6px;">💡 KEY INSIGHT</div>
+                                <div style="font-size: 0.9em; color: #7f1d1d; line-height: 1.6;">Completely disconnected - no information flow possible.</div>
+                            </div>
                         </div>
                     </div>
 
@@ -3268,6 +3500,7 @@
             currentStep: 0,
             isPlaying: false,
             playInterval: null,
+            playbackSpeed: 1, // 0.5x, 1x, or 2x
 
             // Scenarios demonstrating Granovetter's principles
             scenarios: {
@@ -3414,7 +3647,7 @@
                 const scenario = this.scenarios[this.currentScenario];
                 const step = scenario.steps[this.currentStep];
 
-                // Update SVG edges
+                // Update SVG edges with enhanced animations
                 this.updateEdge('ab', step.edges.ab, step.abType);
                 this.updateEdge('bc', step.edges.bc, step.bcType);
                 this.updateEdge('ac', step.edges.ac, step.acType);
@@ -3422,22 +3655,59 @@
                 // Update explanation cards
                 this.updateExplanation(step);
 
-                // Update progress indicator
-                document.getElementById('step-indicator').textContent =
-                    `Step ${this.currentStep + 1} of ${scenario.steps.length}`;
+                // Update timeline scrubber
+                const scrubber = document.getElementById('timeline-scrubber');
+                if (scrubber) {
+                    scrubber.max = scenario.steps.length - 1;
+                    scrubber.value = this.currentStep;
+                }
+
+                // Update timeline progress bar
+                const progressBar = document.getElementById('timeline-progress');
+                if (progressBar) {
+                    const progressPct = (this.currentStep / (scenario.steps.length - 1)) * 100;
+                    progressBar.style.width = progressPct + '%';
+                }
+
+                // Update timeline label
+                const timelineLabel = document.getElementById('timeline-label');
+                if (timelineLabel) {
+                    timelineLabel.textContent = `Step ${this.currentStep + 1}/${scenario.steps.length}`;
+                }
+
+                // Update live metrics panel
+                this.updateLiveMetrics(step);
+
+                // Update step markers (if needed)
+                this.updateStepMarkers();
             },
 
             updateEdge(edgeId, visible, type = 'strong') {
                 const edge = document.getElementById(`edge-${edgeId}`);
+                const edgeGlow = document.getElementById(`edge-${edgeId}-glow`);
                 if (!edge) return;
 
                 if (visible) {
+                    // Main edge
                     edge.style.opacity = '1';
                     edge.style.strokeDasharray = type === 'weak' ? '8,8' : '0';
                     edge.style.stroke = type === 'strong' ? '#1e3c72' : '#10b981';
-                    edge.style.strokeWidth = type === 'strong' ? '4' : '2';
+                    edge.style.strokeWidth = type === 'strong' ? '5' : '3';
+
+                    // Glow layer
+                    if (edgeGlow) {
+                        edgeGlow.style.opacity = '0.4';
+                        edgeGlow.style.strokeDasharray = type === 'weak' ? '8,8' : '0';
+                        edgeGlow.style.stroke = type === 'strong' ? '#3b82f6' : '#10b981';
+                        edgeGlow.style.strokeWidth = type === 'strong' ? '12' : '8';
+                    }
                 } else {
                     edge.style.opacity = '0';
+                    edge.style.strokeWidth = '0';
+                    if (edgeGlow) {
+                        edgeGlow.style.opacity = '0';
+                        edgeGlow.style.strokeWidth = '0';
+                    }
                 }
             },
 
@@ -3486,12 +3756,19 @@
                 if (this.isPlaying) return;
 
                 this.isPlaying = true;
+                const baseInterval = 2500; // Base: 2.5 seconds
+                const interval = baseInterval / this.playbackSpeed;
+
+                // Update button states
+                document.getElementById('btn-play').style.display = 'none';
+                document.getElementById('btn-pause').style.display = 'inline-block';
+
                 this.playInterval = setInterval(() => {
                     this.nextStep();
                     if (this.currentStep === this.scenarios[this.currentScenario].steps.length - 1) {
                         this.pause();
                     }
-                }, 2500); // Advance every 2.5 seconds
+                }, interval);
             },
 
             pause() {
@@ -3500,6 +3777,10 @@
                     clearInterval(this.playInterval);
                     this.playInterval = null;
                 }
+
+                // Update button states
+                document.getElementById('btn-play').style.display = 'inline-block';
+                document.getElementById('btn-pause').style.display = 'none';
             },
 
             reset() {
@@ -3521,6 +3802,158 @@
                     this.currentStep--;
                     this.renderStep();
                 }
+            },
+
+            // New BI Features
+
+            setSpeed(speed) {
+                this.playbackSpeed = speed;
+
+                // Update speed button states
+                ['0.5', '1', '2'].forEach(s => {
+                    const btn = document.getElementById(`speed-${s}`);
+                    if (btn) {
+                        if (parseFloat(s) === speed) {
+                            btn.classList.remove('secondary');
+                            btn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                            btn.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+                        } else {
+                            btn.classList.add('secondary');
+                            btn.style.background = '';
+                            btn.style.boxShadow = '';
+                        }
+                    }
+                });
+
+                // Restart playback if currently playing
+                if (this.isPlaying) {
+                    this.pause();
+                    this.play();
+                }
+            },
+
+            scrubToStep(stepIndex) {
+                this.pause();
+                this.currentStep = stepIndex;
+                this.renderStep();
+            },
+
+            updateLiveMetrics(step) {
+                // Update triad type
+                const triadTypeEl = document.getElementById('live-triad-type');
+                const triadNameEl = document.getElementById('live-triad-name');
+                if (triadTypeEl && triadNameEl) {
+                    triadTypeEl.textContent = step.triad;
+                    triadNameEl.textContent = this.triads[step.triad].name;
+                }
+
+                // Update M-A-N breakdown
+                const mutualEl = document.getElementById('live-mutual');
+                const asymmetricEl = document.getElementById('live-asymmetric');
+                const nullEl = document.getElementById('live-null');
+                if (mutualEl && asymmetricEl && nullEl) {
+                    mutualEl.textContent = this.triads[step.triad].mutual;
+                    asymmetricEl.textContent = this.triads[step.triad].asymmetric;
+                    nullEl.textContent = this.triads[step.triad].null;
+                }
+
+                // Count strong and weak ties
+                let strongCount = 0;
+                let weakCount = 0;
+                if (step.edges.ab) {
+                    if (step.abType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+                if (step.edges.bc) {
+                    if (step.bcType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+                if (step.edges.ac) {
+                    if (step.acType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+
+                // Update tie strength counts
+                const strongCountEl = document.getElementById('live-strong-count');
+                const weakCountEl = document.getElementById('live-weak-count');
+                if (strongCountEl && weakCountEl) {
+                    strongCountEl.textContent = strongCount;
+                    weakCountEl.textContent = weakCount;
+                }
+
+                // Update closure status
+                const closureStatusEl = document.getElementById('closure-status-text');
+                if (closureStatusEl) {
+                    if (step.triad === '300') {
+                        closureStatusEl.innerHTML = '🔴 <strong>Complete Closure</strong> - High redundancy';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#ef4444';
+                    } else if (step.triad === '201' && step.edges.ab && step.edges.bc && !step.edges.ac) {
+                        closureStatusEl.innerHTML = '🟡 <strong>Potential Closure</strong> - Depends on tie strength';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#f59e0b';
+                    } else if (step.edges.ab || step.edges.bc || step.edges.ac) {
+                        closureStatusEl.innerHTML = '🟢 <strong>Open Structure</strong> - Good information flow';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#10b981';
+                    } else {
+                        closureStatusEl.innerHTML = '⚪ <strong>No Connections</strong> - Isolated nodes';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#94a3b8';
+                    }
+                }
+
+                // Update key insight
+                const insightEl = document.getElementById('live-insight');
+                if (insightEl) {
+                    let insightText = '';
+                    let insightColor = '#fef2f2';
+                    let borderColor = '#ef4444';
+
+                    if (step.triad === '003') {
+                        insightText = 'Completely disconnected - no information flow possible.';
+                        insightColor = '#f8fafc';
+                        borderColor = '#94a3b8';
+                    } else if (step.triad === '102') {
+                        insightText = 'Single connection formed - information can now flow between two nodes.';
+                        insightColor = '#eff6ff';
+                        borderColor = '#3b82f6';
+                    } else if (step.triad === '201') {
+                        if (weakCount > 0) {
+                            insightText = 'Open structure with weak tie(s) - B acts as a bridge providing novel information to A and C!';
+                            insightColor = '#f0fdf4';
+                            borderColor = '#10b981';
+                        } else {
+                            insightText = 'Forbidden triad! Two strong ties but no closure (yet). Highly unstable - closure likely to form.';
+                            insightColor = '#fef3c7';
+                            borderColor = '#f59e0b';
+                        }
+                    } else if (step.triad === '300') {
+                        insightText = 'Complete closure - all three connected. High redundancy means limited access to novel information.';
+                        insightColor = '#fef2f2';
+                        borderColor = '#ef4444';
+                    }
+
+                    insightEl.querySelector('div:last-child').textContent = insightText;
+                    insightEl.style.background = `linear-gradient(135deg, ${insightColor} 0%, ${insightColor} 100%)`;
+                    insightEl.style.borderLeftColor = borderColor;
+                }
+            },
+
+            updateStepMarkers() {
+                const markersEl = document.getElementById('step-markers');
+                if (!markersEl) return;
+
+                const scenario = this.scenarios[this.currentScenario];
+                const steps = scenario.steps;
+
+                let markersHTML = '';
+                steps.forEach((step, index) => {
+                    const triadInfo = this.triads[step.triad];
+                    markersHTML += `<span style="opacity: ${index === this.currentStep ? 1 : 0.5}; font-weight: ${index === this.currentStep ? 'bold' : 'normal'}; color: ${index === this.currentStep ? '#3b82f6' : '#94a3b8'};">${step.triad}</span>`;
+                });
+
+                markersEl.innerHTML = markersHTML;
             }
         };
 
