@@ -589,6 +589,45 @@
             font-size: 0.9em;
         }
 
+        /* Timeline Scrubber Styling */
+        #timeline-scrubber {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        #timeline-scrubber::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        #timeline-scrubber::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.7);
+        }
+
+        #timeline-scrubber::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        #timeline-scrubber::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.7);
+        }
+
         #networkCanvas {
             width: 100%;
             height: 600px;
@@ -2085,6 +2124,458 @@
                 </div>
             </div>
 
+            <!-- Animated Triadic Closure Demo -->
+            <div class="section">
+                <h2>🎬 Triadic Closure Animation</h2>
+                <p style="font-size: 1.1em; line-height: 1.7; color: #4b5563;">Watch how "forbidden triads" form and understand why they create information redundancy. This is one of Granovetter's key theoretical insights, visualized with all 16 triad types from the Holland & Leinhardt classification.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 35px; border-radius: 20px; margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+
+                    <!-- Scenario Tabs -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+                        <button id="scenario-basic" class="control-btn" onclick="TriadicClosure.loadScenario('basic')"
+                                style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 15px 30px; font-size: 1.05em; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                            📊 Basic Triad
+                        </button>
+                        <button id="scenario-weakStrong" class="control-btn secondary" onclick="TriadicClosure.loadScenario('weakStrong')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🌉 Weak → Strong
+                        </button>
+                        <button id="scenario-multiple" class="control-btn secondary" onclick="TriadicClosure.loadScenario('multiple')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            📈 Dense vs Sparse
+                        </button>
+                        <button id="scenario-whatIf" class="control-btn secondary" onclick="TriadicClosure.loadScenario('whatIf')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🔮 What If?
+                        </button>
+                    </div>
+
+                    <!-- What If Scenario Builder (shown only in whatIf mode) -->
+                    <div id="whatif-builder" style="display: none; background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 3px solid #f59e0b;">
+                        <h3 style="margin: 0 0 20px 0; color: #92400e; font-size: 1.3em;">🔮 Build Your Own Scenario</h3>
+                        <p style="margin: 0 0 20px 0; color: #78350f; line-height: 1.7;">
+                            Experiment with different network configurations and see what Granovetter's theory predicts!
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                            <!-- A-B Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">A ↔ B Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('ab')" id="whatif-toggle-ab"
+                                            class="control-btn" style="flex: 1; padding: 12px; font-size: 0.95em; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                        ✓ Connected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-ab" style="display: flex; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('ab', 'strong')" id="whatif-ab-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('ab', 'weak')" id="whatif-ab-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- B-C Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">B ↔ C Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('bc')" id="whatif-toggle-bc"
+                                            class="control-btn secondary" style="flex: 1; padding: 12px; font-size: 0.95em;">
+                                        ✗ Disconnected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-bc" style="display: none; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('bc', 'strong')" id="whatif-bc-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('bc', 'weak')" id="whatif-bc-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- A-C Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">A ↔ C Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('ac')" id="whatif-toggle-ac"
+                                            class="control-btn secondary" style="flex: 1; padding: 12px; font-size: 0.95em;">
+                                        ✗ Disconnected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-ac" style="display: none; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('ac', 'strong')" id="whatif-ac-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('ac', 'weak')" id="whatif-ac-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Granovetter's Prediction -->
+                        <div id="whatif-prediction" style="margin-top: 25px; padding: 20px; background: white; border-radius: 10px; border-left: 5px solid #8b5cf6;">
+                            <h4 style="margin: 0 0 12px 0; color: #6d28d9; font-size: 1.15em;">📊 Granovetter's Prediction</h4>
+                            <div id="whatif-prediction-text" style="color: #4b5563; line-height: 1.8; font-size: 0.95em;">
+                                Select connections above to see what the theory predicts...
+                            </div>
+                        </div>
+
+                        <!-- Quick Presets -->
+                        <div style="margin-top: 20px; padding: 18px; background: rgba(255,255,255,0.7); border-radius: 10px;">
+                            <h4 style="margin: 0 0 12px 0; color: #1f2937; font-size: 1em;">⚡ Quick Presets:</h4>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button onclick="TriadicClosure.whatIf.loadPreset('forbiddenTriad')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    ⚠️ Forbidden Triad
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('completeClosure')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🔴 Complete Closure
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('perfectBridge')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🌉 Perfect Bridge
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('weakBridge')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🟢 Weak Bridge
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Visualization Area with Live Metrics -->
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 25px; margin-bottom: 30px;">
+
+                        <!-- Left: Animation Container -->
+                        <div style="background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px; position: relative;">
+                                <!-- SVG Animation with Enhanced Visual Effects -->
+                                <svg id="triad-animation" width="100%" height="450" viewBox="0 0 600 450" style="max-width: 650px;">
+                                    <defs>
+                                        <!-- Enhanced gradients for nodes -->
+                                        <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="nodeGradActive" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <!-- Glow effects for edges -->
+                                        <filter id="edgeGlow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+
+                                        <filter id="strongGlow">
+                                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                            <feColorMatrix in="coloredBlur" type="matrix" values="0 0 0 0 0.11 0 0 0 0 0.235 0 0 0 0 0.447 0 0 0 0.5 0"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+
+                                        <filter id="weakGlow">
+                                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                            <feColorMatrix in="coloredBlur" type="matrix" values="0 0 0 0 0.063 0 0 0 0 0.725 0 0 0 0 0.506 0 0 0 0.5 0"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+
+                                        <!-- Drop shadow for nodes -->
+                                        <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
+                                        </filter>
+
+                                        <!-- Pulse animation -->
+                                        <radialGradient id="pulseGrad">
+                                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+                                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+
+                                    <!-- Background grid (subtle) -->
+                                    <g opacity="0.08">
+                                        <line x1="0" y1="150" x2="600" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="300" x2="600" y2="300" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="150" y1="0" x2="150" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="300" y1="0" x2="300" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="450" y1="0" x2="450" y2="400" stroke="#cbd5e1" stroke-width="1"/>
+                                    </g>
+
+                                    <!-- Edges (drawn first, behind nodes) -->
+                                    <g id="edges-group">
+                                        <!-- A-B edge glow layer -->
+                                        <line id="edge-ab-glow" x1="200" y1="300" x2="400" y2="300"
+                                              stroke="#3b82f6" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-B edge main -->
+                                        <line id="edge-ab" x1="200" y1="300" x2="400" y2="300"
+                                              stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- B-C edge glow layer -->
+                                        <line id="edge-bc-glow" x1="400" y1="300" x2="300" y2="100"
+                                              stroke="#3b82f6" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- B-C edge main -->
+                                        <line id="edge-bc" x1="400" y1="300" x2="300" y2="100"
+                                              stroke="#1e3c72" stroke-width="0" stroke-linecap="round"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-C edge glow layer (the closure) -->
+                                        <line id="edge-ac-glow" x1="200" y1="300" x2="300" y2="100"
+                                              stroke="#10b981" stroke-width="0" stroke-linecap="round" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+
+                                        <!-- A-C edge main (the closure) -->
+                                        <line id="edge-ac" x1="200" y1="300" x2="300" y2="100"
+                                              stroke="#10b981" stroke-width="0" stroke-linecap="round" stroke-dasharray="8,8" opacity="0"
+                                              style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);" />
+                                    </g>
+
+                                    <!-- Nodes (drawn last, on top) -->
+                                    <g id="nodes-group">
+                                        <!-- Node A pulse effect -->
+                                        <circle id="pulse-a" cx="200" cy="300" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node A -->
+                                        <circle id="node-a" cx="200" cy="300" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-a" x="200" y="310" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">A</text>
+
+                                        <!-- Node B pulse effect -->
+                                        <circle id="pulse-b" cx="400" cy="300" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node B -->
+                                        <circle id="node-b" cx="400" cy="300" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-b" x="400" y="310" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">B</text>
+
+                                        <!-- Node C pulse effect -->
+                                        <circle id="pulse-c" cx="300" cy="100" r="50" fill="url(#pulseGrad)" opacity="0">
+                                            <animate attributeName="r" from="45" to="60" dur="1.5s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <!-- Node C -->
+                                        <circle id="node-c" cx="300" cy="100" r="45" fill="url(#nodeGrad)" stroke="white" stroke-width="4"
+                                                filter="url(#nodeShadow)" opacity="1"
+                                                style="transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;" />
+                                        <text id="label-c" x="300" y="110" text-anchor="middle" fill="white" font-size="24" font-weight="bold" opacity="1"
+                                              style="transition: opacity 0.6s ease; pointer-events: none;">C</text>
+                                    </g>
+
+                                    <!-- Legend -->
+                                    <g id="legend" transform="translate(20, 20)">
+                                        <rect width="180" height="85" fill="white" rx="8" opacity="0.95" filter="url(#nodeShadow)"/>
+                                        <text x="15" y="25" font-size="13" font-weight="bold" fill="#374151">Tie Types:</text>
+                                        <line x1="15" y1="40" x2="50" y2="40" stroke="#1e3c72" stroke-width="3" stroke-linecap="round"/>
+                                        <text x="60" y="45" font-size="12" fill="#6b7280">Strong Tie</text>
+                                        <line x1="15" y1="60" x2="50" y2="60" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-dasharray="6,4"/>
+                                        <text x="60" y="65" font-size="12" fill="#6b7280">Weak Tie</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Enhanced Timeline Scrubber -->
+                            <div style="margin: 25px 0;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600; min-width: 60px;">Timeline</span>
+                                    <div style="flex: 1; position: relative; height: 36px; background: #f1f5f9; border-radius: 18px; padding: 6px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);">
+                                        <!-- Progress segments -->
+                                        <div id="timeline-progress" style="position: absolute; top: 6px; left: 6px; height: 24px; background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%); border-radius: 12px; width: 0%; transition: width 0.3s ease; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);"></div>
+                                        <!-- Scrubber input -->
+                                        <input type="range" id="timeline-scrubber" min="0" max="3" value="0" step="1"
+                                               oninput="TriadicClosure.scrubToStep(parseInt(this.value))"
+                                               style="position: relative; width: 100%; height: 24px; -webkit-appearance: none; background: transparent; cursor: pointer; z-index: 10;">
+                                    </div>
+                                    <span id="timeline-label" style="font-size: 0.9em; color: #3b82f6; font-weight: 700; min-width: 70px; text-align: right;">Step 1/4</span>
+                                </div>
+                                <!-- Step markers -->
+                                <div id="step-markers" style="display: flex; justify-content: space-between; margin-top: 8px; padding: 0 70px; font-size: 0.75em; color: #94a3b8;">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Animation Controls with Speed -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; padding: 20px; background: #f8fafc; border-radius: 12px;">
+                                <div style="display: flex; gap: 10px; flex: 1; justify-content: center;">
+                                    <button id="btn-play" class="control-btn" onclick="TriadicClosure.play()"
+                                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 14px 32px; font-size: 1.05em; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                                        ▶️ Play
+                                    </button>
+                                    <button id="btn-pause" class="control-btn secondary" onclick="TriadicClosure.pause()"
+                                            style="padding: 14px 32px; font-size: 1.05em; display: none;">
+                                        ⏸️ Pause
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.reset()"
+                                            style="padding: 14px 32px; font-size: 1.05em;">
+                                        🔄 Reset
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.prevStep()"
+                                            style="padding: 14px 28px; font-size: 1.05em;">
+                                        ⏮️
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.nextStep()"
+                                            style="padding: 14px 28px; font-size: 1.05em;">
+                                        ⏭️
+                                    </button>
+                                </div>
+
+                                <!-- Speed Control -->
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600;">Speed:</span>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.setSpeed(0.5)" id="speed-0.5" style="padding: 8px 16px; font-size: 0.9em;">
+                                        0.5x
+                                    </button>
+                                    <button class="control-btn" onclick="TriadicClosure.setSpeed(1)" id="speed-1" style="padding: 8px 16px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        1x
+                                    </button>
+                                    <button class="control-btn secondary" onclick="TriadicClosure.setSpeed(2)" id="speed-2" style="padding: 8px 16px; font-size: 0.9em;">
+                                        2x
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Metrics Panel -->
+                        <div style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #1f2937; border-bottom: 3px solid #3b82f6; padding-bottom: 12px;">📊 Live Network State</h3>
+
+                            <!-- Current Triad Type -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-size: 0.85em; color: #1e40af; font-weight: 600; margin-bottom: 6px;">TRIAD TYPE</div>
+                                <div id="live-triad-type" style="font-size: 1.8em; font-weight: 800; color: #1e3a8a; font-family: monospace; letter-spacing: 1px;">003</div>
+                                <div id="live-triad-name" style="font-size: 0.9em; color: #3b82f6; margin-top: 4px; font-weight: 500;">Empty</div>
+                            </div>
+
+                            <!-- M-A-N Breakdown -->
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 0.85em; color: #6b7280; font-weight: 600; margin-bottom: 10px;">M-A-N CLASSIFICATION</div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Mutual</div>
+                                        <div id="live-mutual" style="font-size: 1.3em; font-weight: 700; color: #1e40af;">0</div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Asymmetric</div>
+                                        <div id="live-asymmetric" style="font-size: 1.3em; font-weight: 700; color: #7c3aed;">0</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%;"></div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.8em; color: #64748b; margin-bottom: 3px;">Null</div>
+                                        <div id="live-null" style="font-size: 1.3em; font-weight: 700; color: #475569;">3</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Connection Strength -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-size: 0.85em; color: #065f46; font-weight: 600; margin-bottom: 8px;">TIE STRENGTH</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                    <span style="font-size: 0.8em; color: #047857;">Strong</span>
+                                    <span id="live-strong-count" style="font-size: 0.9em; font-weight: 700; color: #065f46;">0</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-size: 0.8em; color: #047857;">Weak</span>
+                                    <span id="live-weak-count" style="font-size: 0.9em; font-weight: 700; color: #065f46;">0</span>
+                                </div>
+                            </div>
+
+                            <!-- Closure Status -->
+                            <div id="closure-status" style="padding: 15px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="font-size: 0.85em; color: #92400e; font-weight: 600; margin-bottom: 6px;">STATUS</div>
+                                <div id="closure-status-text" style="font-size: 0.95em; color: #78350f; line-height: 1.5; font-weight: 500;">Open structure</div>
+                            </div>
+
+                            <!-- Key Insight -->
+                            <div id="live-insight" style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 10px; border-left: 4px solid #ef4444;">
+                                <div style="font-size: 0.85em; color: #991b1b; font-weight: 600; margin-bottom: 6px;">💡 KEY INSIGHT</div>
+                                <div style="font-size: 0.9em; color: #7f1d1d; line-height: 1.6;">Completely disconnected - no information flow possible.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explanation Cards -->
+                    <div id="explanation-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Theory Section -->
+                    <div style="margin-top: 30px; padding: 25px; background: white; border-radius: 12px; border-left: 5px solid #8b5cf6;">
+                        <h3 style="margin-top: 0; color: #6d28d9; font-size: 1.3em;">🧠 Why Forbidden Triads Matter</h3>
+
+                        <div class="grid" style="margin-top: 20px;">
+                            <div style="padding: 20px; background: #f5f3ff; border-radius: 10px;">
+                                <h4 style="color: #6d28d9; margin-top: 0;">✅ Research Principle (Granovetter)</h4>
+                                <p style="line-height: 1.8; margin: 0;">
+                                    If person A has a <strong>strong tie</strong> with B, and B has a <strong>strong tie</strong> with C, then A and C will likely form a tie too. This is "triadic closure" - creating a closed triangle.
+                                </p>
+                            </div>
+
+                            <div style="padding: 20px; background: #fef2f2; border-radius: 10px;">
+                                <h4 style="color: #dc2626; margin-top: 0;">⚠️ The Problem: Redundancy</h4>
+                                <p style="line-height: 1.8; margin: 0;">
+                                    When triads close, <strong>information becomes redundant</strong>. If A, B, and C all know each other, any news A hears will likely reach B and C through the same path. No new information flows.
+                                </p>
+                            </div>
+
+                            <div style="padding: 20px; background: #f0fdf4; border-radius: 10px;">
+                                <h4 style="color: #16a34a; margin-top: 0;">💡 Solution: Weak Ties as Bridges</h4>
+                                <p style="line-height: 1.8; margin: 0;">
+                                    <strong>Weak ties resist triadic closure.</strong> If A-B is weak, and B-C is strong, A and C are unlikely to meet. This keeps the network open, preventing redundancy and allowing novel information to flow.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 18px; background: #fffbeb; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                            <p style="margin: 0; line-height: 1.8; color: #92400e;">
+                                <strong>📖 Granovetter's Insight:</strong> "Forbidden triads" (where strong ties resist closure) are rare because strong ties naturally lead to introductions. Networks with many strong ties become dense clusters with high redundancy. Weak ties prevent this, keeping the network open and information-rich.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <!-- Attribution -->
             <div class="attribution">
                 <p><strong>Interactive Tool:</strong> Based on network analysis principles from Granovetter (1973)</p>
@@ -3082,6 +3573,742 @@
         };
 
         // ========================================
+        // TRIADIC CLOSURE ANIMATION
+        // Holland & Leinhardt 16 Triads Classification
+        // ========================================
+
+        const TriadicClosure = {
+            // 16 Triads (Holland & Leinhardt 1976): M-A-N notation
+            // M = Mutual ties, A = Asymmetric ties, N = Null ties
+            triads: {
+                '003': { name: 'Empty', description: 'No ties at all - completely disconnected', mutual: 0, asymmetric: 0, null: 3 },
+                '012': { name: 'Asymmetric', description: 'Single directed tie A→B', mutual: 0, asymmetric: 1, null: 2 },
+                '102': { name: 'Mutual', description: 'Single mutual tie A↔B', mutual: 1, asymmetric: 0, null: 2 },
+                '021D': { name: 'Out-star', description: 'A→B, A→C (A broadcasts)', mutual: 0, asymmetric: 2, null: 1 },
+                '021U': { name: 'In-star', description: 'B→A, C→A (A receives)', mutual: 0, asymmetric: 2, null: 1 },
+                '021C': { name: 'Cycle', description: 'A→B→C (no closure)', mutual: 0, asymmetric: 2, null: 1 },
+                '111D': { name: 'Mutual + Out', description: 'A↔B, A→C', mutual: 1, asymmetric: 1, null: 1 },
+                '111U': { name: 'Mutual + In', description: 'A↔B, C→A', mutual: 1, asymmetric: 1, null: 1 },
+                '030T': { name: 'Transitive', description: 'A→B→C, A→C (closed path)', mutual: 0, asymmetric: 3, null: 0 },
+                '030C': { name: 'Cyclic', description: 'A→B→C→A (full cycle)', mutual: 0, asymmetric: 3, null: 0 },
+                '201': { name: 'Two Mutual', description: 'A↔B, A↔C (no B-C)', mutual: 2, asymmetric: 0, null: 1 },
+                '120D': { name: 'Mixed Out', description: 'A↔B, A→C, B→C', mutual: 1, asymmetric: 2, null: 0 },
+                '120U': { name: 'Mixed In', description: 'A↔B, C→A, C→B', mutual: 1, asymmetric: 2, null: 0 },
+                '120C': { name: 'Mixed Cycle', description: 'A↔B, A→C, C→B', mutual: 1, asymmetric: 2, null: 0 },
+                '210': { name: 'Almost Complete', description: 'A↔B, A↔C, B→C', mutual: 2, asymmetric: 1, null: 0 },
+                '300': { name: 'Complete', description: 'A↔B, A↔C, B↔C (full closure)', mutual: 3, asymmetric: 0, null: 0 }
+            },
+
+            // Animation state
+            currentScenario: 'basic',
+            currentStep: 0,
+            isPlaying: false,
+            playInterval: null,
+            playbackSpeed: 1, // 0.5x, 1x, or 2x
+
+            // Scenarios demonstrating Granovetter's principles
+            scenarios: {
+                basic: {
+                    name: 'Basic Triadic Closure',
+                    steps: [
+                        {
+                            triad: '003',
+                            edges: { ab: false, bc: false, ac: false },
+                            title: 'Three Disconnected People',
+                            explanation: 'A, B, and C have no relationship. This is triad type <strong>003</strong> (0 mutual, 0 asymmetric, 3 null ties).',
+                            principle: 'Starting point: completely disconnected network.'
+                        },
+                        {
+                            triad: '102',
+                            edges: { ab: true, bc: false, ac: false },
+                            abType: 'strong',
+                            title: 'A-B Form Strong Tie',
+                            explanation: 'A and B develop a <strong>strong tie</strong> (see each other ≥2x/week). Now triad type <strong>102</strong> (1 mutual, 0 asymmetric, 2 null).',
+                            principle: 'Strong ties involve frequent contact and emotional closeness.'
+                        },
+                        {
+                            triad: '201',
+                            edges: { ab: true, bc: true, ac: false },
+                            abType: 'strong',
+                            bcType: 'strong',
+                            title: 'B-C Form Strong Tie',
+                            explanation: 'B and C also form a <strong>strong tie</strong>. Now triad type <strong>201</strong> (2 mutual, 0 asymmetric, 1 null). This is the "forbidden triad" setup!',
+                            principle: '⚠️ Granovetter\'s Key Finding: When A-B strong AND B-C strong, triadic closure is highly likely.'
+                        },
+                        {
+                            triad: '300',
+                            edges: { ab: true, bc: true, ac: true },
+                            abType: 'strong',
+                            bcType: 'strong',
+                            acType: 'strong',
+                            title: 'Triadic Closure Forms!',
+                            explanation: 'A and C meet through B and form a tie. Now triad type <strong>300</strong> (3 mutual, 0 asymmetric, 0 null) - complete closure!',
+                            principle: '❌ PROBLEM: Now all three share the same information. High redundancy, no novel information flows.'
+                        }
+                    ]
+                },
+
+                weakStrong: {
+                    name: 'Weak Tie Prevents Closure',
+                    steps: [
+                        {
+                            triad: '003',
+                            edges: { ab: false, bc: false, ac: false },
+                            title: 'Three Disconnected People',
+                            explanation: 'Starting with A, B, C disconnected (triad <strong>003</strong>).',
+                            principle: 'Weak ties behave differently than strong ties in closure dynamics.'
+                        },
+                        {
+                            triad: '102',
+                            edges: { ab: true, bc: false, ac: false },
+                            abType: 'weak',
+                            title: 'A-B Form Weak Tie',
+                            explanation: 'A and B develop a <strong>weak tie</strong> (see each other ≤1x/year). Still triad <strong>102</strong>.',
+                            principle: 'Weak ties involve infrequent contact, less emotional closeness.'
+                        },
+                        {
+                            triad: '201',
+                            edges: { ab: true, bc: true, ac: false },
+                            abType: 'weak',
+                            bcType: 'strong',
+                            title: 'B-C Form Strong Tie',
+                            explanation: 'B and C form a <strong>strong tie</strong>. Now A-B weak, B-C strong (triad <strong>201</strong>).',
+                            principle: '💡 Critical Difference: A-B is WEAK, not strong.'
+                        },
+                        {
+                            triad: '201',
+                            edges: { ab: true, bc: true, ac: false },
+                            abType: 'weak',
+                            bcType: 'strong',
+                            title: 'Closure Resisted!',
+                            explanation: 'A and C are <strong>unlikely to meet</strong> because A-B is weak. Triad stays <strong>201</strong> - open structure.',
+                            principle: '✅ BENEFIT: B acts as a BRIDGE. A gets novel information from C\'s network through B. Low redundancy!'
+                        }
+                    ]
+                },
+
+                multiple: {
+                    name: 'Dense vs Sparse Networks',
+                    steps: [
+                        {
+                            triad: '003',
+                            edges: { ab: false, bc: false, ac: false },
+                            title: 'Starting Configuration',
+                            explanation: 'Three people, no ties yet (triad <strong>003</strong>).',
+                            principle: 'Network structure affects information flow and access to resources.'
+                        },
+                        {
+                            triad: '300',
+                            edges: { ab: true, bc: true, ac: true },
+                            abType: 'strong',
+                            bcType: 'strong',
+                            acType: 'strong',
+                            title: 'Dense Network (All Strong)',
+                            explanation: 'All three form <strong>strong ties</strong> (triad <strong>300</strong> - complete closure). Network density = 100%.',
+                            principle: '❌ Dense networks create echo chambers. Everyone knows everyone, same information circulates.'
+                        },
+                        {
+                            triad: '201',
+                            edges: { ab: true, bc: true, ac: false },
+                            abType: 'weak',
+                            bcType: 'weak',
+                            title: 'Sparse Network (Weak Ties)',
+                            explanation: 'Only weak ties exist (triad <strong>201</strong> - open structure). Network density = 67%.',
+                            principle: '✅ Sparse networks with weak ties provide access to diverse information sources.'
+                        },
+                        {
+                            triad: '201',
+                            edges: { ab: true, bc: true, ac: false },
+                            abType: 'weak',
+                            bcType: 'weak',
+                            title: 'Granovetter\'s Finding',
+                            explanation: '<strong>83.4%</strong> of jobs found through moderate/weak ties (N=54), NOT strong ties!',
+                            principle: '📊 EMPIRICAL DATA: Weak ties more effective for job search than strong ties.'
+                        }
+                    ]
+                },
+
+                whatIf: {
+                    name: 'What If Scenario Builder',
+                    steps: [
+                        {
+                            triad: '102',
+                            edges: { ab: true, bc: false, ac: false },
+                            abType: 'strong',
+                            title: 'Custom Scenario',
+                            explanation: 'Build your own network configuration using the controls above!',
+                            principle: 'Experiment to understand how tie strength affects closure dynamics.'
+                        }
+                    ]
+                }
+            },
+
+            // What If scenario builder module
+            whatIf: {
+                state: {
+                    ab: { connected: true, type: 'strong' },
+                    bc: { connected: false, type: 'strong' },
+                    ac: { connected: false, type: 'strong' }
+                },
+
+                toggleEdge(edgeId) {
+                    this.state[edgeId].connected = !this.state[edgeId].connected;
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
+                },
+
+                setType(edgeId, type) {
+                    this.state[edgeId].type = type;
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
+                },
+
+                updateUI() {
+                    ['ab', 'bc', 'ac'].forEach(edgeId => {
+                        const toggleBtn = document.getElementById(`whatif-toggle-${edgeId}`);
+                        const typeDiv = document.getElementById(`whatif-type-${edgeId}`);
+                        const strongBtn = document.getElementById(`whatif-${edgeId}-strong`);
+                        const weakBtn = document.getElementById(`whatif-${edgeId}-weak`);
+
+                        if (this.state[edgeId].connected) {
+                            toggleBtn.textContent = '✓ Connected';
+                            toggleBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                            toggleBtn.classList.remove('secondary');
+                            typeDiv.style.display = 'flex';
+
+                            if (this.state[edgeId].type === 'strong') {
+                                strongBtn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                                strongBtn.classList.remove('secondary');
+                                weakBtn.style.background = '';
+                                weakBtn.classList.add('secondary');
+                            } else {
+                                weakBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                                weakBtn.classList.remove('secondary');
+                                strongBtn.style.background = '';
+                                strongBtn.classList.add('secondary');
+                            }
+                        } else {
+                            toggleBtn.textContent = '✗ Disconnected';
+                            toggleBtn.style.background = '';
+                            toggleBtn.classList.add('secondary');
+                            typeDiv.style.display = 'none';
+                        }
+                    });
+                },
+
+                updateVisualization() {
+                    TriadicClosure.updateEdge('ab', this.state.ab.connected, this.state.ab.type);
+                    TriadicClosure.updateEdge('bc', this.state.bc.connected, this.state.bc.type);
+                    TriadicClosure.updateEdge('ac', this.state.ac.connected, this.state.ac.type);
+
+                    // Update live metrics
+                    const step = this.generateStepData();
+                    TriadicClosure.updateLiveMetrics(step);
+                },
+
+                generateStepData() {
+                    // Determine triad type based on current state
+                    const edges = {
+                        ab: this.state.ab.connected,
+                        bc: this.state.bc.connected,
+                        ac: this.state.ac.connected
+                    };
+
+                    let triad = '003'; // default: no connections
+                    let mutual = 0;
+
+                    if (edges.ab) mutual++;
+                    if (edges.bc) mutual++;
+                    if (edges.ac) mutual++;
+
+                    if (mutual === 0) triad = '003';
+                    else if (mutual === 1) triad = '102';
+                    else if (mutual === 2) triad = '201';
+                    else if (mutual === 3) triad = '300';
+
+                    return {
+                        triad: triad,
+                        edges: edges,
+                        abType: this.state.ab.type,
+                        bcType: this.state.bc.type,
+                        acType: this.state.ac.type
+                    };
+                },
+
+                updatePrediction() {
+                    const predictionEl = document.getElementById('whatif-prediction-text');
+                    if (!predictionEl) return;
+
+                    const ab = this.state.ab;
+                    const bc = this.state.bc;
+                    const ac = this.state.ac;
+
+                    let prediction = '';
+
+                    // No connections
+                    if (!ab.connected && !bc.connected && !ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> Completely disconnected (Triad <strong>003</strong>)<br><br>
+                            <strong style="color: #6b7280;">Prediction:</strong> No information flow possible. These three people have no relationship.
+                        `;
+                    }
+                    // One connection only
+                    else if ((ab.connected && !bc.connected && !ac.connected) ||
+                             (!ab.connected && bc.connected && !ac.connected) ||
+                             (!ab.connected && !bc.connected && ac.connected)) {
+                        prediction = `
+                            <strong>Current State:</strong> Single connection (Triad <strong>102</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> Information can flow between two nodes. The third person remains isolated from this dyad.
+                        `;
+                    }
+                    // Two connections (Forbidden Triad setup)
+                    else if (ab.connected && bc.connected && !ac.connected) {
+                        if (ab.type === 'strong' && bc.type === 'strong') {
+                            prediction = `
+                                <strong>Current State:</strong> Forbidden Triad! (Triad <strong>201</strong>)<br><br>
+                                <strong style="color: #dc2626;">⚠️ Granovetter's Prediction:</strong> This configuration is <strong>highly unstable</strong>.
+                                Since A-B is strong AND B-C is strong, triadic closure pressure is HIGH.
+                                A and C will likely meet through B and form a tie, closing the triad to <strong>300</strong>.<br><br>
+                                <strong style="color: #7c3aed;">Expected Outcome:</strong> Complete closure (echo chamber, high redundancy).
+                            `;
+                        } else if (ab.type === 'weak' || bc.type === 'weak') {
+                            const weakEdge = ab.type === 'weak' ? 'A-B' : 'B-C';
+                            prediction = `
+                                <strong>Current State:</strong> Open triad with weak tie (Triad <strong>201</strong>)<br><br>
+                                <strong style="color: #10b981;">✅ Granovetter's Prediction:</strong> The <strong>${weakEdge} weak tie</strong> resists closure!
+                                Weak ties involve infrequent contact, so A and C are unlikely to meet through B.<br><br>
+                                <strong style="color: #16a34a;">Expected Outcome:</strong> B acts as a <strong>bridge</strong>, providing A and C access to
+                                non-overlapping information networks. Low redundancy, high novelty!
+                            `;
+                        }
+                    }
+                    else if (ab.connected && !bc.connected && ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> A connected to both B and C (Triad <strong>201</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> A is the central node connecting B and C.
+                            If A-B and A-C are both strong, B and C will likely meet through A and form a tie.
+                        `;
+                    }
+                    else if (!ab.connected && bc.connected && ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> C connected to both A and B (Triad <strong>201</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> C is the central node connecting A and B.
+                            If B-C and A-C are both strong, A and B will likely meet through C and form a tie.
+                        `;
+                    }
+                    // Complete closure
+                    else if (ab.connected && bc.connected && ac.connected) {
+                        const allStrong = ab.type === 'strong' && bc.type === 'strong' && ac.type === 'strong';
+                        const allWeak = ab.type === 'weak' && bc.type === 'weak' && ac.type === 'weak';
+
+                        if (allStrong) {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, all strong ties (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #dc2626;">❌ Problem:</strong> This is a fully closed network - an echo chamber.
+                                All three people know each other well and share the same information.<br><br>
+                                <strong style="color: #ef4444;">Impact:</strong> <strong>HIGH redundancy, LOW access to novel information.</strong>
+                                Bad for job search (remember: 83.4% of jobs came through weak/moderate ties, not strong ties!).
+                            `;
+                        } else if (allWeak) {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, all weak ties (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #f59e0b;">Unusual configuration!</strong> Having weak ties to people who also know each other weakly
+                                creates some redundancy, but less than strong ties.<br><br>
+                                <strong style="color: #d97706;">Impact:</strong> Moderate redundancy. Not as bad as all-strong, but not optimal for information diversity.
+                            `;
+                        } else {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, mixed tie strengths (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #8b5cf6;">Mixed outcome.</strong> The network is closed, creating some redundancy.
+                                However, the weak ties provide some degree of access to different information sources.<br><br>
+                                <strong style="color: #7c3aed;">Impact:</strong> Moderate redundancy with limited novelty.
+                            `;
+                        }
+                    }
+
+                    predictionEl.innerHTML = prediction;
+                },
+
+                loadPreset(presetName) {
+                    switch (presetName) {
+                        case 'forbiddenTriad':
+                            this.state.ab = { connected: true, type: 'strong' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: false, type: 'strong' };
+                            break;
+                        case 'completeClosure':
+                            this.state.ab = { connected: true, type: 'strong' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: true, type: 'strong' };
+                            break;
+                        case 'perfectBridge':
+                            this.state.ab = { connected: true, type: 'weak' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: false, type: 'strong' };
+                            break;
+                        case 'weakBridge':
+                            this.state.ab = { connected: true, type: 'weak' };
+                            this.state.bc = { connected: true, type: 'weak' };
+                            this.state.ac = { connected: false, type: 'weak' };
+                            break;
+                    }
+
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
+                }
+            },
+
+            init() {
+                this.loadScenario('basic');
+            },
+
+            loadScenario(scenarioName) {
+                this.currentScenario = scenarioName;
+                this.currentStep = 0;
+                this.pause();
+
+                // Update scenario button states
+                document.querySelectorAll('[id^="scenario-"]').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(`scenario-${scenarioName}`).classList.add('active');
+
+                // Handle What If scenario specially
+                const whatIfBuilder = document.getElementById('whatif-builder');
+                if (scenarioName === 'whatIf') {
+                    if (whatIfBuilder) {
+                        whatIfBuilder.style.display = 'block';
+                        // Initialize What If module
+                        this.whatIf.updateUI();
+                        this.whatIf.updateVisualization();
+                        this.whatIf.updatePrediction();
+                    }
+                } else {
+                    if (whatIfBuilder) {
+                        whatIfBuilder.style.display = 'none';
+                    }
+                    this.renderStep();
+                }
+            },
+
+            renderStep() {
+                const scenario = this.scenarios[this.currentScenario];
+                const step = scenario.steps[this.currentStep];
+
+                // Update SVG edges with enhanced animations
+                this.updateEdge('ab', step.edges.ab, step.abType);
+                this.updateEdge('bc', step.edges.bc, step.bcType);
+                this.updateEdge('ac', step.edges.ac, step.acType);
+
+                // Update explanation cards
+                this.updateExplanation(step);
+
+                // Update timeline scrubber
+                const scrubber = document.getElementById('timeline-scrubber');
+                if (scrubber) {
+                    scrubber.max = scenario.steps.length - 1;
+                    scrubber.value = this.currentStep;
+                }
+
+                // Update timeline progress bar
+                const progressBar = document.getElementById('timeline-progress');
+                if (progressBar) {
+                    const progressPct = (this.currentStep / (scenario.steps.length - 1)) * 100;
+                    progressBar.style.width = progressPct + '%';
+                }
+
+                // Update timeline label
+                const timelineLabel = document.getElementById('timeline-label');
+                if (timelineLabel) {
+                    timelineLabel.textContent = `Step ${this.currentStep + 1}/${scenario.steps.length}`;
+                }
+
+                // Update live metrics panel
+                this.updateLiveMetrics(step);
+
+                // Update step markers (if needed)
+                this.updateStepMarkers();
+            },
+
+            updateEdge(edgeId, visible, type = 'strong') {
+                const edge = document.getElementById(`edge-${edgeId}`);
+                const edgeGlow = document.getElementById(`edge-${edgeId}-glow`);
+                if (!edge) return;
+
+                if (visible) {
+                    // Main edge
+                    edge.style.opacity = '1';
+                    edge.style.strokeDasharray = type === 'weak' ? '8,8' : '0';
+                    edge.style.stroke = type === 'strong' ? '#1e3c72' : '#10b981';
+                    edge.style.strokeWidth = type === 'strong' ? '5' : '3';
+
+                    // Glow layer
+                    if (edgeGlow) {
+                        edgeGlow.style.opacity = '0.4';
+                        edgeGlow.style.strokeDasharray = type === 'weak' ? '8,8' : '0';
+                        edgeGlow.style.stroke = type === 'strong' ? '#3b82f6' : '#10b981';
+                        edgeGlow.style.strokeWidth = type === 'strong' ? '12' : '8';
+                    }
+                } else {
+                    edge.style.opacity = '0';
+                    edge.style.strokeWidth = '0';
+                    if (edgeGlow) {
+                        edgeGlow.style.opacity = '0';
+                        edgeGlow.style.strokeWidth = '0';
+                    }
+                }
+            },
+
+            updateExplanation(step) {
+                const cardsContainer = document.getElementById('explanation-cards');
+
+                cardsContainer.innerHTML = `
+                    <div style="padding: 25px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 12px; border-left: 5px solid #3b82f6;">
+                        <h4 style="margin: 0 0 12px 0; color: #1e40af; font-size: 1.3em;">
+                            ${step.title}
+                        </h4>
+                        <p style="margin: 0; line-height: 1.8; color: #1e3a8a;">
+                            ${step.explanation}
+                        </p>
+                    </div>
+
+                    <div style="padding: 25px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; border-left: 5px solid #f59e0b;">
+                        <h4 style="margin: 0 0 12px 0; color: #92400e; font-size: 1.3em;">
+                            📖 Granovetter's Principle
+                        </h4>
+                        <p style="margin: 0; line-height: 1.8; color: #78350f;">
+                            ${step.principle}
+                        </p>
+                    </div>
+
+                    <div style="padding: 25px; background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); border-radius: 12px; border-left: 5px solid #6b7280;">
+                        <h4 style="margin: 0 0 12px 0; color: #374151; font-size: 1.3em;">
+                            🔬 Triad Classification
+                        </h4>
+                        <p style="margin: 0 0 8px 0; line-height: 1.8; color: #1f2937;">
+                            <strong>Type ${step.triad}:</strong> ${this.triads[step.triad].name}
+                        </p>
+                        <p style="margin: 0; line-height: 1.8; color: #4b5563; font-size: 0.95em;">
+                            ${this.triads[step.triad].description}
+                        </p>
+                        <div style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; font-family: monospace; font-size: 0.9em; color: #374151;">
+                            M=${this.triads[step.triad].mutual} (Mutual ties) |
+                            A=${this.triads[step.triad].asymmetric} (Asymmetric) |
+                            N=${this.triads[step.triad].null} (Null ties)
+                        </div>
+                    </div>
+                `;
+            },
+
+            play() {
+                if (this.isPlaying) return;
+
+                this.isPlaying = true;
+                const baseInterval = 2500; // Base: 2.5 seconds
+                const interval = baseInterval / this.playbackSpeed;
+
+                // Update button states
+                document.getElementById('btn-play').style.display = 'none';
+                document.getElementById('btn-pause').style.display = 'inline-block';
+
+                this.playInterval = setInterval(() => {
+                    this.nextStep();
+                    if (this.currentStep === this.scenarios[this.currentScenario].steps.length - 1) {
+                        this.pause();
+                    }
+                }, interval);
+            },
+
+            pause() {
+                this.isPlaying = false;
+                if (this.playInterval) {
+                    clearInterval(this.playInterval);
+                    this.playInterval = null;
+                }
+
+                // Update button states
+                document.getElementById('btn-play').style.display = 'inline-block';
+                document.getElementById('btn-pause').style.display = 'none';
+            },
+
+            reset() {
+                this.pause();
+                this.currentStep = 0;
+                this.renderStep();
+            },
+
+            nextStep() {
+                const scenario = this.scenarios[this.currentScenario];
+                if (this.currentStep < scenario.steps.length - 1) {
+                    this.currentStep++;
+                    this.renderStep();
+                }
+            },
+
+            prevStep() {
+                if (this.currentStep > 0) {
+                    this.currentStep--;
+                    this.renderStep();
+                }
+            },
+
+            // New BI Features
+
+            setSpeed(speed) {
+                this.playbackSpeed = speed;
+
+                // Update speed button states
+                ['0.5', '1', '2'].forEach(s => {
+                    const btn = document.getElementById(`speed-${s}`);
+                    if (btn) {
+                        if (parseFloat(s) === speed) {
+                            btn.classList.remove('secondary');
+                            btn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                            btn.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+                        } else {
+                            btn.classList.add('secondary');
+                            btn.style.background = '';
+                            btn.style.boxShadow = '';
+                        }
+                    }
+                });
+
+                // Restart playback if currently playing
+                if (this.isPlaying) {
+                    this.pause();
+                    this.play();
+                }
+            },
+
+            scrubToStep(stepIndex) {
+                this.pause();
+                this.currentStep = stepIndex;
+                this.renderStep();
+            },
+
+            updateLiveMetrics(step) {
+                // Update triad type
+                const triadTypeEl = document.getElementById('live-triad-type');
+                const triadNameEl = document.getElementById('live-triad-name');
+                if (triadTypeEl && triadNameEl) {
+                    triadTypeEl.textContent = step.triad;
+                    triadNameEl.textContent = this.triads[step.triad].name;
+                }
+
+                // Update M-A-N breakdown
+                const mutualEl = document.getElementById('live-mutual');
+                const asymmetricEl = document.getElementById('live-asymmetric');
+                const nullEl = document.getElementById('live-null');
+                if (mutualEl && asymmetricEl && nullEl) {
+                    mutualEl.textContent = this.triads[step.triad].mutual;
+                    asymmetricEl.textContent = this.triads[step.triad].asymmetric;
+                    nullEl.textContent = this.triads[step.triad].null;
+                }
+
+                // Count strong and weak ties
+                let strongCount = 0;
+                let weakCount = 0;
+                if (step.edges.ab) {
+                    if (step.abType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+                if (step.edges.bc) {
+                    if (step.bcType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+                if (step.edges.ac) {
+                    if (step.acType === 'strong') strongCount++;
+                    else weakCount++;
+                }
+
+                // Update tie strength counts
+                const strongCountEl = document.getElementById('live-strong-count');
+                const weakCountEl = document.getElementById('live-weak-count');
+                if (strongCountEl && weakCountEl) {
+                    strongCountEl.textContent = strongCount;
+                    weakCountEl.textContent = weakCount;
+                }
+
+                // Update closure status
+                const closureStatusEl = document.getElementById('closure-status-text');
+                if (closureStatusEl) {
+                    if (step.triad === '300') {
+                        closureStatusEl.innerHTML = '🔴 <strong>Complete Closure</strong> - High redundancy';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#ef4444';
+                    } else if (step.triad === '201' && step.edges.ab && step.edges.bc && !step.edges.ac) {
+                        closureStatusEl.innerHTML = '🟡 <strong>Potential Closure</strong> - Depends on tie strength';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#f59e0b';
+                    } else if (step.edges.ab || step.edges.bc || step.edges.ac) {
+                        closureStatusEl.innerHTML = '🟢 <strong>Open Structure</strong> - Good information flow';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#10b981';
+                    } else {
+                        closureStatusEl.innerHTML = '⚪ <strong>No Connections</strong> - Isolated nodes';
+                        document.getElementById('closure-status').style.background = 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)';
+                        document.getElementById('closure-status').style.borderLeftColor = '#94a3b8';
+                    }
+                }
+
+                // Update key insight
+                const insightEl = document.getElementById('live-insight');
+                if (insightEl) {
+                    let insightText = '';
+                    let insightColor = '#fef2f2';
+                    let borderColor = '#ef4444';
+
+                    if (step.triad === '003') {
+                        insightText = 'Completely disconnected - no information flow possible.';
+                        insightColor = '#f8fafc';
+                        borderColor = '#94a3b8';
+                    } else if (step.triad === '102') {
+                        insightText = 'Single connection formed - information can now flow between two nodes.';
+                        insightColor = '#eff6ff';
+                        borderColor = '#3b82f6';
+                    } else if (step.triad === '201') {
+                        if (weakCount > 0) {
+                            insightText = 'Open structure with weak tie(s) - B acts as a bridge providing novel information to A and C!';
+                            insightColor = '#f0fdf4';
+                            borderColor = '#10b981';
+                        } else {
+                            insightText = 'Forbidden triad! Two strong ties but no closure (yet). Highly unstable - closure likely to form.';
+                            insightColor = '#fef3c7';
+                            borderColor = '#f59e0b';
+                        }
+                    } else if (step.triad === '300') {
+                        insightText = 'Complete closure - all three connected. High redundancy means limited access to novel information.';
+                        insightColor = '#fef2f2';
+                        borderColor = '#ef4444';
+                    }
+
+                    insightEl.querySelector('div:last-child').textContent = insightText;
+                    insightEl.style.background = `linear-gradient(135deg, ${insightColor} 0%, ${insightColor} 100%)`;
+                    insightEl.style.borderLeftColor = borderColor;
+                }
+            },
+
+            updateStepMarkers() {
+                const markersEl = document.getElementById('step-markers');
+                if (!markersEl) return;
+
+                const scenario = this.scenarios[this.currentScenario];
+                const steps = scenario.steps;
+
+                let markersHTML = '';
+                steps.forEach((step, index) => {
+                    const triadInfo = this.triads[step.triad];
+                    markersHTML += `<span style="opacity: ${index === this.currentStep ? 1 : 0.5}; font-weight: ${index === this.currentStep ? 'bold' : 'normal'}; color: ${index === this.currentStep ? '#3b82f6' : '#94a3b8'};">${step.triad}</span>`;
+                });
+
+                markersEl.innerHTML = markersHTML;
+            }
+        };
+
+        // ========================================
         // MODE TOGGLE (Research vs Illustrative)
         // ========================================
 
@@ -3147,6 +4374,10 @@
 
             if (document.getElementById('strong-ties-count')) {
                 ReachCalculator.init();
+            }
+
+            if (document.getElementById('triad-animation')) {
+                TriadicClosure.init();
             }
 
             // Set default mode
