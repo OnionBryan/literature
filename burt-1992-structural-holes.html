@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Holes: The Social Structure of Competition - Burt (1992)</title>
+    <!--
+      Review of:
+      Burt, R. S. (1992).
+      Structural Holes: The Social Structure of Competition.
+      Harvard University Press.
+
+      This is a STRUCTURAL THEORY explaining how gaps (structural holes) in social networks
+      create competitive advantages through brokerage and information control.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        /* Typography */
+        h1, h2, h3, .definition-term, .result-box-label, .card h4, .breakdown-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Page Navigation */
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-link.home {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(237, 242, 247, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.95) 0%, rgba(42, 42, 62, 0.95) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #1a202c;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .hero h1 {
+            color: #e2e8f0;
+        }
+
+        .hero .citation {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        body.dark-mode .hero .citation {
+            color: #cbd5e0;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: 500;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        body.dark-mode .hero .tagline {
+            color: #e2e8f0;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .section-card {
+            background: rgba(30, 30, 46, 0.95);
+            color: #e2e8f0;
+        }
+
+        .section-card h2 {
+            font-size: 2.2rem;
+            color: #1a202c;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #4a5568;
+            padding-bottom: 10px;
+        }
+
+        body.dark-mode .section-card h2 {
+            color: #e2e8f0;
+            border-bottom-color: #718096;
+        }
+
+        .section-card h3 {
+            font-size: 1.6rem;
+            color: #2d3748;
+            margin: 30px 0 15px 0;
+        }
+
+        body.dark-mode .section-card h3 {
+            color: #cbd5e0;
+        }
+
+        .section-card p, .section-card li {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .section-card p,
+        body.dark-mode .section-card li {
+            color: #cbd5e0;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Key Concepts */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .concept-box h4 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .concept-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        /* Interactive Calculator */
+        .calculator-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .calculator-section {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+
+        .calculator-title {
+            font-size: 1.8rem;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        body.dark-mode .calculator-title {
+            color: #e2e8f0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .input-group label {
+            color: #cbd5e0;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-mode .input-group input,
+        body.dark-mode .input-group select {
+            background: #1a202c;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .result-box {
+            background: white;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        body.dark-mode .result-box {
+            background: #2d3748;
+            border-left-color: #9f7aea;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        body.dark-mode .result-value {
+            color: #9f7aea;
+        }
+
+        .result-interpretation {
+            font-size: 1.05rem;
+            color: #4a5568;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        body.dark-mode .result-interpretation {
+            color: #cbd5e0;
+            background: #1a202c;
+        }
+
+        /* Visual Network Diagram */
+        .network-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .svg-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        body.dark-mode .svg-container {
+            background: #2d3748;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .comparison-table {
+            background: #2d3748;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        body.dark-mode .comparison-table td {
+            border-bottom-color: #4a5568;
+            color: #cbd5e0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        body.dark-mode .comparison-table tr:hover {
+            background: #1a202c;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link home">← Back to Literature Explorer</a>
+                <a href="#theory" class="nav-link">Theory</a>
+                <a href="#calculator" class="nav-link">Calculator</a>
+                <a href="#examples" class="nav-link">Examples</a>
+                <a href="#implications" class="nav-link">Implications</a>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Structural Holes:<br>The Social Structure of Competition</h1>
+            <p class="citation">Burt, R. S. (1992). Harvard University Press</p>
+            <p class="tagline">
+                "The people who stand near the holes in a social structure are at higher risk of having good ideas."
+            </p>
+        </section>
+
+        <!-- Core Theory -->
+        <section id="theory" class="section-card">
+            <h2>📐 Core Theory: Structural Holes as Competitive Advantage</h2>
+
+            <p>
+                Ronald Burt's <strong>Structural Holes Theory</strong> is one of the most influential frameworks in social network analysis.
+                Unlike Granovetter's focus on the strength of ties, Burt focuses on the <em>position</em> within the network structure itself.
+            </p>
+
+            <h3>What is a Structural Hole?</h3>
+            <p>
+                A <strong>structural hole</strong> is a gap between two individuals or groups who have complementary sources of information
+                or resources but are not directly connected. The person who bridges this gap—the <strong>broker</strong>—gains significant
+                competitive advantages.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-box">
+                    <h4>🎯 Information Advantage</h4>
+                    <p>Brokers access diverse, non-redundant information from disconnected groups, seeing opportunities others miss.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>⏱️ Timing Advantage</h4>
+                    <p>Brokers learn about opportunities and threats earlier than those embedded in closed networks.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>🎭 Control Advantage</h4>
+                    <p>Brokers can play groups against each other, negotiating better terms and extracting value from both sides.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>💡 Innovation Advantage</h4>
+                    <p>Exposure to diverse ideas increases creativity and the ability to recombine knowledge in novel ways.</p>
+                </div>
+            </div>
+
+            <h3>Network Constraint: The Opposite of Structural Holes</h3>
+            <p>
+                Burt developed the concept of <strong>network constraint</strong> to measure how much your contacts limit your autonomy.
+                High constraint means your contacts are all connected to each other (a dense network with no structural holes).
+                Low constraint means you span many structural holes.
+            </p>
+
+            <ul>
+                <li><strong>Low Constraint (0-30):</strong> You occupy a brokerage position with many structural holes. High autonomy and information advantage.</li>
+                <li><strong>Medium Constraint (30-60):</strong> Moderate redundancy in your network. Some brokerage opportunities exist.</li>
+                <li><strong>High Constraint (60-100):</strong> Your contacts are highly interconnected. Limited access to diverse information.</li>
+            </ul>
+        </section>
+
+        <!-- Interactive Calculator -->
+        <section id="calculator" class="section-card">
+            <h2>🧮 Network Constraint Calculator</h2>
+
+            <div class="calculator-section">
+                <h3 class="calculator-title">Calculate Your Network Constraint</h3>
+                <p style="text-align: center; color: #4a5568; margin-bottom: 25px;">
+                    Assess whether your network provides brokerage opportunities or constrains your options.
+                </p>
+
+                <div class="input-group">
+                    <label for="totalContacts">Number of contacts in your network:</label>
+                    <input type="number" id="totalContacts" min="1" max="100" value="10" />
+                </div>
+
+                <div class="input-group">
+                    <label for="interconnections">How many of your contacts know each other? (0-100%):</label>
+                    <input type="range" id="interconnections" min="0" max="100" value="50"
+                           oninput="document.getElementById('interconnectValue').textContent = this.value + '%'" />
+                    <div style="text-align: center; font-weight: 600; color: #667eea; margin-top: 8px;">
+                        <span id="interconnectValue">50%</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="dominantContact">Do you have one contact who dominates your network? (connects you to most others):</label>
+                    <select id="dominantContact">
+                        <option value="no">No - my contacts are relatively equal</option>
+                        <option value="moderate">Moderate - one contact is more central</option>
+                        <option value="yes">Yes - one contact is the hub connecting everyone</option>
+                    </select>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateConstraint()">Calculate Network Constraint</button>
+
+                <div id="constraintResult" class="result-box">
+                    <h4 style="color: #1a202c; margin-bottom: 10px;">Your Network Constraint Score:</h4>
+                    <div class="result-value" id="constraintScore">--</div>
+                    <div class="result-interpretation" id="constraintInterpretation"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Examples -->
+        <section id="examples" class="section-card">
+            <h2>🎨 Visual Examples: Brokerage vs. Closure</h2>
+
+            <div class="network-visual">
+                <h3 style="color: #2d3748; margin-bottom: 20px;">Network Position Comparison</h3>
+                <div class="svg-container">
+                    <svg width="800" height="400" viewBox="0 0 800 400">
+                        <!-- Broker Network (Left) -->
+                        <text x="200" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#667eea">BROKER POSITION (Low Constraint)</text>
+
+                        <!-- Central broker node -->
+                        <circle cx="200" cy="200" r="25" fill="#667eea" />
+                        <text x="200" y="208" text-anchor="middle" fill="white" font-weight="bold" font-size="16">YOU</text>
+
+                        <!-- Group 1 (top left) -->
+                        <circle cx="80" cy="80" r="15" fill="#e2e8f0" />
+                        <circle cx="120" cy="60" r="15" fill="#e2e8f0" />
+                        <circle cx="100" cy="120" r="15" fill="#e2e8f0" />
+                        <line x1="80" y1="80" x2="120" y2="60" stroke="#cbd5e0" stroke-width="2" />
+                        <line x1="80" y1="80" x2="100" y2="120" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 1 -->
+                        <line x1="200" y1="200" x2="80" y2="80" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="120" y2="60" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="100" y2="120" stroke="#667eea" stroke-width="3" />
+
+                        <!-- Group 2 (bottom left) -->
+                        <circle cx="80" cy="320" r="15" fill="#e2e8f0" />
+                        <circle cx="120" cy="340" r="15" fill="#e2e8f0" />
+                        <circle cx="100" cy="280" r="15" fill="#e2e8f0" />
+                        <line x1="80" y1="320" x2="120" y2="340" stroke="#cbd5e0" stroke-width="2" />
+                        <line x1="80" y1="320" x2="100" y2="280" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 2 -->
+                        <line x1="200" y1="200" x2="80" y2="320" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="120" y2="340" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="100" y2="280" stroke="#667eea" stroke-width="3" />
+
+                        <!-- Group 3 (right) -->
+                        <circle cx="320" cy="180" r="15" fill="#e2e8f0" />
+                        <circle cx="320" cy="220" r="15" fill="#e2e8f0" />
+                        <line x1="320" y1="180" x2="320" y2="220" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 3 -->
+                        <line x1="200" y1="200" x2="320" y2="180" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="320" y2="220" stroke="#667eea" stroke-width="3" />
+
+                        <text x="200" y="380" text-anchor="middle" font-size="14" fill="#4a5568">✓ Bridges multiple disconnected groups</text>
+
+                        <!-- Constrained Network (Right) -->
+                        <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#e53e3e">CONSTRAINED POSITION (High Constraint)</text>
+
+                        <!-- Central node -->
+                        <circle cx="600" cy="200" r="25" fill="#e53e3e" />
+                        <text x="600" y="208" text-anchor="middle" fill="white" font-weight="bold" font-size="16">YOU</text>
+
+                        <!-- Dense connected network -->
+                        <circle cx="530" cy="120" r="15" fill="#e2e8f0" />
+                        <circle cx="580" cy="100" r="15" fill="#e2e8f0" />
+                        <circle cx="620" cy="100" r="15" fill="#e2e8f0" />
+                        <circle cx="670" cy="120" r="15" fill="#e2e8f0" />
+                        <circle cx="690" cy="180" r="15" fill="#e2e8f0" />
+                        <circle cx="690" cy="220" r="15" fill="#e2e8f0" />
+                        <circle cx="670" cy="280" r="15" fill="#e2e8f0" />
+                        <circle cx="620" cy="300" r="15" fill="#e2e8f0" />
+                        <circle cx="580" cy="300" r="15" fill="#e2e8f0" />
+                        <circle cx="530" cy="280" r="15" fill="#e2e8f0" />
+                        <circle cx="510" cy="220" r="15" fill="#e2e8f0" />
+                        <circle cx="510" cy="180" r="15" fill="#e2e8f0" />
+
+                        <!-- Dense interconnections (everyone knows everyone) -->
+                        <line x1="530" y1="120" x2="580" y2="100" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="580" y1="100" x2="620" y2="100" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="620" y1="100" x2="670" y2="120" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="670" y1="120" x2="690" y2="180" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="690" y1="180" x2="690" y2="220" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="690" y1="220" x2="670" y2="280" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="670" y1="280" x2="620" y2="300" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="620" y1="300" x2="580" y2="300" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="580" y1="300" x2="530" y2="280" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="530" y1="280" x2="510" y2="220" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="510" y1="220" x2="510" y2="180" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="510" y1="180" x2="530" y2="120" stroke="#cbd5e0" stroke-width="1.5" />
+
+                        <!-- Additional cross connections -->
+                        <line x1="530" y1="120" x2="620" y2="100" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="580" y1="100" x2="670" y2="120" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="670" y1="280" x2="580" y2="300" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="530" y1="280" x2="620" y2="300" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+
+                        <!-- Connections from YOU to network -->
+                        <line x1="600" y1="200" x2="530" y2="120" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="580" y2="100" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="620" y2="100" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="670" y2="120" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="690" y2="180" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="690" y2="220" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="670" y2="280" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="620" y2="300" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="580" y2="300" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="530" y2="280" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="510" y2="220" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="510" y2="180" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+
+                        <text x="600" y="380" text-anchor="middle" font-size="14" fill="#4a5568">✗ Embedded in single dense cluster</text>
+                    </svg>
+                </div>
+                <p style="text-align: center; color: #4a5568; margin-top: 20px; font-size: 1.05rem;">
+                    The broker on the left spans structural holes and accesses diverse information. The constrained person on the right
+                    receives redundant information from an interconnected group.
+                </p>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="section-card">
+            <h2>🌍 Real-World Applications</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Context</th>
+                        <th>Broker Position (Structural Holes)</th>
+                        <th>Constrained Position (Closure)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Corporate Innovation</strong></td>
+                        <td>Manager who connects R&D, marketing, and operations departments sees opportunities for new products</td>
+                        <td>Engineer embedded only in technical team misses market insights</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Venture Capital</strong></td>
+                        <td>VC who bridges Silicon Valley and emerging markets spots arbitrage opportunities</td>
+                        <td>VC who only networks within Sand Hill Road sees same deals as everyone else</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Academic Research</strong></td>
+                        <td>Researcher who collaborates across disciplines (e.g., AI + Biology) produces novel insights</td>
+                        <td>Researcher only working within one subfield increments existing knowledge</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Career Advancement</strong></td>
+                        <td>Professional who maintains contacts across different companies and industries has more opportunities</td>
+                        <td>Employee whose network is entirely within one company has limited external options</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supply Chain Management</strong></td>
+                        <td>Buyer who knows multiple suppliers in different regions negotiates better terms</td>
+                        <td>Buyer reliant on one supplier network has less bargaining power</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Key Insights -->
+        <section id="implications" class="section-card">
+            <h2>💡 Key Insights & Strategic Implications</h2>
+
+            <h3>1. Position Matters More Than Personality</h3>
+            <p>
+                Burt's research shows that your <em>structural position</em> in a network has more impact on success than individual
+                attributes like intelligence or charisma. The "accident" of where you sit in a network determines your access to
+                information and opportunities.
+            </p>
+
+            <h3>2. Brokerage vs. Closure: The Fundamental Tradeoff</h3>
+            <p>
+                While Burt emphasizes brokerage, his later work (2005) acknowledges that <strong>closure</strong> (dense, interconnected networks)
+                also has value. Closure builds trust, enables coordination, and facilitates norm enforcement. The most effective strategy
+                combines both: use brokerage for vision and closure for execution.
+            </p>
+
+            <h3>3. Social Capital is About Network Structure</h3>
+            <p>
+                Burt's theory provides a <em>structural</em> definition of social capital: it's not just "who you know" but "where you sit"
+                in the pattern of connections. Two people with the same number of contacts can have vastly different social capital based
+                on whether those contacts are redundant or diverse.
+            </p>
+
+            <h3>4. Tertius Gaudens: "The Third Who Benefits"</h3>
+            <p>
+                Burt invokes the Latin phrase <em>tertius gaudens</em>—the third party who benefits from the disconnection of others.
+                The broker benefits not from cooperation, but from the <em>structural separation</em> of groups. This can create ethical
+                tensions, as the broker's gain comes from maintaining (rather than closing) structural holes.
+            </p>
+
+            <h3>5. Strategic Network Building</h3>
+            <p><strong>To maximize brokerage opportunities:</strong></p>
+            <ul>
+                <li>Cultivate contacts in <strong>different industries, disciplines, or social groups</strong></li>
+                <li>Avoid having all your contacts know each other</li>
+                <li>Look for "bridge" positions (e.g., cross-functional roles, interdisciplinary work)</li>
+                <li>Balance time investment: many weak ties across structural holes > few strong ties in one cluster</li>
+            </ul>
+        </section>
+
+        <!-- Comparison: Burt vs. Granovetter -->
+        <section class="section-card">
+            <h2>⚖️ Burt vs. Granovetter: Complementary Perspectives</h2>
+
+            <p>
+                While both theories deal with social networks, they focus on different mechanisms:
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Granovetter (Weak Ties)</th>
+                        <th>Burt (Structural Holes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Focus</strong></td>
+                        <td>Tie strength (strong vs. weak)</td>
+                        <td>Network position (broker vs. embedded)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Concept</strong></td>
+                        <td>Weak ties bridge social groups</td>
+                        <td>Structural holes create brokerage opportunities</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mechanism</strong></td>
+                        <td>Frequency of interaction affects info flow</td>
+                        <td>Network structure determines access to diverse info</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advantage</strong></td>
+                        <td>Access to non-redundant information</td>
+                        <td>Control over information flow + negotiation power</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Level of Analysis</strong></td>
+                        <td>Relationship (dyadic)</td>
+                        <td>Position in network (structural)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Empirical Evidence</strong></td>
+                        <td>Job search, diffusion of innovations</td>
+                        <td>Career success, innovation, firm performance</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;">
+                <strong>Integration:</strong> Weak ties often <em>span</em> structural holes. A broker typically maintains weak ties to diverse
+                groups while having strong ties within their own cluster. The theories are complementary: Granovetter explains the
+                <em>nature</em> of bridging ties, while Burt explains the <em>structural value</em> of bridging position.
+            </p>
+        </section>
+
+        <!-- Critical Reflections -->
+        <section class="section-card">
+            <h2>🤔 Critical Reflections & Limitations</h2>
+
+            <h3>1. The Dark Side of Brokerage</h3>
+            <p>
+                Brokers can be seen as manipulative, playing groups against each other for personal gain. The theory has been
+                criticized for providing a "Machiavellian" view of social capital that ignores cooperation and trust.
+            </p>
+
+            <h3>2. Context Matters</h3>
+            <p>
+                Research by Gargiulo & Benassi (2000) shows that the value of brokerage is <em>contingent</em>. In crisis situations,
+                dense networks (closure) can be more valuable than brokerage positions. The optimal strategy depends on the environment.
+            </p>
+
+            <h3>3. Measurement Challenges</h3>
+            <p>
+                Calculating network constraint requires complete network data, which is difficult to obtain in large or dynamic networks.
+                In practice, most people don't have access to full network maps of their social environment.
+            </p>
+
+            <h3>4. Maintenance Costs</h3>
+            <p>
+                Maintaining bridging ties across diverse groups is cognitively and socially demanding. Brokers may face role conflict
+                and must constantly translate between different social contexts. Not everyone has the social skill or energy for this.
+            </p>
+
+            <h3>5. Network Dynamics</h3>
+            <p>
+                Structural holes are not static. As networks evolve, today's broker might become tomorrow's constrained node. Successful
+                brokerage may even cause the hole to close, as the broker introduces disconnected groups to each other.
+            </p>
+        </section>
+
+        <!-- References -->
+        <section class="section-card">
+            <h2>📚 Key References</h2>
+            <ul>
+                <li>Burt, R. S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Harvard University Press.</li>
+                <li>Burt, R. S. (2000). The Network Structure of Social Capital. <em>Research in Organizational Behavior</em>, 22, 345-423.</li>
+                <li>Burt, R. S. (2004). Structural Holes and Good Ideas. <em>American Journal of Sociology</em>, 110(2), 349-399.</li>
+                <li>Burt, R. S. (2005). <em>Brokerage and Closure: An Introduction to Social Capital</em>. Oxford University Press.</li>
+                <li>Coleman, J. S. (1988). Social Capital in the Creation of Human Capital. <em>American Journal of Sociology</em>, 94, S95-S120.</li>
+                <li>Gargiulo, M., & Benassi, M. (2000). Trapped in Your Own Net? Network Cohesion, Structural Holes, and the Adaptation of Social Capital. <em>Organization Science</em>, 11(2), 183-196.</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            document.querySelector('.dark-mode-toggle').textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            toggleDarkMode();
+        }
+
+        // Network Constraint Calculator
+        function calculateConstraint() {
+            const totalContacts = parseInt(document.getElementById('totalContacts').value);
+            const interconnections = parseInt(document.getElementById('interconnections').value) / 100;
+            const dominantContact = document.getElementById('dominantContact').value;
+
+            // Simplified network constraint calculation
+            // Real calculation: C_i = Σ(p_ij + Σ(p_iq * p_qj))^2 where p = proportion of network time
+            // Simplified: base constraint from interconnections + modifier from dominant contact
+
+            let baseConstraint = interconnections * 100;
+
+            // Adjust for dominant contact (increases constraint)
+            if (dominantContact === 'moderate') {
+                baseConstraint = baseConstraint * 1.15;
+            } else if (dominantContact === 'yes') {
+                baseConstraint = baseConstraint * 1.35;
+            }
+
+            // Adjust for network size (smaller networks = higher constraint)
+            const sizeModifier = Math.max(0.7, 1 - (totalContacts / 50));
+            let finalConstraint = baseConstraint * (1 + sizeModifier * 0.3);
+
+            // Cap at 100
+            finalConstraint = Math.min(100, finalConstraint);
+
+            // Display results
+            const resultBox = document.getElementById('constraintResult');
+            const scoreElement = document.getElementById('constraintScore');
+            const interpretationElement = document.getElementById('constraintInterpretation');
+
+            scoreElement.textContent = finalConstraint.toFixed(1);
+
+            let interpretation = '';
+            let emoji = '';
+
+            if (finalConstraint < 30) {
+                emoji = '🎯';
+                interpretation = `<strong>Low Constraint (Excellent Brokerage Position):</strong><br><br>
+                    Your network spans structural holes, giving you access to diverse, non-redundant information.
+                    You're well-positioned to:
+                    <ul style="margin-top: 10px;">
+                        <li>Spot opportunities others miss</li>
+                        <li>Innovate by combining ideas from different domains</li>
+                        <li>Negotiate from a position of information advantage</li>
+                    </ul>
+                    <strong>Strategy:</strong> Continue cultivating contacts in different spheres. Be the bridge between groups.`;
+            } else if (finalConstraint < 60) {
+                emoji = '⚖️';
+                interpretation = `<strong>Moderate Constraint (Balanced Position):</strong><br><br>
+                    Your network has some redundancy but also some brokerage opportunities. You benefit from both trust
+                    (from closure) and diverse information (from bridging).
+                    <ul style="margin-top: 10px;">
+                        <li>You have a stable foundation of interconnected contacts</li>
+                        <li>Some diversity exists for new information</li>
+                        <li>Room to expand into new domains</li>
+                    </ul>
+                    <strong>Strategy:</strong> Consider adding contacts in fields you're <em>not</em> currently connected to.
+                    Look for "bridge" opportunities.`;
+            } else {
+                emoji = '⚠️';
+                interpretation = `<strong>High Constraint (Limited Brokerage):</strong><br><br>
+                    Your contacts are highly interconnected, meaning they likely share similar information. This creates
+                    redundancy and limits your exposure to novel ideas.
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Advantage:</strong> High trust and strong norms in your network</li>
+                        <li><strong>Disadvantage:</strong> Limited access to diverse information</li>
+                        <li>Vulnerable to "groupthink" and echo chambers</li>
+                    </ul>
+                    <strong>Strategy:</strong> Actively seek contacts <em>outside</em> your current circle. Attend events in
+                    different industries/fields. Cultivate weak ties to diverse groups.`;
+            }
+
+            interpretationElement.innerHTML = `<div style="font-size: 2rem; margin-bottom: 10px;">${emoji}</div>${interpretation}`;
+            resultBox.classList.add('show');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
