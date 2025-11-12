@@ -747,6 +747,259 @@
             color: #e2e8f0;
         }
 
+        /* Phase 2.1: Triadic Closure Animation - Dark Mode */
+        body.dark-mode #triad-animation {
+            filter: brightness(0.9);
+        }
+
+        /* Phase 2.1: Gradient container backgrounds */
+        body.dark-mode .section > div[style*="background: linear-gradient(135deg, #f8f9fa"] {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        }
+
+        /* Phase 2.1: White animation and metrics containers */
+        body.dark-mode .section div[style*="background: white"] {
+            background: #0f172a !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Phase 2.1: Timeline scrubber background */
+        body.dark-mode div[style*="background: #f1f5f9"] {
+            background: #334155 !important;
+        }
+
+        /* Phase 2.1: What If builder - yellow gradient to dark */
+        body.dark-mode #whatif-builder {
+            background: linear-gradient(135deg, #422006 0%, #713f12 100%) !important;
+            border-color: #d97706 !important;
+        }
+
+        body.dark-mode #whatif-builder h3 {
+            color: #fbbf24 !important;
+        }
+
+        body.dark-mode #whatif-builder p {
+            color: #fde68a !important;
+        }
+
+        body.dark-mode #whatif-builder h4 {
+            color: #e2e8f0 !important;
+        }
+
+        /* Phase 2.1: What If connection cards */
+        body.dark-mode #whatif-builder div[style*="background: white"] {
+            background: #1e293b !important;
+        }
+
+        /* Phase 2.1: What If prediction panel */
+        body.dark-mode #whatif-prediction {
+            background: #1e293b !important;
+        }
+
+        body.dark-mode #whatif-prediction h4 {
+            color: #a78bfa !important;
+        }
+
+        body.dark-mode #whatif-prediction-text {
+            color: #cbd5e1 !important;
+        }
+
+        /* Phase 2.1: Quick presets background */
+        body.dark-mode #whatif-builder div[style*="background: rgba(255,255,255,0.7)"] {
+            background: rgba(30, 41, 59, 0.7) !important;
+        }
+
+        /* Phase 2.1: Scenario comparison cards - red/green backgrounds */
+        body.dark-mode div[style*="background: #fef2f2"] {
+            background: rgba(220, 38, 38, 0.1) !important;
+            border-color: #ef4444 !important;
+        }
+
+        body.dark-mode div[style*="background: #f0fdf4"] {
+            background: rgba(22, 163, 74, 0.1) !important;
+            border-color: #22c55e !important;
+        }
+
+        body.dark-mode div[style*="background: #eff6ff"] {
+            background: rgba(37, 99, 235, 0.1) !important;
+            border-color: #3b82f6 !important;
+        }
+
+        /* Phase 2.1: Live metrics color coding */
+        body.dark-mode div[style*="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)"] {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%) !important;
+        }
+
+        body.dark-mode div[style*="background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%)"] {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%) !important;
+        }
+
+        body.dark-mode div[style*="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)"] {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%) !important;
+        }
+
+        body.dark-mode div[style*="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)"] {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%) !important;
+        }
+
+        /* Phase 2.2: Information Diffusion - Dark Mode */
+        body.dark-mode #diffusion-canvas {
+            background: #1e293b !important;
+        }
+
+        /* Phase 2.2: Diffusion control panels */
+        body.dark-mode div[style*="padding: 25px"][style*="background: #ffffff"] {
+            background: #0f172a !important;
+        }
+
+        /* Phase 2.2: Diffusion metrics badges */
+        body.dark-mode div[style*="background: #fee2e2"] {
+            background: rgba(239, 68, 68, 0.1) !important;
+            border-color: #ef4444 !important;
+        }
+
+        body.dark-mode div[style*="background: #dcfce7"] {
+            background: rgba(34, 197, 94, 0.1) !important;
+            border-color: #22c55e !important;
+        }
+
+        body.dark-mode div[style*="background: #dbeafe"] {
+            background: rgba(59, 130, 246, 0.1) !important;
+            border-color: #3b82f6 !important;
+        }
+
+        body.dark-mode div[style*="background: #fef3c7"] {
+            background: rgba(245, 158, 11, 0.1) !important;
+            border-color: #f59e0b !important;
+        }
+
+        /* Phase 2.3: Bridge Identification - Dark Mode */
+        body.dark-mode #bridge-canvas {
+            background: #1e293b !important;
+        }
+
+        /* Phase 2.3: Bridge metrics and selection panels */
+        body.dark-mode div[style*="background: linear-gradient(135deg, #f3e8ff"] {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%) !important;
+        }
+
+        /* General: All inline styled divs with white backgrounds in sections */
+        body.dark-mode .section > div > div[style*="background: #ffffff"],
+        body.dark-mode .section > div > div[style*="background: white"] {
+            background: #0f172a !important;
+        }
+
+        /* General: Text colors for inline styled elements */
+        body.dark-mode div[style*="color: #64748b"] {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode div[style*="color: #4b5563"] {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode div[style*="color: #1f2937"] {
+            color: #e2e8f0 !important;
+        }
+
+        body.dark-mode h4[style*="color: #1f2937"] {
+            color: #e2e8f0 !important;
+        }
+
+        body.dark-mode h4[style*="color: #1e3c72"] {
+            color: #60a5fa !important;
+        }
+
+        body.dark-mode p[style*="color: #4b5563"] {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode p[style*="color: #64748b"] {
+            color: #94a3b8 !important;
+        }
+
+        /* SVG canvas backgrounds in all Phase 2 tools */
+        body.dark-mode svg[style*="background: white"] {
+            background: #1e293b !important;
+        }
+
+        /* Control panel backgrounds (#f8fafc) */
+        body.dark-mode div[style*="background: #f8fafc"] {
+            background: #1e293b !important;
+        }
+
+        /* Speed control panels (white backgrounds inside controls) */
+        body.dark-mode div[style*="background: white"][style*="box-shadow: 0 2px 8px"] {
+            background: #334155 !important;
+        }
+
+        /* Phase 2.3: Instruction banner - light blue gradient */
+        body.dark-mode div[style*="background: linear-gradient(135deg, #dbeafe"] {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%) !important;
+        }
+
+        body.dark-mode div[style*="color: #1e40af"] {
+            color: #60a5fa !important;
+        }
+
+        body.dark-mode div[style*="color: #1e3a8a"] {
+            color: #93c5fd !important;
+        }
+
+        body.dark-mode h4[style*="color: #1e40af"] {
+            color: #60a5fa !important;
+        }
+
+        body.dark-mode p[style*="color: #1e3a8a"] {
+            color: #93c5fd !important;
+        }
+
+        /* Information Diffusion & Bridge metrics panels - right side */
+        body.dark-mode .section div[style*="grid-template-columns: 3fr 1fr"] > div[style*="background: white"] {
+            background: #0f172a !important;
+        }
+
+        /* Color-coded small backgrounds within metrics */
+        body.dark-mode div[style*="background: #f5f3ff"] {
+            background: rgba(139, 92, 246, 0.1) !important;
+        }
+
+        body.dark-mode div[style*="background: #fffbeb"] {
+            background: rgba(245, 158, 11, 0.1) !important;
+            border-left-color: #f59e0b !important;
+        }
+
+        body.dark-mode div[style*="color: #92400e"] {
+            color: #fde68a !important;
+        }
+
+        body.dark-mode h4[style*="color: #6d28d9"] {
+            color: #a78bfa !important;
+        }
+
+        body.dark-mode h4[style*="color: #dc2626"] {
+            color: #fca5a5 !important;
+        }
+
+        body.dark-mode h4[style*="color: #16a34a"] {
+            color: #86efac !important;
+        }
+
+        body.dark-mode h4[style*="color: #2563eb"] {
+            color: #60a5fa !important;
+        }
+
+        /* Legend boxes inside SVGs */
+        body.dark-mode svg rect[fill="white"] {
+            fill: #1e293b !important;
+        }
+
+        /* SVG text colors */
+        body.dark-mode svg text[fill="#374151"],
+        body.dark-mode svg text[fill="#6b7280"] {
+            fill: #cbd5e1 !important;
+        }
+
         .quality-badge {
             display: inline-block;
             padding: 8px 16px;
