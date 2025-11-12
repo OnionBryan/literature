@@ -2794,6 +2794,221 @@
                 </div>
             </div>
 
+            <!-- Bridge Identification Tool -->
+            <div class="section">
+                <h2>🌉 Bridge Identification Tool</h2>
+                <p style="font-size: 1.1em; line-height: 1.7; color: #4b5563;">Discover which connections are critical for network cohesion. Click edges to remove them and see how bridges hold social networks together. Understand why weak ties that act as bridges are so valuable.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 35px; border-radius: 20px; margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+
+                    <!-- Scenario Selection -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+                        <button id="bridge-social" class="control-btn" onclick="BridgeIdentifier.loadScenario('social')"
+                                style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); padding: 15px 30px; font-size: 1.05em; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">
+                            👥 Social Network
+                        </button>
+                        <button id="bridge-professional" class="control-btn secondary" onclick="BridgeIdentifier.loadScenario('professional')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            💼 Professional Network
+                        </button>
+                        <button id="bridge-community" class="control-btn secondary" onclick="BridgeIdentifier.loadScenario('community')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🏘️ Community Network
+                        </button>
+                    </div>
+
+                    <!-- Instruction Banner -->
+                    <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 12px; border-left: 5px solid #3b82f6;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2em;">👆</div>
+                            <div>
+                                <h4 style="margin: 0 0 8px 0; color: #1e40af; font-size: 1.1em;">How to Use</h4>
+                                <p style="margin: 0; color: #1e3a8a; line-height: 1.6;">
+                                    <strong>Click edges</strong> to remove/restore them and see how the network changes.
+                                    <strong>Bridges</strong> are highlighted in red - these connections hold the network together!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Visualization Area -->
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 25px; margin-bottom: 30px;">
+
+                        <!-- Left: Interactive Network -->
+                        <div style="background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+
+                            <!-- SVG Network Visualization -->
+                            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px; position: relative;">
+                                <svg id="bridge-svg" width="100%" height="550" viewBox="0 0 700 550" style="max-width: 750px; cursor: pointer;">
+                                    <defs>
+                                        <!-- Gradients -->
+                                        <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="localBridgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="normalEdgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#94a3b8;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#64748b;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="bridgeNodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <!-- Filters -->
+                                        <filter id="bridgeGlow">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+
+                                        <filter id="nodeShadowBridge" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.3"/>
+                                        </filter>
+                                    </defs>
+
+                                    <!-- Background grid -->
+                                    <g opacity="0.05">
+                                        <line x1="0" y1="137" x2="700" y2="137" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="275" x2="700" y2="275" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="412" x2="700" y2="412" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="175" y1="0" x2="175" y2="550" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="350" y1="0" x2="350" y2="550" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="525" y1="0" x2="525" y2="550" stroke="#cbd5e1" stroke-width="1"/>
+                                    </g>
+
+                                    <!-- Edges group (drawn dynamically, clickable) -->
+                                    <g id="bridge-edges"></g>
+
+                                    <!-- Nodes group (drawn dynamically) -->
+                                    <g id="bridge-nodes"></g>
+
+                                    <!-- Legend -->
+                                    <g transform="translate(20, 20)">
+                                        <rect width="220" height="135" fill="white" rx="8" opacity="0.95" filter="url(#nodeShadowBridge)"/>
+                                        <text x="15" y="25" font-size="13" font-weight="bold" fill="#374151">Edge Types:</text>
+
+                                        <line x1="20" y1="45" x2="55" y2="45" stroke="#ef4444" stroke-width="4"/>
+                                        <text x="65" y="50" font-size="12" fill="#6b7280">Critical Bridge</text>
+
+                                        <line x1="20" y1="68" x2="55" y2="68" stroke="#f59e0b" stroke-width="3"/>
+                                        <text x="65" y="73" font-size="12" fill="#6b7280">Local Bridge</text>
+
+                                        <line x1="20" y1="91" x2="55" y2="91" stroke="#94a3b8" stroke-width="2"/>
+                                        <text x="65" y="96" font-size="12" fill="#6b7280">Regular Edge</text>
+
+                                        <line x1="20" y1="114" x2="55" y2="114" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+                                        <text x="65" y="119" font-size="12" fill="#6b7280">Removed</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Network Controls -->
+                            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 20px; background: #f8fafc; border-radius: 12px;">
+                                <button class="control-btn" onclick="BridgeIdentifier.reset()"
+                                        style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); padding: 14px 32px; font-size: 1.05em; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);">
+                                    🔄 Reset Network
+                                </button>
+                                <button class="control-btn secondary" onclick="BridgeIdentifier.removeAllBridges()"
+                                        style="padding: 14px 32px; font-size: 1.05em;">
+                                    ❌ Remove All Bridges
+                                </button>
+                                <button class="control-btn secondary" onclick="BridgeIdentifier.highlightCritical()"
+                                        style="padding: 14px 32px; font-size: 1.05em;">
+                                    💡 Highlight Critical
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Metrics Panel -->
+                        <div style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #1f2937; border-bottom: 3px solid #8b5cf6; padding-bottom: 12px;">📊 Bridge Metrics</h3>
+
+                            <!-- Connected Components -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-size: 0.85em; color: #065f46; font-weight: 600; margin-bottom: 6px;">CONNECTIVITY</div>
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <span style="font-size: 2em; font-weight: 800; color: #059669;" id="bridge-components">1</span>
+                                    <span style="font-size: 0.9em; color: #047857;">component(s)</span>
+                                </div>
+                                <div id="bridge-connected-status" style="margin-top: 8px; font-size: 0.9em; font-weight: 600; color: #16a34a;">✅ Fully Connected</div>
+                            </div>
+
+                            <!-- Critical Bridges -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 10px; border-left: 4px solid #ef4444;">
+                                <div style="font-size: 0.85em; color: #991b1b; font-weight: 600; margin-bottom: 8px;">CRITICAL BRIDGES</div>
+                                <div style="font-size: 1.6em; font-weight: 700; color: #dc2626;" id="bridge-critical-count">0</div>
+                                <div style="font-size: 0.85em; color: #7f1d1d; margin-top: 4px;">edges disconnect network</div>
+                            </div>
+
+                            <!-- Local Bridges -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="font-size: 0.85em; color: #92400e; font-weight: 600; margin-bottom: 8px;">LOCAL BRIDGES</div>
+                                <div style="font-size: 1.6em; font-weight: 700; color: #d97706;" id="bridge-local-count">0</div>
+                                <div style="font-size: 0.85em; color: #78350f; margin-top: 4px;">long-distance ties</div>
+                            </div>
+
+                            <!-- Betweenness Score -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-size: 0.85em; color: #1e40af; font-weight: 600; margin-bottom: 8px;">AVG BETWEENNESS</div>
+                                <div style="font-size: 1.5em; font-weight: 700; color: #2563eb;" id="bridge-betweenness">0.0</div>
+                                <div style="font-size: 0.8em; color: #1e3a8a; margin-top: 4px;">edge centrality score</div>
+                            </div>
+
+                            <!-- Current Selection -->
+                            <div id="bridge-selection" style="padding: 15px; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                                <div style="font-size: 0.85em; color: #6b21a8; font-weight: 600; margin-bottom: 6px;">SELECTED EDGE</div>
+                                <div id="bridge-selection-text" style="font-size: 0.95em; color: #581c87; line-height: 1.5; font-weight: 500;">Click an edge to analyze</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Panel -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px;">
+                        <!-- Bridge Explanation -->
+                        <div style="padding: 25px; background: white; border-radius: 12px; border-left: 5px solid #ef4444; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <h4 style="margin: 0 0 15px 0; color: #dc2626; font-size: 1.2em;">🔴 Critical Bridges</h4>
+                            <p style="margin: 0; line-height: 1.8; color: #4b5563;">
+                                <strong>Graph theory definition:</strong> An edge whose removal <strong>increases the number of connected components</strong>.
+                                If you remove a critical bridge, parts of the network become unreachable from each other.
+                                These are the most vulnerable points in social networks.
+                            </p>
+                        </div>
+
+                        <!-- Local Bridge Explanation -->
+                        <div style="padding: 25px; background: white; border-radius: 12px; border-left: 5px solid #f59e0b; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <h4 style="margin: 0 0 15px 0; color: #d97706; font-size: 1.2em;">🟡 Local Bridges (Granovetter)</h4>
+                            <p style="margin: 0; line-height: 1.8; color: #4b5563;">
+                                <strong>Granovetter's definition:</strong> An edge where the two endpoints have <strong>no common neighbors</strong>.
+                                Local bridges are typically weak ties that connect distant parts of a network,
+                                providing access to novel information that wouldn't reach you through your close friends.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Research Context -->
+                    <div style="margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 12px; border-left: 5px solid #8b5cf6;">
+                        <h4 style="margin: 0 0 15px 0; color: #6b21a8; font-size: 1.2em;">🔬 Research Finding</h4>
+                        <p style="margin: 0; line-height: 1.8; color: #581c87;">
+                            <strong>Granovetter (1973):</strong> "All bridges are weak ties, but not all weak ties are bridges."
+                            Weak ties that act as bridges are especially valuable because they provide the <strong>only path</strong>
+                            to information in distant social circles. When you remove a bridge, you lose access to entire clusters of people.
+                            This is why maintaining even infrequently-contacted acquaintances can be so important for opportunities like job searches.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
             <!-- Attribution -->
             <div class="attribution">
                 <p><strong>Interactive Tool:</strong> Based on network analysis principles from Granovetter (1973)</p>
@@ -4916,6 +5131,408 @@
         };
 
         // ========================================
+        // BRIDGE IDENTIFICATION TOOL
+        // ========================================
+
+        const BridgeIdentifier = {
+            currentScenario: 'social',
+            selectedEdge: null,
+            highlightMode: false,
+
+            // Network configurations
+            networks: {
+                social: {
+                    name: 'Social Network',
+                    nodes: [
+                        { id: 1, x: 150, y: 150, label: 'Alice' },
+                        { id: 2, x: 300, y: 100, label: 'Bob' },
+                        { id: 3, x: 300, y: 200, label: 'Carol' },
+                        { id: 4, x: 450, y: 150, label: 'Dave' },  // Bridge
+                        { id: 5, x: 550, y: 100, label: 'Eve' },
+                        { id: 6, x: 550, y: 200, label: 'Frank' },
+                        { id: 7, x: 350, y: 350, label: 'Grace' },
+                        { id: 8, x: 200, y: 400, label: 'Henry' }
+                    ],
+                    edges: [
+                        { id: 1, from: 1, to: 2, type: 'strong', active: true },
+                        { id: 2, from: 1, to: 3, type: 'strong', active: true },
+                        { id: 3, from: 2, to: 3, type: 'strong', active: true },
+                        { id: 4, from: 3, to: 4, type: 'weak', active: true },  // Local bridge
+                        { id: 5, from: 4, to: 5, type: 'strong', active: true },
+                        { id: 6, from: 4, to: 6, type: 'strong', active: true },
+                        { id: 7, from: 5, to: 6, type: 'strong', active: true },
+                        { id: 8, from: 3, to: 7, type: 'weak', active: true },  // Local bridge
+                        { id: 9, from: 7, to: 8, type: 'strong', active: true }
+                    ]
+                },
+
+                professional: {
+                    name: 'Professional Network',
+                    nodes: [
+                        { id: 1, x: 150, y: 200, label: 'CEO' },
+                        { id: 2, x: 300, y: 150, label: 'CTO' },
+                        { id: 3, x: 300, y: 250, label: 'CFO' },
+                        { id: 4, x: 450, y: 100, label: 'Dev1' },
+                        { id: 5, x: 450, y: 200, label: 'Dev2' },
+                        { id: 6, x: 450, y: 300, label: 'Acc1' },
+                        { id: 7, x: 600, y: 150, label: 'Ops' },
+                        { id: 8, x: 600, y: 250, label: 'Sales' }
+                    ],
+                    edges: [
+                        { id: 1, from: 1, to: 2, type: 'strong', active: true },
+                        { id: 2, from: 1, to: 3, type: 'strong', active: true },
+                        { id: 3, from: 2, to: 3, type: 'weak', active: true },
+                        { id: 4, from: 2, to: 4, type: 'strong', active: true },
+                        { id: 5, from: 2, to: 5, type: 'strong', active: true },
+                        { id: 6, from: 3, to: 6, type: 'strong', active: true },
+                        { id: 7, from: 4, to: 7, type: 'weak', active: true },  // Bridge
+                        { id: 8, from: 6, to: 8, type: 'weak', active: true },  // Bridge
+                        { id: 9, from: 7, to: 8, type: 'weak', active: true }
+                    ]
+                },
+
+                community: {
+                    name: 'Community Network',
+                    nodes: [
+                        { id: 1, x: 150, y: 150, label: 'N1' },
+                        { id: 2, x: 150, y: 250, label: 'N2' },
+                        { id: 3, x: 250, y: 200, label: 'N3' },
+                        { id: 4, x: 400, y: 150, label: 'N4' },  // Super bridge
+                        { id: 5, x: 550, y: 100, label: 'N5' },
+                        { id: 6, x: 550, y: 200, label: 'N6' },
+                        { id: 7, x: 400, y: 300, label: 'N7' },
+                        { id: 8, x: 550, y: 350, label: 'N8' },
+                        { id: 9, x: 650, y: 300, label: 'N9' }
+                    ],
+                    edges: [
+                        { id: 1, from: 1, to: 2, type: 'strong', active: true },
+                        { id: 2, from: 1, to: 3, type: 'strong', active: true },
+                        { id: 3, from: 2, to: 3, type: 'strong', active: true },
+                        { id: 4, from: 3, to: 4, type: 'weak', active: true },  // Critical bridge
+                        { id: 5, from: 4, to: 5, type: 'strong', active: true },
+                        { id: 6, from: 4, to: 6, type: 'strong', active: true },
+                        { id: 7, from: 5, to: 6, type: 'strong', active: true },
+                        { id: 8, from: 4, to: 7, type: 'weak', active: true },  // Critical bridge
+                        { id: 9, from: 7, to: 8, type: 'strong', active: true },
+                        { id: 10, from: 8, to: 9, type: 'strong', active: true }
+                    ]
+                }
+            },
+
+            init() {
+                this.loadScenario('social');
+            },
+
+            loadScenario(scenarioName) {
+                this.currentScenario = scenarioName;
+                this.selectedEdge = null;
+                this.highlightMode = false;
+
+                // Reset all edges to active
+                const network = this.networks[scenarioName];
+                network.edges.forEach(edge => edge.active = true);
+
+                // Update button states
+                ['social', 'professional', 'community'].forEach(name => {
+                    const btn = document.getElementById(`bridge-${name}`);
+                    if (btn) {
+                        if (name === scenarioName) {
+                            btn.classList.remove('secondary');
+                            btn.style = 'background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); padding: 15px 30px; font-size: 1.05em; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);';
+                        } else {
+                            btn.classList.add('secondary');
+                            btn.style = 'padding: 15px 30px; font-size: 1.05em;';
+                        }
+                    }
+                });
+
+                this.analyzeNetwork();
+                this.renderNetwork();
+            },
+
+            reset() {
+                const network = this.networks[this.currentScenario];
+                network.edges.forEach(edge => edge.active = true);
+                this.selectedEdge = null;
+                this.highlightMode = false;
+                this.analyzeNetwork();
+                this.renderNetwork();
+            },
+
+            analyzeNetwork() {
+                const network = this.networks[this.currentScenario];
+
+                // Count connected components
+                const components = this.countComponents();
+
+                // Identify critical bridges
+                const criticalBridges = this.findCriticalBridges();
+
+                // Identify local bridges
+                const localBridges = this.findLocalBridges();
+
+                // Calculate average betweenness
+                const avgBetweenness = this.calculateAvgBetweenness();
+
+                // Update UI
+                document.getElementById('bridge-components').textContent = components;
+                document.getElementById('bridge-critical-count').textContent = criticalBridges.length;
+                document.getElementById('bridge-local-count').textContent = localBridges.length;
+                document.getElementById('bridge-betweenness').textContent = avgBetweenness.toFixed(2);
+
+                // Update status
+                const statusEl = document.getElementById('bridge-connected-status');
+                if (components === 1) {
+                    statusEl.textContent = '✅ Fully Connected';
+                    statusEl.style.color = '#16a34a';
+                } else {
+                    statusEl.textContent = `⚠️ ${components} Disconnected Parts`;
+                    statusEl.style.color = '#dc2626';
+                }
+
+                return { criticalBridges, localBridges };
+            },
+
+            countComponents() {
+                const network = this.networks[this.currentScenario];
+                const visited = new Set();
+                let components = 0;
+
+                const dfs = (nodeId) => {
+                    visited.add(nodeId);
+                    network.edges
+                        .filter(e => e.active && (e.from === nodeId || e.to === nodeId))
+                        .forEach(e => {
+                            const neighbor = e.from === nodeId ? e.to : e.from;
+                            if (!visited.has(neighbor)) {
+                                dfs(neighbor);
+                            }
+                        });
+                };
+
+                network.nodes.forEach(node => {
+                    if (!visited.has(node.id)) {
+                        components++;
+                        dfs(node.id);
+                    }
+                });
+
+                return components;
+            },
+
+            findCriticalBridges() {
+                const network = this.networks[this.currentScenario];
+                const criticalBridges = [];
+                const originalComponents = this.countComponents();
+
+                network.edges.forEach(edge => {
+                    if (!edge.active) return;
+
+                    // Temporarily remove edge
+                    edge.active = false;
+                    const newComponents = this.countComponents();
+                    edge.active = true;
+
+                    // If components increased, it's a bridge
+                    if (newComponents > originalComponents) {
+                        criticalBridges.push(edge.id);
+                    }
+                });
+
+                return criticalBridges;
+            },
+
+            findLocalBridges() {
+                const network = this.networks[this.currentScenario];
+                const localBridges = [];
+
+                network.edges.forEach(edge => {
+                    if (!edge.active) return;
+
+                    // Get neighbors of both endpoints
+                    const neighborsFrom = new Set(
+                        network.edges
+                            .filter(e => e.active && e.id !== edge.id && (e.from === edge.from || e.to === edge.from))
+                            .map(e => e.from === edge.from ? e.to : e.from)
+                    );
+
+                    const neighborsTo = new Set(
+                        network.edges
+                            .filter(e => e.active && e.id !== edge.id && (e.from === edge.to || e.to === edge.to))
+                            .map(e => e.from === edge.to ? e.to : e.from)
+                    );
+
+                    // Check if they have common neighbors
+                    let hasCommonNeighbor = false;
+                    for (const n of neighborsFrom) {
+                        if (neighborsTo.has(n)) {
+                            hasCommonNeighbor = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasCommonNeighbor) {
+                        localBridges.push(edge.id);
+                    }
+                });
+
+                return localBridges;
+            },
+
+            calculateAvgBetweenness() {
+                const network = this.networks[this.currentScenario];
+                const activeEdges = network.edges.filter(e => e.active);
+                if (activeEdges.length === 0) return 0;
+
+                // Simplified betweenness: count shortest paths through each edge
+                let totalBetweenness = 0;
+                activeEdges.forEach(edge => {
+                    totalBetweenness += this.edgeBetweenness(edge);
+                });
+
+                return totalBetweenness / activeEdges.length;
+            },
+
+            edgeBetweenness(edge) {
+                // Simplified: count how many node pairs have this edge on shortest path
+                const network = this.networks[this.currentScenario];
+                let count = 0;
+
+                // For efficiency, use a simple heuristic: edges with high degree endpoints have higher betweenness
+                const degreeFrom = network.edges.filter(e => e.active && (e.from === edge.from || e.to === edge.from)).length;
+                const degreeTo = network.edges.filter(e => e.active && (e.from === edge.to || e.to === edge.to)).length;
+
+                return (degreeFrom + degreeTo) / 2;
+            },
+
+            renderNetwork() {
+                const network = this.networks[this.currentScenario];
+                const edgesGroup = document.getElementById('bridge-edges');
+                const nodesGroup = document.getElementById('bridge-nodes');
+
+                if (!edgesGroup || !nodesGroup) return;
+
+                // Clear existing
+                edgesGroup.innerHTML = '';
+                nodesGroup.innerHTML = '';
+
+                const { criticalBridges, localBridges } = this.analyzeNetwork();
+
+                // Draw edges
+                network.edges.forEach(edge => {
+                    const fromNode = network.nodes.find(n => n.id === edge.from);
+                    const toNode = network.nodes.find(n => n.id === edge.to);
+
+                    // Edge hit area (wider, invisible)
+                    const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    hitArea.setAttribute('x1', fromNode.x);
+                    hitArea.setAttribute('y1', fromNode.y);
+                    hitArea.setAttribute('x2', toNode.x);
+                    hitArea.setAttribute('y2', toNode.y);
+                    hitArea.setAttribute('stroke', 'transparent');
+                    hitArea.setAttribute('stroke-width', '20');
+                    hitArea.style.cursor = 'pointer';
+                    hitArea.onclick = () => this.toggleEdge(edge.id);
+                    edgesGroup.appendChild(hitArea);
+
+                    // Visible edge
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', fromNode.x);
+                    line.setAttribute('y1', fromNode.y);
+                    line.setAttribute('x2', toNode.x);
+                    line.setAttribute('y2', toNode.y);
+
+                    let strokeColor = '#94a3b8';
+                    let strokeWidth = '2';
+                    let opacity = edge.active ? '1' : '0.3';
+
+                    if (edge.active) {
+                        if (criticalBridges.includes(edge.id)) {
+                            strokeColor = '#ef4444';
+                            strokeWidth = '5';
+                        } else if (localBridges.includes(edge.id)) {
+                            strokeColor = '#f59e0b';
+                            strokeWidth = '4';
+                        }
+                    }
+
+                    line.setAttribute('stroke', strokeColor);
+                    line.setAttribute('stroke-width', strokeWidth);
+                    line.setAttribute('opacity', opacity);
+                    line.setAttribute('stroke-linecap', 'round');
+                    line.setAttribute('stroke-dasharray', edge.active ? '0' : '5,5');
+                    line.style.transition = 'all 0.3s ease';
+                    line.style.pointerEvents = 'none';
+
+                    edgesGroup.appendChild(line);
+                });
+
+                // Draw nodes
+                network.nodes.forEach(node => {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', node.x);
+                    circle.setAttribute('cy', node.y);
+                    circle.setAttribute('r', '30');
+                    circle.setAttribute('fill', 'url(#bridgeNodeGrad)');
+                    circle.setAttribute('stroke', 'white');
+                    circle.setAttribute('stroke-width', '3');
+                    circle.setAttribute('filter', 'url(#nodeShadowBridge)');
+                    nodesGroup.appendChild(circle);
+
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', node.x);
+                    text.setAttribute('y', node.y + 5);
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('fill', 'white');
+                    text.setAttribute('font-size', '14');
+                    text.setAttribute('font-weight', 'bold');
+                    text.setAttribute('pointer-events', 'none');
+                    text.textContent = node.label;
+                    nodesGroup.appendChild(text);
+                });
+            },
+
+            toggleEdge(edgeId) {
+                const network = this.networks[this.currentScenario];
+                const edge = network.edges.find(e => e.id === edgeId);
+                if (!edge) return;
+
+                edge.active = !edge.active;
+                this.selectedEdge = edgeId;
+
+                // Update selection info
+                const fromNode = network.nodes.find(n => n.id === edge.from);
+                const toNode = network.nodes.find(n => n.id === edge.to);
+
+                const selectionText = document.getElementById('bridge-selection-text');
+                if (edge.active) {
+                    selectionText.innerHTML = `<strong>${fromNode.label} ↔ ${toNode.label}</strong><br>Active (click to remove)`;
+                } else {
+                    selectionText.innerHTML = `<strong>${fromNode.label} ↔ ${toNode.label}</strong><br>Removed (click to restore)`;
+                }
+
+                this.renderNetwork();
+            },
+
+            removeAllBridges() {
+                const network = this.networks[this.currentScenario];
+                const { criticalBridges } = this.analyzeNetwork();
+
+                criticalBridges.forEach(bridgeId => {
+                    const edge = network.edges.find(e => e.id === bridgeId);
+                    if (edge) edge.active = false;
+                });
+
+                this.renderNetwork();
+            },
+
+            highlightCritical() {
+                this.highlightMode = !this.highlightMode;
+                this.renderNetwork();
+            }
+        };
+
+        // ========================================
         // MODE TOGGLE (Research vs Illustrative)
         // ========================================
 
@@ -4989,6 +5606,10 @@
 
             if (document.getElementById('diffusion-svg')) {
                 InformationDiffusion.init();
+            }
+
+            if (document.getElementById('bridge-svg')) {
+                BridgeIdentifier.init();
             }
 
             // Set default mode
