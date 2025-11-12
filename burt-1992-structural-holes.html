@@ -2064,6 +2064,215 @@
                 </div>
             </div>
 
+            <!-- Information Flow & Brokerage Value Simulator -->
+            <div class="section-card">
+                <h2>📡 Information Flow & Brokerage Value Simulator</h2>
+                <p>See how information flows differently through broker vs constrained positions. Watch structural holes create timing and information advantages in real-time.</p>
+
+                <div style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: #9a3412;">Simulation: Novel Information Spreading Through Networks</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                        <!-- Broker Spread -->
+                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="text-align: center; color: #065f46; margin-bottom: 15px;">Broker Network</h4>
+                            <svg viewBox="0 0 300 250" style="width: 100%;">
+                                <defs>
+                                    <radialGradient id="infoSpread">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+                                        <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- Information waves -->
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6">
+                                    <animate attributeName="r" values="20;80;20" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.4">
+                                    <animate attributeName="r" values="20;80;20" dur="3s" begin="1s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" begin="1s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <!-- Network structure -->
+                                <line x1="150" y1="125" x2="80" y2="70" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="220" y2="70" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="80" y2="180" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="220" y2="180" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+
+                                <circle cx="80" cy="70" r="12" fill="#3b82f6"/>
+                                <circle cx="220" cy="70" r="12" fill="#8b5cf6"/>
+                                <circle cx="80" cy="180" r="12" fill="#ec4899"/>
+                                <circle cx="220" cy="180" r="12" fill="#f59e0b"/>
+
+                                <circle cx="150" cy="125" r="16" fill="#10b981" stroke="white" stroke-width="2">
+                                    <animate attributeName="r" values="14;18;14" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <text x="150" y="220" text-anchor="middle" font-size="11" fill="#065f46" font-weight="600">
+                                    ✅ Reaches 4 groups quickly
+                                </text>
+                            </svg>
+                            <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #10b981;">
+                                <p style="margin: 0; font-size: 0.9em; color: #065f46;">
+                                    <strong>Time to 100% spread:</strong> 2 steps<br>
+                                    <strong>Unique info sources:</strong> 4 different groups<br>
+                                    <strong>Advantage:</strong> See opportunities FIRST
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Constrained Spread -->
+                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="text-align: center; color: #991b1b; margin-bottom: 15px;">Constrained Network</h4>
+                            <svg viewBox="0 0 300 250" style="width: 100%;">
+                                <!-- Limited information waves -->
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fca5a5" stroke-width="2" opacity="0.5">
+                                    <animate attributeName="r" values="20;50;20" dur="4s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.5;0;0.5" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <!-- Dense network structure -->
+                                <line x1="150" y1="125" x2="120" y2="80" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="180" y2="80" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="120" y2="170" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="180" y2="170" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="120" y1="80" x2="180" y2="80" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="120" y1="170" x2="180" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="120" y1="80" x2="120" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="180" y1="80" x2="180" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+
+                                <circle cx="120" cy="80" r="12" fill="#dc2626"/>
+                                <circle cx="180" cy="80" r="12" fill="#dc2626"/>
+                                <circle cx="120" cy="170" r="12" fill="#dc2626"/>
+                                <circle cx="180" cy="170" r="12" fill="#dc2626"/>
+
+                                <circle cx="150" cy="125" r="16" fill="#991b1b" stroke="white" stroke-width="2"/>
+
+                                <text x="150" y="220" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="600">
+                                    ⚠️ Same info circulates
+                                </text>
+                            </svg>
+                            <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #dc2626;">
+                                <p style="margin: 0; font-size: 0.9em; color: #991b1b;">
+                                    <strong>Time to 100% spread:</strong> 3+ steps<br>
+                                    <strong>Unique info sources:</strong> 1 group (redundant)<br>
+                                    <strong>Disadvantage:</strong> Echo chamber effect
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #f59e0b;">
+                        <h4 style="color: #92400e; margin-bottom: 15px;">🔬 Research Finding: Information Timing Advantage</h4>
+                        <p style="color: #78350f; line-height: 1.8; margin: 0;">
+                            Burt's research shows that people in brokerage positions hear about opportunities <strong>2-3 times faster</strong> than those in constrained positions.
+                            The broker in the left network hears novel information from 4 different sources, while the constrained position hears the same information echoed within one tight group.
+                            This timing advantage is worth an estimated <strong>20-30% promotion speed increase</strong> in corporate settings.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Strategy Builder -->
+            <div class="section-card">
+                <h2>🎯 Your Structural Holes Strategy Builder</h2>
+                <p>Answer these questions to build a personalized strategy for leveraging structural holes in your career and life.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 1: Assess Your Current Position</h4>
+                        <p style="margin-bottom: 15px;">Most of my professional contacts are from:</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="same" style="margin-right: 10px;">
+                                <span>The same company/industry (High Constraint)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="mixed" style="margin-right: 10px;">
+                                <span>2-3 different industries/domains (Medium)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="diverse" style="margin-right: 10px;">
+                                <span>4+ different industries/domains (Low Constraint)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 2: Identify Structural Hole Opportunities</h4>
+                        <p style="margin-bottom: 15px;">Which gaps could you bridge? (Check all that apply)</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏢 Different departments (e.g., tech + sales)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🌍 Different geographic regions</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🎓 Different disciplines (e.g., engineering + design)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>⏳ Different generations (junior + senior)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏭 Different industries entirely</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 3: Set Your Brokerage Goal</h4>
+                        <p style="margin-bottom: 15px;">In the next 6 months, I want to:</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="maintain" style="margin-right: 10px;">
+                                <span>Maintain my current network structure</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="expand" style="margin-right: 10px;">
+                                <span>Add 1-2 new disconnected groups to my network</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="transform" style="margin-right: 10px;">
+                                <span>Completely transform into a broker position</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button style="width: 100%; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 1.1em; font-weight: 700; cursor: pointer; transition: all 0.3s;" onclick="alert('This is an educational visualization. Use the network audit section above for detailed analysis!')">
+                        📊 Generate My Structural Holes Strategy
+                    </button>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 25px; border-radius: 15px; border-left: 5px solid #10b981;">
+                    <h4 style="color: #065f46; margin-bottom: 15px;">💡 Pro Tips for Building Structural Holes:</h4>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">1. Start Small:</strong> Add ONE contact from a completely different domain each month
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">2. Be The Connector:</strong> Introduce people from different groups (they'll value you as the bridge)
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">3. Attend Cross-Functional Events:</strong> Conferences, hackathons, and meetups outside your specialty
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">4. Develop T-Shaped Skills:</strong> Deep in one area, broad exposure to adjacent fields
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">5. Document Insights:</strong> When you bridge groups, write down the unique perspectives you gain
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- END INTERACTIVE TOOLS PAGE -->
