@@ -528,6 +528,221 @@
             text-decoration: underline;
         }
 
+        /* Network Simulator Styles */
+        .network-simulator {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .network-simulator {
+            background: #0f172a;
+        }
+
+        .simulator-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(30, 60, 114, 0.3);
+            font-family: 'Lato', sans-serif;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-btn.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+        }
+
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        }
+
+        .control-btn.danger {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .control-btn.edge-type-btn {
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+
+        #networkCanvas {
+            width: 100%;
+            height: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            cursor: default;
+            display: block;
+        }
+
+        body.dark-mode #networkCanvas {
+            background: #1e293b;
+        }
+
+        .network-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #2a5298;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .metric-card {
+            background: #334155;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .metric-label {
+            font-size: 0.8em;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        body.dark-mode .metric-label {
+            color: #94a3b8;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1e3c72;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body.dark-mode .metric-value {
+            color: #93c5fd;
+        }
+
+        .legend {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+            padding: 18px;
+            background: white;
+            border-radius: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        body.dark-mode .legend {
+            background: #334155;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .legend-line {
+            width: 40px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .legend-line.strong {
+            background: #1e3c72;
+            height: 4px;
+        }
+
+        .legend-line.weak {
+            height: 2px;
+            border-top: 2px dashed #94a3b8;
+            background: none;
+        }
+
+        .help-text {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        body.dark-mode .help-text {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #fbbf24;
+            color: #e2e8f0;
+        }
+
+        .quality-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+        }
+
+        .preset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
@@ -540,6 +755,19 @@
 
             .grid {
                 grid-template-columns: 1fr;
+            }
+
+            #networkCanvas {
+                height: 400px;
+            }
+
+            .simulator-controls {
+                gap: 8px;
+            }
+
+            .control-btn {
+                padding: 10px 16px;
+                font-size: 0.85em;
             }
         }
     </style>
@@ -554,6 +782,7 @@
             <button class="page-btn active" onclick="switchPage('main', this)">Main Study Overview</button>
             <button class="page-btn" onclick="switchPage('process', this)">Process Model & Theory</button>
             <button class="page-btn" onclick="switchPage('analysis', this)">Empirical Findings</button>
+            <button class="page-btn" onclick="switchPage('interactive', this)">🎮 Interactive Tools</button>
         </div>
     </div>
 
@@ -1126,6 +1355,224 @@
         </div>
     </div>
 
+    <!-- INTERACTIVE TOOLS PAGE -->
+    <div id="interactive" style="display: none;">
+        <div class="container">
+            <div class="header">
+                <h1>🎮 Interactive Network Simulator</h1>
+                <p class="subtitle">Build and Analyze Your Own Networks</p>
+                <p class="subtitle">Commercial BI-Quality Tool</p>
+            </div>
+
+            <!-- Interactive Network Simulator -->
+            <div class="section">
+                <h2>🕸️ Network Builder & Analyzer</h2>
+                <p>Create your own networks and watch the metrics update in real-time. Understand the power of weak ties by building different network structures.</p>
+
+                <div class="network-simulator">
+                    <!-- Controls -->
+                    <div class="simulator-controls">
+                        <h3 style="width: 100%; margin: 0 0 15px 0; font-size: 1.1em;">Controls:</h3>
+
+                        <button id="draw-mode-btn" class="control-btn" onclick="NetworkSimulator.toggleDrawMode()">
+                            ✏️ Enable Drawing Mode
+                        </button>
+
+                        <button id="edge-weak" class="control-btn edge-type-btn active" onclick="NetworkSimulator.setEdgeType('weak')">
+                            Weak Tie
+                        </button>
+
+                        <button id="edge-strong" class="control-btn edge-type-btn" onclick="NetworkSimulator.setEdgeType('strong')">
+                            Strong Tie
+                        </button>
+
+                        <button class="control-btn secondary" onclick="NetworkSimulator.removeSelectedNode()">
+                            🗑️ Delete Selected
+                        </button>
+
+                        <button class="control-btn danger" onclick="NetworkSimulator.clearNetwork()">
+                            ⚠️ Clear All
+                        </button>
+                    </div>
+
+                    <div class="preset-buttons" style="margin-bottom: 20px;">
+                        <h4 style="width: 100%; margin: 0 0 12px 0; font-size: 1em; font-weight: 600;">Load Preset Networks:</h4>
+                        <button class="preset-btn" onclick="NetworkSimulator.loadPresetNetwork('basic')">
+                            📍 Basic (Strong Ties Only)
+                        </button>
+                        <button class="preset-btn" onclick="NetworkSimulator.loadPresetNetwork('bridges')">
+                            🌉 Weak Tie Bridges
+                        </button>
+                        <button class="preset-btn" onclick="NetworkSimulator.loadPresetNetwork('realistic')">
+                            🌐 Realistic Mixed Network
+                        </button>
+                    </div>
+
+                    <!-- Canvas -->
+                    <canvas id="networkCanvas"></canvas>
+
+                    <!-- Legend -->
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-line strong"></div>
+                            <span>Strong Tie (close friend, frequent contact)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line weak"></div>
+                            <span>Weak Tie (acquaintance, occasional contact)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: #1e3c72; border: 2px solid white;"></span>
+                            <span>Person (drag to move)</span>
+                        </div>
+                    </div>
+
+                    <!-- Help Text -->
+                    <div class="help-text">
+                        <strong>How to use:</strong>
+                        <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Add a person:</strong> Double-click anywhere on the canvas</li>
+                            <li><strong>Move a person:</strong> Click and drag any node</li>
+                            <li><strong>Add a connection:</strong> Enable drawing mode, select tie type (weak/strong), click a person, then click another person</li>
+                            <li><strong>Delete a person:</strong> Click to select (yellow glow), then click "Delete Selected"</li>
+                            <li><strong>Load presets:</strong> Try the preset networks to see different structures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-Time Network Metrics -->
+            <div class="section">
+                <h2>📊 Network Metrics Dashboard</h2>
+                <p>These metrics update in real-time as you modify the network. Watch how weak ties, bridges, and clustering change your network's structure.</p>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <h3 style="margin-bottom: 10px;">Network Quality Score</h3>
+                    <span id="network-quality" class="quality-badge" style="background: #64748b;">Waiting for data...</span>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;">Based on weak tie ratio, bridges, and clustering coefficient</p>
+                </div>
+
+                <div class="network-metrics">
+                    <div class="metric-card">
+                        <div class="metric-label">People</div>
+                        <div class="metric-value" id="metric-nodes">0</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-label">Connections</div>
+                        <div class="metric-value" id="metric-edges">0</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-label">Network Density</div>
+                        <div class="metric-value" id="metric-density">0%</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-label">Avg. Connections</div>
+                        <div class="metric-value" id="metric-avgdegree">0</div>
+                    </div>
+
+                    <div class="metric-card" style="border-left-color: #1e3c72;">
+                        <div class="metric-label">Strong Ties</div>
+                        <div class="metric-value" id="metric-strong">0%</div>
+                    </div>
+
+                    <div class="metric-card" style="border-left-color: #94a3b8;">
+                        <div class="metric-label">Weak Ties</div>
+                        <div class="metric-value" id="metric-weak">0%</div>
+                    </div>
+
+                    <div class="metric-card" style="border-left-color: #10b981;">
+                        <div class="metric-label">Bridges</div>
+                        <div class="metric-value" id="metric-bridges">0</div>
+                    </div>
+
+                    <div class="metric-card" style="border-left-color: #f59e0b;">
+                        <div class="metric-label">Clustering</div>
+                        <div class="metric-value" id="metric-clustering">0%</div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 30px;">
+                    <h3 style="margin-top: 0;">💡 Understanding the Metrics</h3>
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Network Density</h4>
+                            <p>Percentage of all possible connections that actually exist. Higher density = more interconnected, but potentially more redundant information.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Bridges</h4>
+                            <p>Weak ties that are the only connection between two groups. These are critical for information flow and are Granovetter's key insight!</p>
+                        </div>
+                        <div class="card">
+                            <h4>Clustering Coefficient</h4>
+                            <p>Measures how much your friends are also friends with each other. High clustering = closed triads (strong ties), low clustering = diverse, spread-out network.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Weak Tie Ratio</h4>
+                            <p>According to Granovetter's findings, the optimal network has a good balance of weak ties (40%+) to access novel information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison & Analysis -->
+            <div class="section">
+                <h2>🔬 Compare Network Structures</h2>
+                <p>Try building these different network types and see how the metrics change:</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>All Strong Ties (Closed Cluster)</h4>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>High clustering (70-100%)</li>
+                            <li>High density</li>
+                            <li>Zero bridges</li>
+                            <li>All strong ties (100%)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Result:</strong> Information redundancy, limited novel information access.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Weak Tie Bridges</h4>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Low to moderate clustering (20-40%)</li>
+                            <li>Lower density</li>
+                            <li>Multiple bridges (3+)</li>
+                            <li>High weak tie ratio (50%+)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Result:</strong> Access to diverse, non-redundant information.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Realistic Mixed Network</h4>
+                        <p><strong>Characteristics:</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Moderate clustering (40-60%)</li>
+                            <li>Moderate density</li>
+                            <li>Some bridges (1-3)</li>
+                            <li>Mixed ties (30-50% weak)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Result:</strong> Balance of trust (strong ties) and opportunity (weak ties).</p>
+                    </div>
+                </div>
+
+                <div class="key-finding" style="margin-top: 30px;">
+                    <strong>🎯 Granovetter's Insight:</strong> In real job searches, 83.4% of successful job leads came from weak or moderate ties, not strong ties. Build a network with bridges to access opportunities you wouldn't otherwise hear about!
+                </div>
+            </div>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Interactive Tool:</strong> Based on network analysis principles from Granovetter (1973)</p>
+                <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">All calculations use graph theory algorithms to measure real network properties</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Page Switching
         function switchPage(pageId, button) {
@@ -1133,6 +1580,7 @@
             document.getElementById('main').style.display = 'none';
             document.getElementById('process').style.display = 'none';
             document.getElementById('analysis').style.display = 'none';
+            document.getElementById('interactive').style.display = 'none';
 
             // Show selected page
             document.getElementById(pageId).style.display = 'block';
@@ -1141,6 +1589,11 @@
             const buttons = document.querySelectorAll('.page-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+
+            // Initialize simulator if switching to interactive page
+            if (pageId === 'interactive' && !NetworkSimulator.canvas) {
+                setTimeout(() => NetworkSimulator.init(), 100);
+            }
 
             // Scroll to top
             window.scrollTo(0, 0);
@@ -1173,6 +1626,552 @@
                 button.textContent = '🌙 Dark Mode';
             }
         }
+
+        // ========================================
+        // INTERACTIVE NETWORK SIMULATOR
+        // Commercial BI-Quality Tool
+        // ========================================
+
+        const NetworkSimulator = {
+            nodes: [],
+            edges: [],
+            selectedNode: null,
+            draggedNode: null,
+            canvas: null,
+            ctx: null,
+            isDrawingMode: false,
+            tempEdgeStart: null,
+            edgeType: 'weak', // 'weak' or 'strong'
+            nodeIdCounter: 0,
+
+            init() {
+                this.canvas = document.getElementById('networkCanvas');
+                if (!this.canvas) return;
+
+                this.ctx = this.canvas.getContext('2d');
+                this.setupCanvas();
+                this.setupEventListeners();
+                this.loadPresetNetwork('basic');
+            },
+
+            setupCanvas() {
+                const rect = this.canvas.getBoundingClientRect();
+                this.canvas.width = rect.width;
+                this.canvas.height = rect.height;
+                this.render();
+            },
+
+            setupEventListeners() {
+                this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+                this.canvas.addEventListener('dblclick', this.handleDoubleClick.bind(this));
+
+                window.addEventListener('resize', () => {
+                    this.setupCanvas();
+                });
+            },
+
+            handleMouseDown(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (this.isDrawingMode) {
+                    if (clickedNode) {
+                        this.tempEdgeStart = clickedNode;
+                        this.canvas.style.cursor = 'crosshair';
+                    }
+                } else {
+                    if (clickedNode) {
+                        this.draggedNode = clickedNode;
+                        this.selectedNode = clickedNode;
+                        this.canvas.style.cursor = 'grabbing';
+                    } else {
+                        this.selectedNode = null;
+                    }
+                }
+                this.render();
+            },
+
+            handleMouseMove(e) {
+                const pos = this.getMousePos(e);
+
+                if (this.draggedNode) {
+                    this.draggedNode.x = pos.x;
+                    this.draggedNode.y = pos.y;
+                    this.render();
+                } else if (this.tempEdgeStart) {
+                    this.render();
+                    // Draw temporary edge line
+                    this.ctx.save();
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.tempEdgeStart.x, this.tempEdgeStart.y);
+                    this.ctx.lineTo(pos.x, pos.y);
+                    this.ctx.strokeStyle = this.edgeType === 'strong' ? '#1e3c72' : '#94a3b8';
+                    this.ctx.lineWidth = this.edgeType === 'strong' ? 4 : 2;
+                    if (this.edgeType === 'weak') {
+                        this.ctx.setLineDash([5, 5]);
+                    }
+                    this.ctx.stroke();
+                    this.ctx.restore();
+                } else {
+                    // Update cursor based on hover
+                    const hoverNode = this.getNodeAtPosition(pos.x, pos.y);
+                    this.canvas.style.cursor = hoverNode ? 'pointer' : 'default';
+                }
+            },
+
+            handleMouseUp(e) {
+                const pos = this.getMousePos(e);
+
+                if (this.tempEdgeStart) {
+                    const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+                    if (clickedNode && clickedNode !== this.tempEdgeStart) {
+                        this.addEdge(this.tempEdgeStart, clickedNode, this.edgeType);
+                    }
+                    this.tempEdgeStart = null;
+                }
+
+                this.draggedNode = null;
+                this.canvas.style.cursor = 'default';
+                this.render();
+                this.updateMetrics();
+            },
+
+            handleDoubleClick(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (!clickedNode) {
+                    this.addNode(pos.x, pos.y);
+                }
+            },
+
+            getMousePos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            },
+
+            getNodeAtPosition(x, y) {
+                return this.nodes.find(node => {
+                    const dx = node.x - x;
+                    const dy = node.y - y;
+                    return Math.sqrt(dx * dx + dy * dy) < node.radius;
+                });
+            },
+
+            addNode(x, y, label = null) {
+                const node = {
+                    id: this.nodeIdCounter++,
+                    x: x,
+                    y: y,
+                    radius: 20,
+                    label: label || `P${this.nodeIdCounter}`,
+                    color: '#1e3c72'
+                };
+                this.nodes.push(node);
+                this.render();
+                this.updateMetrics();
+            },
+
+            addEdge(node1, node2, type = 'weak') {
+                // Check if edge already exists
+                const exists = this.edges.some(e =>
+                    (e.from === node1 && e.to === node2) ||
+                    (e.from === node2 && e.to === node1)
+                );
+
+                if (!exists) {
+                    this.edges.push({
+                        from: node1,
+                        to: node2,
+                        type: type,
+                        strength: type === 'strong' ? 1 : 0.3
+                    });
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            removeSelectedNode() {
+                if (this.selectedNode) {
+                    // Remove all edges connected to this node
+                    this.edges = this.edges.filter(e =>
+                        e.from !== this.selectedNode && e.to !== this.selectedNode
+                    );
+                    // Remove the node
+                    this.nodes = this.nodes.filter(n => n !== this.selectedNode);
+                    this.selectedNode = null;
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            clearNetwork() {
+                this.nodes = [];
+                this.edges = [];
+                this.selectedNode = null;
+                this.draggedNode = null;
+                this.tempEdgeStart = null;
+                this.nodeIdCounter = 0;
+                this.render();
+                this.updateMetrics();
+            },
+
+            loadPresetNetwork(type) {
+                this.clearNetwork();
+                const w = this.canvas.width;
+                const h = this.canvas.height;
+                const centerX = w / 2;
+                const centerY = h / 2;
+
+                if (type === 'basic') {
+                    // You (center) with 3 close friends (strong ties)
+                    this.addNode(centerX, centerY, 'YOU');
+                    this.addNode(centerX - 120, centerY - 80, 'Friend A');
+                    this.addNode(centerX + 120, centerY - 80, 'Friend B');
+                    this.addNode(centerX, centerY + 120, 'Friend C');
+
+                    // Strong ties
+                    this.addEdge(this.nodes[0], this.nodes[1], 'strong');
+                    this.addEdge(this.nodes[0], this.nodes[2], 'strong');
+                    this.addEdge(this.nodes[0], this.nodes[3], 'strong');
+
+                    // Triadic closure
+                    this.addEdge(this.nodes[1], this.nodes[2], 'strong');
+                    this.addEdge(this.nodes[2], this.nodes[3], 'strong');
+                }
+
+                if (type === 'bridges') {
+                    // Left cluster
+                    this.addNode(150, centerY, 'YOU');
+                    this.addNode(100, centerY - 80, 'A1');
+                    this.addNode(100, centerY + 80, 'A2');
+
+                    // Strong ties in left cluster
+                    this.addEdge(this.nodes[0], this.nodes[1], 'strong');
+                    this.addEdge(this.nodes[0], this.nodes[2], 'strong');
+                    this.addEdge(this.nodes[1], this.nodes[2], 'strong');
+
+                    // Bridge person
+                    this.addNode(centerX + 100, centerY, 'Bridge');
+                    this.addEdge(this.nodes[0], this.nodes[3], 'weak');
+
+                    // Right cluster
+                    this.addNode(w - 150, centerY - 80, 'B1');
+                    this.addNode(w - 150, centerY + 80, 'B2');
+                    this.addNode(w - 100, centerY, 'B3');
+
+                    // Strong ties in right cluster
+                    this.addEdge(this.nodes[3], this.nodes[4], 'strong');
+                    this.addEdge(this.nodes[3], this.nodes[5], 'strong');
+                    this.addEdge(this.nodes[4], this.nodes[6], 'strong');
+                    this.addEdge(this.nodes[5], this.nodes[6], 'strong');
+                }
+
+                if (type === 'realistic') {
+                    // Create a realistic mixed network
+                    const positions = [
+                        {x: centerX, y: centerY, label: 'YOU'},
+                        // Close circle (strong ties)
+                        {x: centerX - 100, y: centerY - 60, label: 'Family'},
+                        {x: centerX + 100, y: centerY - 60, label: 'Best Friend'},
+                        {x: centerX - 80, y: centerY + 80, label: 'Colleague'},
+                        // Weak ties (bridges)
+                        {x: 120, y: 150, label: 'Former Classmate'},
+                        {x: w - 120, y: 150, label: 'Industry Contact'},
+                        {x: 120, y: h - 120, label: 'Neighbor'},
+                        {x: w - 120, y: h - 120, label: 'Acquaintance'},
+                        // Extended network
+                        {x: 80, y: 300, label: 'Friend of Friend'},
+                        {x: w - 80, y: 300, label: 'LinkedIn Connection'}
+                    ];
+
+                    positions.forEach(p => this.addNode(p.x, p.y, p.label));
+
+                    // Strong ties (close circle)
+                    this.addEdge(this.nodes[0], this.nodes[1], 'strong');
+                    this.addEdge(this.nodes[0], this.nodes[2], 'strong');
+                    this.addEdge(this.nodes[0], this.nodes[3], 'strong');
+                    this.addEdge(this.nodes[1], this.nodes[2], 'strong'); // Triadic closure
+
+                    // Weak ties (bridges to other clusters)
+                    this.addEdge(this.nodes[0], this.nodes[4], 'weak');
+                    this.addEdge(this.nodes[0], this.nodes[5], 'weak');
+                    this.addEdge(this.nodes[0], this.nodes[6], 'weak');
+                    this.addEdge(this.nodes[0], this.nodes[7], 'weak');
+
+                    // Extended connections
+                    this.addEdge(this.nodes[4], this.nodes[8], 'weak');
+                    this.addEdge(this.nodes[5], this.nodes[9], 'weak');
+                }
+
+                this.render();
+                this.updateMetrics();
+            },
+
+            render() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw edges first
+                this.edges.forEach(edge => {
+                    this.drawEdge(edge);
+                });
+
+                // Draw nodes on top
+                this.nodes.forEach(node => {
+                    this.drawNode(node);
+                });
+            },
+
+            drawEdge(edge) {
+                this.ctx.save();
+                this.ctx.beginPath();
+                this.ctx.moveTo(edge.from.x, edge.from.y);
+                this.ctx.lineTo(edge.to.x, edge.to.y);
+
+                if (edge.type === 'strong') {
+                    this.ctx.strokeStyle = '#1e3c72';
+                    this.ctx.lineWidth = 4;
+                    this.ctx.setLineDash([]);
+                } else {
+                    this.ctx.strokeStyle = '#94a3b8';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.setLineDash([5, 5]);
+                }
+
+                this.ctx.stroke();
+                this.ctx.restore();
+            },
+
+            drawNode(node) {
+                this.ctx.save();
+
+                // Draw selection glow
+                if (node === this.selectedNode) {
+                    this.ctx.shadowColor = '#fbbf24';
+                    this.ctx.shadowBlur = 15;
+                }
+
+                // Draw node circle
+                this.ctx.beginPath();
+                this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                this.ctx.fillStyle = node.color;
+                this.ctx.fill();
+
+                // Draw border
+                this.ctx.strokeStyle = node === this.selectedNode ? '#fbbf24' : '#fff';
+                this.ctx.lineWidth = node === this.selectedNode ? 3 : 2;
+                this.ctx.stroke();
+
+                this.ctx.shadowBlur = 0;
+
+                // Draw label
+                this.ctx.fillStyle = '#fff';
+                this.ctx.font = 'bold 11px -apple-system, sans-serif';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillText(node.label, node.x, node.y);
+
+                this.ctx.restore();
+            },
+
+            setEdgeType(type) {
+                this.edgeType = type;
+                // Update button states
+                document.querySelectorAll('.edge-type-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(`edge-${type}`).classList.add('active');
+            },
+
+            toggleDrawMode() {
+                this.isDrawingMode = !this.isDrawingMode;
+                const btn = document.getElementById('draw-mode-btn');
+                if (this.isDrawingMode) {
+                    btn.classList.add('active');
+                    btn.textContent = '✏️ Drawing Mode (ON)';
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    btn.classList.remove('active');
+                    btn.textContent = '✏️ Enable Drawing Mode';
+                    this.canvas.style.cursor = 'default';
+                }
+            },
+
+            // Network Analysis Metrics
+            calculateMetrics() {
+                const n = this.nodes.length;
+                const e = this.edges.length;
+
+                if (n === 0) {
+                    return {
+                        nodeCount: 0,
+                        edgeCount: 0,
+                        density: 0,
+                        avgDegree: 0,
+                        strongTieRatio: 0,
+                        weakTieRatio: 0,
+                        bridgeCount: 0,
+                        clusteringCoefficient: 0
+                    };
+                }
+
+                const maxPossibleEdges = (n * (n - 1)) / 2;
+                const density = maxPossibleEdges > 0 ? e / maxPossibleEdges : 0;
+                const avgDegree = n > 0 ? (2 * e) / n : 0;
+
+                const strongTies = this.edges.filter(e => e.type === 'strong').length;
+                const weakTies = this.edges.filter(e => e.type === 'weak').length;
+
+                const strongTieRatio = e > 0 ? strongTies / e : 0;
+                const weakTieRatio = e > 0 ? weakTies / e : 0;
+
+                const bridgeCount = this.countBridges();
+                const clusteringCoefficient = this.calculateClustering();
+
+                return {
+                    nodeCount: n,
+                    edgeCount: e,
+                    density: density,
+                    avgDegree: avgDegree,
+                    strongTieRatio: strongTieRatio,
+                    weakTieRatio: weakTieRatio,
+                    bridgeCount: bridgeCount,
+                    clusteringCoefficient: clusteringCoefficient
+                };
+            },
+
+            countBridges() {
+                let bridges = 0;
+
+                this.edges.forEach(edge => {
+                    // An edge is a bridge if removing it disconnects the graph
+                    // Simplified: check if it's the only path between two clusters
+                    if (this.isBridge(edge)) {
+                        bridges++;
+                    }
+                });
+
+                return bridges;
+            },
+
+            isBridge(edge) {
+                // Simplified bridge detection
+                // A tie is more likely to be a bridge if it's weak and connects otherwise unconnected groups
+                if (edge.type !== 'weak') return false;
+
+                // Check if the two nodes have any common neighbors
+                const neighbors1 = this.getNeighbors(edge.from);
+                const neighbors2 = this.getNeighbors(edge.to);
+
+                const commonNeighbors = neighbors1.filter(n => neighbors2.includes(n));
+
+                // If they have no common neighbors (except through this edge), it's likely a bridge
+                return commonNeighbors.length === 0;
+            },
+
+            getNeighbors(node) {
+                return this.edges
+                    .filter(e => e.from === node || e.to === node)
+                    .map(e => e.from === node ? e.to : e.from);
+            },
+
+            calculateClustering() {
+                if (this.nodes.length < 3) return 0;
+
+                let totalClustering = 0;
+
+                this.nodes.forEach(node => {
+                    const neighbors = this.getNeighbors(node);
+                    const k = neighbors.length;
+
+                    if (k < 2) return;
+
+                    let actualEdges = 0;
+                    for (let i = 0; i < neighbors.length; i++) {
+                        for (let j = i + 1; j < neighbors.length; j++) {
+                            if (this.areConnected(neighbors[i], neighbors[j])) {
+                                actualEdges++;
+                            }
+                        }
+                    }
+
+                    const possibleEdges = (k * (k - 1)) / 2;
+                    const clustering = possibleEdges > 0 ? actualEdges / possibleEdges : 0;
+                    totalClustering += clustering;
+                });
+
+                return totalClustering / this.nodes.length;
+            },
+
+            areConnected(node1, node2) {
+                return this.edges.some(e =>
+                    (e.from === node1 && e.to === node2) ||
+                    (e.from === node2 && e.to === node1)
+                );
+            },
+
+            updateMetrics() {
+                const metrics = this.calculateMetrics();
+
+                document.getElementById('metric-nodes').textContent = metrics.nodeCount;
+                document.getElementById('metric-edges').textContent = metrics.edgeCount;
+                document.getElementById('metric-density').textContent = (metrics.density * 100).toFixed(1) + '%';
+                document.getElementById('metric-avgdegree').textContent = metrics.avgDegree.toFixed(1);
+                document.getElementById('metric-strong').textContent = (metrics.strongTieRatio * 100).toFixed(0) + '%';
+                document.getElementById('metric-weak').textContent = (metrics.weakTieRatio * 100).toFixed(0) + '%';
+                document.getElementById('metric-bridges').textContent = metrics.bridgeCount;
+                document.getElementById('metric-clustering').textContent = (metrics.clusteringCoefficient * 100).toFixed(1) + '%';
+
+                // Update quality indicator
+                this.updateQualityIndicator(metrics);
+            },
+
+            updateQualityIndicator(metrics) {
+                const indicator = document.getElementById('network-quality');
+                if (!indicator) return;
+
+                // Good network: high weak tie ratio, some bridges, moderate clustering
+                let score = 0;
+
+                if (metrics.weakTieRatio > 0.4) score += 35;
+                else if (metrics.weakTieRatio > 0.2) score += 20;
+
+                if (metrics.bridgeCount > 2) score += 30;
+                else if (metrics.bridgeCount > 0) score += 15;
+
+                if (metrics.clusteringCoefficient > 0.3 && metrics.clusteringCoefficient < 0.7) score += 20;
+                if (metrics.density > 0.15 && metrics.density < 0.5) score += 15;
+
+                let quality = 'Poor';
+                let color = '#ef4444';
+
+                if (score >= 70) {
+                    quality = 'Excellent';
+                    color = '#10b981';
+                } else if (score >= 50) {
+                    quality = 'Good';
+                    color = '#3b82f6';
+                } else if (score >= 30) {
+                    quality = 'Fair';
+                    color = '#f59e0b';
+                }
+
+                indicator.textContent = quality;
+                indicator.style.background = color;
+            }
+        };
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('networkCanvas')) {
+                NetworkSimulator.init();
+            }
+        });
     </script>
 </body>
 </html>
