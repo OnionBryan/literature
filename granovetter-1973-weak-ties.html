@@ -2576,6 +2576,224 @@
                 </div>
             </div>
 
+            <!-- Information Diffusion Simulator -->
+            <div class="section">
+                <h2>📡 Information Diffusion Simulator</h2>
+                <p style="font-size: 1.1em; line-height: 1.7; color: #4b5563;">Watch how information spreads through networks with different tie strengths. See firsthand why weak ties are more effective at spreading novel information across social boundaries.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 35px; border-radius: 20px; margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+
+                    <!-- Scenario Selection -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+                        <button id="diffusion-dense" class="control-btn" onclick="InformationDiffusion.loadScenario('dense')"
+                                style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 15px 30px; font-size: 1.05em; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);">
+                            🔴 Dense Network
+                        </button>
+                        <button id="diffusion-bridge" class="control-btn secondary" onclick="InformationDiffusion.loadScenario('bridge')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🌉 Bridge Network
+                        </button>
+                        <button id="diffusion-weak" class="control-btn secondary" onclick="InformationDiffusion.loadScenario('weak')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🟢 Weak Ties
+                        </button>
+                        <button id="diffusion-compare" class="control-btn secondary" onclick="InformationDiffusion.loadScenario('compare')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            ⚖️ Compare
+                        </button>
+                    </div>
+
+                    <!-- Main Visualization Area -->
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 25px; margin-bottom: 30px;">
+
+                        <!-- Left: Diffusion Animation -->
+                        <div style="background: white; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+
+                            <!-- SVG Network Visualization -->
+                            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px; position: relative;">
+                                <svg id="diffusion-svg" width="100%" height="500" viewBox="0 0 700 500" style="max-width: 750px;">
+                                    <defs>
+                                        <!-- Gradients -->
+                                        <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="receivedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <linearGradient id="pendingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#64748b;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#475569;stop-opacity:1" />
+                                        </linearGradient>
+
+                                        <!-- Glow effects -->
+                                        <filter id="infoGlow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+
+                                        <!-- Drop shadow -->
+                                        <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.3"/>
+                                        </filter>
+
+                                        <!-- Arrow marker for information flow -->
+                                        <marker id="flowArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                                            <polygon points="0 0, 12 6, 0 12" fill="#f59e0b" />
+                                        </marker>
+                                    </defs>
+
+                                    <!-- Background grid -->
+                                    <g opacity="0.05">
+                                        <line x1="0" y1="125" x2="700" y2="125" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="250" x2="700" y2="250" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="0" y1="375" x2="700" y2="375" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="175" y1="0" x2="175" y2="500" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="350" y1="0" x2="350" y2="500" stroke="#cbd5e1" stroke-width="1"/>
+                                        <line x1="525" y1="0" x2="525" y2="500" stroke="#cbd5e1" stroke-width="1"/>
+                                    </g>
+
+                                    <!-- Edges group (drawn dynamically) -->
+                                    <g id="diffusion-edges"></g>
+
+                                    <!-- Flow animations group (information traveling) -->
+                                    <g id="diffusion-flows"></g>
+
+                                    <!-- Nodes group (drawn dynamically) -->
+                                    <g id="diffusion-nodes"></g>
+
+                                    <!-- Legend -->
+                                    <g transform="translate(20, 20)">
+                                        <rect width="200" height="105" fill="white" rx="8" opacity="0.95" filter="url(#dropShadow)"/>
+                                        <text x="15" y="25" font-size="13" font-weight="bold" fill="#374151">Information State:</text>
+
+                                        <circle cx="25" cy="45" r="8" fill="url(#infoGrad)"/>
+                                        <text x="40" y="50" font-size="12" fill="#6b7280">Source/Sending</text>
+
+                                        <circle cx="25" cy="68" r="8" fill="url(#receivedGrad)"/>
+                                        <text x="40" y="73" font-size="12" fill="#6b7280">Received</text>
+
+                                        <circle cx="25" cy="91" r="8" fill="url(#pendingGrad)"/>
+                                        <text x="40" y="96" font-size="12" fill="#6b7280">Not Yet Reached</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Timeline and Controls -->
+                            <div style="margin: 25px 0;">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600; min-width: 60px;">Progress</span>
+                                    <div style="flex: 1; position: relative; height: 36px; background: #f1f5f9; border-radius: 18px; padding: 6px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);">
+                                        <div id="diffusion-progress" style="position: absolute; top: 6px; left: 6px; height: 24px; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); border-radius: 12px; width: 0%; transition: width 0.5s ease; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);"></div>
+                                    </div>
+                                    <span id="diffusion-progress-label" style="font-size: 0.9em; color: #f59e0b; font-weight: 700; min-width: 80px; text-align: right;">Step 0/10</span>
+                                </div>
+                            </div>
+
+                            <!-- Animation Controls -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; padding: 20px; background: #f8fafc; border-radius: 12px;">
+                                <div style="display: flex; gap: 10px; flex: 1; justify-content: center;">
+                                    <button id="diffusion-play" class="control-btn" onclick="InformationDiffusion.play()"
+                                            style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 14px 32px; font-size: 1.05em; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
+                                        ▶️ Start
+                                    </button>
+                                    <button id="diffusion-pause" class="control-btn secondary" onclick="InformationDiffusion.pause()"
+                                            style="padding: 14px 32px; font-size: 1.05em; display: none;">
+                                        ⏸️ Pause
+                                    </button>
+                                    <button class="control-btn secondary" onclick="InformationDiffusion.reset()"
+                                            style="padding: 14px 32px; font-size: 1.05em;">
+                                        🔄 Reset
+                                    </button>
+                                    <button class="control-btn secondary" onclick="InformationDiffusion.step()"
+                                            style="padding: 14px 32px; font-size: 1.05em;">
+                                        ⏭️ Step
+                                    </button>
+                                </div>
+
+                                <!-- Speed Control -->
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                    <span style="font-size: 0.9em; color: #6b7280; font-weight: 600;">Speed:</span>
+                                    <button class="control-btn secondary" onclick="InformationDiffusion.setSpeed(0.5)" id="diffusion-speed-0.5" style="padding: 8px 16px; font-size: 0.9em;">
+                                        0.5x
+                                    </button>
+                                    <button class="control-btn" onclick="InformationDiffusion.setSpeed(1)" id="diffusion-speed-1" style="padding: 8px 16px; font-size: 0.9em; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                                        1x
+                                    </button>
+                                    <button class="control-btn secondary" onclick="InformationDiffusion.setSpeed(2)" id="diffusion-speed-2" style="padding: 8px 16px; font-size: 0.9em;">
+                                        2x
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Metrics Panel -->
+                        <div style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                            <h3 style="margin: 0 0 20px 0; font-size: 1.15em; color: #1f2937; border-bottom: 3px solid #f59e0b; padding-bottom: 12px;">📊 Diffusion Metrics</h3>
+
+                            <!-- Current Step -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="font-size: 0.85em; color: #92400e; font-weight: 600; margin-bottom: 6px;">TIME STEP</div>
+                                <div id="diffusion-step" style="font-size: 1.8em; font-weight: 800; color: #d97706; font-family: monospace;">0</div>
+                            </div>
+
+                            <!-- Nodes Reached -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="font-size: 0.85em; color: #065f46; font-weight: 600; margin-bottom: 8px;">REACH</div>
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <span style="font-size: 2em; font-weight: 800; color: #059669;" id="diffusion-reached">1</span>
+                                    <span style="font-size: 0.9em; color: #047857;">/ <span id="diffusion-total">7</span> nodes</span>
+                                </div>
+                                <div id="diffusion-percent" style="margin-top: 8px; font-size: 1.1em; font-weight: 600; color: #16a34a;">14%</div>
+                            </div>
+
+                            <!-- Messages Sent -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-size: 0.85em; color: #1e40af; font-weight: 600; margin-bottom: 8px;">MESSAGES</div>
+                                <div style="font-size: 1.6em; font-weight: 700; color: #2563eb;" id="diffusion-messages">0</div>
+                                <div style="font-size: 0.85em; color: #3b82f6; margin-top: 4px;">transmissions</div>
+                            </div>
+
+                            <!-- Efficiency Score -->
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 10px; border-left: 4px solid #ef4444;">
+                                <div style="font-size: 0.85em; color: #991b1b; font-weight: 600; margin-bottom: 8px;">REDUNDANCY</div>
+                                <div style="font-size: 1.5em; font-weight: 700; color: #dc2626;" id="diffusion-redundancy">0%</div>
+                                <div style="font-size: 0.8em; color: #7f1d1d; margin-top: 4px;">duplicate messages</div>
+                            </div>
+
+                            <!-- Status -->
+                            <div id="diffusion-status" style="padding: 15px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 10px; border-left: 4px solid #64748b;">
+                                <div style="font-size: 0.85em; color: #475569; font-weight: 600; margin-bottom: 6px;">STATUS</div>
+                                <div id="diffusion-status-text" style="font-size: 0.95em; color: #1e293b; line-height: 1.5; font-weight: 500;">Ready to start</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario Explanation -->
+                    <div id="diffusion-explanation" style="padding: 25px; background: white; border-radius: 12px; border-left: 5px solid #8b5cf6; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0 0 15px 0; color: #6d28d9; font-size: 1.2em;">📖 Scenario: Dense Network</h4>
+                        <p id="diffusion-description" style="margin: 0; line-height: 1.8; color: #4b5563;">
+                            All nodes are connected with <strong>strong ties</strong>. While information spreads quickly to neighbors, the high overlap means lots of redundant messages. Everyone receives the same information multiple times.
+                        </p>
+                    </div>
+
+                    <!-- Research Context -->
+                    <div style="margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-radius: 12px; border-left: 5px solid #f59e0b;">
+                        <h4 style="margin: 0 0 15px 0; color: #92400e; font-size: 1.2em;">🔬 Research Finding</h4>
+                        <p style="margin: 0; line-height: 1.8; color: #78350f;">
+                            <strong>Granovetter (1973):</strong> Weak ties serve as bridges between social clusters, dramatically increasing information reach while reducing redundancy. In dense networks with strong ties, information circulates within the same group repeatedly. Weak ties break through to new social circles, providing access to novel information that wouldn't reach you through your close friends.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
             <!-- Attribution -->
             <div class="attribution">
                 <p><strong>Interactive Tool:</strong> Based on network analysis principles from Granovetter (1973)</p>
@@ -4309,6 +4527,395 @@
         };
 
         // ========================================
+        // INFORMATION DIFFUSION SIMULATOR
+        // ========================================
+
+        const InformationDiffusion = {
+            // State
+            currentScenario: 'dense',
+            currentStep: 0,
+            isPlaying: false,
+            playInterval: null,
+            playbackSpeed: 1,
+
+            // Network configurations
+            networks: {
+                dense: {
+                    name: 'Dense Network (Strong Ties)',
+                    nodes: [
+                        { id: 1, x: 350, y: 100, label: 'A' },
+                        { id: 2, x: 200, y: 200, label: 'B' },
+                        { id: 3, x: 500, y: 200, label: 'C' },
+                        { id: 4, x: 150, y: 350, label: 'D' },
+                        { id: 5, x: 350, y: 350, label: 'E' },
+                        { id: 6, x: 550, y: 350, label: 'F' },
+                        { id: 7, x: 350, y: 450, label: 'G' }
+                    ],
+                    edges: [
+                        { from: 1, to: 2, type: 'strong' },
+                        { from: 1, to: 3, type: 'strong' },
+                        { from: 2, to: 3, type: 'strong' },
+                        { from: 2, to: 4, type: 'strong' },
+                        { from: 2, to: 5, type: 'strong' },
+                        { from: 3, to: 5, type: 'strong' },
+                        { from: 3, to: 6, type: 'strong' },
+                        { from: 4, to: 5, type: 'strong' },
+                        { from: 5, to: 6, type: 'strong' },
+                        { from: 5, to: 7, type: 'strong' },
+                        { from: 4, to: 7, type: 'strong' },
+                        { from: 6, to: 7, type: 'strong' }
+                    ],
+                    source: 1,
+                    description: 'All nodes connected with <strong>strong ties</strong>. High overlap creates redundancy - information spreads quickly within the cluster but reaches the same people multiple times.'
+                },
+
+                bridge: {
+                    name: 'Bridge Network (Weak Bridge)',
+                    nodes: [
+                        { id: 1, x: 150, y: 150, label: 'A' },
+                        { id: 2, x: 250, y: 100, label: 'B' },
+                        { id: 3, x: 250, y: 200, label: 'C' },
+                        { id: 4, x: 350, y: 250, label: 'D' }, // Bridge
+                        { id: 5, x: 450, y: 200, label: 'E' },
+                        { id: 6, x: 550, y: 150, label: 'F' },
+                        { id: 7, x: 450, y: 300, label: 'G' }
+                    ],
+                    edges: [
+                        { from: 1, to: 2, type: 'strong' },
+                        { from: 1, to: 3, type: 'strong' },
+                        { from: 2, to: 3, type: 'strong' },
+                        { from: 3, to: 4, type: 'weak' }, // Bridge connection
+                        { from: 4, to: 5, type: 'weak' }, // Bridge connection
+                        { from: 5, to: 6, type: 'strong' },
+                        { from: 5, to: 7, type: 'strong' },
+                        { from: 6, to: 7, type: 'strong' }
+                    ],
+                    source: 1,
+                    description: 'Node D acts as a <strong>bridge</strong> with weak ties connecting two clusters. Information flows across social boundaries, reaching novel social circles with minimal redundancy.'
+                },
+
+                weak: {
+                    name: 'Weak Ties Network',
+                    nodes: [
+                        { id: 1, x: 350, y: 100, label: 'A' },
+                        { id: 2, x: 200, y: 200, label: 'B' },
+                        { id: 3, x: 500, y: 200, label: 'C' },
+                        { id: 4, x: 150, y: 350, label: 'D' },
+                        { id: 5, x: 350, y: 350, label: 'E' },
+                        { id: 6, x: 550, y: 350, label: 'F' },
+                        { id: 7, x: 350, y: 450, label: 'G' }
+                    ],
+                    edges: [
+                        { from: 1, to: 2, type: 'weak' },
+                        { from: 1, to: 3, type: 'weak' },
+                        { from: 2, to: 4, type: 'weak' },
+                        { from: 3, to: 6, type: 'weak' },
+                        { from: 4, to: 5, type: 'weak' },
+                        { from: 5, to: 7, type: 'weak' },
+                        { from: 6, to: 7, type: 'weak' }
+                    ],
+                    source: 1,
+                    description: 'Only <strong>weak ties</strong> connect nodes. Sparse connections mean slower spread but <strong>high diversity</strong> - each person reaches completely new social circles.'
+                }
+            },
+
+            // Diffusion state
+            nodeStates: new Map(), // id -> { hasInfo: bool, receivedAt: step, timesReceived: count }
+            messages: [],
+            totalMessages: 0,
+
+            init() {
+                this.loadScenario('dense');
+            },
+
+            loadScenario(scenarioName) {
+                this.currentScenario = scenarioName;
+                this.reset();
+
+                // Update button states
+                ['dense', 'bridge', 'weak', 'compare'].forEach(name => {
+                    const btn = document.getElementById(`diffusion-${name}`);
+                    if (btn) {
+                        if (name === scenarioName) {
+                            btn.classList.remove('secondary');
+                            const colors = {
+                                'dense': 'background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);',
+                                'bridge': 'background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);',
+                                'weak': 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);',
+                                'compare': 'background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);'
+                            };
+                            btn.style = `padding: 15px 30px; font-size: 1.05em; ${colors[name]}`;
+                        } else {
+                            btn.classList.add('secondary');
+                            btn.style = 'padding: 15px 30px; font-size: 1.05em;';
+                        }
+                    }
+                });
+
+                // Update explanation
+                const network = this.networks[scenarioName];
+                document.getElementById('diffusion-description').innerHTML = network.description;
+                document.querySelector('#diffusion-explanation h4').textContent = `📖 Scenario: ${network.name}`;
+
+                this.renderNetwork();
+            },
+
+            reset() {
+                this.currentStep = 0;
+                this.totalMessages = 0;
+                this.pause();
+
+                const network = this.networks[this.currentScenario];
+
+                // Reset node states
+                this.nodeStates.clear();
+                network.nodes.forEach(node => {
+                    this.nodeStates.set(node.id, {
+                        hasInfo: node.id === network.source,
+                        receivedAt: node.id === network.source ? 0 : null,
+                        timesReceived: node.id === network.source ? 1 : 0
+                    });
+                });
+
+                this.messages = [];
+                this.renderNetwork();
+                this.updateMetrics();
+            },
+
+            renderNetwork() {
+                const network = this.networks[this.currentScenario];
+                const edgesGroup = document.getElementById('diffusion-edges');
+                const nodesGroup = document.getElementById('diffusion-nodes');
+
+                if (!edgesGroup || !nodesGroup) return;
+
+                // Clear existing
+                edgesGroup.innerHTML = '';
+                nodesGroup.innerHTML = '';
+
+                // Draw edges
+                network.edges.forEach(edge => {
+                    const fromNode = network.nodes.find(n => n.id === edge.from);
+                    const toNode = network.nodes.find(n => n.id === edge.to);
+
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', fromNode.x);
+                    line.setAttribute('y1', fromNode.y);
+                    line.setAttribute('x2', toNode.x);
+                    line.setAttribute('y2', toNode.y);
+                    line.setAttribute('stroke', edge.type === 'strong' ? '#cbd5e1' : '#d1d5db');
+                    line.setAttribute('stroke-width', edge.type === 'strong' ? '3' : '2');
+                    line.setAttribute('stroke-dasharray', edge.type === 'weak' ? '5,5' : '0');
+                    line.setAttribute('opacity', '0.6');
+                    edgesGroup.appendChild(line);
+                });
+
+                // Draw nodes
+                network.nodes.forEach(node => {
+                    const state = this.nodeStates.get(node.id);
+
+                    // Node circle
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', node.x);
+                    circle.setAttribute('cy', node.y);
+                    circle.setAttribute('r', '35');
+
+                    if (state.hasInfo) {
+                        circle.setAttribute('fill', 'url(#receivedGrad)');
+                    } else {
+                        circle.setAttribute('fill', 'url(#pendingGrad)');
+                    }
+
+                    circle.setAttribute('stroke', 'white');
+                    circle.setAttribute('stroke-width', '3');
+                    circle.setAttribute('filter', 'url(#dropShadow)');
+                    circle.style.transition = 'all 0.6s ease';
+                    nodesGroup.appendChild(circle);
+
+                    // Label
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', node.x);
+                    text.setAttribute('y', node.y + 6);
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('fill', 'white');
+                    text.setAttribute('font-size', '20');
+                    text.setAttribute('font-weight', 'bold');
+                    text.setAttribute('pointer-events', 'none');
+                    text.textContent = node.label;
+                    nodesGroup.appendChild(text);
+
+                    // Received count badge (if received multiple times)
+                    if (state.timesReceived > 1) {
+                        const badge = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        badge.setAttribute('cx', node.x + 20);
+                        badge.setAttribute('cy', node.y - 20);
+                        badge.setAttribute('r', '12');
+                        badge.setAttribute('fill', '#ef4444');
+                        badge.setAttribute('stroke', 'white');
+                        badge.setAttribute('stroke-width', '2');
+                        nodesGroup.appendChild(badge);
+
+                        const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        badgeText.setAttribute('x', node.x + 20);
+                        badgeText.setAttribute('y', node.y - 16);
+                        badgeText.setAttribute('text-anchor', 'middle');
+                        badgeText.setAttribute('fill', 'white');
+                        badgeText.setAttribute('font-size', '12');
+                        badgeText.setAttribute('font-weight', 'bold');
+                        badgeText.textContent = state.timesReceived;
+                        nodesGroup.appendChild(badgeText);
+                    }
+                });
+            },
+
+            step() {
+                const network = this.networks[this.currentScenario];
+                this.currentStep++;
+
+                // Find nodes that have info and can send
+                const sendingNodes = [];
+                this.nodeStates.forEach((state, nodeId) => {
+                    if (state.hasInfo) {
+                        sendingNodes.push(nodeId);
+                    }
+                });
+
+                // For each sending node, send to neighbors
+                sendingNodes.forEach(senderId => {
+                    // Find neighbors
+                    const neighbors = network.edges
+                        .filter(e => e.from === senderId || e.to === senderId)
+                        .map(e => e.from === senderId ? e.to : e.from);
+
+                    neighbors.forEach(neighborId => {
+                        const neighborState = this.nodeStates.get(neighborId);
+
+                        // Send message
+                        this.totalMessages++;
+
+                        // Mark as received if not yet received
+                        if (!neighborState.hasInfo) {
+                            neighborState.hasInfo = true;
+                            neighborState.receivedAt = this.currentStep;
+                        }
+
+                        neighborState.timesReceived++;
+                    });
+                });
+
+                this.renderNetwork();
+                this.updateMetrics();
+
+                // Check if complete
+                let allReached = true;
+                this.nodeStates.forEach(state => {
+                    if (!state.hasInfo) allReached = false;
+                });
+
+                if (allReached) {
+                    this.pause();
+                    document.getElementById('diffusion-status-text').innerHTML = '<strong>🎉 Complete!</strong> All nodes reached.';
+                }
+            },
+
+            updateMetrics() {
+                const network = this.networks[this.currentScenario];
+
+                // Count nodes reached
+                let reached = 0;
+                this.nodeStates.forEach(state => {
+                    if (state.hasInfo) reached++;
+                });
+
+                const total = network.nodes.length;
+                const percent = ((reached / total) * 100).toFixed(0);
+
+                // Update UI
+                document.getElementById('diffusion-step').textContent = this.currentStep;
+                document.getElementById('diffusion-reached').textContent = reached;
+                document.getElementById('diffusion-total').textContent = total;
+                document.getElementById('diffusion-percent').textContent = `${percent}%`;
+                document.getElementById('diffusion-messages').textContent = this.totalMessages;
+
+                // Calculate redundancy
+                const redundancy = reached > 0 ? (((this.totalMessages - reached) / this.totalMessages) * 100).toFixed(0) : 0;
+                document.getElementById('diffusion-redundancy').textContent = `${redundancy}%`;
+
+                // Update progress bar
+                const progress = (reached / total) * 100;
+                document.getElementById('diffusion-progress').style.width = `${progress}%`;
+                document.getElementById('diffusion-progress-label').textContent = `Step ${this.currentStep}/${total * 2}`;
+
+                // Update status
+                if (reached < total) {
+                    document.getElementById('diffusion-status-text').textContent = `Spreading... ${reached}/${total} nodes reached`;
+                }
+            },
+
+            play() {
+                if (this.isPlaying) return;
+
+                this.isPlaying = true;
+                const baseInterval = 1000;
+                const interval = baseInterval / this.playbackSpeed;
+
+                document.getElementById('diffusion-play').style.display = 'none';
+                document.getElementById('diffusion-pause').style.display = 'inline-block';
+
+                this.playInterval = setInterval(() => {
+                    this.step();
+
+                    // Check if all reached
+                    const network = this.networks[this.currentScenario];
+                    let allReached = true;
+                    this.nodeStates.forEach(state => {
+                        if (!state.hasInfo) allReached = false;
+                    });
+
+                    if (allReached || this.currentStep >= network.nodes.length * 2) {
+                        this.pause();
+                    }
+                }, interval);
+            },
+
+            pause() {
+                this.isPlaying = false;
+                if (this.playInterval) {
+                    clearInterval(this.playInterval);
+                    this.playInterval = null;
+                }
+
+                document.getElementById('diffusion-play').style.display = 'inline-block';
+                document.getElementById('diffusion-pause').style.display = 'none';
+            },
+
+            setSpeed(speed) {
+                this.playbackSpeed = speed;
+
+                // Update button states
+                ['0.5', '1', '2'].forEach(s => {
+                    const btn = document.getElementById(`diffusion-speed-${s}`);
+                    if (btn) {
+                        if (parseFloat(s) === speed) {
+                            btn.classList.remove('secondary');
+                            btn.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+                            btn.style.boxShadow = '0 4px 12px rgba(245, 158, 11, 0.3)';
+                        } else {
+                            btn.classList.add('secondary');
+                            btn.style.background = '';
+                            btn.style.boxShadow = '';
+                        }
+                    }
+                });
+
+                if (this.isPlaying) {
+                    this.pause();
+                    this.play();
+                }
+            }
+        };
+
+        // ========================================
         // MODE TOGGLE (Research vs Illustrative)
         // ========================================
 
@@ -4378,6 +4985,10 @@
 
             if (document.getElementById('triad-animation')) {
                 TriadicClosure.init();
+            }
+
+            if (document.getElementById('diffusion-svg')) {
+                InformationDiffusion.init();
             }
 
             // Set default mode
