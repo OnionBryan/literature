@@ -2145,6 +2145,110 @@
                                 style="padding: 15px 30px; font-size: 1.05em;">
                             📈 Dense vs Sparse
                         </button>
+                        <button id="scenario-whatIf" class="control-btn secondary" onclick="TriadicClosure.loadScenario('whatIf')"
+                                style="padding: 15px 30px; font-size: 1.05em;">
+                            🔮 What If?
+                        </button>
+                    </div>
+
+                    <!-- What If Scenario Builder (shown only in whatIf mode) -->
+                    <div id="whatif-builder" style="display: none; background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 3px solid #f59e0b;">
+                        <h3 style="margin: 0 0 20px 0; color: #92400e; font-size: 1.3em;">🔮 Build Your Own Scenario</h3>
+                        <p style="margin: 0 0 20px 0; color: #78350f; line-height: 1.7;">
+                            Experiment with different network configurations and see what Granovetter's theory predicts!
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                            <!-- A-B Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">A ↔ B Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('ab')" id="whatif-toggle-ab"
+                                            class="control-btn" style="flex: 1; padding: 12px; font-size: 0.95em; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                        ✓ Connected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-ab" style="display: flex; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('ab', 'strong')" id="whatif-ab-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('ab', 'weak')" id="whatif-ab-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- B-C Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">B ↔ C Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('bc')" id="whatif-toggle-bc"
+                                            class="control-btn secondary" style="flex: 1; padding: 12px; font-size: 0.95em;">
+                                        ✗ Disconnected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-bc" style="display: none; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('bc', 'strong')" id="whatif-bc-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('bc', 'weak')" id="whatif-bc-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- A-C Connection -->
+                            <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.1em;">A ↔ C Connection</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <button onclick="TriadicClosure.whatIf.toggleEdge('ac')" id="whatif-toggle-ac"
+                                            class="control-btn secondary" style="flex: 1; padding: 12px; font-size: 0.95em;">
+                                        ✗ Disconnected
+                                    </button>
+                                </div>
+                                <div id="whatif-type-ac" style="display: none; gap: 8px;">
+                                    <button onclick="TriadicClosure.whatIf.setType('ac', 'strong')" id="whatif-ac-strong"
+                                            class="control-btn" style="flex: 1; padding: 10px; font-size: 0.9em; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        💪 Strong
+                                    </button>
+                                    <button onclick="TriadicClosure.whatIf.setType('ac', 'weak')" id="whatif-ac-weak"
+                                            class="control-btn secondary" style="flex: 1; padding: 10px; font-size: 0.9em;">
+                                        🤝 Weak
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Granovetter's Prediction -->
+                        <div id="whatif-prediction" style="margin-top: 25px; padding: 20px; background: white; border-radius: 10px; border-left: 5px solid #8b5cf6;">
+                            <h4 style="margin: 0 0 12px 0; color: #6d28d9; font-size: 1.15em;">📊 Granovetter's Prediction</h4>
+                            <div id="whatif-prediction-text" style="color: #4b5563; line-height: 1.8; font-size: 0.95em;">
+                                Select connections above to see what the theory predicts...
+                            </div>
+                        </div>
+
+                        <!-- Quick Presets -->
+                        <div style="margin-top: 20px; padding: 18px; background: rgba(255,255,255,0.7); border-radius: 10px;">
+                            <h4 style="margin: 0 0 12px 0; color: #1f2937; font-size: 1em;">⚡ Quick Presets:</h4>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button onclick="TriadicClosure.whatIf.loadPreset('forbiddenTriad')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    ⚠️ Forbidden Triad
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('completeClosure')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🔴 Complete Closure
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('perfectBridge')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🌉 Perfect Bridge
+                                </button>
+                                <button onclick="TriadicClosure.whatIf.loadPreset('weakBridge')" class="control-btn secondary" style="padding: 10px 20px; font-size: 0.9em;">
+                                    🟢 Weak Bridge
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Main Visualization Area with Live Metrics -->
@@ -3622,6 +3726,238 @@
                             principle: '📊 EMPIRICAL DATA: Weak ties more effective for job search than strong ties.'
                         }
                     ]
+                },
+
+                whatIf: {
+                    name: 'What If Scenario Builder',
+                    steps: [
+                        {
+                            triad: '102',
+                            edges: { ab: true, bc: false, ac: false },
+                            abType: 'strong',
+                            title: 'Custom Scenario',
+                            explanation: 'Build your own network configuration using the controls above!',
+                            principle: 'Experiment to understand how tie strength affects closure dynamics.'
+                        }
+                    ]
+                }
+            },
+
+            // What If scenario builder module
+            whatIf: {
+                state: {
+                    ab: { connected: true, type: 'strong' },
+                    bc: { connected: false, type: 'strong' },
+                    ac: { connected: false, type: 'strong' }
+                },
+
+                toggleEdge(edgeId) {
+                    this.state[edgeId].connected = !this.state[edgeId].connected;
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
+                },
+
+                setType(edgeId, type) {
+                    this.state[edgeId].type = type;
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
+                },
+
+                updateUI() {
+                    ['ab', 'bc', 'ac'].forEach(edgeId => {
+                        const toggleBtn = document.getElementById(`whatif-toggle-${edgeId}`);
+                        const typeDiv = document.getElementById(`whatif-type-${edgeId}`);
+                        const strongBtn = document.getElementById(`whatif-${edgeId}-strong`);
+                        const weakBtn = document.getElementById(`whatif-${edgeId}-weak`);
+
+                        if (this.state[edgeId].connected) {
+                            toggleBtn.textContent = '✓ Connected';
+                            toggleBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                            toggleBtn.classList.remove('secondary');
+                            typeDiv.style.display = 'flex';
+
+                            if (this.state[edgeId].type === 'strong') {
+                                strongBtn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                                strongBtn.classList.remove('secondary');
+                                weakBtn.style.background = '';
+                                weakBtn.classList.add('secondary');
+                            } else {
+                                weakBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                                weakBtn.classList.remove('secondary');
+                                strongBtn.style.background = '';
+                                strongBtn.classList.add('secondary');
+                            }
+                        } else {
+                            toggleBtn.textContent = '✗ Disconnected';
+                            toggleBtn.style.background = '';
+                            toggleBtn.classList.add('secondary');
+                            typeDiv.style.display = 'none';
+                        }
+                    });
+                },
+
+                updateVisualization() {
+                    TriadicClosure.updateEdge('ab', this.state.ab.connected, this.state.ab.type);
+                    TriadicClosure.updateEdge('bc', this.state.bc.connected, this.state.bc.type);
+                    TriadicClosure.updateEdge('ac', this.state.ac.connected, this.state.ac.type);
+
+                    // Update live metrics
+                    const step = this.generateStepData();
+                    TriadicClosure.updateLiveMetrics(step);
+                },
+
+                generateStepData() {
+                    // Determine triad type based on current state
+                    const edges = {
+                        ab: this.state.ab.connected,
+                        bc: this.state.bc.connected,
+                        ac: this.state.ac.connected
+                    };
+
+                    let triad = '003'; // default: no connections
+                    let mutual = 0;
+
+                    if (edges.ab) mutual++;
+                    if (edges.bc) mutual++;
+                    if (edges.ac) mutual++;
+
+                    if (mutual === 0) triad = '003';
+                    else if (mutual === 1) triad = '102';
+                    else if (mutual === 2) triad = '201';
+                    else if (mutual === 3) triad = '300';
+
+                    return {
+                        triad: triad,
+                        edges: edges,
+                        abType: this.state.ab.type,
+                        bcType: this.state.bc.type,
+                        acType: this.state.ac.type
+                    };
+                },
+
+                updatePrediction() {
+                    const predictionEl = document.getElementById('whatif-prediction-text');
+                    if (!predictionEl) return;
+
+                    const ab = this.state.ab;
+                    const bc = this.state.bc;
+                    const ac = this.state.ac;
+
+                    let prediction = '';
+
+                    // No connections
+                    if (!ab.connected && !bc.connected && !ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> Completely disconnected (Triad <strong>003</strong>)<br><br>
+                            <strong style="color: #6b7280;">Prediction:</strong> No information flow possible. These three people have no relationship.
+                        `;
+                    }
+                    // One connection only
+                    else if ((ab.connected && !bc.connected && !ac.connected) ||
+                             (!ab.connected && bc.connected && !ac.connected) ||
+                             (!ab.connected && !bc.connected && ac.connected)) {
+                        prediction = `
+                            <strong>Current State:</strong> Single connection (Triad <strong>102</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> Information can flow between two nodes. The third person remains isolated from this dyad.
+                        `;
+                    }
+                    // Two connections (Forbidden Triad setup)
+                    else if (ab.connected && bc.connected && !ac.connected) {
+                        if (ab.type === 'strong' && bc.type === 'strong') {
+                            prediction = `
+                                <strong>Current State:</strong> Forbidden Triad! (Triad <strong>201</strong>)<br><br>
+                                <strong style="color: #dc2626;">⚠️ Granovetter's Prediction:</strong> This configuration is <strong>highly unstable</strong>.
+                                Since A-B is strong AND B-C is strong, triadic closure pressure is HIGH.
+                                A and C will likely meet through B and form a tie, closing the triad to <strong>300</strong>.<br><br>
+                                <strong style="color: #7c3aed;">Expected Outcome:</strong> Complete closure (echo chamber, high redundancy).
+                            `;
+                        } else if (ab.type === 'weak' || bc.type === 'weak') {
+                            const weakEdge = ab.type === 'weak' ? 'A-B' : 'B-C';
+                            prediction = `
+                                <strong>Current State:</strong> Open triad with weak tie (Triad <strong>201</strong>)<br><br>
+                                <strong style="color: #10b981;">✅ Granovetter's Prediction:</strong> The <strong>${weakEdge} weak tie</strong> resists closure!
+                                Weak ties involve infrequent contact, so A and C are unlikely to meet through B.<br><br>
+                                <strong style="color: #16a34a;">Expected Outcome:</strong> B acts as a <strong>bridge</strong>, providing A and C access to
+                                non-overlapping information networks. Low redundancy, high novelty!
+                            `;
+                        }
+                    }
+                    else if (ab.connected && !bc.connected && ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> A connected to both B and C (Triad <strong>201</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> A is the central node connecting B and C.
+                            If A-B and A-C are both strong, B and C will likely meet through A and form a tie.
+                        `;
+                    }
+                    else if (!ab.connected && bc.connected && ac.connected) {
+                        prediction = `
+                            <strong>Current State:</strong> C connected to both A and B (Triad <strong>201</strong>)<br><br>
+                            <strong style="color: #3b82f6;">Prediction:</strong> C is the central node connecting A and B.
+                            If B-C and A-C are both strong, A and B will likely meet through C and form a tie.
+                        `;
+                    }
+                    // Complete closure
+                    else if (ab.connected && bc.connected && ac.connected) {
+                        const allStrong = ab.type === 'strong' && bc.type === 'strong' && ac.type === 'strong';
+                        const allWeak = ab.type === 'weak' && bc.type === 'weak' && ac.type === 'weak';
+
+                        if (allStrong) {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, all strong ties (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #dc2626;">❌ Problem:</strong> This is a fully closed network - an echo chamber.
+                                All three people know each other well and share the same information.<br><br>
+                                <strong style="color: #ef4444;">Impact:</strong> <strong>HIGH redundancy, LOW access to novel information.</strong>
+                                Bad for job search (remember: 83.4% of jobs came through weak/moderate ties, not strong ties!).
+                            `;
+                        } else if (allWeak) {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, all weak ties (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #f59e0b;">Unusual configuration!</strong> Having weak ties to people who also know each other weakly
+                                creates some redundancy, but less than strong ties.<br><br>
+                                <strong style="color: #d97706;">Impact:</strong> Moderate redundancy. Not as bad as all-strong, but not optimal for information diversity.
+                            `;
+                        } else {
+                            prediction = `
+                                <strong>Current State:</strong> Complete closure, mixed tie strengths (Triad <strong>300</strong>)<br><br>
+                                <strong style="color: #8b5cf6;">Mixed outcome.</strong> The network is closed, creating some redundancy.
+                                However, the weak ties provide some degree of access to different information sources.<br><br>
+                                <strong style="color: #7c3aed;">Impact:</strong> Moderate redundancy with limited novelty.
+                            `;
+                        }
+                    }
+
+                    predictionEl.innerHTML = prediction;
+                },
+
+                loadPreset(presetName) {
+                    switch (presetName) {
+                        case 'forbiddenTriad':
+                            this.state.ab = { connected: true, type: 'strong' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: false, type: 'strong' };
+                            break;
+                        case 'completeClosure':
+                            this.state.ab = { connected: true, type: 'strong' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: true, type: 'strong' };
+                            break;
+                        case 'perfectBridge':
+                            this.state.ab = { connected: true, type: 'weak' };
+                            this.state.bc = { connected: true, type: 'strong' };
+                            this.state.ac = { connected: false, type: 'strong' };
+                            break;
+                        case 'weakBridge':
+                            this.state.ab = { connected: true, type: 'weak' };
+                            this.state.bc = { connected: true, type: 'weak' };
+                            this.state.ac = { connected: false, type: 'weak' };
+                            break;
+                    }
+
+                    this.updateUI();
+                    this.updateVisualization();
+                    this.updatePrediction();
                 }
             },
 
@@ -3640,7 +3976,22 @@
                 });
                 document.getElementById(`scenario-${scenarioName}`).classList.add('active');
 
-                this.renderStep();
+                // Handle What If scenario specially
+                const whatIfBuilder = document.getElementById('whatif-builder');
+                if (scenarioName === 'whatIf') {
+                    if (whatIfBuilder) {
+                        whatIfBuilder.style.display = 'block';
+                        // Initialize What If module
+                        this.whatIf.updateUI();
+                        this.whatIf.updateVisualization();
+                        this.whatIf.updatePrediction();
+                    }
+                } else {
+                    if (whatIfBuilder) {
+                        whatIfBuilder.style.display = 'none';
+                    }
+                    this.renderStep();
+                }
             },
 
             renderStep() {
