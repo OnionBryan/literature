@@ -1573,6 +1573,133 @@
                 </div>
             </div>
 
+            <!-- Job Search Probability Calculator -->
+            <div class="section">
+                <h2>🎲 Job Search Probability Calculator</h2>
+                <p>Based on Granovetter's empirical findings, calculate your likelihood of finding a job through different types of contacts.</p>
+
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-top: 25px;">
+
+                    <!-- Empirical Baseline Display -->
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 5px solid #2a5298;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">📊 Granovetter's Study Results (N=54)</h3>
+                        <p style="margin-bottom: 20px; color: #64748b;">Percentage of jobs found through each tie type:</p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border-radius: 10px;">
+                                <div style="font-size: 2.5em; font-weight: bold;">16.7%</div>
+                                <div style="font-size: 1.1em; margin-top: 5px;">Strong Ties</div>
+                                <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Saw often (≥2x/week)</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border-radius: 10px;">
+                                <div style="font-size: 2.5em; font-weight: bold;">55.6%</div>
+                                <div style="font-size: 1.1em; margin-top: 5px;">Moderate Ties</div>
+                                <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Saw occasionally</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white; border-radius: 10px;">
+                                <div style="font-size: 2.5em; font-weight: bold;">27.8%</div>
+                                <div style="font-size: 1.1em; margin-top: 5px;">Weak Ties</div>
+                                <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Saw rarely (≤1x/year)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Input Section -->
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">🎯 Your Network Composition</h3>
+                        <p style="margin-bottom: 25px; color: #64748b;">Adjust the sliders to match your network. They auto-normalize to 100%.</p>
+
+                        <!-- Strong Ties Slider -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label style="font-weight: 600; color: #1e3c72;">Strong Ties (Close friends, family):</label>
+                                <span id="strong-value" style="font-size: 1.3em; font-weight: bold; color: #e74c3c; min-width: 60px; text-align: right;">33%</span>
+                            </div>
+                            <input type="range" id="strong-slider" min="0" max="100" value="33"
+                                   style="width: 100%; height: 8px; border-radius: 5px; outline: none; background: linear-gradient(to right, #e74c3c 0%, #e74c3c 33%, #e0e6ed 33%, #e0e6ed 100%);"
+                                   oninput="JobSearchCalculator.updateSlider('strong', this.value)">
+                        </div>
+
+                        <!-- Moderate Ties Slider -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label style="font-weight: 600; color: #1e3c72;">Moderate Ties (Acquaintances):</label>
+                                <span id="moderate-value" style="font-size: 1.3em; font-weight: bold; color: #3498db; min-width: 60px; text-align: right;">34%</span>
+                            </div>
+                            <input type="range" id="moderate-slider" min="0" max="100" value="34"
+                                   style="width: 100%; height: 8px; border-radius: 5px; outline: none; background: linear-gradient(to right, #3498db 0%, #3498db 34%, #e0e6ed 34%, #e0e6ed 100%);"
+                                   oninput="JobSearchCalculator.updateSlider('moderate', this.value)">
+                        </div>
+
+                        <!-- Weak Ties Slider -->
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label style="font-weight: 600; color: #1e3c72;">Weak Ties (Distant contacts):</label>
+                                <span id="weak-value" style="font-size: 1.3em; font-weight: bold; color: #2ecc71; min-width: 60px; text-align: right;">33%</span>
+                            </div>
+                            <input type="range" id="weak-slider" min="0" max="100" value="33"
+                                   style="width: 100%; height: 8px; border-radius: 5px; outline: none; background: linear-gradient(to right, #2ecc71 0%, #2ecc71 33%, #e0e6ed 33%, #e0e6ed 100%);"
+                                   oninput="JobSearchCalculator.updateSlider('weak', this.value)">
+                        </div>
+
+                        <div style="text-align: center; padding: 12px; background: #f8f9fa; border-radius: 8px; margin-top: 15px;">
+                            <strong>Total:</strong> <span id="total-percentage" style="font-size: 1.2em; font-weight: bold; color: #1e3c72;">100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3 style="margin-top: 0; color: #1e3c72; font-size: 1.3em;">📈 Your Job Search Success Probability</h3>
+
+                        <!-- Probability Meter -->
+                        <div style="margin: 25px 0;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div id="success-probability" style="font-size: 3.5em; font-weight: bold; color: #10b981;">100%</div>
+                                <div style="font-size: 1.1em; color: #64748b;">Relative Success Rate</div>
+                            </div>
+
+                            <div style="background: #e0e6ed; height: 40px; border-radius: 20px; overflow: hidden; position: relative;">
+                                <div id="probability-bar" style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); height: 100%; width: 100%; transition: width 0.3s ease, background 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em;">
+                                    Excellent
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison -->
+                        <div id="comparison-result" style="margin-top: 25px; padding: 20px; background: #f0f9ff; border-left: 4px solid #3b82f6; border-radius: 8px;">
+                            <strong style="color: #1e3c72;">💡 Analysis:</strong>
+                            <p id="comparison-text" style="margin-top: 10px; line-height: 1.8; color: #334155;">
+                                Your network composition matches the study average perfectly.
+                            </p>
+                        </div>
+
+                        <!-- Breakdown -->
+                        <div style="margin-top: 25px;">
+                            <h4 style="color: #1e3c72; margin-bottom: 15px;">Expected Job Leads by Source:</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+                                <div style="padding: 15px; background: #fef2f2; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.85em; color: #991b1b; margin-bottom: 5px;">From Strong Ties</div>
+                                    <div id="strong-leads" style="font-size: 1.8em; font-weight: bold; color: #dc2626;">17%</div>
+                                </div>
+                                <div style="padding: 15px; background: #eff6ff; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.85em; color: #1e40af; margin-bottom: 5px;">From Moderate Ties</div>
+                                    <div id="moderate-leads" style="font-size: 1.8em; font-weight: bold; color: #2563eb;">56%</div>
+                                </div>
+                                <div style="padding: 15px; background: #f0fdf4; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.85em; color: #166534; margin-bottom: 5px;">From Weak Ties</div>
+                                    <div id="weak-leads" style="font-size: 1.8em; font-weight: bold; color: #16a34a;">28%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="help-text" style="margin-top: 20px;">
+                    <strong>💡 How to interpret:</strong> This calculator uses Granovetter's empirical data showing that weak and moderate ties were significantly more helpful than strong ties. A higher percentage of weak/moderate ties generally leads to more diverse job opportunities.
+                </div>
+            </div>
+
             <!-- Attribution -->
             <div class="attribution">
                 <p><strong>Interactive Tool:</strong> Based on network analysis principles from Granovetter (1973)</p>
@@ -2210,10 +2337,228 @@
             }
         };
 
+        // ========================================
+        // JOB SEARCH PROBABILITY CALCULATOR
+        // ========================================
+
+        const JobSearchCalculator = {
+            // Empirical data from Granovetter (1973)
+            baseline: {
+                strong: 0.167,    // 16.7%
+                moderate: 0.556,  // 55.6%
+                weak: 0.278       // 27.8%
+            },
+
+            values: {
+                strong: 33,
+                moderate: 34,
+                weak: 33
+            },
+
+            init() {
+                this.calculate();
+            },
+
+            updateSlider(type, value) {
+                const numValue = parseInt(value);
+                this.values[type] = numValue;
+
+                // Auto-normalize to 100%
+                this.normalize(type);
+
+                // Update UI
+                this.updateSliderUI();
+
+                // Recalculate
+                this.calculate();
+            },
+
+            normalize(changedType) {
+                const total = this.values.strong + this.values.moderate + this.values.weak;
+
+                if (total === 0) {
+                    // Reset to equal distribution
+                    this.values.strong = 33;
+                    this.values.moderate = 34;
+                    this.values.weak = 33;
+                    return;
+                }
+
+                if (total !== 100) {
+                    // Proportionally adjust the other two
+                    const others = total - this.values[changedType];
+                    if (others > 0) {
+                        const types = ['strong', 'moderate', 'weak'].filter(t => t !== changedType);
+                        const ratio1 = this.values[types[0]] / others;
+                        const ratio2 = this.values[types[1]] / others;
+
+                        const remaining = 100 - this.values[changedType];
+                        this.values[types[0]] = Math.round(remaining * ratio1);
+                        this.values[types[1]] = 100 - this.values[changedType] - this.values[types[0]];
+                    } else {
+                        // If others are 0, split remaining equally
+                        const types = ['strong', 'moderate', 'weak'].filter(t => t !== changedType);
+                        const remaining = 100 - this.values[changedType];
+                        this.values[types[0]] = Math.floor(remaining / 2);
+                        this.values[types[1]] = remaining - this.values[types[0]];
+                    }
+                }
+            },
+
+            updateSliderUI() {
+                // Update values
+                document.getElementById('strong-value').textContent = this.values.strong + '%';
+                document.getElementById('moderate-value').textContent = this.values.moderate + '%';
+                document.getElementById('weak-value').textContent = this.values.weak + '%';
+
+                // Update sliders
+                const strongSlider = document.getElementById('strong-slider');
+                const moderateSlider = document.getElementById('moderate-slider');
+                const weakSlider = document.getElementById('weak-slider');
+
+                if (strongSlider) {
+                    strongSlider.value = this.values.strong;
+                    strongSlider.style.background = `linear-gradient(to right, #e74c3c 0%, #e74c3c ${this.values.strong}%, #e0e6ed ${this.values.strong}%, #e0e6ed 100%)`;
+                }
+
+                if (moderateSlider) {
+                    moderateSlider.value = this.values.moderate;
+                    moderateSlider.style.background = `linear-gradient(to right, #3498db 0%, #3498db ${this.values.moderate}%, #e0e6ed ${this.values.moderate}%, #e0e6ed 100%)`;
+                }
+
+                if (weakSlider) {
+                    weakSlider.value = this.values.weak;
+                    weakSlider.style.background = `linear-gradient(to right, #2ecc71 0%, #2ecc71 ${this.values.weak}%, #e0e6ed ${this.values.weak}%, #e0e6ed 100%)`;
+                }
+
+                // Update total
+                const total = this.values.strong + this.values.moderate + this.values.weak;
+                document.getElementById('total-percentage').textContent = total + '%';
+            },
+
+            calculate() {
+                // Calculate expected job leads based on user's network composition
+                // Higher weights for weak/moderate ties (per Granovetter's findings)
+                const userStrong = this.values.strong / 100;
+                const userModerate = this.values.moderate / 100;
+                const userWeak = this.values.weak / 100;
+
+                // Calculate expected leads proportional to baseline success rates
+                const strongLeads = userStrong * this.baseline.strong;
+                const moderateLeads = userModerate * this.baseline.moderate;
+                const weakLeads = userWeak * this.baseline.weak;
+
+                const totalLeads = strongLeads + moderateLeads + weakLeads;
+
+                // Normalize to percentages
+                const strongPct = totalLeads > 0 ? (strongLeads / totalLeads) * 100 : 0;
+                const moderatePct = totalLeads > 0 ? (moderateLeads / totalLeads) * 100 : 0;
+                const weakPct = totalLeads > 0 ? (weakLeads / totalLeads) * 100 : 0;
+
+                // Calculate success probability relative to baseline
+                // Baseline is if network matches empirical distribution perfectly
+                const baselineScore = this.baseline.strong * this.baseline.strong +
+                                     this.baseline.moderate * this.baseline.moderate +
+                                     this.baseline.weak * this.baseline.weak;
+
+                const userScore = userStrong * this.baseline.strong +
+                                 userModerate * this.baseline.moderate +
+                                 userWeak * this.baseline.weak;
+
+                const successProbability = (userScore / baselineScore) * 100;
+
+                // Update display
+                this.updateResults(successProbability, strongPct, moderatePct, weakPct);
+            },
+
+            updateResults(successProb, strongPct, moderatePct, weakPct) {
+                // Update probability display
+                const probElement = document.getElementById('success-probability');
+                const barElement = document.getElementById('probability-bar');
+
+                if (probElement) {
+                    probElement.textContent = successProb.toFixed(0) + '%';
+
+                    // Color based on probability
+                    if (successProb >= 100) {
+                        probElement.style.color = '#10b981';
+                    } else if (successProb >= 80) {
+                        probElement.style.color = '#3b82f6';
+                    } else if (successProb >= 60) {
+                        probElement.style.color = '#f59e0b';
+                    } else {
+                        probElement.style.color = '#ef4444';
+                    }
+                }
+
+                // Update progress bar
+                if (barElement) {
+                    const width = Math.min(successProb, 100);
+                    barElement.style.width = width + '%';
+
+                    let label = '';
+                    let bgColor = '';
+
+                    if (successProb >= 100) {
+                        label = 'Excellent';
+                        bgColor = 'linear-gradient(90deg, #10b981 0%, #059669 100%)';
+                    } else if (successProb >= 80) {
+                        label = 'Good';
+                        bgColor = 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)';
+                    } else if (successProb >= 60) {
+                        label = 'Fair';
+                        bgColor = 'linear-gradient(90deg, #f59e0b 0%, #d97706 100%)';
+                    } else {
+                        label = 'Below Average';
+                        bgColor = 'linear-gradient(90deg, #ef4444 0%, #dc2626 100%)';
+                    }
+
+                    barElement.textContent = label;
+                    barElement.style.background = bgColor;
+                }
+
+                // Update breakdown
+                document.getElementById('strong-leads').textContent = strongPct.toFixed(0) + '%';
+                document.getElementById('moderate-leads').textContent = moderatePct.toFixed(0) + '%';
+                document.getElementById('weak-leads').textContent = weakPct.toFixed(0) + '%';
+
+                // Update comparison text
+                this.updateComparison(successProb);
+            },
+
+            updateComparison(successProb) {
+                const comparisonText = document.getElementById('comparison-text');
+                if (!comparisonText) return;
+
+                const strongDiff = this.values.strong - (this.baseline.strong * 100);
+                const weakDiff = this.values.weak - (this.baseline.weak * 100);
+
+                let message = '';
+
+                if (successProb >= 105) {
+                    message = `🎉 <strong>Excellent network composition!</strong> Your network has a higher proportion of weak ties (${this.values.weak}%) compared to the study baseline (${(this.baseline.weak * 100).toFixed(1)}%). This gives you access to more diverse, non-redundant job information.`;
+                } else if (successProb >= 95 && successProb < 105) {
+                    message = `✅ <strong>Well-balanced network.</strong> Your network composition closely matches the empirical findings from Granovetter's study. This balance provides good access to job opportunities.`;
+                } else if (strongDiff > 20) {
+                    message = `⚠️ <strong>Too many strong ties.</strong> Your network has ${this.values.strong}% strong ties versus the study's ${(this.baseline.strong * 100).toFixed(1)}%. Strong ties provide redundant information since they know the same people. Consider expanding your weak ties for more diverse opportunities.`;
+                } else if (weakDiff < -10) {
+                    message = `💡 <strong>Room for improvement.</strong> Your network has only ${this.values.weak}% weak ties. Granovetter's study showed ${(this.baseline.weak * 100).toFixed(1)}% of jobs came through weak ties. Reconnecting with distant contacts could improve your job search success.`;
+                } else {
+                    message = `📊 <strong>Moderate network diversity.</strong> Your network composition differs from the study baseline. Success rate: ${successProb.toFixed(0)}% of baseline effectiveness.`;
+                }
+
+                comparisonText.innerHTML = message;
+            }
+        };
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             if (document.getElementById('networkCanvas')) {
                 NetworkSimulator.init();
+            }
+
+            if (document.getElementById('strong-slider')) {
+                JobSearchCalculator.init();
             }
         });
     </script>
