@@ -109,24 +109,196 @@
 
 ---
 
-## SOURCE 4: Burt's Structural Holes (Network Constraint)
+## SOURCE 4: Burt's Structural Holes (Network Constraint, Efficiency, Hierarchy)
 
-**Finding:** ⚠️ **CONTEXT-DEPENDENT** - Use z-scores within sample
+### CORE THEORY (Burt 1992, 2005)
 
-**Key Metrics:**
-- **Network Constraint:** Measures "straitjacket" limiting vision/support
-- **Range:** 0 (no constraint, many structural holes) to ~100 (maximum constraint)
-- **Empirical examples from Burt:**
-  - Low constraint: 14.8 (good brokerage position)
-  - Medium constraint: 30.9
-  - High constraint: 59-65 (dense/hierarchical networks)
-  - Maximum: 84-93 (very dense, 3-contact networks)
+**Structural Holes:** Gaps between non-redundant contacts in a network. The person who bridges the hole acts as a broker, controlling information flow and gaining power from the asymmetry.
 
-**Interpretation:** Use **z-scores** relative to sample, not absolute thresholds
+**Key Insight:** Advantage comes NOT from strong ties or weak ties per se, but from **spanning structural holes** (brokerage) vs being in **closed networks** (closure).
 
-**Source:** Burt (2000, 2004), "Structural Holes vs Network Closure"
+---
 
-**Implication for Tools:** Cannot say "3+ bridges = excellent" - must show relative position
+### METRIC 1: NETWORK CONSTRAINT
+
+**Definition:** Measures the extent to which an ego's network is like a "straitjacket" - limiting vision, alternative ideas, and sources of support.
+
+**Mathematical Formula:**
+```
+C_i = Σ_j (p_ij + Σ_q p_iq * p_qj)²
+```
+
+Where:
+- `C_i` = Total network constraint on ego i
+- `p_ij` = Proportion of ego's time/energy/resources invested in alter j
+- `p_iq * p_qj` = Indirect connection through intermediary q
+- Sum over all alters j in ego's network (excluding ego)
+
+**Component Decomposition (3 terms):**
+
+1. **C-SIZE** (Concentration): `Σ_j (p_ij)²`
+   - Herfindahl index measuring how concentrated ego's ties are
+   - Smaller networks → higher constraint (each contact gets more attention)
+
+2. **C-DENSITY** (Interaction): `2 * Σ_j p_ij * (Σ_q p_iq * p_qj)`
+   - Interaction between strong ties and network density
+   - Dense networks where contacts know each other → higher constraint
+
+3. **C-HIERARCHY** (Centralization): `Σ_j (Σ_q p_iq * p_qj)²`
+   - Extent to which constraint is concentrated in ONE central alter
+   - Networks with a dominant hub → higher constraint
+
+**Interpretation:**
+- **Low constraint (0-20):** Many structural holes, brokerage position, diverse information access
+- **Medium constraint (20-40):** Moderate redundancy
+- **High constraint (40-65):** Dense/hierarchical network, high redundancy
+- **Maximum constraint (65-100):** Very dense, 3-contact networks, complete closure
+
+**Key Principle:** HIGH constraint = LOW structural holes = LESS power
+
+---
+
+### METRIC 2: NETWORK EFFICIENCY
+
+**Definition:** The ratio of non-redundant contacts to total contacts.
+
+**Mathematical Formula:**
+```
+Efficiency = Effective Size / Number of Alters
+```
+
+Where:
+- **Effective Size** = Number of alters - Average degree of alters within ego network
+- Measures how many of your contacts are actually providing unique value
+
+**Interpretation:**
+- **1.0 = Maximum efficiency:** All contacts are non-redundant (no one knows each other)
+- **0.5 = Medium efficiency:** Each contact adds half a person's worth of unique access
+- **<0.3 = Low efficiency:** High redundancy, most contacts know each other
+
+**Implication:** Efficiency is essentially a 0-1 normalized version of structural holes.
+
+---
+
+### METRIC 3: NETWORK HIERARCHY
+
+**Definition:** The extent to which constraint on ego is concentrated in a single alter (one dominant contact).
+
+**Mathematical Formula:**
+```
+Hierarchy = (C_hierarchy term) / (Total Constraint)
+```
+
+**Interpretation:**
+- **High hierarchy:** One contact dominates the network (e.g., all your contacts go through your boss)
+- **Low hierarchy:** Constraint is distributed across multiple contacts
+- **Risk:** High hierarchy creates single point of failure and dependency
+
+---
+
+### EMPIRICAL STUDIES
+
+**Study 1: Supply Chain Managers (N=673)**
+- **Sample:** 673 managers in supply chain for a large firm
+- **Task:** Submit ideas for improving supply chain management
+- **Measurement:** Judges evaluated idea quality; researchers measured network brokerage
+- **Finding:** Ideas from managers with networks rich in structural holes were rated as MORE VALUABLE
+- **Correlation:** Brokerage position → Higher wages + Better evaluations
+
+**Study 2: High-Tech Electronics Firms (Probability Samples)**
+- **Sample:** Senior managers in two high-tech electronics firms
+- **Measurement:** Network structure + promotion timing
+- **Finding:** Managers with networks richer in structural holes were MORE LIKELY to get PROMOTED EARLY
+- **Implication:** Structural holes create career advantage through access to diverse information
+
+**Study 3: Investment Bankers (Burt & Podolny)**
+- **Sample:** Investment bankers completing deals
+- **Finding:** Bankers whose networks spanned structural holes completed MORE deals and at HIGHER values
+- **Mechanism:** Brokerage → Better information → Better deal selection + execution
+
+---
+
+### KEY EMPIRICAL FINDINGS
+
+✅ **Supported by Research:**
+1. Structural holes correlate with higher compensation
+2. Brokerage positions lead to earlier promotions
+3. Ideas from brokers are rated as more creative/valuable
+4. Effective size predicts performance better than raw network size
+5. Constraint inversely related to career success
+
+❌ **No Universal Thresholds:**
+- Cannot say "Constraint > 50 is bad" without context
+- Must compare to others in same organization/industry
+- Use **z-scores** within sample, not absolute cutoffs
+
+---
+
+### BROKERAGE VS CLOSURE (Burt 2005)
+
+**The Debate:**
+- **Burt (Structural Holes):** Advantage comes from BROKERAGE - spanning holes between disconnected groups
+- **Coleman (Social Capital):** Advantage comes from CLOSURE - dense networks with trust and norms
+
+**Burt's Resolution (2005):**
+Both are valuable, but FOR DIFFERENT THINGS:
+- **Brokerage → Vision:** Access to diverse information, seeing opportunities, innovation
+- **Closure → Execution:** Trust, reliability, enforcement of norms, getting things done
+
+**Optimal Strategy:** Use BROKERAGE to find opportunities, then build CLOSURE around execution team
+
+---
+
+### COMPARISON TO GRANOVETTER
+
+**Granovetter (1973):**
+- Focus: **Weak ties** as bridges
+- Mechanism: Weak ties provide access to novel information
+- Metric: Tie strength (frequency of contact)
+
+**Burt (1992):**
+- Focus: **Structural holes** as brokerage positions
+- Mechanism: Gaps between groups create information advantage
+- Metric: Network constraint, efficiency, hierarchy
+
+**Key Difference:**
+- Granovetter: Tie STRENGTH matters (weak vs strong)
+- Burt: Network STRUCTURE matters (holes vs closure)
+- Burt argues: It's not about weak ties per se, it's about whether ties bridge structural holes
+
+**Empirical Finding:** Many weak ties are NOT structural holes (e.g., acquaintances within same group)
+
+---
+
+### SOURCES
+
+- Burt, R. S. (1992). *Structural Holes: The Social Structure of Competition*. Harvard University Press.
+- Burt, R. S. (2000). "Structural Holes vs Network Closure." *Social Capital: Theory and Research*.
+- Burt, R. S. (2005). *Brokerage and Closure: An Introduction to Social Capital*. Oxford University Press.
+- Multiple empirical studies: Supply chain managers (N=673), high-tech firms, investment bankers
+
+---
+
+### IMPLICATION FOR TOOLS
+
+**What we CAN calculate:**
+- ✅ Network Constraint (exact formula)
+- ✅ Network Efficiency (exact formula)
+- ✅ Network Hierarchy (exact formula)
+- ✅ Effective size of ego network
+- ✅ Relative position (z-score within sample)
+
+**What we CANNOT say without context:**
+- ❌ "Constraint > X is bad"
+- ❌ "You need Y structural holes"
+- ❌ "Z efficiency is optimal"
+
+**Recommended Approach:**
+- Show calculated metrics with formulas
+- Compare to sample average or random baseline
+- Emphasize RELATIVE position, not absolute thresholds
+- Visualize brokerage positions in network
+- Allow users to see structural holes graphically
 
 ---
 
