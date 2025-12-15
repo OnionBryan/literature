@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Iron Cage Revisited - DiMaggio & Powell (1983)</title>
+    <!--
+      Review of:
+      DiMaggio, P. J., & Powell, W. W. (1983).
+      The Iron Cage Revisited: Institutional Isomorphism and Collective Rationality in Organizational Fields.
+      American Sociological Review, 48(2), 147-160.
+
+      This is the FOUNDATIONAL TEXT of new institutionalism, explaining why organizations
+      become increasingly similar through coercive, mimetic, and normative isomorphism.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #818cf8 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        }
+
+        /* Typography */
+        h1, h2, h3, .definition-term, .result-box-label, .card h4, .breakdown-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Page Navigation */
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .page-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: white;
+            color: #4f46e5;
+            border-color: white;
+        }
+
+        .page-btn.home {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffffff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .citation {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .hero .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 15px auto 0;
+            font-style: italic;
+        }
+
+        .hero .stats-preview {
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease;
+        }
+
+        body.dark-mode .section-card {
+            background: #1e1b4b;
+            color: #e2e8f0;
+        }
+
+        .section-card h2 {
+            color: #4f46e5;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #4f46e5;
+            font-size: 2.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark-mode .section-card h2 {
+            color: #a5b4fc;
+            border-bottom-color: #a5b4fc;
+        }
+
+        .section-card h3 {
+            color: #6366f1;
+            margin: 25px 0 15px;
+            font-size: 1.6em;
+        }
+
+        body.dark-mode .section-card h3 {
+            color: #c7d2fe;
+        }
+
+        .section-card p, .section-card li {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .section-card p,
+        body.dark-mode .section-card li {
+            color: #e2e8f0;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        /* Card Styles */
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid #6366f1;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(79,70,229,0.15);
+            border-color: #6366f1;
+        }
+
+        .card h4 {
+            color: #4f46e5;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        body.dark-mode .card {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-top-color: #a5b4fc;
+        }
+
+        body.dark-mode .card h4 {
+            color: #c7d2fe;
+        }
+
+        /* Stat Box Styles */
+        .stat-box {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: #eef2ff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(79,70,229,0.4);
+        }
+
+        .stat-value {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Key Finding Box */
+        .key-finding {
+            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 1.15em;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+            border-left: 5px solid #4f46e5;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Mechanism Cards - Special styling for the 3 mechanisms */
+        .mechanism-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .mechanism-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mechanism-card {
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mechanism-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .mechanism-card.coercive {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+
+        .mechanism-card.mimetic {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .mechanism-card.normative {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        .mechanism-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .mechanism-card .mechanism-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .mechanism-card p {
+            color: rgba(255,255,255,0.95);
+            margin: 0;
+        }
+
+        .mechanism-card .source {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Tab System */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #f0f4f8;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .tab:hover {
+            background: #e0e6ed;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        body.dark-mode .tab {
+            background: #312e81;
+            color: #e2e8f0;
+            border-color: #4c1d95;
+        }
+
+        body.dark-mode .tab.active {
+            background: #818cf8;
+            border-color: #818cf8;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        th {
+            background: #4f46e5;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        body.dark-mode table {
+            background: #0f172a;
+        }
+
+        body.dark-mode th {
+            background: #6366f1;
+        }
+
+        body.dark-mode td {
+            color: #e2e8f0;
+            border-bottom-color: #312e81;
+        }
+
+        body.dark-mode tr:hover {
+            background: #312e81;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .comparison-table {
+            background: #0f172a;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        body.dark-mode .comparison-table td {
+            border-bottom-color: #312e81;
+            color: #cbd5e0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        body.dark-mode .comparison-table tr:hover {
+            background: #312e81;
+        }
+
+        /* Process Flow Styles */
+        .process-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .process-container {
+            background: #0f172a;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .process-step {
+            background: #1e1b4b;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(79,70,229,0.2);
+        }
+
+        .process-number {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .process-content h4 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        body.dark-mode .process-content h4 {
+            color: #c7d2fe;
+        }
+
+        .process-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #6366f1;
+            margin: 10px 0;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .calculator-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+
+        .calculator-title {
+            font-size: 1.8rem;
+            color: #4f46e5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        body.dark-mode .calculator-title {
+            color: #c7d2fe;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .input-group label {
+            color: #cbd5e0;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-mode .input-group input,
+        body.dark-mode .input-group select {
+            background: #1e1b4b;
+            border-color: #4c1d95;
+            color: #e2e8f0;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #818cf8;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .result-box {
+            background: white;
+            border-left: 5px solid #818cf8;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        body.dark-mode .result-box {
+            background: #0f172a;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin: 10px 0;
+        }
+
+        body.dark-mode .result-value {
+            color: #a5b4fc;
+        }
+
+        /* Control buttons */
+        .control-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
+            font-family: 'Lato', sans-serif;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        }
+
+        .control-btn.danger {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        /* Network Metrics */
+        .network-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #6366f1;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .metric-card {
+            background: #312e81;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .metric-label {
+            font-size: 0.8em;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        body.dark-mode .metric-label {
+            color: #94a3b8;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #4f46e5;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body.dark-mode .metric-value {
+            color: #c7d2fe;
+        }
+
+        /* Help Text */
+        .help-text {
+            background: #eef2ff;
+            border-left: 4px solid #818cf8;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        body.dark-mode .help-text {
+            background: rgba(99, 102, 241, 0.1);
+            border-left-color: #a5b4fc;
+            color: #e2e8f0;
+        }
+
+        /* Attribution Section */
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a {
+            color: #c7d2fe;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Weber Quote Box */
+        .weber-quote {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .weber-quote::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .weber-quote p {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .weber-quote .attribution {
+            background: none;
+            padding: 0;
+            margin: 0;
+            text-align: right;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .mechanism-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dark-mode-toggle {
+                top: 70px;
+                right: 10px;
+                font-size: 1em;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn home">← Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">📖 Main Content</button>
+            <button class="page-btn" onclick="switchPage('theory', this)">🔬 Theory & Mechanisms</button>
+            <button class="page-btn" onclick="switchPage('hypotheses', this)">📊 Hypotheses & Evidence</button>
+            <button class="page-btn" onclick="switchPage('interactive', this)">🎮 Interactive Tools</button>
+        </div>
+    </nav>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <!-- MAIN CONTENT PAGE -->
+    <div id="main">
+        <div class="container">
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>The Iron Cage Revisited</h1>
+                <p class="citation">DiMaggio, P. J. & Powell, W. W. (1983). American Sociological Review, 48(2), 147-160</p>
+                <p class="tagline">
+                    "Highly structured organizational fields provide a context in which individual efforts to deal rationally with uncertainty and constraint often lead, in the aggregate, to homogeneity in structure, culture, and output."
+                </p>
+                <div class="stats-preview">
+                    📚 68,000+ Citations | 🏆 Foundational Text of New Institutionalism
+                </div>
+            </section>
+
+            <!-- Key Question -->
+            <section class="section-card">
+                <h2>🔍 The Puzzle: Why Do Organizations Look the Same?</h2>
+                <p>DiMaggio and Powell posed a deceptively simple question that transformed organizational theory:</p>
+
+                <div class="weber-quote">
+                    <p>"What makes organizations so similar? We contend that the engine of rationalization and bureaucratization has moved from the competitive marketplace to the state and the professions."</p>
+                    <div class="attribution">— DiMaggio & Powell (1983, p. 147)</div>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Weber's Original Answer</h4>
+                        <p>Max Weber argued that organizations become bureaucratic because it's <strong>efficient</strong>. Competition drives rationalization—firms that don't adopt bureaucratic practices lose out to those that do.</p>
+                    </div>
+                    <div class="card">
+                        <h4>DiMaggio & Powell's Revision</h4>
+                        <p>Organizations become similar <strong>without necessarily becoming more efficient</strong>. The drive for <strong>legitimacy</strong>—appearing appropriate and proper—is often more powerful than the drive for efficiency.</p>
+                    </div>
+                    <div class="card">
+                        <h4>The Iron Cage Today</h4>
+                        <p>Weber's "iron cage" of rationalization continues to trap organizations, but the forces creating it have shifted from markets to <strong>the state</strong> and <strong>the professions</strong>—the great rationalizers of the late 20th century.</p>
+                    </div>
+                </div>
+
+                <div class="key-finding">
+                    <strong>🎯 Core Insight:</strong> Organizations don't become similar because similarity is efficient. They become similar because conformity confers legitimacy. In uncertain environments, appearing like successful peers reduces risk and increases survival—even when the copied practices don't actually improve performance.
+                </div>
+            </section>
+
+            <!-- The Concept of Organizational Field -->
+            <section class="section-card">
+                <h2>🌐 The Organizational Field</h2>
+                <p>Before explaining isomorphism, DiMaggio and Powell introduce a crucial concept: the <strong>organizational field</strong>.</p>
+
+                <div style="background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #6366f1;">
+                    <p style="font-size: 1.1em; margin: 0; color: #4f46e5;">
+                        <strong>Organizational Field:</strong> "Those organizations that, in the aggregate, constitute a recognized area of institutional life: key suppliers, resource and product consumers, regulatory agencies, and other organizations that produce similar services or products."
+                    </p>
+                    <p style="text-align: right; margin: 10px 0 0 0; color: #6366f1; font-weight: 600;">— DiMaggio & Powell (1983, p. 148)</p>
+                </div>
+
+                <h3>Examples of Organizational Fields</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Higher Education</h4>
+                        <p>Universities, accreditation bodies, funding agencies (NSF, NIH), professional associations, publishers, ranking organizations (US News), and students all constitute a single field.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Healthcare</h4>
+                        <p>Hospitals, insurers, pharmaceutical companies, medical associations (AMA), regulatory bodies (FDA), medical schools, and patients interact as a coherent institutional arena.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Technology Startups</h4>
+                        <p>Startups, VCs, accelerators, tech media, law firms specializing in startups, cloud providers, and talent markets form a tightly-coupled ecosystem with shared norms.</p>
+                    </div>
+                </div>
+
+                <h3>The Structuration of Fields</h3>
+                <p>Fields don't exist naturally—they emerge through a process DiMaggio calls <strong>structuration</strong>:</p>
+
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-content">
+                            <h4>Increased Interaction</h4>
+                            <p>Organizations begin interacting more frequently—through trade associations, conferences, partnerships, or shared regulatory environments.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-content">
+                            <h4>Emergence of Dominance Structures</h4>
+                            <p>Some organizations become central and influential (e.g., Harvard in academia, Google in tech). These "central players" set standards others follow.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <div class="process-content">
+                            <h4>Increased Information Load</h4>
+                            <p>Organizations must process more information about each other—what competitors are doing, what regulators require, what best practices exist.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <div class="process-content">
+                            <h4>Mutual Awareness</h4>
+                            <p>Participants develop awareness that they are in a common enterprise—"we are all in the healthcare industry" or "we are all startups."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4 style="margin-top: 0; color: white;">🔑 Why Fields Matter</h4>
+                    <p>Once a field is structured, it constrains organizations within it. The field defines what is "normal," what is "legitimate," and what is expected. Organizations that deviate from field norms face sanctions—difficulty getting funding, regulatory scrutiny, loss of customers, inability to hire talent.</p>
+                </div>
+            </section>
+
+            <!-- The Three Mechanisms -->
+            <section class="section-card">
+                <h2>⚙️ The Three Mechanisms of Institutional Isomorphism</h2>
+                <p>DiMaggio and Powell identify three distinct mechanisms through which organizations become similar. Each operates through different forces and produces homogeneity for different reasons.</p>
+
+                <div class="mechanism-grid">
+                    <div class="mechanism-card coercive">
+                        <div class="mechanism-icon">⚖️</div>
+                        <h4>Coercive Isomorphism</h4>
+                        <p>Results from <strong>formal and informal pressures</strong> exerted by organizations upon which others depend, and by cultural expectations in society.</p>
+                        <div class="source">
+                            <strong>Source:</strong> The State, Regulators, Powerful Organizations
+                        </div>
+                    </div>
+
+                    <div class="mechanism-card mimetic">
+                        <div class="mechanism-icon">🔄</div>
+                        <h4>Mimetic Isomorphism</h4>
+                        <p>Emerges from <strong>uncertainty</strong>. When goals are ambiguous or technologies poorly understood, organizations model themselves on peers they perceive as successful.</p>
+                        <div class="source">
+                            <strong>Source:</strong> Uncertainty, Ambiguity, "Best Practices"
+                        </div>
+                    </div>
+
+                    <div class="mechanism-card normative">
+                        <div class="mechanism-icon">🎓</div>
+                        <h4>Normative Isomorphism</h4>
+                        <p>Associated with <strong>professionalization</strong>. Professionals trained in similar programs, sharing similar norms, carry these standards into their organizations.</p>
+                        <div class="source">
+                            <strong>Source:</strong> Professions, Education, Credentialing
+                        </div>
+                    </div>
+                </div>
+
+                <h3>How the Mechanisms Differ</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th style="color: #fecaca;">Coercive</th>
+                            <th style="color: #fef3c7;">Mimetic</th>
+                            <th style="color: #d1fae5;">Normative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primary Driver</strong></td>
+                            <td>Power and dependence</td>
+                            <td>Uncertainty and ambiguity</td>
+                            <td>Professional standards</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Key Actors</strong></td>
+                            <td>Government, regulators, funders</td>
+                            <td>Successful peer organizations</td>
+                            <td>Professional associations, universities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mechanism</strong></td>
+                            <td>Mandates, rules, sanctions</td>
+                            <td>Imitation, copying</td>
+                            <td>Socialization, credentialing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motivation</strong></td>
+                            <td>Avoid punishment</td>
+                            <td>Reduce risk</td>
+                            <td>Gain legitimacy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>SOX compliance after Enron</td>
+                            <td>Startups copying Y Combinator model</td>
+                            <td>MBA programs standardizing curriculum</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Real-World Examples -->
+            <section class="section-card">
+                <h2>🌍 Real-World Examples</h2>
+
+                <div class="tabs">
+                    <button class="tab active" onclick="showExampleTab('coercive-ex')">Coercive Examples</button>
+                    <button class="tab" onclick="showExampleTab('mimetic-ex')">Mimetic Examples</button>
+                    <button class="tab" onclick="showExampleTab('normative-ex')">Normative Examples</button>
+                </div>
+
+                <div id="coercive-ex" class="tab-content active">
+                    <h3>Coercive Isomorphism in Action</h3>
+
+                    <div class="grid">
+                        <div class="card" style="border-top-color: #dc2626;">
+                            <h4>Sarbanes-Oxley Act (2002)</h4>
+                            <p>After the Enron scandal, the US Congress passed SOX requiring all public companies to implement specific internal controls, audit committees, and reporting procedures. <strong>Every</strong> public company adopted remarkably similar governance structures—not because they discovered it was efficient, but because the law required it.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #dc2626;">
+                            <h4>GDPR (2018)</h4>
+                            <p>The EU's data protection regulation forced every organization handling EU citizen data to implement privacy officers, consent mechanisms, and data breach protocols. Companies worldwide restructured their data practices identically—homogeneity through legal mandate.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #dc2626;">
+                            <h4>University Accreditation</h4>
+                            <p>Universities must meet accreditation standards to receive federal financial aid. This creates coercive pressure to adopt similar academic calendars, credit systems, governance structures, and assessment practices—regardless of whether they fit the institution's mission.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mimetic-ex" class="tab-content">
+                    <h3>Mimetic Isomorphism in Action</h3>
+
+                    <div class="grid">
+                        <div class="card" style="border-top-color: #f59e0b;">
+                            <h4>The Y Combinator Model</h4>
+                            <p>When Y Combinator proved successful, accelerators worldwide copied its model: 3-month programs, small equity stakes, demo days, batch-based cohorts. This happened despite limited evidence that the model works universally—uncertainty drove imitation of a perceived success.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #f59e0b;">
+                            <h4>Tech Company Culture</h4>
+                            <p>Open offices, free food, casual dress codes, ping pong tables—these spread through the tech industry not because they're proven to increase productivity, but because Google and Facebook had them and were successful. Startups copied the visible symbols of success.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #f59e0b;">
+                            <h4>Management Fads</h4>
+                            <p>TQM in the 1980s, Six Sigma in the 1990s, Agile in the 2000s, OKRs in the 2010s. Companies adopt these practices not from rigorous evidence, but because high-status firms use them. When the practice falls out of fashion, adoption declines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="normative-ex" class="tab-content">
+                    <h3>Normative Isomorphism in Action</h3>
+
+                    <div class="grid">
+                        <div class="card" style="border-top-color: #10b981;">
+                            <h4>The MBA Effect</h4>
+                            <p>Business schools train managers in similar frameworks: Porter's Five Forces, DCF valuation, marketing mix. Graduates carry these shared mental models into organizations everywhere, creating homogeneity in how companies analyze strategy, finance, and marketing.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #10b981;">
+                            <h4>Medical Practice Standards</h4>
+                            <p>Doctors trained in accredited medical schools, passing board certifications, following AMA guidelines, implement remarkably similar clinical practices. Professional socialization creates normative pressure toward standardization.</p>
+                        </div>
+                        <div class="card" style="border-top-color: #10b981;">
+                            <h4>Consulting "Best Practices"</h4>
+                            <p>McKinsey, BCG, and Bain consultants trained in similar problem-solving approaches spread these methods to client organizations. As consultants move between firms and clients, normative standards diffuse throughout industries.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citation & Attribution -->
+            <div class="attribution">
+                <p><strong>Original Paper:</strong> DiMaggio, P. J. & Powell, W. W. (1983). The Iron Cage Revisited: Institutional Isomorphism and Collective Rationality in Organizational Fields. <em>American Sociological Review</em>, 48(2), 147-160.</p>
+                <p style="margin-top: 10px;">
+                    <a href="https://doi.org/10.2307/2095101" target="_blank">DOI: 10.2307/2095101</a> |
+                    <a href="https://scholar.google.com/scholar?q=The+Iron+Cage+Revisited+DiMaggio+Powell" target="_blank">Google Scholar</a>
+                </p>
+                <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                    Interactive review created for educational purposes. All findings from the original publication.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- THEORY & MECHANISMS PAGE -->
+    <div id="theory" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Theory & Mechanisms</h1>
+                <p class="citation">Deep Dive into Each Isomorphic Mechanism</p>
+            </section>
+
+            <!-- Coercive Isomorphism Deep Dive -->
+            <section class="section-card">
+                <h2 style="border-bottom-color: #dc2626; color: #dc2626;">⚖️ Coercive Isomorphism</h2>
+                <p>Coercive isomorphism results from both formal and informal pressures exerted on organizations by other organizations upon which they are dependent and by cultural expectations in the society within which organizations function.</p>
+
+                <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #dc2626;">
+                    <p style="font-size: 1.1em; margin: 0; color: #991b1b;">
+                        "Such pressures may be felt as force, as persuasion, or as invitations to join in collusion. In some circumstances, organizational change is a direct response to government mandate."
+                    </p>
+                    <p style="text-align: right; margin: 10px 0 0 0; color: #b91c1c; font-weight: 600;">— DiMaggio & Powell (1983, p. 150)</p>
+                </div>
+
+                <h3>Sources of Coercive Pressure</h3>
+                <div class="grid">
+                    <div class="card" style="border-top-color: #dc2626;">
+                        <h4>Legal Mandates</h4>
+                        <p>Laws and regulations require specific organizational practices. Environmental regulations, labor laws, financial reporting requirements, and anti-discrimination statutes all force organizations to adopt similar structures.</p>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Examples:</strong> EPA emissions standards, OSHA safety requirements, SEC reporting rules</p>
+                    </div>
+                    <div class="card" style="border-top-color: #dc2626;">
+                        <h4>Resource Dependence</h4>
+                        <p>Organizations that depend on a single or few sources of resources must conform to the expectations of those providers. Nonprofits depend on funders; subsidiaries depend on parent companies.</p>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Examples:</strong> Foundation grant requirements, franchise standards, supply chain mandates</p>
+                    </div>
+                    <div class="card" style="border-top-color: #dc2626;">
+                        <h4>Cultural Expectations</h4>
+                        <p>Beyond formal rules, there are cultural expectations about what a "proper" organization looks like. Organizations adopt rituals, symbols, and ceremonies to appear legitimate.</p>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Examples:</strong> Corporate social responsibility programs, diversity statements, mission statements</p>
+                    </div>
+                </div>
+
+                <h3>The State as the Ultimate Coercive Force</h3>
+                <p>DiMaggio and Powell emphasize that the state is uniquely powerful in creating coercive isomorphism:</p>
+
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">1</div>
+                        <div class="process-content">
+                            <h4>Common Legal Environment</h4>
+                            <p>All organizations within a nation-state operate under the same legal framework, forcing adoption of similar practices (tax reporting, employment law, contract law).</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow" style="color: #dc2626;">↓</div>
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">2</div>
+                        <div class="process-content">
+                            <h4>Direct Regulation</h4>
+                            <p>Industry-specific regulations (banking, healthcare, education) create even more detailed conformity requirements within organizational fields.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow" style="color: #dc2626;">↓</div>
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">3</div>
+                        <div class="process-content">
+                            <h4>Fiscal Relationships</h4>
+                            <p>Organizations receiving government contracts, grants, or tax benefits must meet government specifications, spreading state-preferred structures throughout the economy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">
+                    <h4 style="margin-top: 0; color: white;">Case Study: The Expansion of Civil Rights</h4>
+                    <p>DiMaggio and Powell note how the civil rights movement led to legal mandates (Title VII, ADA) that forced all organizations to create similar HR structures: EEO officers, affirmative action programs, grievance procedures. Organizations that never faced discrimination lawsuits adopted these structures anyway—to appear legitimate and avoid potential future sanctions.</p>
+                </div>
+            </section>
+
+            <!-- Mimetic Isomorphism Deep Dive -->
+            <section class="section-card">
+                <h2 style="border-bottom-color: #f59e0b; color: #d97706;">🔄 Mimetic Isomorphism</h2>
+                <p>When organizational technologies are poorly understood, when goals are ambiguous, or when the environment creates symbolic uncertainty, organizations may model themselves on other organizations.</p>
+
+                <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #f59e0b;">
+                    <p style="font-size: 1.1em; margin: 0; color: #92400e;">
+                        "Uncertainty is... a powerful force that encourages imitation. When an organization faces a problem with ambiguous causes or unclear solutions, problemistic search may yield a viable solution with little expense."
+                    </p>
+                    <p style="text-align: right; margin: 10px 0 0 0; color: #b45309; font-weight: 600;">— DiMaggio & Powell (1983, p. 151)</p>
+                </div>
+
+                <h3>When Mimetic Isomorphism Occurs</h3>
+                <div class="grid">
+                    <div class="card" style="border-top-color: #f59e0b;">
+                        <h4>Goal Ambiguity</h4>
+                        <p>When organizations are unsure what they're trying to achieve (common in nonprofits, government agencies, new industries), they look to similar organizations for guidance on what "success" looks like.</p>
+                    </div>
+                    <div class="card" style="border-top-color: #f59e0b;">
+                        <h4>Technological Uncertainty</h4>
+                        <p>When the relationship between means and ends is unclear—when no one knows what practices actually work—organizations copy visible practices of successful peers.</p>
+                    </div>
+                    <div class="card" style="border-top-color: #f59e0b;">
+                        <h4>Symbolic Uncertainty</h4>
+                        <p>When the environment is unpredictable and organizations feel threatened, mimicking successful peers provides a socially acceptable response—"at least we're doing what everyone else is doing."</p>
+                    </div>
+                </div>
+
+                <h3>Channels of Mimetic Diffusion</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>How It Works</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Employee Transfer</strong></td>
+                            <td>Hiring employees from successful organizations imports their practices and assumptions</td>
+                            <td>Startups hiring ex-Google engineers adopt Google's interview practices</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Consulting Firms</strong></td>
+                            <td>Consultants spread "best practices" from client to client, homogenizing the field</td>
+                            <td>McKinsey's organizational restructuring templates used across industries</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trade Associations</strong></td>
+                            <td>Industry groups disseminate information about what leading firms are doing</td>
+                            <td>Healthcare associations sharing quality improvement protocols</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Industry Publications</strong></td>
+                            <td>Media coverage of successful companies creates models for imitation</td>
+                            <td>Harvard Business Review case studies on Toyota's production system</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box" style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);">
+                    <h4 style="margin-top: 0; color: white;">The Japanese Management Craze</h4>
+                    <p>DiMaggio and Powell cite the American fascination with Japanese management in the early 1980s as a prime example of mimetic isomorphism. Faced with uncertainty about why Japanese firms were outperforming American ones, US companies mimicked visible Japanese practices: quality circles, just-in-time inventory, consensus decision-making. Many of these adoptions were superficial—copying the symbols without understanding the underlying logic.</p>
+                </div>
+            </section>
+
+            <!-- Normative Isomorphism Deep Dive -->
+            <section class="section-card">
+                <h2 style="border-bottom-color: #10b981; color: #059669;">🎓 Normative Isomorphism</h2>
+                <p>A third source of isomorphic organizational change is normative and stems primarily from professionalization—the collective struggle of members of an occupation to define the conditions and methods of their work.</p>
+
+                <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #10b981;">
+                    <p style="font-size: 1.1em; margin: 0; color: #065f46;">
+                        "Two aspects of professionalization are important sources of isomorphism. One is the resting of formal education and of legitimation in a cognitive base produced by university specialists. The second is the growth of professional networks that span organizations."
+                    </p>
+                    <p style="text-align: right; margin: 10px 0 0 0; color: #047857; font-weight: 600;">— DiMaggio & Powell (1983, p. 152)</p>
+                </div>
+
+                <h3>The Two Pillars of Normative Isomorphism</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 25px 0;">
+                    <div style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%); padding: 30px; border-radius: 15px; color: white;">
+                        <h4 style="color: white; margin-bottom: 15px;">📚 Formal Education</h4>
+                        <p><strong>University programs</strong> create a pool of individuals with nearly identical skills, knowledge, and worldviews.</p>
+                        <ul style="margin: 15px 0 0 20px; line-height: 1.8;">
+                            <li>Business schools standardize management thinking</li>
+                            <li>Law schools create common legal reasoning</li>
+                            <li>Medical schools produce uniform clinical practices</li>
+                            <li>Engineering programs teach shared technical standards</li>
+                        </ul>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); padding: 30px; border-radius: 15px; color: white;">
+                        <h4 style="color: white; margin-bottom: 15px;">🌐 Professional Networks</h4>
+                        <p><strong>Cross-organizational ties</strong> allow professionals to observe, discuss, and adopt common practices.</p>
+                        <ul style="margin: 15px 0 0 20px; line-height: 1.8;">
+                            <li>Professional associations (AMA, ABA, AICPA)</li>
+                            <li>Industry conferences and conventions</li>
+                            <li>Certification and credentialing bodies</li>
+                            <li>Professional journals and publications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>How Professionalization Spreads</h3>
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">1</div>
+                        <div class="process-content">
+                            <h4>Filtering Through Hiring</h4>
+                            <p>Organizations hire from the same universities and require the same credentials, ensuring new employees share common frameworks and assumptions.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow" style="color: #10b981;">↓</div>
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">2</div>
+                        <div class="process-content">
+                            <h4>Career Tracks</h4>
+                            <p>Similar career paths (consulting → industry, academia → government) create interpersonal networks that transcend organizational boundaries.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow" style="color: #10b981;">↓</div>
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">3</div>
+                        <div class="process-content">
+                            <h4>Interorganizational Mobility</h4>
+                            <p>Professionals move between organizations, carrying their normative commitments with them and spreading common practices.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow" style="color: #10b981;">↓</div>
+                    <div class="process-step">
+                        <div class="process-number" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">4</div>
+                        <div class="process-content">
+                            <h4>Homogenization</h4>
+                            <p>Over time, organizations employing similar professionals develop remarkably similar structures, practices, and cultures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                    <h4 style="margin-top: 0; color: white;">The MBA Effect</h4>
+                    <p>Consider the homogenizing effect of MBA education. Business schools teach identical frameworks: Porter's Five Forces, NPV analysis, the 4 Ps of marketing. Graduates enter diverse organizations—banks, tech companies, healthcare firms, nonprofits—but bring the same analytical tools and mental models. Over time, strategic planning, financial analysis, and organizational design look remarkably similar across industries, regardless of their actual relevance to each context.</p>
+                </div>
+            </section>
+
+            <!-- Efficiency vs Legitimacy -->
+            <section class="section-card">
+                <h2>⚡ Efficiency vs. Legitimacy</h2>
+                <p>A central argument of DiMaggio and Powell is that organizations often adopt structures for <strong>legitimacy</strong> rather than <strong>efficiency</strong>. This challenges the traditional economic view that market competition drives organizations toward optimal practices.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 25px 0;">
+                    <div style="background: white; padding: 25px; border-radius: 12px; border-top: 5px solid #6366f1; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #4f46e5; margin-bottom: 15px;">The Efficiency Argument</h4>
+                        <p><strong>Traditional View:</strong></p>
+                        <p>Organizations adopt practices because they work. Competition weeds out inefficient practices. Similar structures emerge because they represent optimal solutions to common problems.</p>
+                        <p style="margin-top: 15px; color: #6b7280;"><em>Problem:</em> Can't explain why organizations adopt practices with no proven efficiency benefits, or why inefficient practices persist.</p>
+                    </div>
+                    <div style="background: white; padding: 25px; border-radius: 12px; border-top: 5px solid #dc2626; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #dc2626; margin-bottom: 15px;">The Legitimacy Argument</h4>
+                        <p><strong>DiMaggio & Powell's View:</strong></p>
+                        <p>Organizations adopt practices because they're expected. Conforming to field norms grants legitimacy—access to resources, reduced scrutiny, social acceptance—regardless of efficiency.</p>
+                        <p style="margin-top: 15px; color: #6b7280;"><em>Implication:</em> Organizations may become more homogeneous without becoming more efficient.</p>
+                    </div>
+                </div>
+
+                <h3>Evidence for Legitimacy Over Efficiency</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Symbolic Adoption</h4>
+                        <p>Organizations often adopt structures symbolically without integrating them into core operations. Mission statements, ethics codes, and strategic plans may exist on paper but have little effect on daily practice.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Decoupling</h4>
+                        <p>Meyer and Rowan (1977) showed that organizations "decouple" their formal structures from their technical activities, maintaining legitimacy while preserving operational flexibility.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Fashion Cycles</h4>
+                        <p>Management practices rise and fall in popularity like fashions—TQM, BPR, Six Sigma—with adoption driven by trends rather than evidence of effectiveness.</p>
+                    </div>
+                </div>
+
+                <div class="key-finding">
+                    <strong>🎯 The Paradox:</strong> Rational actors, each trying to improve their organization's position, collectively create field-level homogeneity. "Once a field becomes well established... there is an inexorable push toward homogenization." Ironically, the more organizations try to distinguish themselves, the more they may converge on similar strategies and structures.
+                </div>
+            </section>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Theory Page:</strong> Deep dive into the mechanisms of institutional isomorphism</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HYPOTHESES & EVIDENCE PAGE -->
+    <div id="hypotheses" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Hypotheses & Evidence</h1>
+                <p class="citation">Predictors of Isomorphic Change</p>
+            </section>
+
+            <!-- The 12 Hypotheses -->
+            <section class="section-card">
+                <h2>📋 The 12 Hypotheses</h2>
+                <p>DiMaggio and Powell didn't just describe isomorphism—they made <strong>testable predictions</strong> about when organizations and fields will experience more or less isomorphic pressure. These hypotheses have guided decades of empirical research.</p>
+
+                <div class="tabs">
+                    <button class="tab active" onclick="showHypothesisTab('org-level')">Organization-Level (A1-A5)</button>
+                    <button class="tab" onclick="showHypothesisTab('field-level')">Field-Level (B1-B7)</button>
+                </div>
+
+                <div id="org-level" class="tab-content active">
+                    <h3>Organization-Level Hypotheses</h3>
+                    <p>These predict when individual organizations will experience stronger isomorphic pressures:</p>
+
+                    <div style="margin: 25px 0;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #dc2626; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #dc2626; margin-bottom: 10px;">A-1: Dependence → Similarity</h4>
+                            <p>"The greater the dependence of an organization on another organization, the more similar it will become to that organization in structure, climate, and behavioral focus."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Coercive | <strong>Example:</strong> Franchisees becoming similar to the franchisor</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #dc2626; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #dc2626; margin-bottom: 10px;">A-2: Centralized Resources → More Isomorphism</h4>
+                            <p>"The greater the centralization of organization A's resource supply, the greater the extent to which organization A will change isomorphically to resemble the organizations on which it depends for resources."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Coercive | <strong>Example:</strong> Nonprofits dependent on a few major foundations</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #f59e0b; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #d97706; margin-bottom: 10px;">A-3: Uncertain Means-Ends → More Imitation</h4>
+                            <p>"The more uncertain the relationship between means and ends the greater the extent to which an organization will model itself after organizations it perceives to be successful."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Mimetic | <strong>Example:</strong> Startups copying successful competitors' strategies</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #f59e0b; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #d97706; margin-bottom: 10px;">A-4: Ambiguous Goals → More Imitation</h4>
+                            <p>"The more ambiguous the goals of an organization, the greater the extent to which the organization will model itself after organizations that it perceives to be successful."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Mimetic | <strong>Example:</strong> Universities with vague missions copying prestigious peers</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #059669; margin-bottom: 10px;">A-5: Academic Credentials → More Similarity</h4>
+                            <p>"The greater the reliance on academic credentials in choosing managerial and staff personnel, the greater the extent to which an organization will become like other organizations in its field."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Normative | <strong>Example:</strong> Firms requiring MBAs hiring similar-thinking managers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="field-level" class="tab-content">
+                    <h3>Field-Level Hypotheses</h3>
+                    <p>These predict when entire organizational fields will show more homogeneity:</p>
+
+                    <div style="margin: 25px 0;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #dc2626; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #dc2626; margin-bottom: 10px;">B-1: Centralized Resource Sources → Field Homogeneity</h4>
+                            <p>"The greater the extent to which an organizational field is dependent upon a single (or several similar) source of support for vital resources, the higher the level of isomorphism."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Coercive | <strong>Example:</strong> Healthcare field dependent on CMS/Medicare rules</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #dc2626; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #dc2626; margin-bottom: 10px;">B-2: State Transactions → Field Homogeneity</h4>
+                            <p>"The greater the extent to which the organizations in a field transact with agencies of the state, the greater the extent of isomorphism in the field as a whole."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Coercive | <strong>Example:</strong> Defense contractors with similar compliance structures</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #f59e0b; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #d97706; margin-bottom: 10px;">B-3: Fewer Alternative Models → Faster Isomorphism</h4>
+                            <p>"The fewer the number of visible alternative organizational models in a field, the faster the rate of isomorphism in that field."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Mimetic | <strong>Example:</strong> Emerging industries converging on dominant designs</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #f59e0b; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #d97706; margin-bottom: 10px;">B-4: Uncertainty → Field Homogeneity</h4>
+                            <p>"The greater the extent of uncertainty of technologies or of goals within a field, the greater the rate of isomorphic change."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Mimetic | <strong>Example:</strong> AI/ML industry rapidly converging on practices</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #059669; margin-bottom: 10px;">B-5: Professionalization → Field Homogeneity</h4>
+                            <p>"The greater the extent of professionalization in a field, the greater the amount of institutional isomorphic change."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Normative | <strong>Example:</strong> Accounting firms with CPA requirements</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #059669; margin-bottom: 10px;">B-6: Participation in Trade/Professional Associations → Homogeneity</h4>
+                            <p>"The greater the extent of participation of organizational managers in trade and professional associations, the more likely the organization will be, or will become, similar to other organizations in its field."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> Normative | <strong>Example:</strong> Industry associations spreading best practices</p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 5px solid #6366f1; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: #6366f1; margin-bottom: 10px;">B-7: Field Structuration → Homogeneity</h4>
+                            <p>"The greater the extent of structuration of a field, the greater the degree of isomorphism."</p>
+                            <p style="margin-top: 10px; font-size: 0.9em; color: #6b7280;"><strong>Type:</strong> All | <strong>Example:</strong> Mature industries more homogeneous than emerging ones</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empirical Support -->
+            <section class="section-card">
+                <h2>🔬 Empirical Research</h2>
+                <p>Since 1983, thousands of studies have tested DiMaggio and Powell's framework. Here are some key findings:</p>
+
+                <h3>Supporting Evidence by Mechanism</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Mechanism</th>
+                            <th>Study Domain</th>
+                            <th>Key Finding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #dc2626;"><strong>Coercive</strong></td>
+                            <td>Higher Education (Morphew, 2009)</td>
+                            <td>Universities adopted identical strategic plans after accreditation requirements mandated them</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #dc2626;"><strong>Coercive</strong></td>
+                            <td>Corporate Governance (Yoshikawa et al., 2007)</td>
+                            <td>Japanese firms adopted US-style governance after legal reforms requiring independent directors</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #d97706;"><strong>Mimetic</strong></td>
+                            <td>Hospitals (Westphal et al., 1997)</td>
+                            <td>Hospitals adopted TQM programs mimicking high-status early adopters, regardless of fit</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #d97706;"><strong>Mimetic</strong></td>
+                            <td>Tech Startups (Lounsbury & Glynn, 2001)</td>
+                            <td>VC-backed startups converged on similar organizational structures to signal legitimacy</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #059669;"><strong>Normative</strong></td>
+                            <td>HR Practices (Dobbin et al., 2015)</td>
+                            <td>Organizations with HR professionals adopted similar diversity programs</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #059669;"><strong>Normative</strong></td>
+                            <td>Accounting (Greenwood et al., 2002)</td>
+                            <td>Accounting firms worldwide adopted similar structures after Big 8 mergers</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Meta-Analytical Findings</h3>
+                <div class="grid">
+                    <div class="stat-box">
+                        <div class="stat-value">68K+</div>
+                        <div class="stat-label">Citations of the Original Paper</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label">Empirical Studies Testing the Framework</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">40+</div>
+                        <div class="stat-label">Years of Accumulated Research</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Critiques and Extensions -->
+            <section class="section-card">
+                <h2>⚖️ Critiques and Extensions</h2>
+
+                <h3>Major Critiques</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Overemphasis on Homogeneity</h4>
+                        <p>Critics argue the theory focuses too much on similarity and not enough on explaining heterogeneity. Why do some organizations resist isomorphic pressures? How do new forms emerge?</p>
+                    </div>
+                    <div class="card">
+                        <h4>Agency Problem</h4>
+                        <p>Early institutional theory was criticized for making organizations seem like passive recipients of institutional pressures. Later work on "institutional entrepreneurship" addressed this gap.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Mechanism Overlap</h4>
+                        <p>In practice, the three mechanisms often overlap and interact. Distinguishing coercive from normative pressure can be difficult—is accreditation coercive or normative?</p>
+                    </div>
+                </div>
+
+                <h3>Important Extensions</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Institutional Entrepreneurship</h4>
+                        <p>Maguire et al. (2004) showed how actors can actively work to create new institutions or transform existing ones, addressing the agency critique.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Institutional Logics</h4>
+                        <p>Thornton & Ocasio (2008) developed the institutional logics perspective, showing how multiple competing logics (market, profession, state) create complexity.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Institutional Work</h4>
+                        <p>Lawrence & Suddaby (2006) introduced "institutional work"—the purposive action of individuals and organizations aimed at creating, maintaining, and disrupting institutions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Hypotheses Page:</strong> The 12 predictions and their empirical support</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE TOOLS PAGE -->
+    <div id="interactive" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Interactive Tools</h1>
+                <p class="citation">Explore Institutional Isomorphism Concepts</p>
+            </section>
+
+            <!-- About Tools Section -->
+            <section class="section-card" style="background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);">
+                <h2>🎯 About These Interactive Tools</h2>
+                <p>These tools help you understand and apply DiMaggio & Powell's institutional isomorphism framework. Use them to analyze organizations and predict isomorphic pressures.</p>
+
+                <div class="grid" style="margin-top: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; border-left: 5px solid #818cf8;">
+                        <h4 style="color: #4f46e5; margin-bottom: 10px;">✅ Based on the 1983 Paper</h4>
+                        <ul style="margin-left: 20px; color: #4b5563;">
+                            <li>Mechanism identifier uses the original definitions</li>
+                            <li>Pressure analyzer based on the 12 hypotheses</li>
+                            <li>Examples drawn from real organizational research</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 12px; border-left: 5px solid #f59e0b;">
+                        <h4 style="color: #92400e; margin-bottom: 10px;">⚠️ Educational Purpose</h4>
+                        <ul style="margin-left: 20px; color: #4b5563;">
+                            <li>Simplified models for learning</li>
+                            <li>Real analysis requires field research</li>
+                            <li>Use for understanding concepts, not predictions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 1: Isomorphism Mechanism Identifier -->
+            <section class="section-card">
+                <h2>🔍 Tool 1: Isomorphism Mechanism Identifier</h2>
+                <p>Describe a scenario where organizations are becoming similar, and this tool will help you identify which mechanism(s) are at work.</p>
+
+                <div class="calculator-section">
+                    <h3 class="calculator-title">Identify the Mechanism at Work</h3>
+
+                    <div class="input-group">
+                        <label for="scenario">Select a scenario type:</label>
+                        <select id="scenario" onchange="updateScenarioDetails()">
+                            <option value="">-- Choose a scenario --</option>
+                            <option value="regulation">New government regulation was passed</option>
+                            <option value="funder">Major funder requires specific practices</option>
+                            <option value="uncertainty">Industry is new and best practices unclear</option>
+                            <option value="competitor">Successful competitor uses a practice</option>
+                            <option value="education">New hires come from same top programs</option>
+                            <option value="association">Professional association issues guidelines</option>
+                            <option value="crisis">Industry crisis creates pressure to conform</option>
+                            <option value="custom">Custom scenario</option>
+                        </select>
+                    </div>
+
+                    <div id="scenarioDetails" style="display: none;">
+                        <div class="input-group">
+                            <label for="customScenario">Describe the situation:</label>
+                            <textarea id="customScenario" rows="3" style="width: 100%; padding: 12px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 1rem;" placeholder="E.g., 'All tech companies started offering unlimited PTO after a few high-profile companies did it...'"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="identifyMechanism()">Identify Mechanism</button>
+
+                    <div id="mechanismResult" class="result-box">
+                        <div id="mechanismContent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 2: Isomorphic Pressure Analyzer -->
+            <section class="section-card">
+                <h2>📊 Tool 2: Isomorphic Pressure Analyzer</h2>
+                <p>Answer questions about your organization to see which isomorphic pressures are strongest. Based on DiMaggio & Powell's hypotheses.</p>
+
+                <div class="calculator-section">
+                    <h3 class="calculator-title">Analyze Isomorphic Pressures on Your Organization</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <div class="input-group">
+                                <label>How dependent is your org on a few key resource providers?</label>
+                                <select id="resourceDep">
+                                    <option value="1">Very diverse sources</option>
+                                    <option value="2">Moderately diverse</option>
+                                    <option value="3">Few key sources</option>
+                                    <option value="4">Highly dependent on 1-2 sources</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>How much does your org interact with government?</label>
+                                <select id="govInteraction">
+                                    <option value="1">Minimal/No government interaction</option>
+                                    <option value="2">Some regulatory oversight</option>
+                                    <option value="3">Significant government contracts/funding</option>
+                                    <option value="4">Heavy regulation, licensing, or government funding</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>How clear is the relationship between practices and outcomes?</label>
+                                <select id="uncertainty">
+                                    <option value="1">Very clear—we know what works</option>
+                                    <option value="2">Mostly clear</option>
+                                    <option value="3">Somewhat unclear</option>
+                                    <option value="4">Very uncertain—nobody knows what really works</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="input-group">
+                                <label>How clear are your organization's goals?</label>
+                                <select id="goalClarity">
+                                    <option value="1">Crystal clear and measurable</option>
+                                    <option value="2">Mostly clear</option>
+                                    <option value="3">Somewhat ambiguous</option>
+                                    <option value="4">Very ambiguous or contested</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>How professionalized is your workforce?</label>
+                                <select id="professionalization">
+                                    <option value="1">Low—diverse backgrounds, few credentials required</option>
+                                    <option value="2">Moderate—some professional roles</option>
+                                    <option value="3">High—most require professional credentials</option>
+                                    <option value="4">Very high—dominated by credentialed professionals</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>How active is your org in trade/professional associations?</label>
+                                <select id="associations">
+                                    <option value="1">Not active</option>
+                                    <option value="2">Somewhat active</option>
+                                    <option value="3">Active participant</option>
+                                    <option value="4">Leadership role in associations</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="analyzePressures()">Analyze Pressures</button>
+
+                    <div id="pressureResult" class="result-box">
+                        <h4 style="color: #4f46e5; margin-bottom: 20px;">Isomorphic Pressure Profile</h4>
+                        <div id="pressureBars"></div>
+                        <div id="pressureInterpretation" style="margin-top: 20px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 3: Field Evolution Simulator -->
+            <section class="section-card">
+                <h2>🌐 Tool 3: Organizational Field Simulator</h2>
+                <p>Watch how organizations in a field become similar over time. Adjust the isomorphic pressures and see their effects.</p>
+
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px;">
+                    <div style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
+                        <button class="control-btn" onclick="startFieldSimulation()">▶️ Start Simulation</button>
+                        <button class="control-btn secondary" onclick="resetFieldSimulation()">🔄 Reset</button>
+                        <button class="control-btn" onclick="addCoerciveShock()">⚖️ Add Regulation</button>
+                        <button class="control-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);" onclick="addMimeticShock()">🔄 Success Story</button>
+                        <button class="control-btn" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);" onclick="addNormativeShock()">🎓 Prof. Standard</button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
+                        <div style="background: white; border-radius: 12px; padding: 20px;">
+                            <canvas id="fieldCanvas" width="500" height="400" style="width: 100%; height: 400px;"></canvas>
+                        </div>
+                        <div>
+                            <div class="metric-card" style="margin-bottom: 15px;">
+                                <div class="metric-label">Year</div>
+                                <div class="metric-value" id="simYear">0</div>
+                            </div>
+                            <div class="metric-card" style="margin-bottom: 15px;">
+                                <div class="metric-label">Field Homogeneity</div>
+                                <div class="metric-value" id="simHomogeneity">0%</div>
+                            </div>
+                            <div class="metric-card" style="margin-bottom: 15px;">
+                                <div class="metric-label">Organizations</div>
+                                <div class="metric-value" id="simOrgCount">20</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">Active Pressures</div>
+                                <div id="activePressures" style="margin-top: 10px; font-size: 0.9em;">None yet</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-text">
+                        <strong>How it works:</strong> Each dot represents an organization. Their position reflects their practices—similar organizations cluster together. Add different pressures to see how quickly the field homogenizes. Coercive pressures (regulations) have immediate, strong effects. Mimetic pressures (copying success) spread gradually. Normative pressures (professional standards) create slow but persistent drift toward similarity.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 4: Organizational Field Topology -->
+            <section class="section-card">
+                <h2>🔗 Tool 4: Organizational Field Topology Explorer</h2>
+                <p>Explore how organizations are structurally positioned within a field and how different isomorphic pressures flow through network connections.</p>
+
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 600; margin-right: 15px;">Select topology view:</label>
+                        <button class="control-btn" onclick="showTopology('coercive')" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">Coercive Structure</button>
+                        <button class="control-btn" onclick="showTopology('mimetic')" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); margin-left: 10px;">Mimetic Structure</button>
+                        <button class="control-btn" onclick="showTopology('normative')" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%); margin-left: 10px;">Normative Structure</button>
+                    </div>
+
+                    <div id="topologyDiagram" style="height: 380px; position: relative; border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+                        <svg id="topologySvg" viewBox="0 0 700 350" style="width: 100%; height: 100%;">
+                            <!-- Default state - instructions -->
+                            <text x="350" y="175" text-anchor="middle" fill="#94a3b8" font-size="16">Select a topology view above to explore organizational field structures</text>
+                        </svg>
+                    </div>
+
+                    <div id="topologyExplanation" style="margin-top: 20px; padding: 25px; background: #f8f9fa; border-radius: 10px;">
+                        <h4 style="color: #4f46e5; margin-bottom: 15px;">Understanding Organizational Field Topology</h4>
+                        <p style="margin-bottom: 15px;">DiMaggio & Powell argue that organizations exist within <strong>organizational fields</strong>—sets of organizations that "constitute a recognized area of institutional life." The structure of these fields determines how isomorphic pressures flow.</p>
+                        <p><strong>Key structural elements:</strong></p>
+                        <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Central organizations</strong> — high visibility, more likely to be imitated</li>
+                            <li><strong>Peripheral organizations</strong> — receive pressures but rarely transmit them</li>
+                            <li><strong>Resource dependencies</strong> — create pathways for coercive pressure</li>
+                            <li><strong>Professional networks</strong> — enable normative diffusion across organizational boundaries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    <strong>How it works:</strong> Each topology view shows a different structural arrangement of organizations within a field. Coercive structures are hierarchical (regulators at top). Mimetic structures show star patterns around successful exemplars. Normative structures show professional network overlays connecting organizations through shared personnel training.
+                </div>
+            </section>
+
+            <!-- Tool 5: Practice Adoption Timeline -->
+            <section class="section-card">
+                <h2>📈 Tool 5: Practice Adoption Visualizer</h2>
+                <p>See how different isomorphic mechanisms create different adoption patterns over time.</p>
+
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 600; margin-right: 15px;">Select mechanism type:</label>
+                        <button class="control-btn" onclick="showAdoptionPattern('coercive')" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">Coercive</button>
+                        <button class="control-btn" onclick="showAdoptionPattern('mimetic')" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); margin-left: 10px;">Mimetic</button>
+                        <button class="control-btn" onclick="showAdoptionPattern('normative')" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%); margin-left: 10px;">Normative</button>
+                    </div>
+
+                    <div id="adoptionChart" style="height: 300px; position: relative;">
+                        <svg id="adoptionSvg" viewBox="0 0 600 250" style="width: 100%; height: 100%;">
+                            <!-- Axes -->
+                            <line x1="50" y1="200" x2="580" y2="200" stroke="#cbd5e0" stroke-width="2"/>
+                            <line x1="50" y1="200" x2="50" y2="20" stroke="#cbd5e0" stroke-width="2"/>
+
+                            <!-- Y-axis labels -->
+                            <text x="15" y="30" font-size="12" fill="#64748b">100%</text>
+                            <text x="15" y="110" font-size="12" fill="#64748b">50%</text>
+                            <text x="15" y="205" font-size="12" fill="#64748b">0%</text>
+                            <text x="10" y="120" font-size="12" fill="#64748b" transform="rotate(-90, 10, 120)">Adoption</text>
+
+                            <!-- X-axis labels -->
+                            <text x="50" y="220" font-size="12" fill="#64748b">T0</text>
+                            <text x="300" y="220" font-size="12" fill="#64748b">Time</text>
+                            <text x="560" y="220" font-size="12" fill="#64748b">T+n</text>
+
+                            <!-- Adoption curve will be drawn here -->
+                            <path id="adoptionCurve" fill="none" stroke-width="3"/>
+
+                            <!-- Event marker -->
+                            <line id="eventMarker" x1="100" y1="20" x2="100" y2="200" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5" style="display: none;"/>
+                            <text id="eventLabel" x="105" y="35" font-size="11" fill="#64748b" style="display: none;"></text>
+                        </svg>
+                    </div>
+
+                    <div id="adoptionExplanation" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <p style="color: #64748b; text-align: center;">Select a mechanism type above to see its typical adoption pattern</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p><strong>Interactive Tools:</strong> Educational visualizations of DiMaggio & Powell's (1983) institutional isomorphism framework</p>
+                <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                    These tools illustrate theoretical concepts for learning purposes.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ========== PAGE NAVIGATION ==========
+        function switchPage(pageId, btn) {
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('theory').style.display = 'none';
+            document.getElementById('hypotheses').style.display = 'none';
+            document.getElementById('interactive').style.display = 'none';
+
+            document.getElementById(pageId).style.display = 'block';
+
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            window.scrollTo(0, 0);
+
+            if (pageId === 'interactive') {
+                setTimeout(() => {
+                    initFieldCanvas();
+                }, 100);
+            }
+        }
+
+        // ========== DARK MODE ==========
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // ========== TAB SYSTEMS ==========
+        function showExampleTab(tabId) {
+            document.querySelectorAll('#main .tab-content').forEach(tc => tc.classList.remove('active'));
+            document.querySelectorAll('#main .tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showHypothesisTab(tabId) {
+            document.querySelectorAll('#hypotheses .tab-content').forEach(tc => tc.classList.remove('active'));
+            document.querySelectorAll('#hypotheses .tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ========== TOOL 1: MECHANISM IDENTIFIER ==========
+        function updateScenarioDetails() {
+            const scenario = document.getElementById('scenario').value;
+            document.getElementById('scenarioDetails').style.display = scenario === 'custom' ? 'block' : 'none';
+        }
+
+        function identifyMechanism() {
+            const scenario = document.getElementById('scenario').value;
+            if (!scenario) {
+                alert('Please select a scenario');
+                return;
+            }
+
+            const results = {
+                'regulation': {
+                    mechanism: 'Coercive',
+                    color: '#dc2626',
+                    icon: '⚖️',
+                    explanation: 'This is <strong>Coercive Isomorphism</strong>. Government regulations are the quintessential example of coercive pressure. Organizations must comply or face sanctions (fines, loss of license, legal liability). All organizations subject to the regulation will adopt similar practices—not because they chose to, but because they must.',
+                    examples: ['SOX compliance requirements', 'GDPR data protection rules', 'Environmental regulations']
+                },
+                'funder': {
+                    mechanism: 'Coercive',
+                    color: '#dc2626',
+                    icon: '⚖️',
+                    explanation: 'This is <strong>Coercive Isomorphism</strong>. When resource providers mandate specific practices, dependent organizations must comply. This is coercive because the power asymmetry leaves little choice—adopt the required practices or lose access to critical resources.',
+                    examples: ['Foundation grant requirements', 'VC board composition demands', 'Franchise operating standards']
+                },
+                'uncertainty': {
+                    mechanism: 'Mimetic',
+                    color: '#f59e0b',
+                    icon: '🔄',
+                    explanation: 'This is <strong>Mimetic Isomorphism</strong>. When no one knows what works, organizations look to peers for guidance. Copying successful organizations is a low-risk strategy that provides legitimacy even if the borrowed practices don\'t actually improve performance.',
+                    examples: ['Startups copying YC model', 'New industries adopting leader practices', 'Crisis-driven imitation']
+                },
+                'competitor': {
+                    mechanism: 'Mimetic',
+                    color: '#f59e0b',
+                    icon: '🔄',
+                    explanation: 'This is <strong>Mimetic Isomorphism</strong>. Organizations copy successful peers\' visible practices, assuming the practices contributed to success. The imitation often happens without understanding the underlying logic—copying symbols rather than substance.',
+                    examples: ['Open office layouts after Google', 'Unlimited PTO policies', 'OKR adoption']
+                },
+                'education': {
+                    mechanism: 'Normative',
+                    color: '#10b981',
+                    icon: '🎓',
+                    explanation: 'This is <strong>Normative Isomorphism</strong>. When employees share common educational backgrounds, they bring identical frameworks, assumptions, and approaches. Organizations become similar not through mandate or imitation, but through the shared cognitive templates of their professional staff.',
+                    examples: ['MBA-trained managers using same frameworks', 'Engineers from same programs', 'Doctors following identical protocols']
+                },
+                'association': {
+                    mechanism: 'Normative',
+                    color: '#10b981',
+                    icon: '🎓',
+                    explanation: 'This is <strong>Normative Isomorphism</strong>. Professional associations define "best practices" and spread them through conferences, publications, and certification requirements. Members carry these standards back to their organizations, creating field-wide homogeneity.',
+                    examples: ['AICPA accounting standards', 'AMA medical guidelines', 'PMI project management practices']
+                },
+                'crisis': {
+                    mechanism: 'Mixed (Coercive + Mimetic)',
+                    color: '#6366f1',
+                    icon: '🔄⚖️',
+                    explanation: 'Crises often trigger <strong>multiple mechanisms simultaneously</strong>. Regulators may impose new rules (coercive), while organizations also frantically copy whatever peers are doing (mimetic). The combination creates rapid, dramatic homogenization.',
+                    examples: ['Post-Enron governance reforms', 'COVID-19 remote work adoption', 'Financial crisis regulatory responses']
+                },
+                'custom': {
+                    mechanism: 'Analysis Required',
+                    color: '#6366f1',
+                    icon: '🔍',
+                    explanation: 'To identify the mechanism, ask: <br><br><strong>Is there a mandate or resource dependency?</strong> → Coercive<br><strong>Is there uncertainty and imitation of successful peers?</strong> → Mimetic<br><strong>Is there professional training or credentialing?</strong> → Normative<br><br>Most real situations involve multiple mechanisms operating together.',
+                    examples: []
+                }
+            };
+
+            const result = results[scenario];
+            const resultDiv = document.getElementById('mechanismResult');
+            resultDiv.classList.add('show');
+
+            document.getElementById('mechanismContent').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <span style="font-size: 3rem;">${result.icon}</span>
+                    <div>
+                        <h4 style="color: ${result.color}; margin: 0;">${result.mechanism} Isomorphism</h4>
+                    </div>
+                </div>
+                <p style="margin-bottom: 15px;">${result.explanation}</p>
+                ${result.examples.length > 0 ? `
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <strong>Similar Examples:</strong>
+                    <ul style="margin: 10px 0 0 20px;">
+                        ${result.examples.map(e => `<li>${e}</li>`).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // ========== TOOL 2: PRESSURE ANALYZER ==========
+        function analyzePressures() {
+            const resourceDep = parseInt(document.getElementById('resourceDep').value);
+            const govInteraction = parseInt(document.getElementById('govInteraction').value);
+            const uncertainty = parseInt(document.getElementById('uncertainty').value);
+            const goalClarity = parseInt(document.getElementById('goalClarity').value);
+            const professionalization = parseInt(document.getElementById('professionalization').value);
+            const associations = parseInt(document.getElementById('associations').value);
+
+            // Calculate pressure scores (0-100)
+            const coercive = ((resourceDep + govInteraction) / 8) * 100;
+            const mimetic = ((uncertainty + goalClarity) / 8) * 100;
+            const normative = ((professionalization + associations) / 8) * 100;
+
+            const resultDiv = document.getElementById('pressureResult');
+            resultDiv.classList.add('show');
+
+            document.getElementById('pressureBars').innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span style="font-weight: 600; color: #dc2626;">⚖️ Coercive Pressure</span>
+                        <span style="font-weight: 600;">${coercive.toFixed(0)}%</span>
+                    </div>
+                    <div style="background: #e5e7eb; height: 25px; border-radius: 12px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #dc2626, #ef4444); height: 100%; width: ${coercive}%; transition: width 0.5s;"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span style="font-weight: 600; color: #d97706;">🔄 Mimetic Pressure</span>
+                        <span style="font-weight: 600;">${mimetic.toFixed(0)}%</span>
+                    </div>
+                    <div style="background: #e5e7eb; height: 25px; border-radius: 12px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #f59e0b, #fbbf24); height: 100%; width: ${mimetic}%; transition: width 0.5s;"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span style="font-weight: 600; color: #059669;">🎓 Normative Pressure</span>
+                        <span style="font-weight: 600;">${normative.toFixed(0)}%</span>
+                    </div>
+                    <div style="background: #e5e7eb; height: 25px; border-radius: 12px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #10b981, #34d399); height: 100%; width: ${normative}%; transition: width 0.5s;"></div>
+                    </div>
+                </div>
+            `;
+
+            // Interpretation
+            const dominant = coercive > mimetic && coercive > normative ? 'coercive' :
+                            mimetic > normative ? 'mimetic' : 'normative';
+
+            const interpretations = {
+                coercive: 'Your organization faces strong <strong>coercive pressures</strong>. With high resource dependence and/or government interaction, you have limited discretion to deviate from required practices. Focus on efficient compliance rather than differentiation.',
+                mimetic: 'Your organization faces strong <strong>mimetic pressures</strong>. High uncertainty about what works creates pressure to copy successful peers. Be aware that adopted practices may be more symbolic than substantive.',
+                normative: 'Your organization faces strong <strong>normative pressures</strong>. Professional staff bring shared standards and expectations. Innovation may require challenging taken-for-granted professional assumptions.'
+            };
+
+            document.getElementById('pressureInterpretation').innerHTML = `
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #4f46e5; margin-bottom: 10px;">Interpretation</h4>
+                    <p>${interpretations[dominant]}</p>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #6b7280;">
+                        <strong>Overall isomorphic pressure:</strong> ${((coercive + mimetic + normative) / 3).toFixed(0)}% —
+                        ${((coercive + mimetic + normative) / 3) > 66 ? 'High pressure toward conformity' :
+                          ((coercive + mimetic + normative) / 3) > 33 ? 'Moderate pressure toward conformity' :
+                          'Lower pressure—more room for differentiation'}
+                    </p>
+                </div>
+            `;
+        }
+
+        // ========== TOOL 3: FIELD SIMULATOR ==========
+        let fieldOrgs = [];
+        let fieldCanvas, fieldCtx;
+        let simulationRunning = false;
+        let simulationInterval = null;
+        let simYear = 0;
+        let pressures = [];
+
+        function initFieldCanvas() {
+            fieldCanvas = document.getElementById('fieldCanvas');
+            if (!fieldCanvas) return;
+            fieldCtx = fieldCanvas.getContext('2d');
+
+            const rect = fieldCanvas.getBoundingClientRect();
+            fieldCanvas.width = rect.width * window.devicePixelRatio;
+            fieldCanvas.height = rect.height * window.devicePixelRatio;
+            fieldCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            resetFieldSimulation();
+        }
+
+        function resetFieldSimulation() {
+            fieldOrgs = [];
+            simYear = 0;
+            pressures = [];
+            simulationRunning = false;
+            if (simulationInterval) clearInterval(simulationInterval);
+
+            const rect = fieldCanvas.getBoundingClientRect();
+
+            // Create 20 random organizations
+            for (let i = 0; i < 20; i++) {
+                fieldOrgs.push({
+                    x: 50 + Math.random() * (rect.width - 100),
+                    y: 50 + Math.random() * (rect.height - 100),
+                    targetX: null,
+                    targetY: null,
+                    color: `hsl(${Math.random() * 360}, 70%, 50%)`
+                });
+            }
+
+            updateFieldMetrics();
+            drawField();
+        }
+
+        function startFieldSimulation() {
+            if (simulationRunning) return;
+            simulationRunning = true;
+
+            simulationInterval = setInterval(() => {
+                simYear++;
+
+                // Apply pressure effects
+                pressures.forEach(p => {
+                    if (p.type === 'coercive') {
+                        // Coercive: strong pull toward center point
+                        fieldOrgs.forEach(org => {
+                            org.x += (p.x - org.x) * 0.15;
+                            org.y += (p.y - org.y) * 0.15;
+                        });
+                    } else if (p.type === 'mimetic') {
+                        // Mimetic: pull toward successful org
+                        fieldOrgs.forEach(org => {
+                            if (org !== p.model) {
+                                org.x += (p.model.x - org.x) * 0.05;
+                                org.y += (p.model.y - org.y) * 0.05;
+                            }
+                        });
+                    } else if (p.type === 'normative') {
+                        // Normative: slow drift toward average
+                        const avgX = fieldOrgs.reduce((s, o) => s + o.x, 0) / fieldOrgs.length;
+                        const avgY = fieldOrgs.reduce((s, o) => s + o.y, 0) / fieldOrgs.length;
+                        fieldOrgs.forEach(org => {
+                            org.x += (avgX - org.x) * 0.02;
+                            org.y += (avgY - org.y) * 0.02;
+                        });
+                    }
+                });
+
+                // Natural random drift
+                fieldOrgs.forEach(org => {
+                    org.x += (Math.random() - 0.5) * 3;
+                    org.y += (Math.random() - 0.5) * 3;
+                });
+
+                updateFieldMetrics();
+                drawField();
+
+                if (simYear >= 50) {
+                    clearInterval(simulationInterval);
+                    simulationRunning = false;
+                }
+            }, 200);
+        }
+
+        function addCoerciveShock() {
+            const rect = fieldCanvas.getBoundingClientRect();
+            pressures.push({
+                type: 'coercive',
+                x: rect.width / 2,
+                y: rect.height / 2,
+                label: 'Regulation'
+            });
+            updateActivePressures();
+        }
+
+        function addMimeticShock() {
+            const model = fieldOrgs[Math.floor(Math.random() * fieldOrgs.length)];
+            model.color = '#f59e0b';
+            pressures.push({
+                type: 'mimetic',
+                model: model,
+                label: 'Success Model'
+            });
+            updateActivePressures();
+        }
+
+        function addNormativeShock() {
+            pressures.push({
+                type: 'normative',
+                label: 'Prof. Standard'
+            });
+            updateActivePressures();
+        }
+
+        function updateActivePressures() {
+            const container = document.getElementById('activePressures');
+            if (pressures.length === 0) {
+                container.innerHTML = 'None yet';
+            } else {
+                container.innerHTML = pressures.map(p => {
+                    const colors = { coercive: '#dc2626', mimetic: '#f59e0b', normative: '#10b981' };
+                    return `<span style="display: inline-block; background: ${colors[p.type]}; color: white; padding: 3px 8px; border-radius: 4px; margin: 2px; font-size: 0.8em;">${p.label}</span>`;
+                }).join('');
+            }
+        }
+
+        function updateFieldMetrics() {
+            document.getElementById('simYear').textContent = simYear;
+            document.getElementById('simOrgCount').textContent = fieldOrgs.length;
+
+            // Calculate homogeneity (inverse of spread)
+            const avgX = fieldOrgs.reduce((s, o) => s + o.x, 0) / fieldOrgs.length;
+            const avgY = fieldOrgs.reduce((s, o) => s + o.y, 0) / fieldOrgs.length;
+            const avgDist = fieldOrgs.reduce((s, o) => s + Math.sqrt((o.x - avgX) ** 2 + (o.y - avgY) ** 2), 0) / fieldOrgs.length;
+            const maxDist = 200;
+            const homogeneity = Math.max(0, Math.min(100, (1 - avgDist / maxDist) * 100));
+            document.getElementById('simHomogeneity').textContent = homogeneity.toFixed(0) + '%';
+        }
+
+        function drawField() {
+            if (!fieldCtx) return;
+            const rect = fieldCanvas.getBoundingClientRect();
+            fieldCtx.clearRect(0, 0, rect.width, rect.height);
+
+            // Draw organizations
+            fieldOrgs.forEach(org => {
+                fieldCtx.beginPath();
+                fieldCtx.arc(org.x, org.y, 12, 0, 2 * Math.PI);
+                fieldCtx.fillStyle = org.color;
+                fieldCtx.fill();
+                fieldCtx.strokeStyle = 'white';
+                fieldCtx.lineWidth = 2;
+                fieldCtx.stroke();
+            });
+
+            // Draw pressure indicators
+            pressures.forEach(p => {
+                if (p.type === 'coercive') {
+                    fieldCtx.beginPath();
+                    fieldCtx.arc(p.x, p.y, 30, 0, 2 * Math.PI);
+                    fieldCtx.strokeStyle = '#dc2626';
+                    fieldCtx.lineWidth = 3;
+                    fieldCtx.setLineDash([5, 5]);
+                    fieldCtx.stroke();
+                    fieldCtx.setLineDash([]);
+                }
+            });
+        }
+
+        // ========== TOOL 4: ORGANIZATIONAL FIELD TOPOLOGY ==========
+        function showTopology(type) {
+            const svg = document.getElementById('topologySvg');
+            const explanation = document.getElementById('topologyExplanation');
+
+            const topologies = {
+                coercive: {
+                    svg: `
+                        <!-- Hierarchical Coercive Structure -->
+                        <!-- Top tier: Regulatory bodies -->
+                        <text x="350" y="25" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="12">REGULATORY AUTHORITY</text>
+
+                        <!-- Central regulator -->
+                        <rect x="300" y="35" width="100" height="40" rx="5" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+                        <text x="350" y="60" text-anchor="middle" fill="white" font-size="11" font-weight="bold">State/Federal</text>
+
+                        <!-- Dependency arrows from regulator down -->
+                        <defs>
+                            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Resource providers tier -->
+                        <text x="150" y="110" text-anchor="middle" fill="#64748b" font-size="10">RESOURCE PROVIDERS</text>
+                        <text x="550" y="110" text-anchor="middle" fill="#64748b" font-size="10">ACCREDITORS</text>
+
+                        <rect x="100" y="120" width="100" height="35" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="150" y="142" text-anchor="middle" fill="#991b1b" font-size="10">Funders/Banks</text>
+
+                        <rect x="500" y="120" width="100" height="35" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="550" y="142" text-anchor="middle" fill="#991b1b" font-size="10">Industry Body</text>
+
+                        <!-- Arrows from top -->
+                        <line x1="320" y1="75" x2="180" y2="118" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+                        <line x1="380" y1="75" x2="520" y2="118" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+
+                        <!-- Dependent organizations tier -->
+                        <text x="350" y="195" text-anchor="middle" fill="#64748b" font-size="10">DEPENDENT ORGANIZATIONS</text>
+
+                        <circle cx="120" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="120" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org A</text>
+
+                        <circle cx="230" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="230" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org B</text>
+
+                        <circle cx="350" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="350" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org C</text>
+
+                        <circle cx="470" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="470" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org D</text>
+
+                        <circle cx="580" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="580" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org E</text>
+
+                        <!-- Arrows to dependent orgs -->
+                        <line x1="130" y1="155" x2="120" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="160" y1="155" x2="230" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="350" y1="75" x2="350" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" stroke-dasharray="5,3"/>
+                        <line x1="540" y1="155" x2="470" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="570" y1="155" x2="580" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+                        <!-- Legend -->
+                        <rect x="20" y="305" width="180" height="40" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <line x1="30" y1="320" x2="60" y2="320" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+                        <text x="70" y="324" fill="#64748b" font-size="10">Coercive pressure flow</text>
+                        <text x="30" y="338" fill="#64748b" font-size="9">Power asymmetry → Compliance</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #dc2626; margin-bottom: 15px;">⚖️ Coercive Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Coercive isomorphism flows through <strong>hierarchical dependency relationships</strong>. Organizations at the top (regulators, funders, accreditors) have power over those below them. Pressure travels <em>downward</em> through these dependency chains.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Vertical hierarchy</strong> — Authority flows from top to bottom</li>
+                            <li><strong>Centralized power</strong> — Few actors at top, many at bottom</li>
+                            <li><strong>Unidirectional pressure</strong> — Mandates flow down, compliance flows up</li>
+                            <li><strong>Resource dependency</strong> — Links represent funding, licensing, or legal authority</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar because they must all conform to the same external requirements—there's no choice involved.</p>
+                    `
+                },
+                mimetic: {
+                    svg: `
+                        <!-- Star/Network Mimetic Structure -->
+                        <defs>
+                            <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+                            </marker>
+                            <radialGradient id="successGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1"/>
+                                <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:0"/>
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Success glow around central org -->
+                        <circle cx="350" cy="175" r="80" fill="url(#successGlow)"/>
+
+                        <!-- Central successful organization -->
+                        <circle cx="350" cy="175" r="45" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+                        <text x="350" y="170" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SUCCESS</text>
+                        <text x="350" y="185" text-anchor="middle" fill="white" font-size="9">EXEMPLAR</text>
+
+                        <!-- Watching/imitating organizations -->
+                        <circle cx="150" cy="80" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="150" y="84" text-anchor="middle" fill="#92400e" font-size="10">Imitator A</text>
+
+                        <circle cx="550" cy="80" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="550" y="84" text-anchor="middle" fill="#92400e" font-size="10">Imitator B</text>
+
+                        <circle cx="100" cy="200" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="100" y="204" text-anchor="middle" fill="#92400e" font-size="10">Imitator C</text>
+
+                        <circle cx="600" cy="200" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="600" y="204" text-anchor="middle" fill="#92400e" font-size="10">Imitator D</text>
+
+                        <circle cx="180" cy="300" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="180" y="304" text-anchor="middle" fill="#92400e" font-size="10">Imitator E</text>
+
+                        <circle cx="520" cy="300" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="520" y="304" text-anchor="middle" fill="#92400e" font-size="10">Imitator F</text>
+
+                        <!-- Observation/imitation arrows (dashed - representing watching) -->
+                        <line x1="175" y1="100" x2="310" y2="150" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="525" y1="100" x2="390" y2="150" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="130" y1="195" x2="305" y2="175" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="570" y1="195" x2="395" y2="175" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="205" y1="280" x2="320" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="495" y1="280" x2="380" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+
+                        <!-- Eyes/observation symbols -->
+                        <text x="240" y="120" fill="#d97706" font-size="16">👁</text>
+                        <text x="440" y="120" fill="#d97706" font-size="16">👁</text>
+                        <text x="200" y="190" fill="#d97706" font-size="16">👁</text>
+                        <text x="480" y="190" fill="#d97706" font-size="16">👁</text>
+
+                        <!-- Legend -->
+                        <rect x="20" y="305" width="140" height="40" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <line x1="30" y1="320" x2="60" y2="320" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <text x="70" y="324" fill="#64748b" font-size="10">Observation</text>
+                        <text x="30" y="338" fill="#64748b" font-size="9">Uncertainty → Imitation</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #d97706; margin-bottom: 15px;">🔄 Mimetic Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Mimetic isomorphism creates <strong>star-shaped observation networks</strong>. Successful or prestigious organizations become focal points that others watch and copy. Influence radiates <em>outward</em> from exemplars.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Star topology</strong> — Central exemplar(s) surrounded by imitators</li>
+                            <li><strong>Visibility-based</strong> — Most visible organizations become models</li>
+                            <li><strong>Voluntary imitation</strong> — No mandate, just observation and copying</li>
+                            <li><strong>Uncertainty-driven</strong> — Copying intensifies when outcomes are unclear</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar by <em>choosing</em> to copy what appears successful—even if they don't understand why it works.</p>
+                    `
+                },
+                normative: {
+                    svg: `
+                        <!-- Normative Professional Network Structure -->
+                        <defs>
+                            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#10b981"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Professional institution at top -->
+                        <rect x="275" y="20" width="150" height="45" rx="8" fill="#10b981" stroke="#059669" stroke-width="2"/>
+                        <text x="350" y="38" text-anchor="middle" fill="white" font-size="10" font-weight="bold">PROFESSIONAL</text>
+                        <text x="350" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="bold">SCHOOL / ASSOCIATION</text>
+
+                        <!-- Graduates/professionals (small nodes) -->
+                        <circle cx="280" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="320" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="380" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="420" cy="110" r="12" fill="#10b981"/>
+                        <text x="350" y="95" text-anchor="middle" fill="#064e3b" font-size="9">Graduates</text>
+
+                        <!-- Lines from school to graduates -->
+                        <line x1="310" y1="65" x2="280" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="330" y1="65" x2="320" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="370" y1="65" x2="380" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="390" y1="65" x2="420" y2="98" stroke="#10b981" stroke-width="1.5"/>
+
+                        <!-- Organizations in field -->
+                        <rect x="80" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="130" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org A</text>
+                        <circle cx="110" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="150" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="230" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="280" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org B</text>
+                        <circle cx="260" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="300" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="380" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="430" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org C</text>
+                        <circle cx="410" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="450" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="530" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="580" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org D</text>
+                        <circle cx="560" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="600" cy="225" r="8" fill="#10b981"/>
+
+                        <!-- Professional network connections (dotted lines between professionals) -->
+                        <line x1="150" y1="225" x2="260" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="300" y1="225" x2="410" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="450" y1="225" x2="560" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+
+                        <!-- Lines from graduates to orgs -->
+                        <line x1="280" y1="122" x2="130" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="320" y1="122" x2="280" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="380" y1="122" x2="430" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="420" y1="122" x2="580" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+                        <!-- Professional association connection -->
+                        <rect x="250" y="280" width="200" height="35" rx="5" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2"/>
+                        <text x="350" y="302" text-anchor="middle" fill="#064e3b" font-size="10">Professional Association Network</text>
+
+                        <line x1="130" y1="240" x2="270" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="280" y1="240" x2="300" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="430" y1="240" x2="400" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="580" y1="240" x2="430" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+
+                        <!-- Legend -->
+                        <rect x="20" y="295" width="190" height="50" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <circle cx="35" cy="310" r="6" fill="#10b981"/>
+                        <text x="50" y="314" fill="#64748b" font-size="9">Professional with shared training</text>
+                        <line x1="30" y1="330" x2="60" y2="330" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <text x="70" y="334" fill="#64748b" font-size="9">Professional network ties</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #059669; margin-bottom: 15px;">🎓 Normative Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Normative isomorphism flows through <strong>professional network overlays</strong>. Educational institutions produce professionals with shared cognitive frameworks. These professionals then carry identical assumptions into diverse organizations, creating similarity from within.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Dual-layer network</strong> — Organizations + professional ties that span them</li>
+                            <li><strong>Education as origin</strong> — Common training creates shared mental models</li>
+                            <li><strong>Association ties</strong> — Professional bodies reinforce and update norms</li>
+                            <li><strong>Personnel as carriers</strong> — Norms move with people between organizations</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar because their professional staff all learned the same "right way" to do things—similarity emerges from shared assumptions, not copying or coercion.</p>
+                    `
+                }
+            };
+
+            const t = topologies[type];
+            svg.innerHTML = t.svg;
+            explanation.innerHTML = t.explanation;
+        }
+
+        // ========== TOOL 5: ADOPTION VISUALIZER ==========
+        function showAdoptionPattern(type) {
+            const curve = document.getElementById('adoptionCurve');
+            const eventMarker = document.getElementById('eventMarker');
+            const eventLabel = document.getElementById('eventLabel');
+            const explanation = document.getElementById('adoptionExplanation');
+
+            const patterns = {
+                coercive: {
+                    path: 'M 50 200 L 100 200 L 110 40 L 580 40',
+                    color: '#dc2626',
+                    eventX: 100,
+                    eventText: 'Regulation Enacted',
+                    explanation: '<h4 style="color: #dc2626; margin-bottom: 10px;">⚖️ Coercive Adoption Pattern</h4><p>Coercive isomorphism produces a <strong>sudden, near-universal adoption</strong>. When a law or mandate takes effect, organizations have little choice but to comply. Adoption jumps from near-zero to near-100% almost immediately. There\'s typically a compliance deadline, after which non-adopters face penalties.</p><p style="margin-top: 10px;"><strong>Example:</strong> SOX compliance after 2002—virtually all public companies adopted required governance structures within the mandated timeframe.</p>'
+                },
+                mimetic: {
+                    path: 'M 50 200 Q 100 200 150 180 Q 250 120 350 60 Q 450 35 580 30',
+                    color: '#f59e0b',
+                    eventX: 100,
+                    eventText: 'Success Story',
+                    explanation: '<h4 style="color: #d97706; margin-bottom: 10px;">🔄 Mimetic Adoption Pattern</h4><p>Mimetic isomorphism produces an <strong>S-curve</strong>. Adoption starts slowly as a few organizations copy a successful pioneer. As more adopt and the practice gains legitimacy, adoption accelerates. Eventually it plateaus as the practice becomes "taken for granted."</p><p style="margin-top: 10px;"><strong>Example:</strong> Open floor plans—started with a few tech companies, spread as they became associated with innovation, now near-universal in many industries.</p>'
+                },
+                normative: {
+                    path: 'M 50 200 Q 200 190 300 150 Q 400 100 500 60 L 580 45',
+                    color: '#10b981',
+                    eventX: 50,
+                    eventText: 'Profession Emerges',
+                    explanation: '<h4 style="color: #059669; margin-bottom: 10px;">🎓 Normative Adoption Pattern</h4><p>Normative isomorphism produces <strong>slow, steady diffusion</strong>. As more professionals enter organizations from common educational programs, practices spread gradually. The curve is gentler than mimetic because it depends on generational turnover and professional socialization.</p><p style="margin-top: 10px;"><strong>Example:</strong> Strategic planning practices spread over decades as MBA programs taught them and graduates carried them into organizations.</p>'
+                }
+            };
+
+            const p = patterns[type];
+            curve.setAttribute('d', p.path);
+            curve.setAttribute('stroke', p.color);
+
+            eventMarker.style.display = 'block';
+            eventMarker.setAttribute('x1', p.eventX);
+            eventMarker.setAttribute('x2', p.eventX);
+
+            eventLabel.style.display = 'block';
+            eventLabel.setAttribute('x', p.eventX + 5);
+            eventLabel.textContent = p.eventText;
+
+            explanation.innerHTML = p.explanation;
+        }
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('interactive').style.display !== 'none') {
+                initFieldCanvas();
+            }
+        });
+
+        window.addEventListener('resize', function() {
+            if (document.getElementById('interactive').style.display !== 'none') {
+                setTimeout(initFieldCanvas, 100);
+            }
+        });
+    </script>
+</body>
+</html>

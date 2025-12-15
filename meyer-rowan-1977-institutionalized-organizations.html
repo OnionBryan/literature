@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meyer & Rowan (1977) - Institutionalized Organizations: Formal Structure as Myth and Ceremony</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #ddd6fe 100%);
+            min-height: 100vh;
+            color: #1e1b4b;
+            line-height: 1.6;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
+            color: #e0e7ff;
+        }
+
+        .dark-mode .section-card,
+        .dark-mode .key-point,
+        .dark-mode .example-box,
+        .dark-mode .proposition-card {
+            background: #312e81;
+            border-color: #4c1d95;
+        }
+
+        .dark-mode .nav-container {
+            background: rgba(30, 27, 75, 0.95);
+        }
+
+        .dark-mode .page-btn {
+            color: #c4b5fd;
+        }
+
+        .dark-mode .page-btn:hover,
+        .dark-mode .page-btn.active {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .dark-mode .tab {
+            background: #3730a3;
+            color: #c4b5fd;
+        }
+
+        .dark-mode .tab.active,
+        .dark-mode .tab:hover {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4 {
+            color: #c4b5fd;
+        }
+
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%);
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 30px;
+            box-shadow: 0 2px 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .dark-mode-toggle {
+            padding: 8px 16px;
+            border: 2px solid #7c3aed;
+            background: transparent;
+            color: #7c3aed;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #7c3aed;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+            padding: 80px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .hero .authors {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .hero .journal {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .citation-count {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .section-card h2 {
+            color: #7c3aed;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-card h3 {
+            color: #6d28d9;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .section-card p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-left: 4px solid #7c3aed;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .key-point strong {
+            color: #6d28d9;
+        }
+
+        /* Example Boxes */
+        .example-box {
+            background: #faf5ff;
+            border: 2px solid #ddd6fe;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .example-box h4 {
+            color: #7c3aed;
+            margin-bottom: 10px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .quote-box p {
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-left: 30px;
+        }
+
+        .quote-box .attribution {
+            text-align: right;
+            margin-top: 15px;
+            opacity: 0.9;
+            font-style: normal;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #ede9fe;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6d28d9;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover,
+        .tab.active {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Proposition Cards */
+        .proposition-card {
+            background: white;
+            border: 2px solid #ddd6fe;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .proposition-card:hover {
+            border-color: #7c3aed;
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.15);
+        }
+
+        .proposition-card .prop-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+
+        .proposition-card h4 {
+            display: inline;
+            color: #6d28d9;
+            font-size: 1.1rem;
+        }
+
+        .proposition-card p {
+            margin-top: 15px;
+            padding-left: 50px;
+        }
+
+        /* Concept Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: #7c3aed;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .concept-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .concept-card h4 {
+            color: #7c3aed;
+            margin-bottom: 10px;
+        }
+
+        .dark-mode .concept-card {
+            background: linear-gradient(135deg, #3730a3 0%, #4c1d95 100%);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd6fe;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: #f5f3ff;
+        }
+
+        .dark-mode .comparison-table tr:hover {
+            background: #3730a3;
+        }
+
+        /* Interactive Controls */
+        .control-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Display */
+        .result-box {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border: 2px solid #7c3aed;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Help Text */
+        .help-text {
+            background: #faf5ff;
+            border: 1px dashed #a78bfa;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #6d28d9;
+        }
+
+        .dark-mode .help-text {
+            background: #3730a3;
+            border-color: #7c3aed;
+            color: #c4b5fd;
+        }
+
+        /* Attribution */
+        .attribution {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .nav-content {
+                justify-content: center;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Form Elements */
+        select, input[type="range"] {
+            padding: 10px 15px;
+            border: 2px solid #ddd6fe;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            color: #1e1b4b;
+            cursor: pointer;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        .dark-mode select,
+        .dark-mode input {
+            background: #3730a3;
+            color: #e0e7ff;
+            border-color: #4c1d95;
+        }
+
+        /* Slider styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd6fe;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #7c3aed;
+            cursor: pointer;
+        }
+
+        /* Myth/Ceremony specific styles */
+        .myth-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .ceremony-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #faf5ff;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .ceremony-indicator .status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .ceremony-indicator .status.decoupled {
+            background: #f59e0b;
+        }
+
+        .ceremony-indicator .status.coupled {
+            background: #10b981;
+        }
+
+        .ceremony-indicator .status.ceremonial {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-title">Meyer & Rowan (1977)</div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Main</button>
+                <button class="page-btn" onclick="switchPage('theory', this)">Theory & Concepts</button>
+                <button class="page-btn" onclick="switchPage('propositions', this)">The Six Propositions</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Institutionalized Organizations</h1>
+            <p class="subtitle">Formal Structure as Myth and Ceremony</p>
+            <p class="authors">John W. Meyer & Brian Rowan</p>
+            <p class="journal">American Journal of Sociology, Vol. 83, No. 2, pp. 340-363 (September 1977)</p>
+            <div class="citation-count">One of the most cited papers in organizational sociology</div>
+        </div>
+    </header>
+
+    <!-- PAGE 1: MAIN -->
+    <div id="main" class="content-container">
+        <section class="section-card">
+            <h2>The Central Insight</h2>
+            <p>Meyer and Rowan fundamentally challenged the prevailing view that organizations are structured primarily to coordinate work efficiently. Instead, they argued that formal organizational structures often exist for <strong>ceremonial</strong> rather than technical reasons—adopted to gain <strong>legitimacy</strong> rather than to improve performance.</p>
+
+            <div class="quote-box">
+                <p>Organizations are driven to incorporate the practices and procedures defined by prevailing rationalized concepts of organizational work and institutionalized in society. Organizations that do so increase their legitimacy and their survival prospects, independent of the immediate efficacy of the acquired practices and procedures.</p>
+                <div class="attribution">— Meyer & Rowan, 1977, p. 340</div>
+            </div>
+
+            <div class="key-point">
+                <strong>The Radical Claim:</strong> Organizations adopt structures because of <em>myths</em> in their environment about what legitimate organizations should look like—not because those structures necessarily make them more effective. Formal structure is often "myth and ceremony" rather than a blueprint for action.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Core Concepts at a Glance</h2>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="icon">🏛️</div>
+                    <h4>Institutional Myths</h4>
+                    <p>Rationalized beliefs about what organizations <em>should</em> look like—taken-for-granted rules that define legitimate organizational forms</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">🎭</div>
+                    <h4>Ceremonial Conformity</h4>
+                    <p>Adopting structures, roles, and procedures for their symbolic value—to signal legitimacy rather than to coordinate work</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">🔓</div>
+                    <h4>Decoupling</h4>
+                    <p>Maintaining gaps between formal structures and actual work activities—allowing symbolic conformity while preserving operational flexibility</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">🤝</div>
+                    <h4>Logic of Confidence</h4>
+                    <p>Mutual trust that everyone is acting in good faith—substituting for inspection and evaluation in institutionalized organizations</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Why This Paper Matters</h2>
+
+            <h3>Before Meyer & Rowan: The Efficiency Paradigm</h3>
+            <p>The dominant view held that organizational structures exist because they help organizations work more efficiently. Hierarchies, departments, procedures, and roles were seen as rational solutions to coordination problems. If a structure persisted, it must be because it "worked."</p>
+
+            <h3>After Meyer & Rowan: The Legitimacy Paradigm</h3>
+            <p>Meyer & Rowan showed that structures often persist because they are <em>legitimate</em>, not because they are efficient. Organizations adopt structures to appear rational and proper to external audiences—even when those structures don't improve (or may even hinder) actual work.</p>
+
+            <div class="comparison-table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Efficiency View</th>
+                            <th>Institutional View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Why structures exist</strong></td>
+                            <td>To coordinate work effectively</td>
+                            <td>To gain legitimacy and resources</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Source of structure</strong></td>
+                            <td>Technical requirements of the task</td>
+                            <td>Institutional myths in the environment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Structure-activity link</strong></td>
+                            <td>Tight coupling—structure guides action</td>
+                            <td>Decoupling—structure and action separate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Basis of evaluation</strong></td>
+                            <td>Technical performance outcomes</td>
+                            <td>Conformity to appropriate forms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Key organizational goal</strong></td>
+                            <td>Efficiency</td>
+                            <td>Survival through legitimacy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Real-World Examples</h2>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showExampleTab('education')">Education</button>
+                <button class="tab" onclick="showExampleTab('healthcare')">Healthcare</button>
+                <button class="tab" onclick="showExampleTab('business')">Business</button>
+                <button class="tab" onclick="showExampleTab('government')">Government</button>
+            </div>
+
+            <div id="education" class="tab-content active">
+                <h3>Schools as Ceremonial Organizations</h3>
+                <p>Meyer & Rowan drew heavily on educational organizations to illustrate their theory. Schools are highly institutionalized—they must have certified teachers, accredited curricula, proper credentials, and standardized grade levels.</p>
+
+                <div class="example-box">
+                    <h4>The Decoupling Phenomenon</h4>
+                    <p>While schools maintain elaborate formal structures (lesson plans, curricula, evaluation procedures), classroom instruction is remarkably autonomous. Teachers close their doors and teach as they see fit. The formal structure exists for legitimacy, but actual teaching practice is "decoupled" from it.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Avoiding Inspection</h4>
+                    <p>Schools systematically avoid measuring actual learning outcomes. Standardized tests are controversial precisely because they threaten the decoupling that allows schools to maintain legitimacy. The "logic of confidence" assumes teachers are teaching and students are learning—without close inspection.</p>
+                </div>
+            </div>
+
+            <div id="healthcare" class="tab-content">
+                <h3>Hospitals and Medical Practice</h3>
+                <p>Healthcare organizations exemplify the tension between institutional demands and technical work.</p>
+
+                <div class="example-box">
+                    <h4>Credentialing as Ceremony</h4>
+                    <p>Hospitals must employ credentialed physicians, maintain accreditation, and follow approved procedures. These requirements persist regardless of whether they improve patient outcomes—they exist because society believes proper healthcare <em>should</em> involve credentialed professionals in accredited facilities.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Outcome Avoidance</h4>
+                    <p>As Meyer & Rowan noted, hospitals often avoid collecting or publicizing data on cure rates. Doing so would invite inspection that could undermine the confidence on which legitimacy depends. Instead, legitimacy comes from having proper credentials and following proper procedures.</p>
+                </div>
+            </div>
+
+            <div id="business" class="tab-content">
+                <h3>Corporate Structures</h3>
+                <p>Business organizations, despite their image as efficiency-driven, are heavily institutionalized.</p>
+
+                <div class="example-box">
+                    <h4>The Strategic Planning Ritual</h4>
+                    <p>Companies adopt strategic planning processes not because they improve decisions, but because "good companies" are supposed to have strategic plans. The plans may be decoupled from actual decisions—filed away after ceremonial approval while managers continue making choices based on intuition and experience.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Organizational Charts</h4>
+                    <p>Formal org charts often bear little resemblance to how work actually flows. They exist to present a rational image to external stakeholders—investors, regulators, potential employees—while actual coordination happens through informal networks.</p>
+                </div>
+            </div>
+
+            <div id="government" class="tab-content">
+                <h3>Public Agencies</h3>
+                <p>Government organizations face intense institutional pressure with relatively weak technical performance criteria.</p>
+
+                <div class="example-box">
+                    <h4>Program Implementation Gaps</h4>
+                    <p>Public agencies often announce programs that are never fully implemented. The announcement itself provides legitimacy—demonstrating the agency is addressing public concerns—even if actual services remain unchanged. Structure is decoupled from activity.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Evaluation as Ceremony</h4>
+                    <p>Government evaluation processes often focus on inputs and procedures rather than outcomes. Did the agency follow proper procedures? Were qualified staff employed? These ceremonial criteria substitute for harder questions about actual effectiveness.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Historical Context</h2>
+            <p>Meyer & Rowan's 1977 paper emerged during a period of growing skepticism about organizational rationality. It built on several intellectual foundations:</p>
+
+            <div class="key-point">
+                <strong>Max Weber's "Iron Cage":</strong> Weber described how rationalization—the spread of rule-governed, calculable procedures—was transforming society. Meyer & Rowan extended this, showing that rationality itself becomes a <em>myth</em> that organizations must ceremonially embrace.
+            </div>
+
+            <div class="key-point">
+                <strong>Philip Selznick's Institutionalism:</strong> Selznick showed how organizations become "infused with value" beyond their technical purpose. Meyer & Rowan radicalized this insight—it's not just that organizations develop values, but that environmental myths shape their very structure.
+            </div>
+
+            <div class="key-point">
+                <strong>Karl Weick's Loose Coupling:</strong> Weick described how elements in educational organizations are "loosely coupled"—connected but retaining identity and separateness. Meyer & Rowan's "decoupling" concept explains <em>why</em> such loose coupling exists: it allows ceremonial conformity without sacrificing operational flexibility.
+            </div>
+
+            <p style="margin-top: 20px;">This paper, along with DiMaggio & Powell's 1983 follow-up "The Iron Cage Revisited," established <strong>new institutionalism</strong> as a major perspective in organizational theory.</p>
+        </section>
+    </div>
+
+    <!-- PAGE 2: THEORY & CONCEPTS -->
+    <div id="theory" class="content-container" style="display: none;">
+        <section class="section-card">
+            <h2>Institutional Myths: The Building Blocks</h2>
+
+            <p>At the heart of Meyer & Rowan's theory are <strong>rationalized institutional myths</strong>—widely shared beliefs about what organizations should look like and how they should operate. These aren't myths in the sense of being false, but in the anthropological sense of being foundational cultural beliefs that shape behavior.</p>
+
+            <div class="quote-box">
+                <p>Resistance is not a result of the myth's quality of truth, but rather of its quality of legitimacy. Once institutionalized, rationality becomes a myth with explosive organizing potential.</p>
+                <div class="attribution">— Meyer & Rowan, 1977</div>
+            </div>
+
+            <h3>Sources of Institutional Myths</h3>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="icon">⚖️</div>
+                    <h4>Legal Mandates</h4>
+                    <p>Laws and regulations define required organizational forms—corporate governance structures, safety procedures, reporting requirements</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">📚</div>
+                    <h4>Professions</h4>
+                    <p>Professional bodies define proper practice—how accounting, medicine, law, and engineering <em>should</em> be done</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">🎓</div>
+                    <h4>Education</h4>
+                    <p>Universities and training programs spread standardized knowledge about "proper" organizational practices</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">📰</div>
+                    <h4>Public Opinion</h4>
+                    <p>Media and public discourse create expectations about what responsible organizations should do</p>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>Key Insight:</strong> As societies "modernize," they generate more rationalized myths. More domains of activity become subject to institutionalized rules about proper organization. This is why modern societies have more formal organizations—not because formalization is more efficient, but because more activities are governed by institutional myths.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Ceremonial Conformity</h2>
+
+            <p>Organizations conform to institutional myths not primarily for technical reasons but for <strong>ceremonial</strong> ones—to demonstrate their legitimacy to external audiences.</p>
+
+            <h3>What Makes Conformity "Ceremonial"?</h3>
+
+            <div class="example-box">
+                <h4>1. Adoption Without Implementation</h4>
+                <p>Organizations adopt structures, policies, or programs that are never fully put into practice. A company might adopt an elaborate ethics code that has no effect on actual behavior, or a school might adopt a curriculum that teachers ignore.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>2. Symbolic Rather Than Substantive</h4>
+                <p>The adoption is about signaling—showing stakeholders that the organization is proper and legitimate—rather than about changing how work is done. The structure is a symbol, not a tool.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>3. Evaluation Avoidance</h4>
+                <p>Ceremonial structures are protected from scrutiny. Organizations avoid collecting data that might reveal gaps between formal structure and actual practice. Inspection would disrupt the ceremony.</p>
+            </div>
+
+            <div class="key-point">
+                <strong>The Paradox:</strong> Ceremonial conformity is not irrational—it's highly rational from a survival perspective. Organizations that don't conform to institutional myths lose legitimacy, resources, and ultimately survival capacity. The ceremony is the point.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Decoupling: The Central Mechanism</h2>
+
+            <p><strong>Decoupling</strong> is Meyer & Rowan's most influential concept. It refers to the deliberate separation of formal structure from actual organizational activities.</p>
+
+            <div class="quote-box">
+                <p>Because attempts to control and coordinate activities in institutionalized organizations lead to conflicts and loss of legitimacy, elements of structure are decoupled from activities and from each other.</p>
+                <div class="attribution">— Meyer & Rowan, 1977, p. 357</div>
+            </div>
+
+            <h3>Why Organizations Decouple</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Problem</th>
+                        <th>How Decoupling Solves It</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Inconsistent institutional demands</strong></td>
+                        <td>Formal structure satisfies one constituency while actual practice satisfies another</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Myths conflict with efficiency</strong></td>
+                        <td>Ceremonial adoption provides legitimacy while decoupled practice maintains efficiency</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical uncertainty</strong></td>
+                        <td>When outcomes are hard to measure, decoupling protects both structure and practice from evaluation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Professional autonomy demands</strong></td>
+                        <td>Professionals maintain discretion in practice while organization maintains legitimate structure</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Forms of Decoupling</h3>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="icon">📋</div>
+                    <h4>Policy-Practice Gaps</h4>
+                    <p>Formal policies exist on paper but aren't enforced. The policy provides legitimacy; the gap provides flexibility.</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">🏢</div>
+                    <h4>Structure-Activity Gaps</h4>
+                    <p>Departments and roles exist formally but don't coordinate as the org chart suggests. Real work flows through informal channels.</p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="icon">📊</div>
+                    <h4>Goal-Outcome Gaps</h4>
+                    <p>Official goals are stated but not measured. Organizations pursue different goals in practice while maintaining legitimacy through stated goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>The Logic of Confidence and Good Faith</h2>
+
+            <p>If formal structures are decoupled from activities, how do organizations maintain order? Meyer & Rowan's answer: the <strong>logic of confidence</strong>.</p>
+
+            <div class="quote-box">
+                <p>What legitimates institutionalized organizations, enabling them to appear useful in spite of the lack of technical validation, is the confidence and good faith of their internal participants and their external constituents.</p>
+                <div class="attribution">— Meyer & Rowan, 1977, p. 358</div>
+            </div>
+
+            <h3>Three Practices That Maintain Confidence</h3>
+
+            <div class="example-box">
+                <h4>1. Avoidance</h4>
+                <p>Participants avoid situations that might reveal inconsistencies. Supervisors don't inspect too closely; subordinates don't ask uncomfortable questions. Everyone maintains plausible deniability about gaps between structure and practice.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>2. Discretion</h4>
+                <p>When inconsistencies are observed, participants exercise discretion—they don't publicize them. Problems are handled quietly, informally, without threatening the ceremonial order.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>3. Overlooking</h4>
+                <p>Participants actively overlook violations of formal rules. This isn't negligence—it's a tacit agreement to maintain the fiction that formal structure governs behavior.</p>
+            </div>
+
+            <div class="key-point">
+                <strong>The Social Contract:</strong> The logic of confidence involves a tacit social contract. Everyone agrees to act as if formal structures are real, and in exchange, everyone gets the benefits of legitimacy without the constraints of actual compliance. Breaking this contract—through aggressive inspection or whistleblowing—threatens everyone.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Technical vs. Institutional Environments</h2>
+
+            <p>Meyer & Rowan distinguished between two types of organizational environments:</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Technical Environment</th>
+                        <th>Institutional Environment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Primary pressure</strong></td>
+                        <td>Efficient production</td>
+                        <td>Conformity to rules and norms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Success measured by</strong></td>
+                        <td>Output quantity and quality</td>
+                        <td>Adherence to proper forms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structure driven by</strong></td>
+                        <td>Task requirements</td>
+                        <td>Institutional myths</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structure-activity relationship</strong></td>
+                        <td>Tightly coupled</td>
+                        <td>Decoupled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Example sectors</strong></td>
+                        <td>Manufacturing, utilities</td>
+                        <td>Education, healthcare, government</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <strong>Important Nuance:</strong> Most organizations face <em>both</em> technical and institutional pressures. The question is which dominates. Manufacturing firms must be efficient, but they also face institutional pressures (ISO certification, corporate governance norms). Schools face institutional pressures, but they also face some technical demands (students must learn something).
+            </div>
+
+            <div class="example-box">
+                <h4>The Trend Toward Institutionalization</h4>
+                <p>Meyer & Rowan argued that modern societies trend toward greater institutionalization. More domains become subject to rationalized myths. Even manufacturing firms now face extensive institutional demands—environmental regulations, diversity requirements, governance standards—that may have little to do with productive efficiency.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 3: THE SIX PROPOSITIONS -->
+    <div id="propositions" class="content-container" style="display: none;">
+        <section class="section-card">
+            <h2>The Six Propositions</h2>
+            <p>Meyer & Rowan advanced six formal propositions that constitute the theoretical core of their argument. These propositions build on each other, tracing the logic from the rise of institutional myths to their organizational consequences.</p>
+
+            <div class="key-point">
+                <strong>Reading These Propositions:</strong> The first three propositions explain <em>why</em> organizations adopt institutionalized structures. The last three explain <em>how</em> organizations manage the tensions that result from ceremonial conformity.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Propositions 1-3: The Origins of Formal Structure</h2>
+
+            <div class="proposition-card">
+                <span class="prop-number">1</span>
+                <h4>The Expansion Proposition</h4>
+                <p>"As rationalized institutional rules arise in given domains of work activity, formal organizations form and expand by incorporating these rules as structural elements."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>When new institutional rules emerge—new laws, professional standards, or widely-accepted beliefs about proper practice—organizations respond by creating new departments, roles, and procedures to embody those rules. The rise of environmental regulations spawned environmental compliance departments. The rise of HR professionalism spawned HR departments. Structure follows myth, not task.</p>
+                </div>
+            </div>
+
+            <div class="proposition-card">
+                <span class="prop-number">2</span>
+                <h4>The Modernization Proposition</h4>
+                <p>"The more modernized the society, the more extended the rationalized institutional structure in given domains and the greater the number of domains containing rationalized institutions."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>Modern societies generate more institutional myths across more areas of life. Activities that were once informal—childcare, food preparation, spiritual guidance—become subject to formal rules about proper organization. This explains why modern societies have more formal organizations: not because formalization is more efficient, but because more activities are institutionalized.</p>
+                </div>
+            </div>
+
+            <div class="proposition-card">
+                <span class="prop-number">3</span>
+                <h4>The Survival Proposition</h4>
+                <p>"Organizations that incorporate societally legitimated rationalized elements in their formal structures maximize their legitimacy and increase their resources and survival capabilities."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>Organizations that conform to institutional myths are rewarded with legitimacy, which translates to resources and survival. A hospital that employs credentialed physicians and follows accredited procedures gets patients, insurance reimbursement, and regulatory approval—regardless of whether its outcomes are better than alternatives. Conformity pays.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Propositions 4-6: Managing the Consequences</h2>
+
+            <div class="proposition-card">
+                <span class="prop-number">4</span>
+                <h4>The Decoupling Proposition</h4>
+                <p>"Because attempts to control and coordinate activities in institutionalized organizations lead to conflicts and loss of legitimacy, elements of structure are decoupled from activities and from each other."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>When organizations try to actually implement institutionalized structures, problems emerge. Different myths conflict with each other. Myths conflict with efficiency requirements. Close inspection reveals that structures aren't working as claimed. To avoid these problems, organizations decouple—they maintain structures ceremonially while actual work proceeds according to its own logic.</p>
+                </div>
+            </div>
+
+            <div class="proposition-card">
+                <span class="prop-number">5</span>
+                <h4>The Confidence Proposition</h4>
+                <p>"The more an organization's structure is derived from institutionalized myths, the more it maintains elaborate displays of confidence, satisfaction, and good faith, internally and externally."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>Institutionalized organizations invest heavily in maintaining the appearance that everything is working properly. They produce reports, hold ceremonies, issue confident statements—all designed to maintain the fiction that formal structure governs behavior. This isn't deception; it's the maintenance of a shared social reality that benefits everyone.</p>
+                </div>
+            </div>
+
+            <div class="proposition-card">
+                <span class="prop-number">6</span>
+                <h4>The Inspection Avoidance Proposition</h4>
+                <p>"Institutionalized organizations seek to minimize inspection and evaluation by both internal managers and external constituents."</p>
+                <div class="example-box" style="margin-top: 15px; margin-left: 50px;">
+                    <h4>What This Means</h4>
+                    <p>Close inspection threatens the ceremonial order. If someone actually measured whether formal structures produce results, the decoupling would be exposed. So institutionalized organizations systematically avoid evaluation. Schools resist standardized testing. Hospitals avoid publishing outcome data. Government agencies focus on inputs rather than outcomes. This isn't laziness—it's institutional survival.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>The Propositions as a System</h2>
+
+            <p>These six propositions form a coherent system:</p>
+
+            <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">1</span>
+                        <span>Institutional myths create pressure for formal structure</span>
+                    </div>
+                    <div style="text-align: center; font-size: 1.2rem; color: #7c3aed;">&#8595;</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">2</span>
+                        <span>Modern societies generate more myths in more domains</span>
+                    </div>
+                    <div style="text-align: center; font-size: 1.2rem; color: #7c3aed;">&#8595;</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">3</span>
+                        <span>Organizations conform to gain legitimacy and survival</span>
+                    </div>
+                    <div style="text-align: center; font-size: 1.2rem; color: #7c3aed;">&#8595;</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">4</span>
+                        <span>But conformity creates conflicts, so structures decouple from activities</span>
+                    </div>
+                    <div style="text-align: center; font-size: 1.2rem; color: #7c3aed;">&#8595;</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">5</span>
+                        <span>Decoupled organizations maintain confidence through ceremony</span>
+                    </div>
+                    <div style="text-align: center; font-size: 1.2rem; color: #7c3aed;">&#8595;</div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prop-number">6</span>
+                        <span>And they avoid inspection that would expose the gaps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>The Result:</strong> Organizations that look rational and proper on the surface, while actual work proceeds according to informal arrangements, professional judgment, and practical necessity. Structure is myth and ceremony; work is something else.
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Empirical Implications</h2>
+
+            <p>Each proposition generates testable predictions:</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Proposition</th>
+                        <th>Empirical Prediction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>P1: Expansion</strong></td>
+                        <td>New regulations create new organizational units (e.g., compliance departments emerge after new laws)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P2: Modernization</strong></td>
+                        <td>More developed countries have more formal organizations per capita</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P3: Survival</strong></td>
+                        <td>Organizations with legitimate structures survive longer, controlling for performance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P4: Decoupling</strong></td>
+                        <td>Weak correlation between formal policies and actual practices in institutionalized sectors</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P5: Confidence</strong></td>
+                        <td>More institutionalized organizations produce more ceremonial communications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P6: Inspection Avoidance</strong></td>
+                        <td>Institutionalized organizations resist outcome measurement and external evaluation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- PAGE 4: INTERACTIVE TOOLS -->
+    <div id="interactive" class="content-container" style="display: none;">
+        <section class="section-card">
+            <h2>Interactive Tools</h2>
+            <p>Explore Meyer & Rowan's institutional theory through these interactive visualizations and analytical tools.</p>
+        </section>
+
+        <!-- Tool 1: Institutional Myth Identifier -->
+        <section class="section-card">
+            <h2>Tool 1: Institutional Myth Identifier</h2>
+            <p>Identify the rationalized institutional myths that shape organizational structures in different sectors.</p>
+
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 25px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 10px;">Select an organizational sector:</label>
+                    <select id="sectorSelect" onchange="identifyMyths()" style="width: 100%; max-width: 400px; padding: 12px;">
+                        <option value="">-- Choose a sector --</option>
+                        <option value="education">Education (Schools, Universities)</option>
+                        <option value="healthcare">Healthcare (Hospitals, Clinics)</option>
+                        <option value="finance">Finance (Banks, Investment Firms)</option>
+                        <option value="tech">Technology (Software Companies)</option>
+                        <option value="nonprofit">Nonprofit Organizations</option>
+                        <option value="government">Government Agencies</option>
+                        <option value="manufacturing">Manufacturing</option>
+                    </select>
+                </div>
+
+                <div id="mythsResult" class="result-box">
+                    <div id="mythsContent"></div>
+                </div>
+            </div>
+
+            <div class="help-text">
+                <strong>How it works:</strong> Each sector operates under different institutional myths—taken-for-granted beliefs about what proper organizations in that sector should look like. These myths shape structure independently of whether they improve efficiency.
+            </div>
+        </section>
+
+        <!-- Tool 2: Decoupling Detector -->
+        <section class="section-card">
+            <h2>Tool 2: Decoupling Detector</h2>
+            <p>Analyze the gap between formal structure and actual practice in an organization.</p>
+
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div style="display: grid; gap: 20px; margin-bottom: 25px;">
+                    <div>
+                        <label style="font-weight: 600; display: block; margin-bottom: 8px;">
+                            Policy-Practice Alignment: <span id="policyVal">50</span>%
+                        </label>
+                        <input type="range" id="policySlider" min="0" max="100" value="50" oninput="updateSliderVal('policy')">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280;">
+                            <span>Policies ignored</span>
+                            <span>Policies enforced</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; display: block; margin-bottom: 8px;">
+                            Structure-Activity Alignment: <span id="structureVal">50</span>%
+                        </label>
+                        <input type="range" id="structureSlider" min="0" max="100" value="50" oninput="updateSliderVal('structure')">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280;">
+                            <span>Work ignores org chart</span>
+                            <span>Work follows org chart</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; display: block; margin-bottom: 8px;">
+                            Goal-Outcome Measurement: <span id="goalVal">50</span>%
+                        </label>
+                        <input type="range" id="goalSlider" min="0" max="100" value="50" oninput="updateSliderVal('goal')">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280;">
+                            <span>Outcomes unmeasured</span>
+                            <span>Outcomes tracked closely</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; display: block; margin-bottom: 8px;">
+                            Inspection Frequency: <span id="inspectionVal">50</span>%
+                        </label>
+                        <input type="range" id="inspectionSlider" min="0" max="100" value="50" oninput="updateSliderVal('inspection')">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280;">
+                            <span>Inspection avoided</span>
+                            <span>Regular evaluation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="control-btn" onclick="detectDecoupling()">Analyze Decoupling</button>
+
+                <div id="decouplingResult" class="result-box">
+                    <div id="decouplingContent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool 3: Legitimacy vs Efficiency Topology -->
+        <section class="section-card">
+            <h2>Tool 3: Legitimacy vs. Efficiency Topology</h2>
+            <p>Visualize the trade-off space between technical efficiency demands and institutional legitimacy pressures.</p>
+
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 600; margin-right: 15px;">Select organization type:</label>
+                    <button class="control-btn" onclick="showTopologyQuadrant('school')" style="margin: 5px;">School</button>
+                    <button class="control-btn" onclick="showTopologyQuadrant('hospital')" style="margin: 5px;">Hospital</button>
+                    <button class="control-btn" onclick="showTopologyQuadrant('factory')" style="margin: 5px;">Factory</button>
+                    <button class="control-btn" onclick="showTopologyQuadrant('bank')" style="margin: 5px;">Bank</button>
+                    <button class="control-btn" onclick="showTopologyQuadrant('startup')" style="margin: 5px;">Tech Startup</button>
+                    <button class="control-btn" onclick="showTopologyQuadrant('agency')" style="margin: 5px;">Gov Agency</button>
+                </div>
+
+                <div id="topologyDiagram" style="height: 400px; position: relative; border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+                    <svg id="topologySvg" viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+                        <!-- Axes -->
+                        <line x1="80" y1="350" x2="550" y2="350" stroke="#94a3b8" stroke-width="2"/>
+                        <line x1="80" y1="350" x2="80" y2="50" stroke="#94a3b8" stroke-width="2"/>
+
+                        <!-- Arrow heads -->
+                        <polygon points="550,350 540,345 540,355" fill="#94a3b8"/>
+                        <polygon points="80,50 75,60 85,60" fill="#94a3b8"/>
+
+                        <!-- Axis labels -->
+                        <text x="300" y="390" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">Technical Efficiency Pressure</text>
+                        <text x="30" y="200" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600" transform="rotate(-90, 30, 200)">Institutional Legitimacy Pressure</text>
+
+                        <!-- Quadrant labels -->
+                        <text x="180" y="120" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">HIGH INSTITUTIONAL</text>
+                        <text x="180" y="135" text-anchor="middle" fill="#7c3aed" font-size="11">LOW TECHNICAL</text>
+                        <text x="180" y="152" text-anchor="middle" fill="#6b7280" font-size="10">(Most Decoupled)</text>
+
+                        <text x="450" y="120" text-anchor="middle" fill="#059669" font-size="11" font-weight="600">HIGH INSTITUTIONAL</text>
+                        <text x="450" y="135" text-anchor="middle" fill="#059669" font-size="11">HIGH TECHNICAL</text>
+                        <text x="450" y="152" text-anchor="middle" fill="#6b7280" font-size="10">(Most Tension)</text>
+
+                        <text x="180" y="280" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="600">LOW INSTITUTIONAL</text>
+                        <text x="180" y="295" text-anchor="middle" fill="#6b7280" font-size="11">LOW TECHNICAL</text>
+                        <text x="180" y="312" text-anchor="middle" fill="#6b7280" font-size="10">(Informal)</text>
+
+                        <text x="450" y="280" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">LOW INSTITUTIONAL</text>
+                        <text x="450" y="295" text-anchor="middle" fill="#f59e0b" font-size="11">HIGH TECHNICAL</text>
+                        <text x="450" y="312" text-anchor="middle" fill="#6b7280" font-size="10">(Most Coupled)</text>
+
+                        <!-- Quadrant dividers -->
+                        <line x1="300" y1="50" x2="300" y2="350" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5"/>
+                        <line x1="80" y1="200" x2="550" y2="200" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5"/>
+
+                        <!-- Organization marker -->
+                        <circle id="orgMarker" cx="0" cy="0" r="15" fill="#7c3aed" stroke="white" stroke-width="3" style="display: none;"/>
+                        <text id="orgLabel" x="0" y="0" text-anchor="middle" fill="white" font-size="10" font-weight="bold" style="display: none;"></text>
+                    </svg>
+                </div>
+
+                <div id="topologyExplanation" style="margin-top: 20px; padding: 25px; background: #f5f3ff; border-radius: 10px;">
+                    <h4 style="color: #7c3aed; margin-bottom: 15px;">Understanding the Topology</h4>
+                    <p>Meyer & Rowan argue that organizations vary in how much they face <strong>technical efficiency pressures</strong> (demands to produce outputs efficiently) versus <strong>institutional legitimacy pressures</strong> (demands to conform to rationalized myths).</p>
+                    <p style="margin-top: 10px;">Select an organization type above to see where it falls in this space.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool 4: Ceremonial Structure Topology -->
+        <section class="section-card">
+            <h2>Tool 4: Ceremonial Structure Topology</h2>
+            <p>Explore the relationship between formal structure and actual activities across different organizational elements.</p>
+
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 25px;">
+                    <label style="font-weight: 600; margin-right: 15px;">Select view:</label>
+                    <button class="control-btn" onclick="showCeremonyTopology('coupled')" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">Coupled Structure</button>
+                    <button class="control-btn" onclick="showCeremonyTopology('decoupled')" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); margin-left: 10px;">Decoupled Structure</button>
+                    <button class="control-btn" onclick="showCeremonyTopology('ceremonial')" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); margin-left: 10px;">Ceremonial Display</button>
+                </div>
+
+                <div id="ceremonyDiagram" style="height: 380px; position: relative; border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+                    <svg id="ceremonySvg" viewBox="0 0 700 350" style="width: 100%; height: 100%;">
+                        <text x="350" y="175" text-anchor="middle" fill="#94a3b8" font-size="16">Select a view above to explore structure-activity relationships</text>
+                    </svg>
+                </div>
+
+                <div id="ceremonyExplanation" style="margin-top: 20px; padding: 25px; background: #f5f3ff; border-radius: 10px;">
+                    <h4 style="color: #7c3aed; margin-bottom: 15px;">Structure-Activity Relationships</h4>
+                    <p>In Meyer & Rowan's framework, formal structures can relate to actual activities in different ways:</p>
+                    <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                        <li><strong>Coupled</strong> — Structure guides action (traditional efficiency view)</li>
+                        <li><strong>Decoupled</strong> — Structure and action operate independently</li>
+                        <li><strong>Ceremonial</strong> — Structure exists purely for display to external audiences</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="help-text">
+                <strong>How it works:</strong> Each view shows a different model of how formal organizational elements relate to actual work activities. The key insight is that decoupling and ceremony are not failures—they're adaptive responses to institutional pressures.
+            </div>
+        </section>
+
+        <!-- Tool 5: Logic of Confidence Analyzer -->
+        <section class="section-card">
+            <h2>Tool 5: Logic of Confidence Analyzer</h2>
+            <p>Assess how an organization maintains the logic of confidence that enables decoupling to work.</p>
+
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <p style="margin-bottom: 20px;">Rate each dimension from 1 (low) to 5 (high):</p>
+
+                <div style="display: grid; gap: 20px; margin-bottom: 25px;">
+                    <div style="background: #f5f3ff; padding: 20px; border-radius: 10px;">
+                        <label style="font-weight: 600; display: block; margin-bottom: 10px;">Avoidance Behaviors</label>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">Do people avoid situations that might reveal gaps between structure and practice?</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="rating-btn" onclick="setRating('avoidance', 1)">1</button>
+                            <button class="rating-btn" onclick="setRating('avoidance', 2)">2</button>
+                            <button class="rating-btn" onclick="setRating('avoidance', 3)">3</button>
+                            <button class="rating-btn" onclick="setRating('avoidance', 4)">4</button>
+                            <button class="rating-btn" onclick="setRating('avoidance', 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f3ff; padding: 20px; border-radius: 10px;">
+                        <label style="font-weight: 600; display: block; margin-bottom: 10px;">Discretion Norms</label>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">When inconsistencies are observed, are they handled quietly rather than publicized?</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="rating-btn" onclick="setRating('discretion', 1)">1</button>
+                            <button class="rating-btn" onclick="setRating('discretion', 2)">2</button>
+                            <button class="rating-btn" onclick="setRating('discretion', 3)">3</button>
+                            <button class="rating-btn" onclick="setRating('discretion', 4)">4</button>
+                            <button class="rating-btn" onclick="setRating('discretion', 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f3ff; padding: 20px; border-radius: 10px;">
+                        <label style="font-weight: 600; display: block; margin-bottom: 10px;">Overlooking Practices</label>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">Do people actively overlook violations of formal rules?</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="rating-btn" onclick="setRating('overlooking', 1)">1</button>
+                            <button class="rating-btn" onclick="setRating('overlooking', 2)">2</button>
+                            <button class="rating-btn" onclick="setRating('overlooking', 3)">3</button>
+                            <button class="rating-btn" onclick="setRating('overlooking', 4)">4</button>
+                            <button class="rating-btn" onclick="setRating('overlooking', 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f3ff; padding: 20px; border-radius: 10px;">
+                        <label style="font-weight: 600; display: block; margin-bottom: 10px;">Professional Autonomy</label>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">Do professionals have substantial discretion in how they do their work?</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="rating-btn" onclick="setRating('autonomy', 1)">1</button>
+                            <button class="rating-btn" onclick="setRating('autonomy', 2)">2</button>
+                            <button class="rating-btn" onclick="setRating('autonomy', 3)">3</button>
+                            <button class="rating-btn" onclick="setRating('autonomy', 4)">4</button>
+                            <button class="rating-btn" onclick="setRating('autonomy', 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f3ff; padding: 20px; border-radius: 10px;">
+                        <label style="font-weight: 600; display: block; margin-bottom: 10px;">Good Faith Assumption</label>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">Is there general trust that people are doing their jobs properly?</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="rating-btn" onclick="setRating('goodfaith', 1)">1</button>
+                            <button class="rating-btn" onclick="setRating('goodfaith', 2)">2</button>
+                            <button class="rating-btn" onclick="setRating('goodfaith', 3)">3</button>
+                            <button class="rating-btn" onclick="setRating('goodfaith', 4)">4</button>
+                            <button class="rating-btn" onclick="setRating('goodfaith', 5)">5</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="control-btn" onclick="analyzeConfidence()">Analyze Logic of Confidence</button>
+
+                <div id="confidenceResult" class="result-box">
+                    <div id="confidenceContent"></div>
+                </div>
+            </div>
+
+            <style>
+                .rating-btn {
+                    width: 45px;
+                    height: 45px;
+                    border: 2px solid #ddd6fe;
+                    background: white;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+                .rating-btn:hover {
+                    border-color: #7c3aed;
+                    background: #f5f3ff;
+                }
+                .rating-btn.selected {
+                    background: #7c3aed;
+                    color: white;
+                    border-color: #7c3aed;
+                }
+                .dark-mode .rating-btn {
+                    background: #3730a3;
+                    border-color: #4c1d95;
+                    color: #c4b5fd;
+                }
+                .dark-mode .rating-btn.selected {
+                    background: #7c3aed;
+                    color: white;
+                }
+            </style>
+        </section>
+
+        <!-- Attribution -->
+        <div class="attribution">
+            <p><strong>Interactive Tools:</strong> Educational visualizations of Meyer & Rowan's (1977) institutional theory framework</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                These tools illustrate theoretical concepts for learning purposes.
+            </p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ========== PAGE NAVIGATION ==========
+        function switchPage(pageId, btn) {
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('theory').style.display = 'none';
+            document.getElementById('propositions').style.display = 'none';
+            document.getElementById('interactive').style.display = 'none';
+
+            document.getElementById(pageId).style.display = 'block';
+
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            window.scrollTo(0, 0);
+        }
+
+        // ========== DARK MODE ==========
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // ========== TAB SYSTEMS ==========
+        function showExampleTab(tabId) {
+            document.querySelectorAll('#main .tab-content').forEach(tc => tc.classList.remove('active'));
+            document.querySelectorAll('#main .tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ========== TOOL 1: MYTH IDENTIFIER ==========
+        function identifyMyths() {
+            const sector = document.getElementById('sectorSelect').value;
+            if (!sector) return;
+
+            const mythData = {
+                education: {
+                    title: 'Educational Organizations',
+                    color: '#7c3aed',
+                    myths: [
+                        { name: 'Credentialed Teachers', desc: 'Teachers must have specific certifications and degrees, regardless of actual teaching ability' },
+                        { name: 'Standardized Curricula', desc: 'Education must follow approved curricula organized by grade level and subject' },
+                        { name: 'Age-Graded Classrooms', desc: 'Students must be grouped by age, progressing through numbered grades' },
+                        { name: 'Carnegie Units', desc: 'Learning is measured in seat-time (credit hours) rather than demonstrated competence' },
+                        { name: 'Accreditation', desc: 'Schools must be accredited by recognized bodies to be legitimate' }
+                    ],
+                    decoupling: 'High decoupling: Formal curricula and credentials exist, but actual classroom teaching varies widely and is rarely inspected.',
+                    inspection: 'Schools historically resist outcome measurement (e.g., standardized testing controversies) to protect the ceremonial order.'
+                },
+                healthcare: {
+                    title: 'Healthcare Organizations',
+                    color: '#dc2626',
+                    myths: [
+                        { name: 'Licensed Physicians', desc: 'Only credentialed MDs can practice medicine, regardless of actual outcomes' },
+                        { name: 'Hospital Accreditation', desc: 'Facilities must meet JCAHO standards to be legitimate' },
+                        { name: 'Evidence-Based Medicine', desc: 'Treatment must be justified by research, though practice often deviates' },
+                        { name: 'Informed Consent', desc: 'Patients must sign forms, creating ceremonial documentation' },
+                        { name: 'Specialization', desc: 'Medicine is organized into recognized specialties with separate training' }
+                    ],
+                    decoupling: 'Moderate decoupling: Clinical practice varies from formal protocols; physicians maintain substantial autonomy.',
+                    inspection: 'Hospitals avoid publicizing outcome data (cure rates, mortality) that would invite close scrutiny.'
+                },
+                finance: {
+                    title: 'Financial Organizations',
+                    color: '#059669',
+                    myths: [
+                        { name: 'Fiduciary Duty', desc: 'Financial professionals must act in clients\' interest (ceremonially documented)' },
+                        { name: 'Risk Management', desc: 'Banks must have formal risk models and committees' },
+                        { name: 'Regulatory Compliance', desc: 'Extensive compliance departments and documentation' },
+                        { name: 'Audited Financials', desc: 'Accounts must be blessed by credentialed auditors' },
+                        { name: 'Corporate Governance', desc: 'Boards, committees, and governance procedures follow prescribed forms' }
+                    ],
+                    decoupling: 'Variable: Post-2008 regulations reduced decoupling, but ceremonial compliance remains common.',
+                    inspection: 'Regulators focus on procedural compliance rather than outcomes; audits are largely ceremonial.'
+                },
+                tech: {
+                    title: 'Technology Companies',
+                    color: '#f59e0b',
+                    myths: [
+                        { name: 'Agile/Scrum', desc: 'Legitimate tech companies use agile methodologies (often ceremonially)' },
+                        { name: 'Data-Driven', desc: 'Decisions must be justified by data and metrics' },
+                        { name: 'Innovation Culture', desc: 'Must display trappings of innovation (open offices, hackathons)' },
+                        { name: 'User-Centered Design', desc: 'Products must be developed with user research' },
+                        { name: 'Scalable Architecture', desc: 'Systems must be built to scale (even if they never will)' }
+                    ],
+                    decoupling: 'Emerging: Tech faces growing institutional pressures (ESG, diversity) often decoupled from core operations.',
+                    inspection: 'Tech historically avoided external regulation; now facing more institutional demands with accompanying decoupling.'
+                },
+                nonprofit: {
+                    title: 'Nonprofit Organizations',
+                    color: '#ec4899',
+                    myths: [
+                        { name: 'Mission Statements', desc: 'Must have formal mission that guides (ceremonially) all activities' },
+                        { name: 'Board Governance', desc: 'Independent boards must provide oversight (often ceremonial)' },
+                        { name: 'Program Evaluation', desc: 'Must demonstrate impact (usually through stories, not outcomes)' },
+                        { name: 'Donor Stewardship', desc: 'Formal procedures for acknowledging and reporting to funders' },
+                        { name: 'Financial Transparency', desc: '990 forms and audits create ceremonial accountability' }
+                    ],
+                    decoupling: 'High decoupling: Program activities often loosely connected to stated missions; evaluation is typically ceremonial.',
+                    inspection: 'Funders rarely verify actual outcomes; rely on reports and site visits that organizations carefully stage.'
+                },
+                government: {
+                    title: 'Government Agencies',
+                    color: '#6366f1',
+                    myths: [
+                        { name: 'Due Process', desc: 'Actions must follow formal procedures, regardless of efficiency' },
+                        { name: 'Merit-Based Hiring', desc: 'Civil service rules govern employment (often circumvented)' },
+                        { name: 'Public Accountability', desc: 'Must produce reports, hold hearings, respond to requests' },
+                        { name: 'Program Planning', desc: 'Must have strategic plans, performance measures, logic models' },
+                        { name: 'Equity Requirements', desc: 'Must demonstrate attention to equity and access' }
+                    ],
+                    decoupling: 'Very high: Formal procedures and actual operations often exist in parallel with minimal connection.',
+                    inspection: 'Evaluation focuses on process compliance; outcome measurement is resisted or ceremonial.'
+                },
+                manufacturing: {
+                    title: 'Manufacturing Organizations',
+                    color: '#78716c',
+                    myths: [
+                        { name: 'ISO Certification', desc: 'Must have quality management systems certified by ISO' },
+                        { name: 'Safety Programs', desc: 'OSHA compliance, safety committees, formal procedures' },
+                        { name: 'Environmental Compliance', desc: 'EPA requirements, environmental management systems' },
+                        { name: 'Supply Chain Standards', desc: 'Must demonstrate ethical sourcing (often ceremonially)' },
+                        { name: 'Lean/Six Sigma', desc: 'Must adopt efficiency methodologies (often ceremonially)' }
+                    ],
+                    decoupling: 'Lower than institutional sectors: Technical efficiency pressures create tighter coupling, but institutional demands are growing.',
+                    inspection: 'More outcome-focused than institutional sectors, but certification audits are often ceremonial.'
+                }
+            };
+
+            const data = mythData[sector];
+            const resultDiv = document.getElementById('mythsResult');
+            resultDiv.classList.add('show');
+
+            document.getElementById('mythsContent').innerHTML = `
+                <h3 style="color: ${data.color}; margin-bottom: 20px;">${data.title}</h3>
+
+                <h4 style="margin-bottom: 15px;">Institutional Myths Shaping This Sector:</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                    ${data.myths.map(m => `<span class="myth-badge">${m.name}</span>`).join('')}
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    ${data.myths.map(m => `
+                        <div style="padding: 12px; background: #faf5ff; border-radius: 8px; margin: 8px 0;">
+                            <strong style="color: ${data.color};">${m.name}:</strong> ${m.desc}
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div style="background: #ede9fe; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h4 style="color: #6d28d9; margin-bottom: 10px;">Decoupling Pattern</h4>
+                    <p>${data.decoupling}</p>
+                </div>
+
+                <div style="background: #faf5ff; padding: 20px; border-radius: 10px; margin-top: 15px;">
+                    <h4 style="color: #7c3aed; margin-bottom: 10px;">Inspection Avoidance</h4>
+                    <p>${data.inspection}</p>
+                </div>
+            `;
+        }
+
+        // ========== TOOL 2: DECOUPLING DETECTOR ==========
+        function updateSliderVal(type) {
+            const slider = document.getElementById(type + 'Slider');
+            document.getElementById(type + 'Val').textContent = slider.value;
+        }
+
+        function detectDecoupling() {
+            const policy = parseInt(document.getElementById('policySlider').value);
+            const structure = parseInt(document.getElementById('structureSlider').value);
+            const goal = parseInt(document.getElementById('goalSlider').value);
+            const inspection = parseInt(document.getElementById('inspectionSlider').value);
+
+            const couplingScore = (policy + structure + goal + inspection) / 4;
+            const decouplingScore = 100 - couplingScore;
+
+            let diagnosis, implications, meyerRowan;
+
+            if (decouplingScore >= 70) {
+                diagnosis = 'Highly Decoupled Organization';
+                implications = 'This organization maintains formal structures largely for ceremonial purposes. Actual work proceeds according to informal arrangements, professional judgment, and practical necessity. This is typical of highly institutionalized sectors like education and social services.';
+                meyerRowan = 'This pattern strongly confirms Meyer & Rowan\'s predictions. The organization gains legitimacy through formal structure while preserving operational flexibility through decoupling.';
+            } else if (decouplingScore >= 40) {
+                diagnosis = 'Partially Decoupled Organization';
+                implications = 'This organization shows moderate gaps between formal structure and actual practice. Some structures guide behavior while others exist ceremonially. This is common in organizations facing both technical and institutional pressures.';
+                meyerRowan = 'This pattern reflects the tension Meyer & Rowan identified: organizations must respond to both efficiency demands (which favor coupling) and legitimacy demands (which favor decoupling).';
+            } else {
+                diagnosis = 'Tightly Coupled Organization';
+                implications = 'This organization shows strong alignment between formal structure and actual practice. Structures are implemented, outcomes are measured, and evaluation is substantive. This is more common in technical sectors with clear performance criteria.';
+                meyerRowan = 'This pattern is less common in Meyer & Rowan\'s framework. It suggests either strong technical pressures that override institutional demands, or an organization early in its institutionalization process.';
+            }
+
+            const resultDiv = document.getElementById('decouplingResult');
+            resultDiv.classList.add('show');
+
+            document.getElementById('decouplingContent').innerHTML = `
+                <h3 style="color: #7c3aed; margin-bottom: 20px;">${diagnosis}</h3>
+
+                <div style="margin-bottom: 25px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">Decoupling Score</span>
+                        <span style="font-weight: 700; color: #7c3aed;">${decouplingScore.toFixed(0)}%</span>
+                    </div>
+                    <div style="background: #e5e7eb; height: 25px; border-radius: 12px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #7c3aed, #a78bfa); height: 100%; width: ${decouplingScore}%; transition: width 0.5s;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280; margin-top: 5px;">
+                        <span>Tightly Coupled</span>
+                        <span>Highly Decoupled</span>
+                    </div>
+                </div>
+
+                <div style="background: #f5f3ff; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #6d28d9; margin-bottom: 10px;">Implications</h4>
+                    <p>${implications}</p>
+                </div>
+
+                <div style="background: #ede9fe; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #7c3aed; margin-bottom: 10px;">Meyer & Rowan Interpretation</h4>
+                    <p>${meyerRowan}</p>
+                </div>
+            `;
+        }
+
+        // ========== TOOL 3: TOPOLOGY QUADRANT ==========
+        function showTopologyQuadrant(orgType) {
+            const positions = {
+                school: { x: 160, y: 100, label: 'School', color: '#7c3aed',
+                    desc: 'Schools face very high institutional pressure (credentialing, accreditation, standardized forms) but relatively low technical pressure (outcomes hard to measure). This produces maximum decoupling—teachers have autonomy behind closed doors while schools maintain elaborate formal structures.' },
+                hospital: { x: 380, y: 120, label: 'Hospital', color: '#dc2626',
+                    desc: 'Hospitals face both high institutional pressure (licensing, accreditation, credentialing) and significant technical pressure (lives at stake). This creates maximum tension—decoupling occurs but is more contested than in education.' },
+                factory: { x: 450, y: 290, label: 'Factory', color: '#78716c',
+                    desc: 'Manufacturing faces high technical pressure (efficiency, output quality) but historically lower institutional pressure. Structure tends to be more tightly coupled to actual production processes, though institutional pressures (ISO, ESG) are growing.' },
+                bank: { x: 420, y: 150, label: 'Bank', color: '#059669',
+                    desc: 'Banks face high institutional pressure (extensive regulation, governance requirements) and significant technical pressure (must actually process transactions). Post-2008 regulations have increased coupling, but ceremonial compliance remains common.' },
+                startup: { x: 380, y: 270, label: 'Startup', color: '#f59e0b',
+                    desc: 'Tech startups traditionally faced high technical pressure (must build products) with lower institutional pressure. This is changing as institutional demands (ESG, diversity, data protection) increase, creating new decoupling patterns.' },
+                agency: { x: 140, y: 130, label: 'Agency', color: '#6366f1',
+                    desc: 'Government agencies face very high institutional pressure (due process, accountability requirements) with unclear technical criteria (public value hard to measure). This produces extensive decoupling.' }
+            };
+
+            const org = positions[orgType];
+            const marker = document.getElementById('orgMarker');
+            const label = document.getElementById('orgLabel');
+            const explanation = document.getElementById('topologyExplanation');
+
+            marker.setAttribute('cx', org.x);
+            marker.setAttribute('cy', org.y);
+            marker.setAttribute('fill', org.color);
+            marker.style.display = 'block';
+
+            label.setAttribute('x', org.x);
+            label.setAttribute('y', org.y + 4);
+            label.textContent = org.label.charAt(0);
+            label.style.display = 'block';
+
+            explanation.innerHTML = `
+                <h4 style="color: ${org.color}; margin-bottom: 15px;">${org.label}</h4>
+                <p>${org.desc}</p>
+            `;
+        }
+
+        // ========== TOOL 4: CEREMONY TOPOLOGY ==========
+        function showCeremonyTopology(type) {
+            const svg = document.getElementById('ceremonySvg');
+            const explanation = document.getElementById('ceremonyExplanation');
+
+            const diagrams = {
+                coupled: {
+                    svg: `
+                        <text x="350" y="30" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="14">TIGHTLY COUPLED STRUCTURE</text>
+
+                        <rect x="100" y="60" width="200" height="100" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                        <text x="200" y="95" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="12">FORMAL STRUCTURE</text>
+                        <text x="200" y="115" text-anchor="middle" fill="#065f46" font-size="10">Policies, Roles, Procedures</text>
+                        <text x="200" y="135" text-anchor="middle" fill="#065f46" font-size="10">Org Charts, Rules</text>
+
+                        <rect x="100" y="200" width="200" height="100" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                        <text x="200" y="235" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="12">ACTUAL ACTIVITIES</text>
+                        <text x="200" y="255" text-anchor="middle" fill="#065f46" font-size="10">Day-to-day Work</text>
+                        <text x="200" y="275" text-anchor="middle" fill="#065f46" font-size="10">Real Behaviors</text>
+
+                        <defs>
+                            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#10b981"/>
+                            </marker>
+                        </defs>
+                        <line x1="200" y1="160" x2="200" y2="195" stroke="#10b981" stroke-width="4" marker-end="url(#arrowGreen)"/>
+                        <text x="230" y="180" fill="#065f46" font-size="10" font-weight="bold">GUIDES</text>
+
+                        <rect x="400" y="130" width="180" height="80" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                        <text x="490" y="165" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="12">OUTCOMES</text>
+                        <text x="490" y="185" text-anchor="middle" fill="#065f46" font-size="10">Measured & Evaluated</text>
+
+                        <line x1="300" y1="250" x2="395" y2="180" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+                        <text x="360" y="230" fill="#065f46" font-size="10" font-weight="bold">PRODUCES</text>
+
+                        <path d="M 490 130 Q 490 80 350 60" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,3"/>
+                        <text x="440" y="70" fill="#065f46" font-size="10">Feedback</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #10b981; margin-bottom: 15px;">Tightly Coupled Structure</h4>
+                        <p style="margin-bottom: 15px;">In the traditional efficiency view, formal structure <strong>guides</strong> actual activities. Policies are enforced, org charts reflect real reporting relationships, and procedures are followed. Outcomes are measured and feed back to improve structure.</p>
+                        <p><strong>Meyer & Rowan's claim:</strong> This model applies primarily to organizations facing strong technical pressures with clear performance criteria. It's less common than assumed, especially in institutionalized sectors.</p>
+                    `
+                },
+                decoupled: {
+                    svg: `
+                        <text x="350" y="30" text-anchor="middle" fill="#7c3aed" font-weight="bold" font-size="14">DECOUPLED STRUCTURE</text>
+
+                        <rect x="80" y="80" width="180" height="90" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+                        <text x="170" y="110" text-anchor="middle" fill="#5b21b6" font-weight="bold" font-size="12">FORMAL STRUCTURE</text>
+                        <text x="170" y="130" text-anchor="middle" fill="#5b21b6" font-size="10">Policies, Org Charts</text>
+                        <text x="170" y="150" text-anchor="middle" fill="#5b21b6" font-size="10">(Ceremonial)</text>
+
+                        <rect x="440" y="80" width="180" height="90" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+                        <text x="530" y="110" text-anchor="middle" fill="#5b21b6" font-weight="bold" font-size="12">ACTUAL ACTIVITIES</text>
+                        <text x="530" y="130" text-anchor="middle" fill="#5b21b6" font-size="10">Day-to-day Work</text>
+                        <text x="530" y="150" text-anchor="middle" fill="#5b21b6" font-size="10">(Practical Logic)</text>
+
+                        <line x1="265" y1="125" x2="435" y2="125" stroke="#7c3aed" stroke-width="2" stroke-dasharray="10,5"/>
+                        <text x="350" y="115" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="bold">GAP</text>
+
+                        <ellipse cx="170" cy="250" rx="80" ry="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="170" y="245" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="bold">EXTERNAL</text>
+                        <text x="170" y="260" text-anchor="middle" fill="#5b21b6" font-size="10">AUDIENCES</text>
+
+                        <defs>
+                            <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#7c3aed"/>
+                            </marker>
+                        </defs>
+
+                        <line x1="170" y1="170" x2="170" y2="195" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPurple)"/>
+                        <text x="195" y="185" fill="#5b21b6" font-size="9">Displays</text>
+
+                        <ellipse cx="530" cy="250" rx="80" ry="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="530" y="245" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="bold">TECHNICAL</text>
+                        <text x="530" y="260" text-anchor="middle" fill="#5b21b6" font-size="10">CORE</text>
+
+                        <line x1="530" y1="170" x2="530" y2="195" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPurple)"/>
+                        <text x="555" y="185" fill="#5b21b6" font-size="9">Serves</text>
+
+                        <rect x="280" y="210" width="140" height="60" rx="8" fill="#7c3aed"/>
+                        <text x="350" y="235" text-anchor="middle" fill="white" font-size="10" font-weight="bold">LOGIC OF</text>
+                        <text x="350" y="250" text-anchor="middle" fill="white" font-size="10" font-weight="bold">CONFIDENCE</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #7c3aed; margin-bottom: 15px;">Decoupled Structure</h4>
+                        <p style="margin-bottom: 15px;">In decoupled organizations, formal structure and actual activities <strong>operate independently</strong>. The formal structure is displayed to external audiences for legitimacy, while the technical core operates according to its own practical logic.</p>
+                        <p><strong>Key insight:</strong> Decoupling isn't a failure—it's an adaptive response that allows organizations to satisfy institutional demands while maintaining operational flexibility.</p>
+                    `
+                },
+                ceremonial: {
+                    svg: `
+                        <text x="350" y="30" text-anchor="middle" fill="#f59e0b" font-weight="bold" font-size="14">CEREMONIAL DISPLAY</text>
+
+                        <rect x="100" y="60" width="500" height="180" rx="15" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="350" y="85" text-anchor="middle" fill="#92400e" font-size="12" font-weight="bold">THE ORGANIZATIONAL STAGE</text>
+
+                        <rect x="130" y="100" width="120" height="60" rx="8" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                        <text x="190" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">MISSION</text>
+                        <text x="190" y="140" text-anchor="middle" fill="white" font-size="9">STATEMENT</text>
+
+                        <rect x="270" y="100" width="120" height="60" rx="8" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                        <text x="330" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ORG</text>
+                        <text x="330" y="140" text-anchor="middle" fill="white" font-size="9">CHART</text>
+
+                        <rect x="410" y="100" width="120" height="60" rx="8" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                        <text x="470" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ANNUAL</text>
+                        <text x="470" y="140" text-anchor="middle" fill="white" font-size="9">REPORT</text>
+
+                        <rect x="200" y="175" width="120" height="50" rx="8" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+                        <text x="260" y="200" text-anchor="middle" fill="#78350f" font-size="9" font-weight="bold">CREDENTIALS</text>
+
+                        <rect x="340" y="175" width="120" height="50" rx="8" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+                        <text x="400" y="200" text-anchor="middle" fill="#78350f" font-size="9" font-weight="bold">POLICIES</text>
+
+                        <text x="350" y="265" text-anchor="middle" fill="#92400e" font-size="11" font-weight="bold">AUDIENCE (External Stakeholders)</text>
+
+                        <circle cx="200" cy="305" r="18" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="300" cy="305" r="18" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="400" cy="305" r="18" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="500" cy="305" r="18" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+
+                        <text x="620" y="140" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(90, 620, 140)">Backstage</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #d97706; margin-bottom: 15px;">Ceremonial Display</h4>
+                        <p style="margin-bottom: 15px;">Drawing on Goffman's dramaturgical metaphor, Meyer & Rowan suggest that formal structures are performances on an organizational "stage." Mission statements, org charts, annual reports, and credentials are <strong>props</strong> displayed to external audiences.</p>
+                        <p><strong>Key insight:</strong> The ceremonial display isn't deception—it's a shared social reality that everyone participates in maintaining because it serves collective interests in legitimacy and stability.</p>
+                    `
+                }
+            };
+
+            const d = diagrams[type];
+            svg.innerHTML = d.svg;
+            explanation.innerHTML = d.explanation;
+        }
+
+        // ========== TOOL 5: CONFIDENCE ANALYZER ==========
+        const ratings = {
+            avoidance: 0,
+            discretion: 0,
+            overlooking: 0,
+            autonomy: 0,
+            goodfaith: 0
+        };
+
+        function setRating(dimension, value) {
+            ratings[dimension] = value;
+
+            const container = event.target.parentElement;
+            container.querySelectorAll('.rating-btn').forEach((btn, i) => {
+                btn.classList.toggle('selected', i + 1 === value);
+            });
+        }
+
+        function analyzeConfidence() {
+            const total = Object.values(ratings).reduce((a, b) => a + b, 0);
+
+            if (total === 0) {
+                alert('Please rate at least one dimension');
+                return;
+            }
+
+            const maxScore = 25;
+            const score = (total / maxScore) * 100;
+
+            let diagnosis, implications;
+
+            if (score >= 70) {
+                diagnosis = 'Strong Logic of Confidence';
+                implications = 'This organization exhibits the classic Meyer & Rowan pattern. High levels of avoidance, discretion, and overlooking allow decoupling to function smoothly. Professional autonomy and good faith assumptions substitute for inspection.';
+            } else if (score >= 40) {
+                diagnosis = 'Moderate Logic of Confidence';
+                implications = 'This organization shows a mixed pattern. Some decoupling mechanisms are in place, but there are also elements of inspection and evaluation. This may reflect competing pressures.';
+            } else {
+                diagnosis = 'Weak Logic of Confidence';
+                implications = 'This organization shows limited decoupling mechanisms. Formal structures may be more tightly coupled to actual activities, or the organization may be experiencing breakdown in the confidence system.';
+            }
+
+            const resultDiv = document.getElementById('confidenceResult');
+            resultDiv.classList.add('show');
+
+            document.getElementById('confidenceContent').innerHTML = `
+                <h3 style="color: #7c3aed; margin-bottom: 20px;">${diagnosis}</h3>
+
+                <div style="margin-bottom: 25px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">Logic of Confidence Score</span>
+                        <span style="font-weight: 700; color: #7c3aed;">${score.toFixed(0)}%</span>
+                    </div>
+                    <div style="background: #e5e7eb; height: 25px; border-radius: 12px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #7c3aed, #a78bfa); height: 100%; width: ${score}%; transition: width 0.5s;"></div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div style="text-align: center; padding: 15px; background: #f5f3ff; border-radius: 10px;">
+                        <div style="font-size: 1.5rem; color: #7c3aed;">${ratings.avoidance}/5</div>
+                        <div style="font-size: 0.8rem; color: #6b7280;">Avoidance</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #f5f3ff; border-radius: 10px;">
+                        <div style="font-size: 1.5rem; color: #7c3aed;">${ratings.discretion}/5</div>
+                        <div style="font-size: 0.8rem; color: #6b7280;">Discretion</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #f5f3ff; border-radius: 10px;">
+                        <div style="font-size: 1.5rem; color: #7c3aed;">${ratings.overlooking}/5</div>
+                        <div style="font-size: 0.8rem; color: #6b7280;">Overlooking</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #f5f3ff; border-radius: 10px;">
+                        <div style="font-size: 1.5rem; color: #7c3aed;">${ratings.autonomy}/5</div>
+                        <div style="font-size: 0.8rem; color: #6b7280;">Autonomy</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #f5f3ff; border-radius: 10px;">
+                        <div style="font-size: 1.5rem; color: #7c3aed;">${ratings.goodfaith}/5</div>
+                        <div style="font-size: 0.8rem; color: #6b7280;">Good Faith</div>
+                    </div>
+                </div>
+
+                <div style="background: #ede9fe; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #6d28d9; margin-bottom: 10px;">Interpretation</h4>
+                    <p>${implications}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
