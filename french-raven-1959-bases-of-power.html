@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French & Raven (1959) - The Bases of Social Power</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #134e4a 0%, #115e59 50%, #0f766e 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .nav-container {
+            background: rgba(19, 78, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(94, 234, 212, 0.3);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: #5eead4;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #2dd4bf;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(94, 234, 212, 0.2);
+            border: 1px solid rgba(94, 234, 212, 0.3);
+            color: #99f6e4;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(13, 148, 136, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(94, 234, 212, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #5eead4;
+            margin-bottom: 10px;
+        }
+
+        .hero .meta {
+            color: #99f6e4;
+            font-size: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(94, 234, 212, 0.2);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(94, 234, 212, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5eead4;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 {
+            color: #99f6e4;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            color: #cbd5e1;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(13, 148, 136, 0.1) 100%);
+            border: 1px solid rgba(94, 234, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .concept-box h4 {
+            color: #5eead4;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(45, 212, 191, 0.15) 100%);
+            border-left: 4px solid #14b8a6;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Power Base Cards */
+        .power-base-card {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%);
+            border: 2px solid rgba(94, 234, 212, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .power-base-card:hover {
+            border-color: #14b8a6;
+            transform: translateY(-3px);
+        }
+
+        .power-base-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .power-base-card h4 {
+            color: #5eead4;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .power-base-card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .power-base-card .source {
+            color: #99f6e4;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(94, 234, 212, 0.2);
+        }
+
+        /* Interactive Tools */
+        .tool-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(94, 234, 212, 0.2);
+        }
+
+        .tool-container h3 {
+            color: #5eead4;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-group label {
+            display: block;
+            color: #99f6e4;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(94, 234, 212, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(20, 184, 166, 0.4);
+        }
+
+        .slider-value {
+            text-align: right;
+            color: #5eead4;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(45, 212, 191, 0.15) 100%);
+            border: 2px solid rgba(94, 234, 212, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-box h4 {
+            color: #5eead4;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #14b8a6;
+            text-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
+        }
+
+        .result-label {
+            color: #99f6e4;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .selection-btn {
+            background: rgba(20, 184, 166, 0.1);
+            border: 2px solid rgba(94, 234, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .selection-btn:hover {
+            border-color: #14b8a6;
+            background: rgba(20, 184, 166, 0.2);
+        }
+
+        .selection-btn.active {
+            border-color: #14b8a6;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.3) 0%, rgba(45, 212, 191, 0.2) 100%);
+        }
+
+        .selection-btn h5 {
+            color: #5eead4;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .selection-btn p {
+            color: #99f6e4;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(94, 234, 212, 0.2);
+        }
+
+        .comparison-table th {
+            background: rgba(20, 184, 166, 0.2);
+            color: #5eead4;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: #cbd5e1;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(20, 184, 166, 0.1);
+        }
+
+        /* Power Profile Visualization */
+        .power-profile {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .profile-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-label {
+            min-width: 100px;
+            color: #99f6e4;
+            font-weight: 500;
+        }
+
+        .profile-track {
+            flex: 1;
+            height: 24px;
+            background: rgba(94, 234, 212, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .profile-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #14b8a6, #2dd4bf);
+            border-radius: 12px;
+            transition: width 0.5s ease;
+        }
+
+        .profile-value {
+            min-width: 50px;
+            text-align: right;
+            color: #5eead4;
+            font-weight: 600;
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            background: linear-gradient(135deg, #0f3d3a 0%, #134e4a 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-nav a {
+            display: inline-block;
+            background: rgba(94, 234, 212, 0.2);
+            border: 2px solid rgba(94, 234, 212, 0.4);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .footer-nav a:hover {
+            background: rgba(94, 234, 212, 0.3);
+            border-color: #5eead4;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .grid-2, .grid-3, .grid-5 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">French & Raven (1959)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('bases', this)">The Five Bases</button>
+                <button class="page-btn" onclick="switchPage('dynamics', this)">Power Dynamics</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Page 1: Overview -->
+        <div id="main" class="page-content active">
+            <div class="hero">
+                <h1>The Bases of Social Power</h1>
+                <div class="subtitle">John R. P. French Jr. & Bertram Raven</div>
+                <div class="meta">1959 • Studies in Social Power • Foundational Power Taxonomy</div>
+            </div>
+
+            <div class="card">
+                <h2>📚 Core Argument</h2>
+                <p>French and Raven's landmark chapter established the most influential taxonomy of power in social psychology. They identified <strong>five distinct bases</strong> from which social power derives, fundamentally shaping how we analyze influence in organizations, relationships, and society.</p>
+
+                <div class="highlight-box">
+                    <p>"The strength of power of O/P in some system a is defined as the maximum potential ability of O to influence P in a."</p>
+                </div>
+
+                <p>The key insight: power is not monolithic. Different types of power have different sources, operate through different mechanisms, and produce different outcomes. Understanding which base is being used helps predict both effectiveness and consequences.</p>
+
+                <div class="grid-5">
+                    <div class="power-base-card">
+                        <div class="icon">👔</div>
+                        <h4>Legitimate</h4>
+                        <p>Power from formal position or role</p>
+                    </div>
+                    <div class="power-base-card">
+                        <div class="icon">🎁</div>
+                        <h4>Reward</h4>
+                        <p>Power to provide benefits</p>
+                    </div>
+                    <div class="power-base-card">
+                        <div class="icon">⚡</div>
+                        <h4>Coercive</h4>
+                        <p>Power to punish or threaten</p>
+                    </div>
+                    <div class="power-base-card">
+                        <div class="icon">🎓</div>
+                        <h4>Expert</h4>
+                        <p>Power from knowledge/skill</p>
+                    </div>
+                    <div class="power-base-card">
+                        <div class="icon">⭐</div>
+                        <h4>Referent</h4>
+                        <p>Power from admiration/identification</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Key Contributions</h2>
+
+                <h3>1. Differentiated View of Power</h3>
+                <p>Before French & Raven, power was often treated as a single dimension. Their taxonomy showed that a manager might have high legitimate power but low expert power, or that a respected colleague might have high referent power without any formal authority. This differentiation enables precise diagnosis of power dynamics.</p>
+
+                <h3>2. Source-Based Classification</h3>
+                <p>Each power base has a distinct source:</p>
+                <ul>
+                    <li><strong>Legitimate:</strong> Internalized values about proper authority</li>
+                    <li><strong>Reward:</strong> Control over valued outcomes</li>
+                    <li><strong>Coercive:</strong> Ability to administer punishment</li>
+                    <li><strong>Expert:</strong> Perceived knowledge or competence</li>
+                    <li><strong>Referent:</strong> Attraction and desire to identify</li>
+                </ul>
+
+                <h3>3. Foundation for Organizational Analysis</h3>
+                <p>The framework became foundational for understanding workplace dynamics. It explains why formal authority alone often fails, why experts can influence without rank, and why charismatic leaders command loyalty beyond their formal role.</p>
+
+                <h3>4. Later Extension: Informational Power</h3>
+                <p>Raven later added a sixth base—<strong>informational power</strong>—the power that comes from possessing information others need, distinct from expert power because it's about specific information rather than general expertise.</p>
+            </div>
+
+            <div class="card">
+                <h2>💡 Theoretical Significance</h2>
+                <p>The French & Raven framework provides the vocabulary for analyzing power in any social context:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Workplace Analysis</h4>
+                        <p>Diagnose why some managers succeed and others fail despite similar formal authority.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Leadership Development</h4>
+                        <p>Identify which power bases to cultivate for different leadership situations.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Resistance Strategies</h4>
+                        <p>Understand how to counter different types of power attempts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: The Five Bases -->
+        <div id="bases" class="page-content">
+            <div class="card">
+                <h2>👔 Legitimate Power</h2>
+                <p>Power stemming from internalized values that give one person the right to prescribe behavior for another. The target accepts that the influencer has a legitimate right to influence them.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Sources</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Formal organizational position</li>
+                            <li>Cultural values (age, gender in some contexts)</li>
+                            <li>Social structure and norms</li>
+                            <li>Designation by legitimate authority</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Characteristics</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Range limited to scope of role</li>
+                            <li>Depends on target's acceptance</li>
+                            <li>Can be undermined by violation of norms</li>
+                            <li>Stronger when supported by other bases</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Example: A manager can direct work tasks (within role scope) but not personal life decisions (outside legitimate range).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎁 Reward Power</h2>
+                <p>Power based on the ability to mediate rewards for another person. The target complies because they expect positive outcomes from the influencer.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Types of Rewards</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Material: salary, bonuses, resources</li>
+                            <li>Social: praise, recognition, inclusion</li>
+                            <li>Opportunity: promotions, assignments</li>
+                            <li>Psychological: approval, esteem</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Effectiveness Factors</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Target must value the rewards</li>
+                            <li>Influencer must control rewards</li>
+                            <li>Surveillance may be needed</li>
+                            <li>Can create dependency</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Example: A mentor who can provide career opportunities has reward power over protégés who seek advancement.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚡ Coercive Power</h2>
+                <p>Power based on the ability to mediate punishments. The target complies to avoid negative outcomes the influencer can impose.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Types of Coercion</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Material: fines, demotions, firing</li>
+                            <li>Social: criticism, ostracism</li>
+                            <li>Physical: force or threat of force</li>
+                            <li>Psychological: disapproval, rejection</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Limitations</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Requires constant surveillance</li>
+                            <li>Breeds resentment and resistance</li>
+                            <li>Only produces compliance, not commitment</li>
+                            <li>Can damage relationship permanently</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Example: A manager who threatens negative performance reviews has coercive power, but using it damages trust and morale.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎓 Expert Power</h2>
+                <p>Power based on the perception that the influencer has special knowledge or expertise relevant to the situation. The target accepts influence because they believe the expert knows best.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Characteristics</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Based on perceived competence</li>
+                            <li>Limited to area of expertise</li>
+                            <li>Can exist without formal authority</li>
+                            <li>Highly persuasive when relevant</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Building Expert Power</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Develop genuine expertise</li>
+                            <li>Demonstrate competence through results</li>
+                            <li>Communicate knowledge accessibly</li>
+                            <li>Stay current in your field</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Example: A junior engineer with specialized knowledge can influence senior managers' technical decisions despite lower rank.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⭐ Referent Power</h2>
+                <p>Power based on the target's identification with or attraction to the influencer. The target complies because they admire the influencer and want to be associated with them or gain their approval.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Sources</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Personal charisma and likability</li>
+                            <li>Shared identity or values</li>
+                            <li>Admiration and respect</li>
+                            <li>Desire for relationship</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Unique Properties</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Most broad in range of influence</li>
+                            <li>Often unconscious identification</li>
+                            <li>Can persist without surveillance</li>
+                            <li>Foundation of charismatic leadership</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Example: Team members adopt the work habits and values of a respected colleague they admire, even without being asked.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📊 Comparing the Five Bases</h2>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Base</th>
+                        <th>Source</th>
+                        <th>Surveillance Needed?</th>
+                        <th>Effect on Relationship</th>
+                    </tr>
+                    <tr>
+                        <td>Legitimate</td>
+                        <td>Position/Role</td>
+                        <td>Low (if accepted)</td>
+                        <td>Neutral</td>
+                    </tr>
+                    <tr>
+                        <td>Reward</td>
+                        <td>Control of rewards</td>
+                        <td>Medium-High</td>
+                        <td>Positive (if fair)</td>
+                    </tr>
+                    <tr>
+                        <td>Coercive</td>
+                        <td>Ability to punish</td>
+                        <td>High</td>
+                        <td>Negative</td>
+                    </tr>
+                    <tr>
+                        <td>Expert</td>
+                        <td>Knowledge/Skill</td>
+                        <td>Low</td>
+                        <td>Positive</td>
+                    </tr>
+                    <tr>
+                        <td>Referent</td>
+                        <td>Attraction/Identification</td>
+                        <td>None</td>
+                        <td>Highly Positive</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 3: Power Dynamics -->
+        <div id="dynamics" class="page-content">
+            <div class="card">
+                <h2>🔄 How Power Bases Interact</h2>
+
+                <p>In practice, power bases rarely operate in isolation. They interact, reinforce, and sometimes undermine each other.</p>
+
+                <h3>Reinforcing Combinations</h3>
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Legitimate + Expert</h4>
+                        <p>When a manager is also highly competent, their directives carry both formal authority and technical credibility. This is the ideal combination for knowledge work.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Legitimate + Referent</h4>
+                        <p>A well-liked manager with formal authority commands both compliance and genuine commitment. People follow because they should and because they want to.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Expert + Referent</h4>
+                        <p>A respected expert who is also personally admired becomes a powerful informal leader, even without formal rank.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Reward + Legitimate</h4>
+                        <p>Formal authority backed by control over meaningful rewards creates clear incentive alignment.</p>
+                    </div>
+                </div>
+
+                <h3>Undermining Combinations</h3>
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Coercive Without Legitimate</h4>
+                        <p>Using punishment without accepted authority is seen as bullying. It provokes resistance and damages the relationship permanently.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Legitimate Without Expert (in technical roles)</h4>
+                        <p>A manager who lacks technical competence in a technical field loses credibility. Their legitimate authority is undermined by lack of expert power.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📈 Influence Outcomes</h2>
+
+                <p>Kelman (1958) identified three types of influence outcomes that map to French & Raven's bases:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Compliance</h4>
+                        <p>Target conforms publicly but not privately. Produced mainly by reward and coercive power. Requires surveillance to maintain.</p>
+                        <p style="color: #5eead4; margin-top: 10px;"><strong>Bases:</strong> Reward, Coercive</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Identification</h4>
+                        <p>Target conforms because of relationship with influencer. Produced by referent power. Lasts while relationship is valued.</p>
+                        <p style="color: #5eead4; margin-top: 10px;"><strong>Bases:</strong> Referent</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Internalization</h4>
+                        <p>Target genuinely accepts influence as their own view. Produced by expert and legitimate power. Most durable form of influence.</p>
+                        <p style="color: #5eead4; margin-top: 10px;"><strong>Bases:</strong> Expert, Legitimate</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🏢 Organizational Applications</h2>
+
+                <h3>Manager Power Profile</h3>
+                <p>Effective managers typically have:</p>
+                <ul>
+                    <li><strong>High Legitimate:</strong> Clear role and authority</li>
+                    <li><strong>High Expert:</strong> Competence in their domain</li>
+                    <li><strong>Moderate Reward:</strong> Ability to recognize and reward</li>
+                    <li><strong>High Referent:</strong> Respect and likability</li>
+                    <li><strong>Low Coercive:</strong> Use punishment sparingly if at all</li>
+                </ul>
+
+                <h3>Power Without Authority</h3>
+                <p>Individual contributors can build power through:</p>
+                <ul>
+                    <li><strong>Expert power:</strong> Becoming the go-to person for specialized knowledge</li>
+                    <li><strong>Referent power:</strong> Building relationships and reputation</li>
+                    <li><strong>Informational power:</strong> Controlling access to critical information</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <ul>
+                    <li>Over-relying on legitimate power without building other bases</li>
+                    <li>Using coercive power when other bases would be more effective</li>
+                    <li>Failing to develop expert power in technical environments</li>
+                    <li>Neglecting referent power (relationship building)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>⚔️ Resistance to Power</h2>
+
+                <p>Different power bases invite different forms of resistance:</p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Power Base</th>
+                        <th>Likely Resistance</th>
+                        <th>Counter-Strategy</th>
+                    </tr>
+                    <tr>
+                        <td>Legitimate</td>
+                        <td>Challenge to scope or validity</td>
+                        <td>Clarify role boundaries, build other bases</td>
+                    </tr>
+                    <tr>
+                        <td>Reward</td>
+                        <td>Devalue rewards, find alternatives</td>
+                        <td>Diversify rewards, understand target values</td>
+                    </tr>
+                    <tr>
+                        <td>Coercive</td>
+                        <td>Avoidance, exit, counter-coercion</td>
+                        <td>Use sparingly, shift to other bases</td>
+                    </tr>
+                    <tr>
+                        <td>Expert</td>
+                        <td>Question expertise, seek second opinion</td>
+                        <td>Demonstrate competence, acknowledge limits</td>
+                    </tr>
+                    <tr>
+                        <td>Referent</td>
+                        <td>Distance, reduce identification</td>
+                        <td>Maintain authentic relationship</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <div class="card">
+                <h2>🛠️ Interactive Analysis Tools</h2>
+                <p>Use these tools to explore French & Raven's power bases through hands-on analysis.</p>
+            </div>
+
+            <!-- Tool 1: Power Profile Builder -->
+            <div class="tool-container">
+                <h3>📊 Power Profile Builder</h3>
+                <p style="color: #99f6e4; margin-bottom: 20px;">Build a power profile by rating each base. See how different profiles create different influence patterns.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="slider-group">
+                            <label>👔 Legitimate Power</label>
+                            <input type="range" id="legitimate" min="0" max="100" value="70" oninput="updateProfile()">
+                            <div class="slider-value"><span id="legitimate-display">70</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>🎁 Reward Power</label>
+                            <input type="range" id="reward" min="0" max="100" value="60" oninput="updateProfile()">
+                            <div class="slider-value"><span id="reward-display">60</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>⚡ Coercive Power</label>
+                            <input type="range" id="coercive" min="0" max="100" value="30" oninput="updateProfile()">
+                            <div class="slider-value"><span id="coercive-display">30</span>/100</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slider-group">
+                            <label>🎓 Expert Power</label>
+                            <input type="range" id="expert" min="0" max="100" value="80" oninput="updateProfile()">
+                            <div class="slider-value"><span id="expert-display">80</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>⭐ Referent Power</label>
+                            <input type="range" id="referent" min="0" max="100" value="65" oninput="updateProfile()">
+                            <div class="slider-value"><span id="referent-display">65</span>/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-profile" id="power-profile">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+                <div class="result-box">
+                    <h4>Profile Analysis</h4>
+                    <div class="result-value" id="profile-type">Balanced Leader</div>
+                    <div class="result-label" id="profile-interpretation">Analyzing power profile...</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Influence Strategy Selector -->
+            <div class="tool-container">
+                <h3>🎯 Influence Strategy Selector</h3>
+                <p style="color: #99f6e4; margin-bottom: 20px;">Select a situation to see which power bases are most effective.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectSituation('emergency')">
+                        <h5>🚨 Emergency</h5>
+                        <p>Crisis requiring immediate action</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectSituation('technical')">
+                        <h5>💻 Technical Decision</h5>
+                        <p>Complex problem requiring expertise</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectSituation('change')">
+                        <h5>🔄 Change Initiative</h5>
+                        <p>Implementing organizational change</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectSituation('motivation')">
+                        <h5>🔥 Motivation</h5>
+                        <p>Inspiring long-term commitment</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectSituation('compliance')">
+                        <h5>📋 Compliance</h5>
+                        <p>Ensuring rule-following</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectSituation('innovation')">
+                        <h5>💡 Innovation</h5>
+                        <p>Encouraging creative risk-taking</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="situation-analysis" style="display: none;">
+                    <h4 id="situation-title">Situation Analysis</h4>
+                    <div id="situation-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Role Power Analyzer -->
+            <div class="tool-container">
+                <h3>👥 Role Power Analyzer</h3>
+                <p style="color: #99f6e4; margin-bottom: 20px;">Select a role to see its typical power base profile.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectRole('ceo')">
+                        <h5>👔 CEO</h5>
+                        <p>Chief Executive</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectRole('manager')">
+                        <h5>📊 Middle Manager</h5>
+                        <p>Department head</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectRole('expert')">
+                        <h5>🎓 Technical Expert</h5>
+                        <p>Senior IC</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectRole('new-manager')">
+                        <h5>🌱 New Manager</h5>
+                        <p>Recently promoted</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectRole('mentor')">
+                        <h5>🧭 Mentor</h5>
+                        <p>Informal guide</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectRole('consultant')">
+                        <h5>💼 Consultant</h5>
+                        <p>External advisor</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="role-analysis" style="display: none;">
+                    <h4 id="role-title">Role Analysis</h4>
+                    <div id="role-profile" style="padding: 20px;">
+                        <!-- Profile bars populated by JavaScript -->
+                    </div>
+                    <div id="role-advice" style="text-align: left; padding: 0 20px 20px;">
+                        <!-- Advice populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Power Base Effectiveness Calculator -->
+            <div class="tool-container">
+                <h3>⚖️ Power Base Effectiveness Calculator</h3>
+                <p style="color: #99f6e4; margin-bottom: 20px;">Calculate how effective each power base will be given the relationship characteristics.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="slider-group">
+                            <label>Target's Trust in You</label>
+                            <input type="range" id="trust" min="0" max="100" value="60" oninput="calculateEffectiveness()">
+                            <div class="slider-value"><span id="trust-display">60</span>%</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Your Formal Authority</label>
+                            <input type="range" id="authority" min="0" max="100" value="70" oninput="calculateEffectiveness()">
+                            <div class="slider-value"><span id="authority-display">70</span>%</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slider-group">
+                            <label>Target's Alternatives (Dependence)</label>
+                            <input type="range" id="alternatives" min="0" max="100" value="40" oninput="calculateEffectiveness()">
+                            <div class="slider-value"><span id="alternatives-display">40</span>%</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Task Complexity</label>
+                            <input type="range" id="complexity" min="0" max="100" value="50" oninput="calculateEffectiveness()">
+                            <div class="slider-value"><span id="complexity-display">50</span>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-profile" id="effectiveness-profile">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+                <div class="result-box">
+                    <h4>Recommended Power Bases</h4>
+                    <div class="result-value" id="recommended-bases">Expert + Referent</div>
+                    <div class="result-label" id="effectiveness-interpretation">Based on relationship characteristics...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <section class="footer-nav">
+        <a href="index.html">← Back to Literature Explorer</a>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tool 1: Power Profile Builder
+        function updateProfile() {
+            const bases = {
+                legitimate: parseInt(document.getElementById('legitimate').value),
+                reward: parseInt(document.getElementById('reward').value),
+                coercive: parseInt(document.getElementById('coercive').value),
+                expert: parseInt(document.getElementById('expert').value),
+                referent: parseInt(document.getElementById('referent').value)
+            };
+
+            // Update displays
+            Object.keys(bases).forEach(key => {
+                document.getElementById(`${key}-display`).textContent = bases[key];
+            });
+
+            // Generate profile visualization
+            const profileHtml = `
+                <div class="profile-bar">
+                    <span class="profile-label">👔 Legitimate</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${bases.legitimate}%"></div></div>
+                    <span class="profile-value">${bases.legitimate}</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">🎁 Reward</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${bases.reward}%"></div></div>
+                    <span class="profile-value">${bases.reward}</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">⚡ Coercive</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${bases.coercive}%"></div></div>
+                    <span class="profile-value">${bases.coercive}</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">🎓 Expert</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${bases.expert}%"></div></div>
+                    <span class="profile-value">${bases.expert}</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">⭐ Referent</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${bases.referent}%"></div></div>
+                    <span class="profile-value">${bases.referent}</span>
+                </div>
+            `;
+            document.getElementById('power-profile').innerHTML = profileHtml;
+
+            // Analyze profile
+            const resultEl = document.getElementById('profile-type');
+            const interpEl = document.getElementById('profile-interpretation');
+
+            const positional = bases.legitimate + bases.reward + bases.coercive;
+            const personal = bases.expert + bases.referent;
+
+            if (bases.coercive > 60 && bases.coercive > bases.referent) {
+                resultEl.textContent = 'Authoritarian Profile';
+                resultEl.style.color = '#ef4444';
+                interpEl.textContent = 'High reliance on coercion. Effective for compliance but damages relationships and commitment. Consider building expert and referent power.';
+            } else if (personal > positional && bases.expert > 70) {
+                resultEl.textContent = 'Expert Influencer';
+                resultEl.style.color = '#14b8a6';
+                interpEl.textContent = 'Strong personal power through expertise. Highly effective for knowledge work. Can influence without formal authority.';
+            } else if (bases.referent > 70 && bases.referent > bases.legitimate) {
+                resultEl.textContent = 'Charismatic Leader';
+                resultEl.style.color = '#2dd4bf';
+                interpEl.textContent = 'High referent power creates strong follower commitment. People want to follow you. Build expert power to enhance credibility.';
+            } else if (bases.legitimate > 70 && bases.expert > 60 && bases.referent > 50) {
+                resultEl.textContent = 'Complete Leader';
+                resultEl.style.color = '#22c55e';
+                interpEl.textContent = 'Strong combination of formal authority, competence, and personal appeal. This is the ideal profile for senior leadership.';
+            } else if (positional > personal) {
+                resultEl.textContent = 'Position-Dependent';
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = 'Relying primarily on formal power bases. Effective within role scope but vulnerable to role changes. Build personal power bases.';
+            } else {
+                resultEl.textContent = 'Balanced Profile';
+                resultEl.style.color = '#14b8a6';
+                interpEl.textContent = 'Reasonable balance across power bases. Focus on strengthening your highest bases and reducing reliance on coercion.';
+            }
+        }
+
+        // Tool 2: Influence Strategy Selector
+        const situations = {
+            emergency: {
+                title: 'Emergency/Crisis Situation',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Legitimate</strong> - Clear authority enables rapid decisions</li>
+                        <li>🥈 <strong>Expert</strong> - Technical competence guides right action</li>
+                        <li>🥉 <strong>Coercive</strong> - May be necessary to ensure compliance</li>
+                    </ul>
+                    <p><strong>Why:</strong> Crises require quick, decisive action. There's no time for persuasion or relationship building. Clear command authority (legitimate) backed by competence (expert) is essential.</p>
+                    <p style="color: #5eead4; margin-top: 15px;"><strong>Caution:</strong> After the crisis, return to softer influence styles to repair any relationship damage.</p>
+                `
+            },
+            technical: {
+                title: 'Technical Decision Making',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Expert</strong> - Knowledge is paramount for technical issues</li>
+                        <li>🥈 <strong>Referent</strong> - Trust enables acceptance of recommendations</li>
+                        <li>🥉 <strong>Legitimate</strong> - Final decision authority if needed</li>
+                    </ul>
+                    <p><strong>Why:</strong> Technical decisions should be driven by expertise, not position. The person who knows most about the problem should have most influence.</p>
+                    <p style="color: #5eead4; margin-top: 15px;"><strong>Key:</strong> Build expert credibility before needing to use it. Demonstrate competence consistently.</p>
+                `
+            },
+            change: {
+                title: 'Change Initiative',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Referent</strong> - People follow leaders they trust and admire</li>
+                        <li>🥈 <strong>Expert</strong> - Credibility in explaining why change is needed</li>
+                        <li>🥉 <strong>Reward</strong> - Incentivize adoption of new behaviors</li>
+                    </ul>
+                    <p><strong>Why:</strong> Sustainable change requires genuine buy-in, not just compliance. Referent and expert power create internalization; reward reinforces early adoption.</p>
+                    <p style="color: #ef4444; margin-top: 15px;"><strong>Avoid:</strong> Over-reliance on coercion, which breeds resistance and undermines change.</p>
+                `
+            },
+            motivation: {
+                title: 'Long-term Motivation',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Referent</strong> - Inspiration and identification drive commitment</li>
+                        <li>🥈 <strong>Expert</strong> - Respect for competence builds follower confidence</li>
+                        <li>🥉 <strong>Reward</strong> - Recognition reinforces desired behaviors</li>
+                    </ul>
+                    <p><strong>Why:</strong> Intrinsic motivation comes from wanting to follow someone (referent) and believing in their competence (expert). Extrinsic rewards supplement but don't replace.</p>
+                    <p style="color: #ef4444; margin-top: 15px;"><strong>Avoid:</strong> Coercion destroys intrinsic motivation. Legitimate alone produces compliance, not engagement.</p>
+                `
+            },
+            compliance: {
+                title: 'Ensuring Compliance',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Legitimate</strong> - Clear authority establishes expectations</li>
+                        <li>🥈 <strong>Reward</strong> - Positive reinforcement for compliance</li>
+                        <li>🥉 <strong>Coercive</strong> - Consequences for non-compliance (use sparingly)</li>
+                    </ul>
+                    <p><strong>Why:</strong> Compliance requires clear expectations (legitimate), incentives (reward), and consequences (coercive). This is the classic management triad.</p>
+                    <p style="color: #5eead4; margin-top: 15px;"><strong>Better approach:</strong> If possible, explain the "why" (expert) to generate internalization rather than mere compliance.</p>
+                `
+            },
+            innovation: {
+                title: 'Encouraging Innovation',
+                content: `
+                    <p><strong>Most Effective Bases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>🥇 <strong>Referent</strong> - Psychological safety from trusted leaders</li>
+                        <li>🥈 <strong>Expert</strong> - Credibility to validate new ideas</li>
+                        <li>🥉 <strong>Reward</strong> - Recognition for creative risk-taking</li>
+                    </ul>
+                    <p><strong>Why:</strong> Innovation requires psychological safety to take risks. Referent power creates this safety. Expert power helps evaluate ideas fairly. Reward reinforces experimentation.</p>
+                    <p style="color: #ef4444; margin-top: 15px;"><strong>Avoid:</strong> Coercive power kills innovation by punishing failure. Excessive legitimate focus on hierarchy stifles ideas from below.</p>
+                `
+            }
+        };
+
+        function selectSituation(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const situation = situations[key];
+            document.getElementById('situation-title').textContent = situation.title;
+            document.getElementById('situation-content').innerHTML = situation.content;
+            document.getElementById('situation-analysis').style.display = 'block';
+        }
+
+        // Tool 3: Role Power Analyzer
+        const roles = {
+            ceo: {
+                title: 'CEO / Executive',
+                bases: { legitimate: 95, reward: 90, coercive: 70, expert: 75, referent: 80 },
+                advice: 'CEOs have maximum formal power but must build expert and referent power to be truly effective. Over-reliance on positional power signals weakness. The best CEOs are followed because people want to, not because they have to.'
+            },
+            manager: {
+                title: 'Middle Manager',
+                bases: { legitimate: 70, reward: 60, coercive: 50, expert: 65, referent: 55 },
+                advice: 'Middle managers often lack sufficient reward/coercive power. Effectiveness depends on building expert and referent power. Influence upward through expertise; influence downward through relationship and competence.'
+            },
+            expert: {
+                title: 'Technical Expert / Senior IC',
+                bases: { legitimate: 30, reward: 20, coercive: 10, expert: 90, referent: 60 },
+                advice: 'Technical experts derive power primarily from knowledge. Build referent power through mentoring and collaboration. Legitimate power is limited but expert power can influence at any level.'
+            },
+            'new-manager': {
+                title: 'New Manager',
+                bases: { legitimate: 60, reward: 40, coercive: 30, expert: 50, referent: 40 },
+                advice: 'New managers have legitimate power but haven\'t yet built other bases. Focus first on demonstrating expert competence, then build referent power through fair treatment and relationship building. Avoid early use of coercive power.'
+            },
+            mentor: {
+                title: 'Mentor / Coach',
+                bases: { legitimate: 20, reward: 30, coercive: 5, expert: 80, referent: 85 },
+                advice: 'Mentors influence through personal power (expert + referent), not positional power. Effectiveness depends entirely on being genuinely helpful (expert) and personally admired (referent). Rewards are career guidance, not formal incentives.'
+            },
+            consultant: {
+                title: 'External Consultant',
+                bases: { legitimate: 15, reward: 10, coercive: 5, expert: 85, referent: 50 },
+                advice: 'Consultants have almost no positional power. Influence comes almost entirely from expert power. Build referent power through relationship and credibility. Without expertise, a consultant has nothing.'
+            }
+        };
+
+        function selectRole(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const role = roles[key];
+            document.getElementById('role-title').textContent = role.title;
+
+            // Generate profile bars
+            const profileHtml = `
+                <div class="power-profile">
+                    <div class="profile-bar">
+                        <span class="profile-label">👔 Legitimate</span>
+                        <div class="profile-track"><div class="profile-fill" style="width: ${role.bases.legitimate}%"></div></div>
+                        <span class="profile-value">${role.bases.legitimate}</span>
+                    </div>
+                    <div class="profile-bar">
+                        <span class="profile-label">🎁 Reward</span>
+                        <div class="profile-track"><div class="profile-fill" style="width: ${role.bases.reward}%"></div></div>
+                        <span class="profile-value">${role.bases.reward}</span>
+                    </div>
+                    <div class="profile-bar">
+                        <span class="profile-label">⚡ Coercive</span>
+                        <div class="profile-track"><div class="profile-fill" style="width: ${role.bases.coercive}%"></div></div>
+                        <span class="profile-value">${role.bases.coercive}</span>
+                    </div>
+                    <div class="profile-bar">
+                        <span class="profile-label">🎓 Expert</span>
+                        <div class="profile-track"><div class="profile-fill" style="width: ${role.bases.expert}%"></div></div>
+                        <span class="profile-value">${role.bases.expert}</span>
+                    </div>
+                    <div class="profile-bar">
+                        <span class="profile-label">⭐ Referent</span>
+                        <div class="profile-track"><div class="profile-fill" style="width: ${role.bases.referent}%"></div></div>
+                        <span class="profile-value">${role.bases.referent}</span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('role-profile').innerHTML = profileHtml;
+            document.getElementById('role-advice').innerHTML = `<p style="color: #cbd5e1; margin-top: 15px;"><strong>Key Insight:</strong> ${role.advice}</p>`;
+            document.getElementById('role-analysis').style.display = 'block';
+        }
+
+        // Tool 4: Power Base Effectiveness Calculator
+        function calculateEffectiveness() {
+            const trust = parseInt(document.getElementById('trust').value);
+            const authority = parseInt(document.getElementById('authority').value);
+            const alternatives = parseInt(document.getElementById('alternatives').value);
+            const complexity = parseInt(document.getElementById('complexity').value);
+
+            document.getElementById('trust-display').textContent = trust;
+            document.getElementById('authority-display').textContent = authority;
+            document.getElementById('alternatives-display').textContent = alternatives;
+            document.getElementById('complexity-display').textContent = complexity;
+
+            // Calculate effectiveness of each base
+            const dependence = 100 - alternatives;
+            const effectiveness = {
+                legitimate: Math.round(authority * 0.7 + trust * 0.3),
+                reward: Math.round(dependence * 0.6 + authority * 0.4),
+                coercive: Math.round(dependence * 0.7 - trust * 0.3),
+                expert: Math.round(complexity * 0.5 + trust * 0.5),
+                referent: Math.round(trust * 0.8 + (100 - complexity) * 0.2)
+            };
+
+            // Clamp values
+            Object.keys(effectiveness).forEach(key => {
+                effectiveness[key] = Math.max(0, Math.min(100, effectiveness[key]));
+            });
+
+            // Generate profile
+            const profileHtml = `
+                <div class="profile-bar">
+                    <span class="profile-label">👔 Legitimate</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${effectiveness.legitimate}%"></div></div>
+                    <span class="profile-value">${effectiveness.legitimate}%</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">🎁 Reward</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${effectiveness.reward}%"></div></div>
+                    <span class="profile-value">${effectiveness.reward}%</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">⚡ Coercive</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${effectiveness.coercive}%"></div></div>
+                    <span class="profile-value">${effectiveness.coercive}%</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">🎓 Expert</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${effectiveness.expert}%"></div></div>
+                    <span class="profile-value">${effectiveness.expert}%</span>
+                </div>
+                <div class="profile-bar">
+                    <span class="profile-label">⭐ Referent</span>
+                    <div class="profile-track"><div class="profile-fill" style="width: ${effectiveness.referent}%"></div></div>
+                    <span class="profile-value">${effectiveness.referent}%</span>
+                </div>
+            `;
+            document.getElementById('effectiveness-profile').innerHTML = profileHtml;
+
+            // Determine recommendations
+            const sorted = Object.entries(effectiveness).sort((a, b) => b[1] - a[1]);
+            const top2 = sorted.slice(0, 2);
+            const labels = {
+                legitimate: 'Legitimate',
+                reward: 'Reward',
+                coercive: 'Coercive',
+                expert: 'Expert',
+                referent: 'Referent'
+            };
+
+            document.getElementById('recommended-bases').textContent = `${labels[top2[0][0]]} + ${labels[top2[1][0]]}`;
+            document.getElementById('recommended-bases').style.color = '#14b8a6';
+
+            let interpretation = '';
+            if (trust > 70) {
+                interpretation = 'High trust enables personal power (expert, referent). These should be primary.';
+            } else if (dependence > 70) {
+                interpretation = 'High dependence makes reward and coercive power effective, but consider building trust for sustainability.';
+            } else if (complexity > 70) {
+                interpretation = 'High complexity requires expert power. Position alone won\'t solve technical problems.';
+            } else {
+                interpretation = 'Mixed situation. Use legitimate as foundation, build expert and referent for long-term effectiveness.';
+            }
+            document.getElementById('effectiveness-interpretation').textContent = interpretation;
+        }
+
+        // Initialize tools on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProfile();
+            calculateEffectiveness();
+        });
+    </script>
+</body>
+</html>
