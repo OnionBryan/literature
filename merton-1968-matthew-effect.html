@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Matthew Effect in Science - Merton (1968)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 100%);
+            min-height: 100vh;
+            color: #e8e0e0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(139, 69, 69, 0.3), rgba(80, 30, 30, 0.3));
+            border-radius: 20px;
+            border: 1px solid rgba(220, 100, 100, 0.2);
+        }
+
+        .paper-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #f5c6c6;
+            font-weight: 600;
+        }
+
+        .authors {
+            font-size: 1.3rem;
+            color: #dc9090;
+            margin-bottom: 10px;
+        }
+
+        .journal {
+            color: #b08080;
+            font-style: italic;
+        }
+
+        .abstract {
+            background: rgba(139, 69, 69, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 4px solid #dc6969;
+        }
+
+        .abstract h2 {
+            color: #f5c6c6;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .abstract p {
+            color: #d8c8c8;
+            text-align: justify;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: rgba(80, 30, 30, 0.5);
+            border: 1px solid rgba(220, 100, 100, 0.3);
+            border-radius: 10px;
+            color: #d8c8c8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(139, 69, 69, 0.5);
+            color: #f5c6c6;
+            border-color: #dc6969;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(30, 15, 15, 0.6);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(220, 100, 100, 0.2);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: #f5c6c6;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid rgba(220, 100, 100, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #dc9090;
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: #d8c8c8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 69, 69, 0.3), rgba(100, 40, 40, 0.3));
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(220, 100, 100, 0.3);
+        }
+
+        .biblical-quote {
+            background: linear-gradient(135deg, rgba(80, 50, 30, 0.4), rgba(60, 30, 20, 0.4));
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #daa520;
+            font-style: italic;
+        }
+
+        .biblical-quote .reference {
+            display: block;
+            margin-top: 10px;
+            color: #daa520;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        .tool-section {
+            background: rgba(50, 25, 25, 0.4);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid rgba(220, 100, 100, 0.2);
+        }
+
+        .tool-section h3 {
+            color: #f5c6c6;
+            margin-bottom: 20px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #dc9090;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(80, 30, 30, 0.5);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #dc6969;
+            cursor: pointer;
+        }
+
+        .slider-value {
+            text-align: center;
+            margin-top: 5px;
+            color: #f5c6c6;
+            font-weight: bold;
+        }
+
+        .result-display {
+            background: rgba(139, 69, 69, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid rgba(220, 100, 100, 0.3);
+        }
+
+        .result-display h4 {
+            color: #f5c6c6;
+            margin-bottom: 10px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .comparison-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .comparison-card.eminent {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(180, 130, 20, 0.3));
+            border: 1px solid rgba(218, 165, 32, 0.5);
+        }
+
+        .comparison-card.junior {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.3), rgba(80, 80, 80, 0.3));
+            border: 1px solid rgba(150, 150, 150, 0.5);
+        }
+
+        .comparison-card .label {
+            font-size: 0.9rem;
+            color: #b0a0a0;
+            margin-bottom: 5px;
+        }
+
+        .comparison-card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .comparison-card.eminent .value {
+            color: #daa520;
+        }
+
+        .comparison-card.junior .value {
+            color: #a0a0a0;
+        }
+
+        .scenario-btn {
+            padding: 12px 20px;
+            background: rgba(80, 30, 30, 0.5);
+            border: 1px solid rgba(220, 100, 100, 0.3);
+            border-radius: 8px;
+            color: #d8c8c8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            margin: 5px;
+        }
+
+        .scenario-btn:hover, .scenario-btn.active {
+            background: rgba(139, 69, 69, 0.5);
+            color: #f5c6c6;
+            border-color: #dc6969;
+        }
+
+        .mechanism-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mechanism-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(50, 25, 25, 0.4);
+            border-radius: 8px;
+            border-left: 3px solid #dc6969;
+            color: #d8c8c8;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(50, 25, 25, 0.3);
+            border-radius: 8px;
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #daa520;
+            min-width: 60px;
+        }
+
+        .progress-bar {
+            height: 24px;
+            background: rgba(50, 25, 25, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .progress-fill.eminent {
+            background: linear-gradient(90deg, #daa520, #b8860b);
+            color: #1a0a0a;
+        }
+
+        .progress-fill.junior {
+            background: linear-gradient(90deg, #808080, #606060);
+            color: #fff;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #d8c8c8;
+        }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(30, 15, 15, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(220, 100, 100, 0.2);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: #dc9090;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #f5c6c6;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="paper-icon">👑</div>
+            <h1>The Matthew Effect in Science</h1>
+            <p class="authors">Robert K. Merton</p>
+            <p class="journal">Science, 1968</p>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Merton coined the term "Matthew Effect" to describe the phenomenon where well-known scientists receive disproportionate credit for their contributions while relatively unknown scientists receive less credit for comparable work. Named after the biblical passage from the Gospel of Matthew ("For unto every one that hath shall be given"), this concept captures how initial advantages in recognition, resources, and opportunities compound over time, creating self-reinforcing cycles of cumulative advantage. The Matthew Effect reveals fundamental power imbalances in academia and knowledge production systems.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('effect')">The Matthew Effect</button>
+            <button class="nav-tab" onclick="switchPage('implications')">Academic Implications</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: The Rich Get Richer</h2>
+
+            <p>In 1968, sociologist Robert K. Merton published a groundbreaking paper that would reshape our understanding of how scientific recognition and credit are distributed. Drawing on extensive interviews with Nobel laureates and systematic study of citation patterns, Merton identified a pervasive pattern of cumulative advantage in science that he termed the "Matthew Effect."</p>
+
+            <div class="biblical-quote">
+                "For unto every one that hath shall be given, and he shall have abundance: but from him that hath not shall be taken away even that which he hath."
+                <span class="reference">— Gospel of Matthew 25:29</span>
+            </div>
+
+            <h3>The Core Observation</h3>
+            <p>Merton documented how eminent scientists tend to receive disproportionate credit for their contributions to science, while relatively unknown scientists receive disproportionately little credit for comparable contributions. This isn't merely about individual cases of misattribution—it represents a systemic pattern embedded in the social structure of science.</p>
+
+            <div class="highlight-box">
+                <h3>Key Manifestations</h3>
+                <ul>
+                    <li><strong>Credit Attribution:</strong> When a paper is co-authored, the famous scientist receives most of the credit</li>
+                    <li><strong>Simultaneous Discovery:</strong> In cases of independent discovery, the more eminent scientist is typically remembered</li>
+                    <li><strong>Resource Allocation:</strong> Prestigious scientists attract more funding, students, and collaborators</li>
+                    <li><strong>Publication and Citation:</strong> Papers from famous scientists are more likely to be published and cited</li>
+                </ul>
+            </div>
+
+            <h3>Context and Significance</h3>
+            <p>Merton's analysis emerged from the sociology of science, examining how social structures shape the production and recognition of knowledge. The Matthew Effect challenges the idealized view of science as a pure meritocracy where credit flows naturally to those who deserve it. Instead, it reveals how social position mediates the relationship between scientific contribution and scientific recognition.</p>
+
+            <h3>Functional Ambivalence</h3>
+            <p>Merton noted that the Matthew Effect has both functional and dysfunctional consequences for science. On one hand, it provides efficient heuristics for navigating the overwhelming volume of scientific literature—readers can use author reputation as a signal of likely quality. On the other hand, it creates systematic inequities that may suppress innovation from less established scientists and reinforce existing hierarchies.</p>
+        </section>
+
+        <section id="effect" class="content-section">
+            <h2>The Matthew Effect Explained</h2>
+
+            <h3>Mechanisms of Cumulative Advantage</h3>
+            <p>The Matthew Effect operates through several interconnected mechanisms that create self-reinforcing cycles of advantage and disadvantage in scientific careers.</p>
+
+            <div class="highlight-box">
+                <h3>The Accumulation Cycle</h3>
+                <ul class="mechanism-list">
+                    <li><strong>Initial Recognition →</strong> Early success leads to increased visibility and reputation</li>
+                    <li><strong>Resource Acquisition →</strong> Reputation attracts funding, facilities, and talented collaborators</li>
+                    <li><strong>Enhanced Productivity →</strong> Better resources enable higher quantity and quality of work</li>
+                    <li><strong>Greater Recognition →</strong> More work + prestige heuristic = more citations and awards</li>
+                    <li><strong>Cycle Reinforcement →</strong> Recognition further enhances reputation, starting cycle anew</li>
+                </ul>
+            </div>
+
+            <h3>The "Halo Effect" in Science</h3>
+            <p>Merton documented how a scientist's reputation creates a "halo" that influences how their work is perceived. A paper from a Nobel laureate is read more carefully, cited more frequently, and interpreted more charitably than the same paper from an unknown researcher. This isn't necessarily conscious bias—it reflects rational heuristics for dealing with information overload.</p>
+
+            <div class="tool-section">
+                <h3>Attribution Patterns</h3>
+                <p>In collaborative work, credit attribution follows predictable patterns based on status:</p>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Case 1</div>
+                    <div>Nobel laureate + junior colleague = "The laureate's lab discovered..."</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Case 2</div>
+                    <div>Two junior colleagues = Credit more evenly distributed (but less total attention)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Case 3</div>
+                    <div>Two eminent scientists = Complex negotiation, often remembered by both names</div>
+                </div>
+            </div>
+
+            <h3>The "41st Chair" Problem</h3>
+            <p>Merton uses the metaphor of the French Academy, limited to 40 members ("immortals"), to illustrate how categorical boundaries create artificial distinctions. Scientists just below arbitrary thresholds for prizes, positions, or recognition may be virtually identical in quality to those just above, yet receive dramatically different outcomes. The 41st-best scientist in a field might be nearly indistinguishable from the 40th, yet face vastly different career trajectories.</p>
+
+            <h3>Dysfunctions of the Matthew Effect</h3>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Misallocation of Credit:</strong> Contributions of junior scientists systematically undervalued</li>
+                    <li><strong>Suppressed Innovation:</strong> Novel ideas from unknown sources may be ignored</li>
+                    <li><strong>Reinforced Orthodoxy:</strong> Established figures' views become disproportionately influential</li>
+                    <li><strong>Psychological Costs:</strong> Talented scientists may become discouraged and leave the field</li>
+                    <li><strong>Stratification Ossification:</strong> Scientific hierarchies become increasingly rigid over time</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="implications" class="content-section">
+            <h2>Implications for Academia and Beyond</h2>
+
+            <h3>The Reward System of Science</h3>
+            <p>Merton's analysis reveals that the reward system of science—designed to incentivize discovery and innovation—contains structural features that may undermine these goals. Recognition is not simply a response to contribution; it is filtered through social position, creating systematic distortions.</p>
+
+            <div class="highlight-box">
+                <h3>Institutional Manifestations</h3>
+                <ul>
+                    <li><strong>University Prestige:</strong> PhD institution creates lasting advantages/disadvantages</li>
+                    <li><strong>Journal Hierarchies:</strong> Top journals favor established authors, amplifying status differences</li>
+                    <li><strong>Grant Systems:</strong> Track record requirements advantage those already advantaged</li>
+                    <li><strong>Hiring Patterns:</strong> Elite institutions hire primarily from other elite institutions</li>
+                    <li><strong>Award Structures:</strong> Prize committees draw from status networks</li>
+                </ul>
+            </div>
+
+            <h3>Gender and the Matthew Effect</h3>
+            <p>Subsequent research has shown that the Matthew Effect intersects with gender in important ways. The "Matilda Effect" (named by historian Margaret Rossiter) describes how women scientists have been systematically denied credit for their work, with contributions attributed to male colleagues. This represents a compounding of disadvantages.</p>
+
+            <h3>Beyond Academia</h3>
+            <p>While Merton focused on science, the Matthew Effect operates in many domains:</p>
+
+            <ul>
+                <li><strong>Wealth Inequality:</strong> Initial advantages in capital compound through investment returns</li>
+                <li><strong>Educational Achievement:</strong> Early advantages in literacy compound throughout schooling</li>
+                <li><strong>Career Success:</strong> Initial job placement shapes entire career trajectory</li>
+                <li><strong>Online Platforms:</strong> Popular content gets more visibility, becoming more popular</li>
+                <li><strong>Organizational Reputation:</strong> High-status firms attract better employees and clients</li>
+            </ul>
+
+            <h3>Policy Implications</h3>
+            <p>Understanding the Matthew Effect has implications for designing fairer systems:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Blind Review:</strong> Anonymizing submissions can reduce status-based bias</li>
+                    <li><strong>Track Record Independence:</strong> Evaluating proposals on merit, not past success</li>
+                    <li><strong>Diversity Initiatives:</strong> Active intervention to counteract cumulative disadvantage</li>
+                    <li><strong>Attribution Standards:</strong> Clear guidelines for credit in collaborative work</li>
+                    <li><strong>Early Career Support:</strong> Targeted resources to offset initial disadvantages</li>
+                </ul>
+            </div>
+
+            <h3>Theoretical Legacy</h3>
+            <p>Merton's concept has been enormously influential, spawning research programs in sociology, economics, and organizational studies. It connects to broader theories of stratification, path dependence, and network effects. The Matthew Effect demonstrates how micro-level interactions aggregate into macro-level inequality—a central concern of social science.</p>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>🎯 Cumulative Advantage Calculator</h3>
+                <p>See how small initial differences compound over time, creating large disparities.</p>
+
+                <div class="slider-container">
+                    <label>Initial Recognition Advantage: <span id="advantageValue">20%</span></label>
+                    <input type="range" id="advantageSlider" min="5" max="50" value="20" oninput="updateAdvantage()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Career Years: <span id="yearsValue">15</span></label>
+                    <input type="range" id="yearsSlider" min="5" max="40" value="15" oninput="updateAdvantage()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Annual Compounding Rate: <span id="compoundValue">8%</span></label>
+                    <input type="range" id="compoundSlider" min="2" max="15" value="8" oninput="updateAdvantage()">
+                </div>
+
+                <div class="result-display" id="advantageResult">
+                    <h4>Cumulative Disparity</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-card eminent">
+                            <div class="label">Eminent Scientist</div>
+                            <div class="value" id="eminentScore">—</div>
+                            <div class="label">Recognition Units</div>
+                        </div>
+                        <div class="comparison-card junior">
+                            <div class="label">Junior Scientist</div>
+                            <div class="value" id="juniorScore">—</div>
+                            <div class="label">Recognition Units</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;" id="disparityText"></p>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>📊 Citation Dynamics Simulator</h3>
+                <p>Compare how citations accumulate differently for scientists of different status levels.</p>
+
+                <div class="slider-container">
+                    <label>Paper Quality (identical for both): <span id="qualityValue">75</span>/100</label>
+                    <input type="range" id="qualitySlider" min="50" max="100" value="75" oninput="updateCitations()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Status Visibility Multiplier: <span id="visibilityValue">2.5x</span></label>
+                    <input type="range" id="visibilitySlider" min="1.5" max="5" step="0.5" value="2.5" oninput="updateCitations()">
+                </div>
+
+                <div class="result-display" id="citationResult">
+                    <h4>Citation Accumulation (10 years post-publication)</h4>
+
+                    <div style="margin: 15px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Eminent Scientist's Paper</span>
+                            <span id="eminentCitations">—</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill eminent" id="eminentBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Junior Scientist's Paper</span>
+                            <span id="juniorCitations">—</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill junior" id="juniorBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 15px; font-style: italic; color: #b0a0a0;" id="citationInsight"></p>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🏆 Recognition Attribution Analyzer</h3>
+                <p>See how credit is distributed in collaborative work based on status differentials.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: #dc9090; display: block; margin-bottom: 10px;">Select Collaboration Type:</label>
+                    <button class="scenario-btn active" onclick="selectCollabType('senior-junior')">Senior + Junior</button>
+                    <button class="scenario-btn" onclick="selectCollabType('equal-status')">Equal Status</button>
+                    <button class="scenario-btn" onclick="selectCollabType('multi-author')">Multi-Author Team</button>
+                    <button class="scenario-btn" onclick="selectCollabType('cross-institution')">Cross-Institution</button>
+                </div>
+
+                <div class="result-display" id="collabResult">
+                    <h4 id="collabTitle">Credit Distribution: Senior + Junior</h4>
+                    <div id="collabAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🌐 Matthew Effect Examples Across Domains</h3>
+                <p>Explore how cumulative advantage operates in different contexts.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectDomain('science')">Academic Science</button>
+                    <button class="scenario-btn" onclick="selectDomain('business')">Business</button>
+                    <button class="scenario-btn" onclick="selectDomain('technology')">Technology</button>
+                    <button class="scenario-btn" onclick="selectDomain('education')">Education</button>
+                    <button class="scenario-btn" onclick="selectDomain('media')">Media & Content</button>
+                </div>
+
+                <div class="result-display" id="domainResult">
+                    <h4 id="domainTitle">Matthew Effect in Academic Science</h4>
+                    <div id="domainAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateAdvantage() {
+            const advantage = parseInt(document.getElementById('advantageSlider').value);
+            const years = parseInt(document.getElementById('yearsSlider').value);
+            const compound = parseInt(document.getElementById('compoundSlider').value);
+
+            document.getElementById('advantageValue').textContent = advantage + '%';
+            document.getElementById('yearsValue').textContent = years;
+            document.getElementById('compoundValue').textContent = compound + '%';
+
+            // Starting points
+            const eminentStart = 100 + advantage;
+            const juniorStart = 100;
+
+            // Compound over years (eminent gets higher compound rate due to visibility)
+            const eminentFinal = Math.round(eminentStart * Math.pow(1 + (compound/100) * 1.3, years));
+            const juniorFinal = Math.round(juniorStart * Math.pow(1 + (compound/100) * 0.7, years));
+
+            document.getElementById('eminentScore').textContent = eminentFinal.toLocaleString();
+            document.getElementById('juniorScore').textContent = juniorFinal.toLocaleString();
+
+            const ratio = (eminentFinal / juniorFinal).toFixed(1);
+            document.getElementById('disparityText').textContent =
+                `After ${years} years, the eminent scientist has ${ratio}x more accumulated recognition, despite starting with only ${advantage}% advantage.`;
+        }
+
+        function updateCitations() {
+            const quality = parseInt(document.getElementById('qualitySlider').value);
+            const visibility = parseFloat(document.getElementById('visibilitySlider').value);
+
+            document.getElementById('qualityValue').textContent = quality;
+            document.getElementById('visibilityValue').textContent = visibility + 'x';
+
+            // Base citations proportional to quality
+            const baseCitations = Math.round(quality * 0.5);
+
+            // Eminent scientist gets visibility multiplier
+            const eminentCitations = Math.round(baseCitations * visibility);
+            const juniorCitations = baseCitations;
+
+            document.getElementById('eminentCitations').textContent = eminentCitations + ' citations';
+            document.getElementById('juniorCitations').textContent = juniorCitations + ' citations';
+
+            const maxCitations = Math.max(eminentCitations, juniorCitations);
+            document.getElementById('eminentBar').style.width = (eminentCitations / maxCitations * 100) + '%';
+            document.getElementById('juniorBar').style.width = (juniorCitations / maxCitations * 100) + '%';
+
+            const diff = eminentCitations - juniorCitations;
+            document.getElementById('citationInsight').textContent =
+                `Despite identical paper quality, the eminent scientist's paper receives ${diff} more citations (${Math.round((eminentCitations/juniorCitations - 1) * 100)}% more) due to status-based visibility effects.`;
+        }
+
+        function selectCollabType(type) {
+            document.querySelectorAll('.tool-section:nth-child(3) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const collabData = {
+                'senior-junior': {
+                    title: 'Credit Distribution: Senior + Junior',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Typical Attribution Pattern:</strong></p>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Senior Author Credit</span><span>75-85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill eminent" style="width: 80%">80%</div>
+                                </div>
+                            </div>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Junior Author Credit</span><span>15-25%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 20%">20%</div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #b0a0a0;"><em>Common phrases: "From [Senior]'s lab", "Under [Senior]'s supervision", "[Senior] et al."</em></p>
+                        </div>
+                    `
+                },
+                'equal-status': {
+                    title: 'Credit Distribution: Equal Status Collaborators',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Attribution Pattern:</strong> More balanced, but total visibility lower</p>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Author A Credit</span><span>45-55%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 50%">50%</div>
+                                </div>
+                            </div>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Author B Credit</span><span>45-55%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 50%">50%</div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #b0a0a0;"><em>Paradox: Equal split of a smaller total. Paper may receive less attention without a "star" author.</em></p>
+                        </div>
+                    `
+                },
+                'multi-author': {
+                    title: 'Credit Distribution: Multi-Author Team',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Attribution Pattern:</strong> First and last authors dominate</p>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>First Author (did most work)</span><span>30-40%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 35%">35%</div>
+                                </div>
+                            </div>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Last Author (PI/Senior)</span><span>40-50%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill eminent" style="width: 45%">45%</div>
+                                </div>
+                            </div>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Middle Authors (combined)</span><span>10-20%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 15%">15%</div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #b0a0a0;"><em>"Middle author syndrome": Significant contributions may be essentially invisible.</em></p>
+                        </div>
+                    `
+                },
+                'cross-institution': {
+                    title: 'Credit Distribution: Cross-Institution Collaboration',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Attribution Pattern:</strong> Institutional prestige matters</p>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Elite University Author</span><span>60-70%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill eminent" style="width: 65%">65%</div>
+                                </div>
+                            </div>
+                            <div style="margin: 15px 0;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Regional University Author</span><span>30-40%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill junior" style="width: 35%">35%</div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #b0a0a0;"><em>The "halo" of institutional prestige extends to individuals, regardless of actual contribution.</em></p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('collabTitle').textContent = collabData[type].title;
+            document.getElementById('collabAnalysis').innerHTML = collabData[type].analysis;
+        }
+
+        function selectDomain(domain) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const domainData = {
+                'science': {
+                    title: 'Matthew Effect in Academic Science',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Mechanisms:</strong></p>
+                            <ul style="margin: 15px 0 15px 20px;">
+                                <li>Citation cascades: Highly cited papers become more visible, attracting more citations</li>
+                                <li>Grant track records: Past funding predicts future funding</li>
+                                <li>PhD pedigree: Elite program graduates placed at elite institutions</li>
+                                <li>Award accumulation: Prizes beget more prizes</li>
+                            </ul>
+                            <p><strong>Example:</strong> A Nature paper from a Nobel laureate may receive 10x the citations of an equivalent paper in a lower-tier journal from an unknown researcher.</p>
+                            <p style="margin-top: 15px; color: #daa520;"><strong>Countermeasures:</strong> Double-blind review, lottery-based grants, transparent authorship contributions</p>
+                        </div>
+                    `
+                },
+                'business': {
+                    title: 'Matthew Effect in Business',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Mechanisms:</strong></p>
+                            <ul style="margin: 15px 0 15px 20px;">
+                                <li>Brand recognition: Known brands attract more customers, strengthening brand</li>
+                                <li>Capital access: Profitable companies get better loan terms, increasing profits</li>
+                                <li>Talent attraction: Prestigious firms attract top talent, improving performance</li>
+                                <li>Network effects: Larger platforms become more valuable, attracting more users</li>
+                            </ul>
+                            <p><strong>Example:</strong> A startup funded by Sequoia gets more attention, better terms, and higher valuations than an identical startup with unknown backers.</p>
+                            <p style="margin-top: 15px; color: #daa520;"><strong>Implication:</strong> Early-stage advantages in reputation compound into massive market power over time.</p>
+                        </div>
+                    `
+                },
+                'technology': {
+                    title: 'Matthew Effect in Technology',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Mechanisms:</strong></p>
+                            <ul style="margin: 15px 0 15px 20px;">
+                                <li>Platform lock-in: Large user bases attract developers, attracting more users</li>
+                                <li>Data advantages: More users = more data = better AI = better product</li>
+                                <li>Developer ecosystems: Popular platforms get more tools and integrations</li>
+                                <li>Standard-setting: Market leaders define industry standards</li>
+                            </ul>
+                            <p><strong>Example:</strong> Google's search dominance generates data that improves results, reinforcing dominance. New entrants face "cold start" problem.</p>
+                            <p style="margin-top: 15px; color: #daa520;"><strong>Policy debate:</strong> Antitrust concerns about how cumulative advantage creates natural monopolies.</p>
+                        </div>
+                    `
+                },
+                'education': {
+                    title: 'Matthew Effect in Education',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Mechanisms:</strong></p>
+                            <ul style="margin: 15px 0 15px 20px;">
+                                <li>Reading ability: Early readers read more, improving faster (Stanovich, 1986)</li>
+                                <li>Tracking: Students in advanced tracks get better resources</li>
+                                <li>School funding: High-performing schools attract resources, improving further</li>
+                                <li>Credential cascades: Elite colleges → elite jobs → resources for children</li>
+                            </ul>
+                            <p><strong>Example:</strong> Children who enter kindergarten with larger vocabularies learn faster, compounding initial family advantages throughout schooling.</p>
+                            <p style="margin-top: 15px; color: #daa520;"><strong>Intervention point:</strong> Early childhood education as way to reduce initial disparities before compounding.</p>
+                        </div>
+                    `
+                },
+                'media': {
+                    title: 'Matthew Effect in Media & Content',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Mechanisms:</strong></p>
+                            <ul style="margin: 15px 0 15px 20px;">
+                                <li>Algorithmic amplification: Popular content gets recommended, becoming more popular</li>
+                                <li>Social proof: High view counts signal quality, attracting more views</li>
+                                <li>Platform features: Trending lists amplify already-popular content</li>
+                                <li>Media coverage: Viral content gets news coverage, spreading further</li>
+                            </ul>
+                            <p><strong>Example:</strong> A YouTube video that gets early engagement enters recommended feeds, potentially gaining millions of views. An identical video posted later may get hundreds.</p>
+                            <p style="margin-top: 15px; color: #daa520;"><strong>Implication:</strong> Success in content often depends more on timing and initial exposure than on quality.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('domainTitle').textContent = domainData[domain].title;
+            document.getElementById('domainAnalysis').innerHTML = domainData[domain].analysis;
+        }
+
+        // Initialize tools
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAdvantage();
+            updateCitations();
+            selectCollabType('senior-junior');
+            selectDomain('science');
+        });
+    </script>
+</body>
+</html>
