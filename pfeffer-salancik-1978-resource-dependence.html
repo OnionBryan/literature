@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pfeffer & Salancik (1978) - The External Control of Organizations</title>
+    <!--
+      Review of:
+      Pfeffer, J., & Salancik, G. R. (1978).
+      The External Control of Organizations: A Resource Dependence Perspective.
+      Harper & Row.
+
+      This is RESOURCE DEPENDENCE THEORY - organizations are controlled by their
+      environment through resource dependencies. Power flows to those who control
+      critical resources and can reduce organizational uncertainty.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #065f46 100%);
+            color: #e2e8f0;
+        }
+
+        .dark-mode .section-card,
+        .dark-mode .key-point,
+        .dark-mode .example-box,
+        .dark-mode .strategy-card,
+        .dark-mode .tool-card {
+            background: #064e3b;
+            border-color: #047857;
+        }
+
+        .dark-mode .nav-container {
+            background: rgba(6, 78, 59, 0.95);
+        }
+
+        .dark-mode .page-btn {
+            color: #6ee7b7;
+        }
+
+        .dark-mode .page-btn:hover,
+        .dark-mode .page-btn.active {
+            background: #10b981;
+            color: white;
+        }
+
+        .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4 {
+            color: #6ee7b7;
+        }
+
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
+        }
+
+        .dark-mode p, .dark-mode li, .dark-mode td {
+            color: #d1fae5;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 30px;
+            box-shadow: 0 2px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #047857;
+        }
+
+        .back-link {
+            color: #047857;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            background: #d1fae5;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: #10b981;
+            color: white;
+        }
+
+        .dark-mode .back-link {
+            background: #065f46;
+            color: #6ee7b7;
+        }
+
+        .dark-mode .back-link:hover {
+            background: #10b981;
+            color: white;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 8px 20px;
+            border: none;
+            background: #f0fdf4;
+            color: #047857;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #10b981;
+            color: white;
+        }
+
+        .dark-mode-toggle {
+            padding: 8px 16px;
+            border: 2px solid #10b981;
+            background: transparent;
+            color: #047857;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #10b981;
+            color: white;
+        }
+
+        .dark-mode .dark-mode-toggle {
+            border-color: #6ee7b7;
+            color: #6ee7b7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .citation {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #047857;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #10b981;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-card h3 {
+            color: #065f46;
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+
+        .section-card p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-card li {
+            margin-bottom: 10px;
+        }
+
+        /* Key Point Boxes */
+        .key-point {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 5px solid #10b981;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .key-point h4 {
+            color: #047857;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .key-point {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+        }
+
+        /* Central Thesis Box */
+        .central-thesis {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .central-thesis h3 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .central-thesis p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: #022c22;
+            color: #6ee7b7;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #10b981;
+        }
+
+        .formula-box .explanation {
+            color: #a7f3d0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Strategy Cards */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .strategy-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #10b981;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .strategy-card h4 {
+            color: #047857;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strategy-card p {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .dark-mode .strategy-card p {
+            color: #a7f3d0;
+        }
+
+        /* Concept Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .concept-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .concept-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .dark-mode .comparison-table td {
+            background: #064e3b;
+            border-bottom-color: #047857;
+        }
+
+        .comparison-table tr:hover td {
+            background: #f0fdf4;
+        }
+
+        .dark-mode .comparison-table tr:hover td {
+            background: #065f46;
+        }
+
+        /* Interactive Tools */
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .tool-card h3 {
+            color: #047857;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-group {
+            margin: 25px 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #047857;
+        }
+
+        .slider-value {
+            background: #10b981;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #d1fae5;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #10b981;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #10b981;
+            cursor: pointer;
+            border: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+            border-left: 5px solid #10b981;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dark-mode .result-box {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #047857;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .result-score {
+            color: #6ee7b7;
+        }
+
+        .result-interpretation {
+            padding: 20px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 8px;
+        }
+
+        .dark-mode .result-interpretation {
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Power Map Canvas */
+        .canvas-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .dark-mode .canvas-container {
+            background: #022c22;
+        }
+
+        #powerMapCanvas {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode #powerMapCanvas {
+            background: #064e3b;
+        }
+
+        .canvas-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .canvas-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .canvas-btn.primary {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+        }
+
+        .canvas-btn.secondary {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .dark-mode .canvas-btn.secondary {
+            background: #065f46;
+            color: #6ee7b7;
+        }
+
+        .canvas-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Metrics Dashboard */
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Quadrant Diagram */
+        .quadrant-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .quadrant-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Select Inputs */
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d1fae5;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+
+        .dark-mode select {
+            background: #064e3b;
+            border-color: #047857;
+            color: #d1fae5;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Example Box */
+        .example-box {
+            background: #f0fdf4;
+            border: 2px solid #a7f3d0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .example-box h5 {
+            color: #047857;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .example-box {
+            background: #065f46;
+            border-color: #047857;
+        }
+
+        /* Other Papers Navigation */
+        .other-papers {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+        }
+
+        .other-papers h3 {
+            color: #6ee7b7;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paper-link {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(110, 231, 183, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .paper-link:hover {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+            transform: translateY(-3px);
+        }
+
+        .paper-link .year {
+            font-size: 0.9rem;
+            color: #6ee7b7;
+        }
+
+        .paper-link .title {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-left {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">Pfeffer & Salancik (1978)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('theory', this)">Theory & Concepts</button>
+                <button class="page-btn" onclick="switchPage('strategies', this)">Managing Dependence</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>The External Control of Organizations</h1>
+        <p class="citation">Pfeffer, J., & Salancik, G. R. (1978). Harper & Row.</p>
+        <p class="tagline">"Organizations are not self-directed and autonomous; they are controlled by their environments through resource dependencies."</p>
+    </header>
+
+    <div class="container">
+        <!-- PAGE 1: Main Overview -->
+        <div id="main" class="page-content active">
+            <section class="section-card">
+                <h2>📚 Resource Dependence Theory: Overview</h2>
+
+                <div class="central-thesis">
+                    <h3>The Central Insight</h3>
+                    <p>Organizations are externally controlled. To survive, they must acquire resources from their environment—and this dependence creates power relationships that shape organizational behavior, structure, and strategy.</p>
+                </div>
+
+                <h3>Why This Book Matters</h3>
+                <p>
+                    Before Pfeffer and Salancik, organizational theory focused primarily on internal operations—efficiency,
+                    structure, management. Resource Dependence Theory (RDT) shifted attention outward: organizations are
+                    <strong>open systems</strong> that cannot be understood apart from their environments.
+                </p>
+
+                <div class="key-point">
+                    <h4>💡 The Key Question RDT Answers</h4>
+                    <p>Why do organizations adopt particular structures and take particular actions? Not primarily for efficiency,
+                    but to <strong>manage external dependencies</strong> and reduce uncertainty in resource flows.</p>
+                </div>
+
+                <h3>The Power-Dependence Framework</h3>
+                <p>
+                    At its core, RDT is about <strong>power</strong>. Power is relational and emerges from dependence:
+                </p>
+
+                <div class="formula-box">
+                    <p>The Fundamental Equation:</p>
+                    <p class="formula">A's Power over B = B's Dependence on A</p>
+                    <p class="explanation">Power is the inverse of dependence. Those who control critical resources have power over those who need them.</p>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>🔗 Interdependence</h4>
+                        <p>Organizations are embedded in networks of resource exchanges. No organization is truly independent—all rely on others for inputs and outputs.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>⚡ Power</h4>
+                        <p>Power flows to those who control critical resources. The more concentrated and important the resource, the greater the power of its controller.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>❓ Uncertainty</h4>
+                        <p>Dependence creates uncertainty. Organizations work to reduce uncertainty through various strategies—from contracts to acquisitions to political action.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🎯 Effectiveness</h4>
+                        <p>Organizational effectiveness means satisfying the demands of key stakeholders who provide critical resources—not just internal efficiency.</p>
+                    </div>
+                </div>
+
+                <h3>Historical Context</h3>
+                <p>
+                    Published in 1978, this book emerged at a pivotal moment:
+                </p>
+                <ul>
+                    <li><strong>Post-Contingency Theory:</strong> Building on ideas that environment shapes structure, RDT asked <em>how</em> this happens</li>
+                    <li><strong>Systems Theory:</strong> The open systems view emphasized exchange across organizational boundaries</li>
+                    <li><strong>Power Studies:</strong> Pfeffer's prior work on organizational power laid the foundation</li>
+                    <li><strong>Strategic Management:</strong> Growing interest in how organizations respond to competitive pressures</li>
+                </ul>
+
+                <div class="example-box">
+                    <h5>📖 Classic Example: The Buyer-Supplier Dance</h5>
+                    <p>Consider two buyers competing for a supplier's limited production. This creates uncertainty—neither knows if they'll get what they need. To reduce this uncertainty, they might:</p>
+                    <ul>
+                        <li>Sign long-term contracts (reducing allocation uncertainty)</li>
+                        <li>Vertically integrate (acquire the supplier)</li>
+                        <li>Diversify suppliers (reduce dependence on any one)</li>
+                        <li>Form a joint venture (share control over the resource)</li>
+                    </ul>
+                    <p>Each strategy trades some autonomy for reduced uncertainty.</p>
+                </div>
+
+                <h3>Effectiveness vs. Efficiency</h3>
+                <p>
+                    Pfeffer and Salancik make a crucial distinction that challenges traditional management thinking:
+                </p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Efficiency</th>
+                            <th>Effectiveness</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Internal operations</td>
+                            <td>External relationships</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Measure</strong></td>
+                            <td>Output per unit input</td>
+                            <td>Satisfaction of stakeholder demands</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Standard</strong></td>
+                            <td>Technical (engineering)</td>
+                            <td>Social (political)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Survival Based On</strong></td>
+                            <td>Cost minimization</td>
+                            <td>Resource acquisition</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Key Question</strong></td>
+                            <td>"Are we doing things right?"</td>
+                            <td>"Are we satisfying those who matter?"</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-point">
+                    <h4>💡 The Survival Paradox</h4>
+                    <p>An organization can be highly efficient yet fail because it doesn't satisfy the demands of key resource providers. Conversely, a seemingly inefficient organization can thrive if it successfully manages its dependencies.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: Theory & Concepts -->
+        <div id="theory" class="page-content">
+            <section class="section-card">
+                <h2>🎯 Core Theory: The Three Determinants of Dependence</h2>
+
+                <p>
+                    How dependent is Organization B on Organization A? Pfeffer and Salancik identify three key factors
+                    that determine the degree of dependence:
+                </p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h4>📊 1. Resource Importance</h4>
+                        <p><strong>Magnitude:</strong> What proportion of total inputs/outputs does this exchange represent?</p>
+                        <p><strong>Criticality:</strong> Can the organization continue to function without this resource?</p>
+                        <p><em>Example: Electricity may be a small cost but is absolutely critical—operations stop without it.</em></p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>🎛️ 2. Discretion Over Allocation</h4>
+                        <p>How much control does the other party have over whether and how the resource is allocated?</p>
+                        <p>Key aspects: possession, access, actual use, rule-making authority</p>
+                        <p><em>Example: A sole supplier with no contractual obligations has high discretion.</em></p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>🔒 3. Concentration of Control</h4>
+                        <p>Are there alternative sources for this resource, or is control concentrated?</p>
+                        <p>High concentration = few alternatives = high dependence</p>
+                        <p><em>Example: A rare earth mineral available from only one country creates high dependence.</em></p>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <p>The Dependence Formula:</p>
+                    <p class="formula">Dependence = Importance × Discretion × Concentration</p>
+                    <p class="explanation">All three factors multiply together. If any is low, overall dependence is reduced.</p>
+                </div>
+
+                <h3>The Enacted Environment</h3>
+                <p>
+                    A critical insight from Pfeffer and Salancik: environments are not objective realities that
+                    organizations simply respond to. Instead, environments are <strong>enacted</strong>—constructed
+                    through processes of attention, interpretation, and meaning-making.
+                </p>
+
+                <div class="key-point">
+                    <h4>💡 Environment as Construction</h4>
+                    <p>"Environments become known through a process of enactment in which perceptions, attention, and interpretation come to define the context for the organization."</p>
+                </div>
+
+                <p>This has profound implications:</p>
+                <ul>
+                    <li><strong>Selective Attention:</strong> Organizations don't respond to everything—they notice what they're trained to notice</li>
+                    <li><strong>Interpretation:</strong> The same environmental signal can mean different things to different organizations</li>
+                    <li><strong>Errors:</strong> Organizations can misread dependencies, misinterpret demands, and fail to see conflicts</li>
+                    <li><strong>Self-Fulfilling:</strong> How an organization perceives its environment shapes its actions, which can change the environment</li>
+                </ul>
+
+                <h3>Organizational Environment: Three Dimensions</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Description</th>
+                            <th>Impact on Organization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Concentration</strong></td>
+                            <td>How dispersed or concentrated is power and resources?</td>
+                            <td>Concentrated = clearer demands but higher dependence; Dispersed = competing demands but more alternatives</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Munificence</strong></td>
+                            <td>How abundant or scarce are critical resources?</td>
+                            <td>Scarcity increases competition and dependence; Abundance provides slack and autonomy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interconnectedness</strong></td>
+                            <td>How linked are environmental actors to each other?</td>
+                            <td>High interconnection means actions ripple; Low means actors can be played against each other</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Power Within Organizations</h3>
+                <p>
+                    RDT also explains internal organizational power. Those who can address critical organizational
+                    uncertainties gain power:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>🏆 Strategic Contingencies</h4>
+                        <p>Subunits that cope with the most critical uncertainties facing the organization gain the most power and resources.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🏛️ Institutionalization of Power</h4>
+                        <p>Once gained, power tends to persist. Powerful subunits shape structures, budgets, and norms to maintain their position even after the original uncertainty is resolved.</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h5>📖 Example: The Rise of the CFO</h5>
+                    <p>In the 1970s-80s, financial markets became increasingly important for corporate survival. Organizations faced new uncertainties: hostile takeovers, shareholder activism, capital markets.</p>
+                    <p>Result: Finance departments that could manage these uncertainties gained power. The CFO role expanded dramatically. Even after market conditions stabilized, finance retained its elevated position—power had become institutionalized.</p>
+                </div>
+
+                <h3>Constraints and Discretion</h3>
+                <p>
+                    Organizations face constraints but also have discretion. The key is understanding the balance:
+                </p>
+
+                <div class="key-point">
+                    <h4>💡 The Paradox of Autonomy</h4>
+                    <p>Organizations gain autonomy by strategically managing dependencies. But every strategy to reduce one dependency often creates new dependencies. The goal isn't independence—it's favorable interdependence.</p>
+                </div>
+
+                <ul>
+                    <li><strong>Constraint:</strong> When behavior must conform to external expectations</li>
+                    <li><strong>Discretion:</strong> When organizations can choose among acceptable alternatives</li>
+                    <li><strong>Strategic Choice:</strong> Using discretion to reshape constraints over time</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- PAGE 3: Managing Dependence -->
+        <div id="strategies" class="page-content">
+            <section class="section-card">
+                <h2>⚙️ Strategies for Managing Resource Dependence</h2>
+
+                <p>
+                    Pfeffer and Salancik identify five major strategies organizations use to manage
+                    environmental dependencies. Each involves trade-offs between autonomy and uncertainty reduction.
+                </p>
+
+                <h3>The Five Strategic Options</h3>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h4>🏢 1. Mergers & Acquisitions</h4>
+                        <p><strong>Goal:</strong> Absorb the source of dependence</p>
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><em>Vertical:</em> Acquire suppliers or customers</li>
+                            <li><em>Horizontal:</em> Acquire competitors</li>
+                            <li><em>Diversification:</em> Reduce dependence on any single market</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Eliminates external dependence but creates internal coordination challenges</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <h4>🤝 2. Joint Ventures & Alliances</h4>
+                        <p><strong>Goal:</strong> Share resources and reduce uncertainty without full merger</p>
+                        <p><strong>Forms:</strong></p>
+                        <ul>
+                            <li>Joint ventures</li>
+                            <li>Strategic alliances</li>
+                            <li>Long-term contracts</li>
+                            <li>Consortia</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Maintains some autonomy but requires coordination and trust</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <h4>👔 3. Boards of Directors (Co-optation)</h4>
+                        <p><strong>Goal:</strong> Bring external stakeholders inside to secure commitment</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li>Advice and counsel</li>
+                            <li>Information channels</li>
+                            <li>Preferential resource access</li>
+                            <li>Legitimacy</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Gains access but gives outsiders influence over decisions</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <h4>🏛️ 4. Political Action</h4>
+                        <p><strong>Goal:</strong> Shape the rules of the game</p>
+                        <p><strong>Tactics:</strong></p>
+                        <ul>
+                            <li>Lobbying for favorable regulations</li>
+                            <li>Political contributions</li>
+                            <li>Trade association activities</li>
+                            <li>Public relations campaigns</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Can reshape environment but invites scrutiny and may backfire</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <h4>👤 5. Executive Succession</h4>
+                        <p><strong>Goal:</strong> Match leadership to environmental demands</p>
+                        <p><strong>Logic:</strong> New leaders bring:</p>
+                        <ul>
+                            <li>Different networks and relationships</li>
+                            <li>Skills suited to current challenges</li>
+                            <li>Signal of change to stakeholders</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Adapts organization but disrupts internal relationships</p>
+                    </div>
+                </div>
+
+                <h3>Choosing Among Strategies</h3>
+                <p>
+                    The choice of strategy depends on several factors:
+                </p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Favors Internal Solutions (Merger)</th>
+                            <th>Favors External Solutions (Alliance, Co-opt)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Uncertainty Level</strong></td>
+                            <td>Very high—need complete control</td>
+                            <td>Moderate—partial control sufficient</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resource Availability</strong></td>
+                            <td>Slack resources for acquisition</td>
+                            <td>Limited resources</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Legal Environment</strong></td>
+                            <td>Permissive antitrust</td>
+                            <td>Restrictive antitrust</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reversibility Needed</strong></td>
+                            <td>Permanent solution acceptable</td>
+                            <td>Need flexibility</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number of Dependencies</strong></td>
+                            <td>Few, critical ones</td>
+                            <td>Many, diverse ones</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>The Concept of "Bridging" vs. "Buffering"</h3>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>🌉 Bridging Strategies</h4>
+                        <p>Create linkages with the environment:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>Form alliances</li>
+                            <li>Co-opt board members</li>
+                            <li>Build relationships</li>
+                        </ul>
+                        <p style="margin-top: 10px;">Adapts the organization to fit environmental demands</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🛡️ Buffering Strategies</h4>
+                        <p>Protect the core from environmental turbulence:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>Build inventory</li>
+                            <li>Diversify</li>
+                            <li>Vertical integration</li>
+                        </ul>
+                        <p style="margin-top: 10px;">Insulates the organization from environmental shocks</p>
+                    </div>
+                </div>
+
+                <h3>Interlocking Directorates: A Deep Dive</h3>
+                <p>
+                    One of the most studied RDT phenomena is the interlocking directorate—when a person
+                    serves on the boards of multiple organizations.
+                </p>
+
+                <div class="key-point">
+                    <h4>💡 Why Interlocks Form</h4>
+                    <p>Interlocks are not random. They systematically form between organizations that have resource dependencies. Banks interlock with borrowers. Suppliers interlock with customers. Competitors sometimes interlock (though this raises legal issues).</p>
+                </div>
+
+                <div class="example-box">
+                    <h5>📖 Empirical Pattern: Banks and Borrowers</h5>
+                    <p>Research consistently shows that:</p>
+                    <ul>
+                        <li>Companies with high debt are more likely to have bankers on their boards</li>
+                        <li>After a financing crisis, bank interlocks increase</li>
+                        <li>Once debt is paid down, bank interlocks often dissolve</li>
+                    </ul>
+                    <p>This supports RDT: interlocks form to manage resource dependencies, not randomly.</p>
+                </div>
+
+                <h3>When Strategies Fail</h3>
+                <p>
+                    Not all dependency management succeeds. Common failure modes include:
+                </p>
+
+                <ul>
+                    <li><strong>Misreading Dependencies:</strong> Focusing on the wrong environmental actors</li>
+                    <li><strong>Overreach:</strong> Acquisition of unrelated businesses that create new problems</li>
+                    <li><strong>Counter-Mobilization:</strong> Powerful actors resist co-optation attempts</li>
+                    <li><strong>Regulatory Backlash:</strong> Political action invites scrutiny and new regulations</li>
+                    <li><strong>Lock-In:</strong> Strategies that worked become rigid constraints</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- PAGE 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <section class="section-card">
+                <h2>🛠️ Interactive Tools</h2>
+                <p>
+                    Explore Resource Dependence Theory through these interactive tools. Analyze dependencies,
+                    map power relationships, and explore strategic options.
+                </p>
+            </section>
+
+            <!-- Tool 1: Dependence Calculator -->
+            <div class="tool-card">
+                <h3>📊 Dependence Calculator</h3>
+                <p>Calculate the degree of dependence between your organization and a key resource provider.</p>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Resource Importance</span>
+                        <span class="slider-value" id="importance-value">50%</span>
+                    </div>
+                    <input type="range" id="importance-slider" min="0" max="100" value="50" oninput="updateSlider('importance')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How critical is this resource? (0 = easily substituted, 100 = absolutely essential)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Discretion Over Allocation</span>
+                        <span class="slider-value" id="discretion-value">50%</span>
+                    </div>
+                    <input type="range" id="discretion-slider" min="0" max="100" value="50" oninput="updateSlider('discretion')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How much control does the provider have? (0 = bound by contracts, 100 = complete freedom)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Concentration of Control</span>
+                        <span class="slider-value" id="concentration-value">50%</span>
+                    </div>
+                    <input type="range" id="concentration-slider" min="0" max="100" value="50" oninput="updateSlider('concentration')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How many alternatives exist? (0 = many alternatives, 100 = sole source)</p>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateDependence()">Calculate Dependence</button>
+
+                <div class="result-box" id="dependence-result">
+                    <div class="result-score" id="dependence-score">0</div>
+                    <p style="text-align: center; margin-bottom: 15px; font-weight: 600;">Dependence Level</p>
+                    <div class="result-interpretation" id="dependence-interpretation"></div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Strategy Recommender -->
+            <div class="tool-card">
+                <h3>🎯 Strategy Recommender</h3>
+                <p>Based on your situation, get recommendations for managing resource dependence.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 25px 0;">
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Dependence Type</label>
+                        <select id="dependence-type">
+                            <option value="supplier">Key Supplier</option>
+                            <option value="customer">Major Customer</option>
+                            <option value="regulator">Government/Regulator</option>
+                            <option value="competitor">Competitor</option>
+                            <option value="financier">Financier/Investor</option>
+                            <option value="labor">Labor/Talent</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Your Resources</label>
+                        <select id="your-resources">
+                            <option value="abundant">Abundant (cash, slack)</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="limited">Limited/Constrained</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Urgency</label>
+                        <select id="urgency">
+                            <option value="low">Low (long-term planning)</option>
+                            <option value="medium">Medium (within 1-2 years)</option>
+                            <option value="high">High (immediate threat)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Industry Context</label>
+                        <select id="industry-context">
+                            <option value="fragmented">Fragmented (many small players)</option>
+                            <option value="oligopoly">Oligopoly (few large players)</option>
+                            <option value="regulated">Heavily Regulated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="recommendStrategy()">Get Recommendations</button>
+
+                <div class="result-box" id="strategy-result">
+                    <div id="strategy-recommendations"></div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Power Map Builder -->
+            <div class="tool-card">
+                <h3>🗺️ Power-Dependence Map</h3>
+                <p>Visualize power relationships in your organizational ecosystem. Click to add organizations, drag to connect them.</p>
+
+                <div class="canvas-container">
+                    <canvas id="powerMapCanvas" width="800" height="500"></canvas>
+                </div>
+
+                <div class="canvas-controls">
+                    <button class="canvas-btn primary" onclick="powerMap.addNode()">+ Add Organization</button>
+                    <button class="canvas-btn secondary" onclick="powerMap.toggleConnectMode()">🔗 Connect Mode</button>
+                    <button class="canvas-btn secondary" onclick="powerMap.loadPreset('supply-chain')">📦 Supply Chain</button>
+                    <button class="canvas-btn secondary" onclick="powerMap.loadPreset('stakeholder')">👥 Stakeholder Map</button>
+                    <button class="canvas-btn secondary" onclick="powerMap.clear()">🗑️ Clear</button>
+                </div>
+
+                <div class="metrics-dashboard" id="power-metrics" style="margin-top: 25px;">
+                    <div class="metric-card">
+                        <div class="metric-value" id="pm-nodes">0</div>
+                        <div class="metric-label">Organizations</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="pm-links">0</div>
+                        <div class="metric-label">Dependencies</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="pm-central">-</div>
+                        <div class="metric-label">Most Central</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="pm-vulnerable">-</div>
+                        <div class="metric-label">Most Dependent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Environmental Uncertainty Analyzer -->
+            <div class="tool-card">
+                <h3>🌪️ Environmental Uncertainty Analyzer</h3>
+                <p>Assess the level of environmental uncertainty your organization faces.</p>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Environmental Complexity</span>
+                        <span class="slider-value" id="complexity-value">50%</span>
+                    </div>
+                    <input type="range" id="complexity-slider" min="0" max="100" value="50" oninput="updateSlider('complexity')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How many different environmental factors must you monitor? (0 = few, 100 = many)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Rate of Change (Dynamism)</span>
+                        <span class="slider-value" id="dynamism-value">50%</span>
+                    </div>
+                    <input type="range" id="dynamism-slider" min="0" max="100" value="50" oninput="updateSlider('dynamism')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How fast is your environment changing? (0 = stable, 100 = highly volatile)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Resource Scarcity</span>
+                        <span class="slider-value" id="scarcity-value">50%</span>
+                    </div>
+                    <input type="range" id="scarcity-slider" min="0" max="100" value="50" oninput="updateSlider('scarcity')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How scarce are critical resources? (0 = abundant, 100 = very scarce)</p>
+                </div>
+
+                <button class="calculate-btn" onclick="analyzeUncertainty()">Analyze Environment</button>
+
+                <div class="result-box" id="uncertainty-result">
+                    <div class="result-score" id="uncertainty-score">0</div>
+                    <p style="text-align: center; margin-bottom: 15px; font-weight: 600;">Uncertainty Level</p>
+                    <div class="result-interpretation" id="uncertainty-interpretation"></div>
+                </div>
+            </div>
+
+            <!-- Tool 5: Stakeholder Criticality Matrix -->
+            <div class="tool-card">
+                <h3>📈 Resource Criticality Matrix</h3>
+                <p>Map your key resource providers on dimensions of importance and control concentration.</p>
+
+                <div class="quadrant-container">
+                    <svg class="quadrant-svg" viewBox="0 0 500 500" id="criticality-matrix">
+                        <!-- Background -->
+                        <rect x="50" y="50" width="200" height="200" fill="#d1fae5" stroke="#10b981"/>
+                        <rect x="250" y="50" width="200" height="200" fill="#fef3c7" stroke="#f59e0b"/>
+                        <rect x="50" y="250" width="200" height="200" fill="#f0fdf4" stroke="#86efac"/>
+                        <rect x="250" y="250" width="200" height="200" fill="#fee2e2" stroke="#ef4444"/>
+
+                        <!-- Axes -->
+                        <line x1="50" y1="250" x2="450" y2="250" stroke="#374151" stroke-width="2"/>
+                        <line x1="250" y1="50" x2="250" y2="450" stroke="#374151" stroke-width="2"/>
+
+                        <!-- Labels -->
+                        <text x="250" y="30" text-anchor="middle" font-weight="bold" fill="#374151">HIGH CONCENTRATION</text>
+                        <text x="250" y="480" text-anchor="middle" font-weight="bold" fill="#374151">LOW CONCENTRATION</text>
+                        <text x="20" y="250" text-anchor="middle" font-weight="bold" fill="#374151" transform="rotate(-90, 20, 250)">LOW IMPORTANCE</text>
+                        <text x="480" y="250" text-anchor="middle" font-weight="bold" fill="#374151" transform="rotate(90, 480, 250)">HIGH IMPORTANCE</text>
+
+                        <!-- Quadrant Labels -->
+                        <text x="150" y="150" text-anchor="middle" font-size="14" fill="#047857">MONITOR</text>
+                        <text x="150" y="170" text-anchor="middle" font-size="11" fill="#065f46">Low priority</text>
+
+                        <text x="350" y="150" text-anchor="middle" font-size="14" fill="#b45309">DIVERSIFY</text>
+                        <text x="350" y="170" text-anchor="middle" font-size="11" fill="#92400e">Reduce concentration</text>
+
+                        <text x="150" y="350" text-anchor="middle" font-size="14" fill="#059669">MAINTAIN</text>
+                        <text x="150" y="370" text-anchor="middle" font-size="11" fill="#047857">Good position</text>
+
+                        <text x="350" y="350" text-anchor="middle" font-size="14" fill="#dc2626">CRITICAL</text>
+                        <text x="350" y="370" text-anchor="middle" font-size="11" fill="#b91c1c">High dependency risk</text>
+
+                        <!-- Example points -->
+                        <g id="matrix-points"></g>
+                    </svg>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 25px 0;">
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Stakeholder Name</label>
+                        <input type="text" id="stakeholder-name" placeholder="e.g., Key Supplier A" style="width: 100%; padding: 12px; border: 2px solid #d1fae5; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Importance (0-100)</label>
+                        <input type="number" id="stakeholder-importance" min="0" max="100" value="50" style="width: 100%; padding: 12px; border: 2px solid #d1fae5; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="font-weight: 600; color: #047857; display: block; margin-bottom: 8px;">Concentration (0-100)</label>
+                        <input type="number" id="stakeholder-concentration" min="0" max="100" value="50" style="width: 100%; padding: 12px; border: 2px solid #d1fae5; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="addStakeholder()">Add to Matrix</button>
+                <button class="canvas-btn secondary" onclick="clearMatrix()" style="margin-top: 10px; width: 100%;">Clear Matrix</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Papers Navigation -->
+    <section class="other-papers">
+        <h3>Explore More Classic Papers</h3>
+        <div class="papers-grid">
+            <a href="granovetter-1973-weak-ties.html" class="paper-link">
+                <div class="year">1973</div>
+                <div class="title">Granovetter: Strength of Weak Ties</div>
+            </a>
+            <a href="meyer-rowan-1977-institutionalized-organizations.html" class="paper-link">
+                <div class="year">1977</div>
+                <div class="title">Meyer & Rowan: Myth and Ceremony</div>
+            </a>
+            <a href="dimaggio-powell-1983-iron-cage.html" class="paper-link">
+                <div class="year">1983</div>
+                <div class="title">DiMaggio & Powell: Iron Cage</div>
+            </a>
+            <a href="coleman-1988-social-capital.html" class="paper-link">
+                <div class="year">1988</div>
+                <div class="title">Coleman: Social Capital</div>
+            </a>
+            <a href="burt-1992-structural-holes.html" class="paper-link">
+                <div class="year">1992</div>
+                <div class="title">Burt: Structural Holes</div>
+            </a>
+            <a href="index.html" class="paper-link" style="border-color: #6ee7b7;">
+                <div class="year">📚</div>
+                <div class="title">All Papers →</div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // Slider Updates
+        function updateSlider(name) {
+            const slider = document.getElementById(`${name}-slider`);
+            const value = document.getElementById(`${name}-value`);
+            value.textContent = slider.value + '%';
+        }
+
+        // Dependence Calculator
+        function calculateDependence() {
+            const importance = parseInt(document.getElementById('importance-slider').value);
+            const discretion = parseInt(document.getElementById('discretion-slider').value);
+            const concentration = parseInt(document.getElementById('concentration-slider').value);
+
+            // Multiplicative formula normalized to 0-100
+            const dependence = Math.round((importance * discretion * concentration) / 10000);
+
+            const resultBox = document.getElementById('dependence-result');
+            const scoreEl = document.getElementById('dependence-score');
+            const interpEl = document.getElementById('dependence-interpretation');
+
+            scoreEl.textContent = dependence + '%';
+
+            let interpretation = '';
+            let color = '';
+
+            if (dependence < 20) {
+                color = '#10b981';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🟢 LOW DEPENDENCE</h4>
+                    <p>This relationship poses minimal risk. The resource is either not critical, you have alternatives, or the provider has limited discretion.</p>
+                    <p style="margin-top: 10px;"><strong>Recommended Actions:</strong></p>
+                    <ul>
+                        <li>Maintain the relationship but don't over-invest</li>
+                        <li>Monitor periodically for changes</li>
+                        <li>Focus attention on higher-dependency relationships</li>
+                    </ul>
+                `;
+            } else if (dependence < 50) {
+                color = '#f59e0b';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🟡 MODERATE DEPENDENCE</h4>
+                    <p>This relationship requires active management. There's meaningful dependence that could become problematic if conditions change.</p>
+                    <p style="margin-top: 10px;"><strong>Recommended Actions:</strong></p>
+                    <ul>
+                        <li>Develop contingency plans</li>
+                        <li>Build relationships with alternative providers</li>
+                        <li>Consider formalizing the relationship (contracts, alliances)</li>
+                        <li>Monitor the provider's situation closely</li>
+                    </ul>
+                `;
+            } else if (dependence < 75) {
+                color = '#f97316';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🟠 HIGH DEPENDENCE</h4>
+                    <p>This is a significant dependency that represents organizational vulnerability. The provider has substantial power over your organization.</p>
+                    <p style="margin-top: 10px;"><strong>Recommended Actions:</strong></p>
+                    <ul>
+                        <li>Actively pursue dependency reduction strategies</li>
+                        <li>Consider vertical integration or acquisition</li>
+                        <li>Co-opt the provider (board seats, joint ventures)</li>
+                        <li>Diversify suppliers/customers aggressively</li>
+                        <li>Build strategic inventory or buffers</li>
+                    </ul>
+                `;
+            } else {
+                color = '#ef4444';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🔴 CRITICAL DEPENDENCE</h4>
+                    <p>This is an existential dependency. The provider has significant power over your organization's survival. Immediate action required.</p>
+                    <p style="margin-top: 10px;"><strong>Recommended Actions:</strong></p>
+                    <ul>
+                        <li>Treat as top strategic priority</li>
+                        <li>Pursue merger/acquisition if possible</li>
+                        <li>Create mutual dependencies (make them need you too)</li>
+                        <li>Political action to change regulatory environment</li>
+                        <li>Develop radical alternatives (new technologies, markets)</li>
+                        <li>Consider strategic retreat from this dependency</li>
+                    </ul>
+                `;
+            }
+
+            scoreEl.style.color = color;
+            interpEl.innerHTML = interpretation;
+            resultBox.classList.add('show');
+        }
+
+        // Strategy Recommender
+        function recommendStrategy() {
+            const depType = document.getElementById('dependence-type').value;
+            const resources = document.getElementById('your-resources').value;
+            const urgency = document.getElementById('urgency').value;
+            const context = document.getElementById('industry-context').value;
+
+            const resultBox = document.getElementById('strategy-result');
+            const recsEl = document.getElementById('strategy-recommendations');
+
+            let strategies = [];
+            let explanation = '';
+
+            // Base strategies by dependence type
+            const baseStrategies = {
+                supplier: {
+                    title: 'Supplier Dependence',
+                    options: ['Vertical Integration', 'Diversify Suppliers', 'Long-term Contracts', 'Joint Ventures']
+                },
+                customer: {
+                    title: 'Customer Concentration',
+                    options: ['Customer Diversification', 'Co-opt Key Customers', 'Product Differentiation', 'Increase Switching Costs']
+                },
+                regulator: {
+                    title: 'Regulatory Dependence',
+                    options: ['Political Action/Lobbying', 'Trade Associations', 'Co-opt Regulators (Advisory Boards)', 'Geographic Diversification']
+                },
+                competitor: {
+                    title: 'Competitive Pressure',
+                    options: ['Strategic Alliances', 'Market Segmentation', 'Mergers/Acquisitions', 'Industry Associations']
+                },
+                financier: {
+                    title: 'Financial Dependence',
+                    options: ['Bank Board Interlocks', 'Diversify Funding Sources', 'Build Cash Reserves', 'Investor Relations']
+                },
+                labor: {
+                    title: 'Labor/Talent Dependence',
+                    options: ['Employee Ownership', 'Training Programs', 'Competitive Compensation', 'Automation/Technology']
+                }
+            };
+
+            const base = baseStrategies[depType];
+            explanation = `<h4 style="color: #047857; margin-bottom: 15px;">${base.title}</h4>`;
+
+            // Filter and rank by resources
+            if (resources === 'abundant') {
+                strategies = base.options;
+                explanation += '<p><strong>With abundant resources</strong>, you can pursue aggressive strategies:</p>';
+            } else if (resources === 'moderate') {
+                strategies = base.options.slice(1);
+                explanation += '<p><strong>With moderate resources</strong>, focus on relationship-based strategies:</p>';
+            } else {
+                strategies = base.options.slice(2);
+                explanation += '<p><strong>With limited resources</strong>, prioritize low-cost strategies:</p>';
+            }
+
+            // Adjust by urgency
+            if (urgency === 'high') {
+                explanation += '<p style="color: #ef4444; margin-top: 10px;">⚠️ <strong>High urgency:</strong> Prioritize immediate actions over long-term restructuring.</p>';
+            }
+
+            // Build recommendations HTML
+            let recsHTML = explanation + '<div style="margin-top: 20px;">';
+
+            strategies.forEach((strategy, i) => {
+                const priority = i === 0 ? 'Primary' : i === 1 ? 'Secondary' : 'Alternative';
+                const color = i === 0 ? '#047857' : i === 1 ? '#0891b2' : '#64748b';
+                recsHTML += `
+                    <div style="background: white; border-left: 4px solid ${color}; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                        <strong style="color: ${color};">${priority} Strategy: ${strategy}</strong>
+                        <p style="margin-top: 5px; font-size: 0.9rem; color: #475569;">${getStrategyDescription(strategy)}</p>
+                    </div>
+                `;
+            });
+
+            recsHTML += '</div>';
+            recsEl.innerHTML = recsHTML;
+            resultBox.classList.add('show');
+        }
+
+        function getStrategyDescription(strategy) {
+            const descriptions = {
+                'Vertical Integration': 'Acquire suppliers or customers to bring resource control in-house.',
+                'Diversify Suppliers': 'Develop multiple supplier relationships to reduce dependence on any single source.',
+                'Long-term Contracts': 'Lock in favorable terms and reduce uncertainty through contractual commitments.',
+                'Joint Ventures': 'Share ownership and control of critical resources with partners.',
+                'Customer Diversification': 'Expand customer base to reduce revenue concentration risk.',
+                'Co-opt Key Customers': 'Bring major customers into governance (advisory boards, partnerships).',
+                'Product Differentiation': 'Make your offerings unique to reduce customer power.',
+                'Increase Switching Costs': 'Create dependencies that make it costly for customers to leave.',
+                'Political Action/Lobbying': 'Shape regulations through legitimate political engagement.',
+                'Trade Associations': 'Join industry groups to amplify voice and share regulatory burden.',
+                'Co-opt Regulators (Advisory Boards)': 'Engage regulators through formal advisory relationships.',
+                'Geographic Diversification': 'Operate across jurisdictions to reduce regulatory concentration.',
+                'Strategic Alliances': 'Form partnerships with competitors to reduce rivalry.',
+                'Market Segmentation': 'Focus on niches where competition is less intense.',
+                'Mergers/Acquisitions': 'Acquire competitors to reduce competitive uncertainty.',
+                'Industry Associations': 'Coordinate with competitors on non-competitive issues.',
+                'Bank Board Interlocks': 'Invite bankers to your board to secure financial relationships.',
+                'Diversify Funding Sources': 'Use multiple banks, bonds, equity to reduce dependence.',
+                'Build Cash Reserves': 'Accumulate internal funds to reduce external financing needs.',
+                'Investor Relations': 'Build strong relationships with current and potential investors.',
+                'Employee Ownership': 'Give employees stake in company to align interests.',
+                'Training Programs': 'Develop internal talent to reduce external hiring dependence.',
+                'Competitive Compensation': 'Pay well to retain critical talent.',
+                'Automation/Technology': 'Reduce labor dependence through technology investment.'
+            };
+            return descriptions[strategy] || 'Implement this strategy to manage dependencies.';
+        }
+
+        // Environmental Uncertainty Analyzer
+        function analyzeUncertainty() {
+            const complexity = parseInt(document.getElementById('complexity-slider').value);
+            const dynamism = parseInt(document.getElementById('dynamism-slider').value);
+            const scarcity = parseInt(document.getElementById('scarcity-slider').value);
+
+            const uncertainty = Math.round((complexity + dynamism + scarcity) / 3);
+
+            const resultBox = document.getElementById('uncertainty-result');
+            const scoreEl = document.getElementById('uncertainty-score');
+            const interpEl = document.getElementById('uncertainty-interpretation');
+
+            scoreEl.textContent = uncertainty + '%';
+
+            let interpretation = '';
+            let color = '';
+
+            if (uncertainty < 30) {
+                color = '#10b981';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🟢 LOW UNCERTAINTY</h4>
+                    <p>Your environment is relatively stable and predictable. This allows for:</p>
+                    <ul>
+                        <li>Long-term planning and investment</li>
+                        <li>Efficiency-focused strategies</li>
+                        <li>Standardized processes and routines</li>
+                        <li>Hierarchical, mechanistic structures</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Risk:</strong> Complacency. Monitor for environmental shifts that could disrupt stability.</p>
+                `;
+            } else if (uncertainty < 60) {
+                color = '#f59e0b';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🟡 MODERATE UNCERTAINTY</h4>
+                    <p>Your environment has meaningful unpredictability. This requires:</p>
+                    <ul>
+                        <li>Balanced planning horizons (medium-term focus)</li>
+                        <li>Investment in environmental scanning</li>
+                        <li>Flexible strategies with contingencies</li>
+                        <li>Hybrid structures (some standardization, some adaptation)</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Focus:</strong> Build adaptive capacity while maintaining operational efficiency.</p>
+                `;
+            } else {
+                color = '#ef4444';
+                interpretation = `
+                    <h4 style="color: ${color}; margin-bottom: 10px;">🔴 HIGH UNCERTAINTY</h4>
+                    <p>Your environment is highly turbulent. Survival requires:</p>
+                    <ul>
+                        <li>Short planning cycles with frequent adjustment</li>
+                        <li>Heavy investment in environmental intelligence</li>
+                        <li>Organic, flexible organizational structures</li>
+                        <li>Decentralized decision-making</li>
+                        <li>Strong bridging strategies (alliances, co-optation)</li>
+                        <li>Buffering critical operations from environmental shocks</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Priority:</strong> Agility and adaptability over efficiency.</p>
+                `;
+            }
+
+            scoreEl.style.color = color;
+            interpEl.innerHTML = interpretation;
+            resultBox.classList.add('show');
+        }
+
+        // Power Map Builder
+        const powerMap = {
+            canvas: null,
+            ctx: null,
+            nodes: [],
+            links: [],
+            selectedNode: null,
+            connectMode: false,
+            connectStart: null,
+            nodeId: 0,
+
+            init() {
+                this.canvas = document.getElementById('powerMapCanvas');
+                this.ctx = this.canvas.getContext('2d');
+
+                this.canvas.addEventListener('click', (e) => this.handleClick(e));
+                this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                this.canvas.addEventListener('mouseup', () => this.handleMouseUp());
+
+                this.render();
+            },
+
+            addNode() {
+                const name = prompt('Organization name:', `Org ${this.nodeId + 1}`);
+                if (!name) return;
+
+                const x = 100 + Math.random() * (this.canvas.width - 200);
+                const y = 100 + Math.random() * (this.canvas.height - 200);
+
+                this.nodes.push({
+                    id: this.nodeId++,
+                    name: name,
+                    x: x,
+                    y: y,
+                    inDegree: 0,
+                    outDegree: 0
+                });
+
+                this.render();
+                this.updateMetrics();
+            },
+
+            toggleConnectMode() {
+                this.connectMode = !this.connectMode;
+                const btn = document.querySelector('.canvas-btn.secondary');
+                if (this.connectMode) {
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    this.canvas.style.cursor = 'default';
+                    this.connectStart = null;
+                }
+            },
+
+            handleClick(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const clickedNode = this.getNodeAt(x, y);
+
+                if (this.connectMode && clickedNode) {
+                    if (!this.connectStart) {
+                        this.connectStart = clickedNode;
+                    } else if (clickedNode !== this.connectStart) {
+                        const strength = prompt('Dependence strength (1-10):', '5');
+                        if (strength) {
+                            this.links.push({
+                                from: this.connectStart,
+                                to: clickedNode,
+                                strength: Math.min(10, Math.max(1, parseInt(strength) || 5))
+                            });
+                            this.connectStart.outDegree++;
+                            clickedNode.inDegree++;
+                        }
+                        this.connectStart = null;
+                        this.render();
+                        this.updateMetrics();
+                    }
+                }
+            },
+
+            handleMouseDown(e) {
+                if (this.connectMode) return;
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                this.selectedNode = this.getNodeAt(x, y);
+            },
+
+            handleMouseMove(e) {
+                if (!this.selectedNode || this.connectMode) return;
+                const rect = this.canvas.getBoundingClientRect();
+                this.selectedNode.x = e.clientX - rect.left;
+                this.selectedNode.y = e.clientY - rect.top;
+                this.render();
+            },
+
+            handleMouseUp() {
+                this.selectedNode = null;
+            },
+
+            getNodeAt(x, y) {
+                return this.nodes.find(n => {
+                    const dx = n.x - x;
+                    const dy = n.y - y;
+                    return Math.sqrt(dx * dx + dy * dy) < 30;
+                });
+            },
+
+            loadPreset(type) {
+                this.clear();
+                const cx = this.canvas.width / 2;
+                const cy = this.canvas.height / 2;
+
+                if (type === 'supply-chain') {
+                    const orgs = [
+                        { name: 'Raw Materials', x: 100, y: cy },
+                        { name: 'Supplier A', x: 250, y: cy - 80 },
+                        { name: 'Supplier B', x: 250, y: cy + 80 },
+                        { name: 'YOUR ORG', x: 400, y: cy },
+                        { name: 'Distributor', x: 550, y: cy },
+                        { name: 'Customer', x: 700, y: cy }
+                    ];
+
+                    orgs.forEach(o => {
+                        this.nodes.push({ id: this.nodeId++, name: o.name, x: o.x, y: o.y, inDegree: 0, outDegree: 0 });
+                    });
+
+                    const linkDefs = [[0,1,6], [0,2,6], [1,3,8], [2,3,5], [3,4,7], [4,5,9]];
+                    linkDefs.forEach(([from, to, str]) => {
+                        this.links.push({ from: this.nodes[from], to: this.nodes[to], strength: str });
+                        this.nodes[from].outDegree++;
+                        this.nodes[to].inDegree++;
+                    });
+                } else if (type === 'stakeholder') {
+                    const orgs = [
+                        { name: 'YOUR ORG', x: cx, y: cy },
+                        { name: 'Investors', x: cx, y: cy - 150 },
+                        { name: 'Customers', x: cx + 150, y: cy - 75 },
+                        { name: 'Suppliers', x: cx + 150, y: cy + 75 },
+                        { name: 'Regulators', x: cx, y: cy + 150 },
+                        { name: 'Employees', x: cx - 150, y: cy + 75 },
+                        { name: 'Competitors', x: cx - 150, y: cy - 75 }
+                    ];
+
+                    orgs.forEach(o => {
+                        this.nodes.push({ id: this.nodeId++, name: o.name, x: o.x, y: o.y, inDegree: 0, outDegree: 0 });
+                    });
+
+                    const linkDefs = [[1,0,8], [2,0,7], [3,0,6], [4,0,9], [5,0,7], [0,2,5], [0,5,4]];
+                    linkDefs.forEach(([from, to, str]) => {
+                        this.links.push({ from: this.nodes[from], to: this.nodes[to], strength: str });
+                        this.nodes[from].outDegree++;
+                        this.nodes[to].inDegree++;
+                    });
+                }
+
+                this.render();
+                this.updateMetrics();
+            },
+
+            clear() {
+                this.nodes = [];
+                this.links = [];
+                this.nodeId = 0;
+                this.connectStart = null;
+                this.render();
+                this.updateMetrics();
+            },
+
+            render() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw links
+                this.links.forEach(link => {
+                    const dx = link.to.x - link.from.x;
+                    const dy = link.to.y - link.from.y;
+                    const angle = Math.atan2(dy, dx);
+
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(link.from.x, link.from.y);
+                    this.ctx.lineTo(link.to.x, link.to.y);
+                    this.ctx.strokeStyle = `rgba(16, 185, 129, ${link.strength / 10})`;
+                    this.ctx.lineWidth = link.strength;
+                    this.ctx.stroke();
+
+                    // Arrow
+                    const arrowLen = 15;
+                    const endX = link.to.x - 30 * Math.cos(angle);
+                    const endY = link.to.y - 30 * Math.sin(angle);
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(endX, endY);
+                    this.ctx.lineTo(endX - arrowLen * Math.cos(angle - 0.3), endY - arrowLen * Math.sin(angle - 0.3));
+                    this.ctx.lineTo(endX - arrowLen * Math.cos(angle + 0.3), endY - arrowLen * Math.sin(angle + 0.3));
+                    this.ctx.closePath();
+                    this.ctx.fillStyle = '#10b981';
+                    this.ctx.fill();
+                });
+
+                // Draw nodes
+                this.nodes.forEach(node => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, 30, 0, Math.PI * 2);
+                    this.ctx.fillStyle = node.name === 'YOUR ORG' ? '#047857' : '#10b981';
+                    this.ctx.fill();
+                    this.ctx.strokeStyle = '#065f46';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.stroke();
+
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.font = 'bold 10px Inter';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+
+                    const words = node.name.split(' ');
+                    if (words.length > 1) {
+                        this.ctx.fillText(words[0], node.x, node.y - 6);
+                        this.ctx.fillText(words.slice(1).join(' '), node.x, node.y + 6);
+                    } else {
+                        this.ctx.fillText(node.name, node.x, node.y);
+                    }
+                });
+            },
+
+            updateMetrics() {
+                document.getElementById('pm-nodes').textContent = this.nodes.length;
+                document.getElementById('pm-links').textContent = this.links.length;
+
+                if (this.nodes.length > 0) {
+                    const mostCentral = this.nodes.reduce((a, b) => (a.inDegree + a.outDegree) > (b.inDegree + b.outDegree) ? a : b);
+                    const mostVulnerable = this.nodes.reduce((a, b) => a.inDegree > b.inDegree ? a : b);
+
+                    document.getElementById('pm-central').textContent = mostCentral.name.substring(0, 8);
+                    document.getElementById('pm-vulnerable').textContent = mostVulnerable.name.substring(0, 8);
+                } else {
+                    document.getElementById('pm-central').textContent = '-';
+                    document.getElementById('pm-vulnerable').textContent = '-';
+                }
+            }
+        };
+
+        // Criticality Matrix
+        let matrixPoints = [];
+
+        function addStakeholder() {
+            const name = document.getElementById('stakeholder-name').value || 'Stakeholder';
+            const importance = parseInt(document.getElementById('stakeholder-importance').value);
+            const concentration = parseInt(document.getElementById('stakeholder-concentration').value);
+
+            // Convert to SVG coordinates (50-450 range)
+            const x = 50 + (importance / 100) * 400;
+            const y = 450 - (concentration / 100) * 400;
+
+            matrixPoints.push({ name, x, y, importance, concentration });
+
+            const pointsGroup = document.getElementById('matrix-points');
+            const pointId = `point-${matrixPoints.length}`;
+
+            const point = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            point.id = pointId;
+            point.innerHTML = `
+                <circle cx="${x}" cy="${y}" r="12" fill="#047857" stroke="white" stroke-width="2"/>
+                <text x="${x}" y="${y + 25}" text-anchor="middle" font-size="10" fill="#374151">${name}</text>
+            `;
+            pointsGroup.appendChild(point);
+
+            // Clear inputs
+            document.getElementById('stakeholder-name').value = '';
+        }
+
+        function clearMatrix() {
+            matrixPoints = [];
+            document.getElementById('matrix-points').innerHTML = '';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            powerMap.init();
+        });
+    </script>
+</body>
+</html>
