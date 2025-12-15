@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blau (1964) - Exchange and Power in Social Life</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0c4a6e 0%, #164e63 50%, #134e4a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(8, 51, 68, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: #67e8f9;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #06b6d4;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #a5f3fc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .dark-mode-toggle {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #a5f3fc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(6, 182, 212, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(8, 145, 178, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #67e8f9;
+            margin-bottom: 10px;
+        }
+
+        .hero .meta {
+            color: #a5f3fc;
+            font-size: 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #67e8f9;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 {
+            color: #a5f3fc;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            color: #cbd5e1;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Concept boxes */
+        .concept-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(8, 145, 178, 0.1) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .concept-box h4 {
+            color: #67e8f9;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(20, 184, 166, 0.15) 100%);
+            border-left: 4px solid #06b6d4;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Formula display */
+        .formula {
+            background: rgba(6, 182, 212, 0.15);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .formula-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            color: #67e8f9;
+            font-style: italic;
+        }
+
+        .formula-explanation {
+            color: #a5f3fc;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        /* Interactive Tools Styles */
+        .tool-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .tool-container h3 {
+            color: #67e8f9;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-group label {
+            display: block;
+            color: #a5f3fc;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(6, 182, 212, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.4);
+        }
+
+        .slider-value {
+            text-align: right;
+            color: #67e8f9;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(20, 184, 166, 0.15) 100%);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-box h4 {
+            color: #67e8f9;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06b6d4;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .result-label {
+            color: #a5f3fc;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(6, 182, 212, 0.4);
+        }
+
+        /* Selection buttons */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .selection-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .selection-btn:hover {
+            border-color: #06b6d4;
+            background: rgba(6, 182, 212, 0.2);
+        }
+
+        .selection-btn.active {
+            border-color: #06b6d4;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(20, 184, 166, 0.2) 100%);
+        }
+
+        .selection-btn h5 {
+            color: #67e8f9;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .selection-btn p {
+            color: #a5f3fc;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Visual diagrams */
+        .exchange-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .actor-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(8, 145, 178, 0.2) 100%);
+            border: 2px solid #06b6d4;
+            border-radius: 16px;
+            padding: 25px 35px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .actor-box h4 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .actor-box .power-level {
+            color: #67e8f9;
+            font-size: 0.95rem;
+        }
+
+        .exchange-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #14b8a6);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .arrow-label {
+            color: #a5f3fc;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Alternatives grid */
+        .alternatives-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .alternative-card {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .alternative-card:hover {
+            border-color: #06b6d4;
+            transform: translateY(-3px);
+        }
+
+        .alternative-card.selected {
+            border-color: #06b6d4;
+            background: rgba(6, 182, 212, 0.25);
+        }
+
+        .alternative-card h5 {
+            color: #67e8f9;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alternative-card p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Power meter */
+        .power-meter {
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .meter-bar {
+            height: 30px;
+            background: rgba(6, 182, 212, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #06b6d4, #14b8a6);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+        }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #a5f3fc;
+            font-size: 0.85rem;
+        }
+
+        /* Table styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .comparison-table th {
+            background: rgba(6, 182, 212, 0.2);
+            color: #67e8f9;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: #cbd5e1;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Other Papers Navigation */
+        .other-papers {
+            background: linear-gradient(135deg, #083344 0%, #0c4a6e 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+        }
+
+        .other-papers h3 {
+            color: #67e8f9;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paper-link {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .paper-link:hover {
+            background: rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
+            transform: translateY(-3px);
+        }
+
+        .paper-link .year {
+            font-size: 0.9rem;
+            color: #67e8f9;
+        }
+
+        .paper-link .title {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body.dark-mode .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        body.dark-mode .card {
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .alternatives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exchange-visual {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">Blau (1964)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('exchange', this)">Exchange Theory</button>
+                <button class="page-btn" onclick="switchPage('power', this)">Power Dynamics</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Page 1: Overview -->
+        <div id="main" class="page-content active">
+            <div class="hero">
+                <h1>Exchange and Power in Social Life</h1>
+                <div class="subtitle">Peter M. Blau</div>
+                <div class="meta">1964 • Foundational Social Exchange Theory</div>
+            </div>
+
+            <div class="card">
+                <h2>📚 Core Argument</h2>
+                <p>Blau's landmark work establishes <strong>social exchange</strong> as the fundamental building block of social structure. Unlike economic exchange with its explicit contracts, social exchange involves unspecified obligations and requires trust.</p>
+
+                <div class="highlight-box">
+                    <p>"Social exchange... refers to voluntary actions of individuals that are motivated by the returns they are expected to bring and typically do in fact bring from others."</p>
+                </div>
+
+                <p>The central insight: <strong>Power emerges from imbalanced exchange</strong>. When one party consistently provides more valuable resources than they receive, the other party becomes dependent—and this dependence is the source of power.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>🔄 Social Exchange</h4>
+                        <p>Voluntary transactions where people provide benefits to each other expecting (but not contractually guaranteed) reciprocity. Creates ongoing social bonds.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>⚖️ Imbalanced Exchange</h4>
+                        <p>When one party cannot fully reciprocate, they become obligated and dependent. This imbalance is the origin of power in social relationships.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>👑 Power from Dependence</h4>
+                        <p>Power = the ability to impose one's will despite resistance. It derives from others' dependence on resources you control exclusively.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>✅ Legitimation</h4>
+                        <p>Raw power becomes legitimate authority when subordinates collectively accept it as proper and normatively appropriate.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Key Contributions</h2>
+
+                <h3>1. The Exchange Foundation of Social Structure</h3>
+                <p>Blau shows how complex social structures emerge from simple exchange processes. Starting with interpersonal attraction and reciprocity, he builds up to organizational power and societal institutions—all resting on exchange dynamics.</p>
+
+                <h3>2. The Four Alternatives to Compliance</h3>
+                <p>When someone has resources you need, you face four choices:</p>
+                <ul>
+                    <li><strong>Supply inducements</strong> — Offer something valuable in return</li>
+                    <li><strong>Obtain elsewhere</strong> — Find an alternative source</li>
+                    <li><strong>Take by force</strong> — Coerce the resource from them</li>
+                    <li><strong>Do without</strong> — Learn to live without the resource</li>
+                </ul>
+                <p>If none of these options is viable, you must comply with the resource holder's wishes—they have power over you.</p>
+
+                <h3>3. The Differentiation of Power</h3>
+                <p>In groups, some members contribute more valuable resources than others can reciprocate. These high contributors gain status and eventually power. Blau traces how informal leadership emerges and crystallizes into formal authority structures.</p>
+
+                <h3>4. From Power to Legitimate Authority</h3>
+                <p>Power alone is unstable and costly to maintain. Through processes of legitimation—where subordinates come to accept power as proper—raw power transforms into authority that commands willing obedience.</p>
+            </div>
+
+            <div class="card">
+                <h2>💡 Theoretical Impact</h2>
+                <p>Blau's work bridges micro and macro sociology, showing how individual exchanges aggregate into organizational and societal structures. Key influences:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Emerson's Power-Dependence</h4>
+                        <p>Blau builds on Emerson's relational view of power as rooted in dependence asymmetries.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Resource Dependence Theory</h4>
+                        <p>Pfeffer & Salancik's organizational theory directly extends Blau's exchange logic.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Network Exchange Theory</h4>
+                        <p>Modern network approaches to power draw heavily on exchange principles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Exchange Theory -->
+        <div id="exchange" class="page-content">
+            <div class="card">
+                <h2>🔄 Social Exchange Fundamentals</h2>
+
+                <p>Blau distinguishes social exchange from economic exchange in crucial ways:</p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Economic Exchange</th>
+                        <th>Social Exchange</th>
+                    </tr>
+                    <tr>
+                        <td>Obligations</td>
+                        <td>Specified in contract</td>
+                        <td>Unspecified, diffuse</td>
+                    </tr>
+                    <tr>
+                        <td>Trust Required</td>
+                        <td>Low (legal enforcement)</td>
+                        <td>High (no guarantees)</td>
+                    </tr>
+                    <tr>
+                        <td>Time Frame</td>
+                        <td>Immediate or specified</td>
+                        <td>Open-ended, ongoing</td>
+                    </tr>
+                    <tr>
+                        <td>Currency</td>
+                        <td>Money, goods</td>
+                        <td>Approval, respect, help, love</td>
+                    </tr>
+                    <tr>
+                        <td>Social Bonds</td>
+                        <td>Minimal</td>
+                        <td>Creates lasting relationships</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <p>"Only social exchange tends to engender feelings of personal obligation, gratitude, and trust; purely economic exchange as such does not."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌱 The Process of Social Exchange</h2>
+
+                <h3>Stage 1: Attraction</h3>
+                <p>Social exchange begins with attraction. People are drawn to others who can provide valued rewards—whether instrumental (help, resources) or intrinsic (companionship, approval). This attraction motivates approach and initial interaction.</p>
+
+                <h3>Stage 2: Exchange Initiation</h3>
+                <p>One party offers something of value, creating an implicit obligation. The recipient must decide: reciprocate (continuing exchange), decline (ending it), or accept without reciprocating (creating imbalance).</p>
+
+                <h3>Stage 3: Trust Building</h3>
+                <p>As exchanges prove reliable, trust develops. People take larger risks, offering more valuable resources. Each successful exchange strengthens the relationship and raises the stakes.</p>
+
+                <h3>Stage 4: Relationship Crystallization</h3>
+                <p>Patterns stabilize. Exchange partners develop expectations, roles, and norms. The relationship becomes a social structure with its own dynamics, potentially including power differentials.</p>
+
+                <div class="formula">
+                    <div class="formula-text">Attraction → Exchange → Trust → Stable Relationship Structure</div>
+                    <div class="formula-explanation">The progression from initial attraction to institutionalized social bonds</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💎 Types of Rewards in Social Exchange</h2>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Intrinsic Rewards</h4>
+                        <p><strong>Valued for themselves:</strong></p>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Personal attraction & love</li>
+                            <li>Social approval & acceptance</li>
+                            <li>Companionship & belonging</li>
+                            <li>Respect & esteem</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Extrinsic Rewards</h4>
+                        <p><strong>Valued as means to other ends:</strong></p>
+                        <ul style="margin-top: 10px; color: #cbd5e1;">
+                            <li>Money & material resources</li>
+                            <li>Information & advice</li>
+                            <li>Assistance & services</li>
+                            <li>Compliance & support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px;">The Primacy of Social Approval</h3>
+                <p>Blau argues that social approval is a particularly important reward because:</p>
+                <ul>
+                    <li>It's universally valued across cultures and contexts</li>
+                    <li>It's relatively cheap to give but meaningful to receive</li>
+                    <li>It creates the foundation for status differentiation</li>
+                    <li>It's the basis for establishing legitimate authority</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>⚖️ The Norm of Reciprocity</h2>
+
+                <p>Social exchange depends on the norm of reciprocity—the expectation that benefits received should be repaid. This norm:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Enables Exchange</h4>
+                        <p>Without expected reciprocity, no one would take the risk of offering first.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Creates Obligation</h4>
+                        <p>Receiving creates a debt that must be repaid to maintain standing.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Stabilizes Relations</h4>
+                        <p>Mutual obligation bonds people together over time.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px;">Fair Exchange vs. Exploitation</h3>
+                <p>Exchange partners develop shared understandings of "fair rates" of exchange. Violations of these norms—whether through exploitation or ingratitude—damage relationships and trigger sanctions. The group collectively enforces fair exchange standards.</p>
+            </div>
+        </div>
+
+        <!-- Page 3: Power Dynamics -->
+        <div id="power" class="page-content">
+            <div class="card">
+                <h2>👑 The Emergence of Power</h2>
+
+                <p>Power emerges when exchange becomes imbalanced. If person A consistently provides resources that person B cannot reciprocate, B becomes indebted and dependent on A. This dependence gives A power.</p>
+
+                <div class="formula">
+                    <div class="formula-text">Unreciprocated Benefits → Obligation → Dependence → Power</div>
+                    <div class="formula-explanation">How imbalanced exchange creates power differentials</div>
+                </div>
+
+                <h3>Conditions for Power to Emerge</h3>
+                <ul>
+                    <li><strong>Valuable resources:</strong> One party controls something others need</li>
+                    <li><strong>Monopoly:</strong> The resources cannot be obtained elsewhere</li>
+                    <li><strong>No coercion possible:</strong> The dependent party cannot take by force</li>
+                    <li><strong>Cannot do without:</strong> The resource is too important to forgo</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p>"If the benefits a person supplies to others are of great value to them, are not available from alternative sources, and cannot be coerced from him, their need to reciprocate is a leverage that enables him to exercise power over them."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🚪 The Four Alternatives to Compliance</h2>
+
+                <p>When confronted with a power holder, the dependent party has four strategic options:</p>
+
+                <div class="alternatives-grid">
+                    <div class="alternative-card">
+                        <h5>💰 1. Supply Inducements</h5>
+                        <p>Offer something valuable in return. If you can provide benefits the power holder wants, you establish reciprocal exchange rather than dependence.</p>
+                    </div>
+                    <div class="alternative-card">
+                        <h5>🔄 2. Obtain Elsewhere</h5>
+                        <p>Find alternative sources for the needed resource. Having options reduces dependence and thus the other's power over you.</p>
+                    </div>
+                    <div class="alternative-card">
+                        <h5>⚔️ 3. Take by Force</h5>
+                        <p>Coerce the resource. If you have coercive capability, you may take what you need rather than submitting to power.</p>
+                    </div>
+                    <div class="alternative-card">
+                        <h5>🧘 4. Do Without</h5>
+                        <p>Reduce your need for the resource. If you can learn to live without it, you escape the dependence that creates power.</p>
+                    </div>
+                </div>
+
+                <div class="result-box" style="margin-top: 30px;">
+                    <h4>The Power Condition</h4>
+                    <p style="color: #cbd5e1; margin: 15px 0;">If ALL four alternatives are blocked, compliance is the only option remaining. The resource holder has power.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📊 Power Differentiation in Groups</h2>
+
+                <p>Blau traces how power differentials emerge organically in groups:</p>
+
+                <h3>Stage 1: Contribution Differences</h3>
+                <p>Some members contribute more to the group than others—better ideas, more effort, greater expertise. These high contributors create imbalanced exchange with other members.</p>
+
+                <h3>Stage 2: Status Emergence</h3>
+                <p>Unable to reciprocate equally, other members offer respect and deference. The high contributors gain status—social recognition of their superior value to the group.</p>
+
+                <h3>Stage 3: Leadership Formation</h3>
+                <p>Status carries expectations of continued contribution and right to influence. High-status members become informal leaders whose suggestions carry weight.</p>
+
+                <h3>Stage 4: Power Crystallization</h3>
+                <p>Leadership becomes formalized. The group develops structures that institutionalize power differences, creating persistent hierarchies.</p>
+
+                <div class="power-meter" style="margin-top: 25px;">
+                    <p style="color: #67e8f9; margin-bottom: 10px;">Power Differentiation Timeline</p>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span style="color: #a5f3fc; font-size: 0.85rem;">Equal Members</span>
+                        <span style="color: #a5f3fc; font-size: 0.85rem;">Differentiated Hierarchy</span>
+                    </div>
+                    <div class="meter-bar">
+                        <div class="meter-fill" style="width: 75%;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; color: #67e8f9; font-size: 0.8rem;">
+                        <span>Contribution</span>
+                        <span>Status</span>
+                        <span>Leadership</span>
+                        <span>Formal Power</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>✅ Legitimation of Authority</h2>
+
+                <p>Raw power is unstable—it requires constant monitoring and enforcement. Through legitimation, power transforms into authority that commands willing obedience.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Power (Illegitimate)</h4>
+                        <ul style="color: #cbd5e1; margin-top: 10px;">
+                            <li>Requires surveillance</li>
+                            <li>Provokes resistance</li>
+                            <li>Costly to maintain</li>
+                            <li>Unstable equilibrium</li>
+                        </ul>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Authority (Legitimate)</h4>
+                        <ul style="color: #cbd5e1; margin-top: 10px;">
+                            <li>Self-enforcing</li>
+                            <li>Commands willing compliance</li>
+                            <li>Low maintenance cost</li>
+                            <li>Stable and enduring</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px;">Processes of Legitimation</h3>
+                <ul>
+                    <li><strong>Fair exchange:</strong> Power holders who provide fair value gain acceptance</li>
+                    <li><strong>Collective benefit:</strong> Power used for group welfare becomes legitimate</li>
+                    <li><strong>Normative approval:</strong> Subordinates come to see the arrangement as proper</li>
+                    <li><strong>Institutionalization:</strong> Power structures become taken-for-granted</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p>"The willing compliance of subordinates with the orders and directives of a superior, the ## distinguishing mark of authority, depends on the social approval of the exercise of power."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔥 Opposition and Change</h2>
+
+                <p>Blau doesn't see power as static. Opposition can emerge and challenge existing power structures:</p>
+
+                <h3>Sources of Opposition</h3>
+                <ul>
+                    <li><strong>Exploitation:</strong> Power holders who take too much provoke resistance</li>
+                    <li><strong>Blocked alternatives:</strong> Those denied exit options may turn to collective action</li>
+                    <li><strong>Ideological challenge:</strong> New ideas can delegitimize existing arrangements</li>
+                    <li><strong>Coalition formation:</strong> The powerless can combine resources to challenge power</li>
+                </ul>
+
+                <h3>Dialectics of Power</h3>
+                <p>Power generates its own opposition. Those with power tend toward exploitation; exploitation generates resistance; resistance may overturn power structures or force accommodation. This dialectic drives social change.</p>
+            </div>
+        </div>
+
+        <!-- Page 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <div class="card">
+                <h2>🛠️ Interactive Analysis Tools</h2>
+                <p>Use these tools to explore Blau's exchange and power concepts through hands-on analysis.</p>
+            </div>
+
+            <!-- Tool 1: Exchange Balance Calculator -->
+            <div class="tool-container">
+                <h3>⚖️ Exchange Balance Calculator</h3>
+                <p style="color: #a5f3fc; margin-bottom: 20px;">Analyze the power dynamics in an exchange relationship based on resource flows.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #67e8f9; margin-bottom: 15px;">Party A Provides:</h4>
+                        <div class="slider-group">
+                            <label>Resource Value (to B)</label>
+                            <input type="range" id="a-value" min="0" max="100" value="70" oninput="calculateExchangeBalance()">
+                            <div class="slider-value"><span id="a-value-display">70</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Resource Uniqueness</label>
+                            <input type="range" id="a-unique" min="0" max="100" value="80" oninput="calculateExchangeBalance()">
+                            <div class="slider-value"><span id="a-unique-display">80</span>/100</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="color: #67e8f9; margin-bottom: 15px;">Party B Provides:</h4>
+                        <div class="slider-group">
+                            <label>Resource Value (to A)</label>
+                            <input type="range" id="b-value" min="0" max="100" value="40" oninput="calculateExchangeBalance()">
+                            <div class="slider-value"><span id="b-value-display">40</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Resource Uniqueness</label>
+                            <input type="range" id="b-unique" min="0" max="100" value="30" oninput="calculateExchangeBalance()">
+                            <div class="slider-value"><span id="b-unique-display">30</span>/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exchange-visual" id="exchange-visual">
+                    <div class="actor-box" id="actor-a">
+                        <h4>Party A</h4>
+                        <div class="power-level" id="a-power">Power: Calculating...</div>
+                    </div>
+                    <div class="exchange-arrow">
+                        <div class="arrow-label" id="flow-a-to-b">→ Resources →</div>
+                        <div class="arrow-line"></div>
+                        <div class="arrow-label" id="flow-b-to-a">← Resources ←</div>
+                    </div>
+                    <div class="actor-box" id="actor-b">
+                        <h4>Party B</h4>
+                        <div class="power-level" id="b-power">Power: Calculating...</div>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Exchange Analysis</h4>
+                    <div class="result-value" id="balance-result">Balanced</div>
+                    <div class="result-label" id="balance-interpretation">Analyzing relationship dynamics...</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Four Alternatives Analyzer -->
+            <div class="tool-container">
+                <h3>🚪 Four Alternatives Analyzer</h3>
+                <p style="color: #a5f3fc; margin-bottom: 20px;">Assess your strategic options when facing a power holder. Click each alternative to evaluate its viability.</p>
+
+                <div class="slider-group">
+                    <label>How valuable is the resource you need?</label>
+                    <input type="range" id="resource-need" min="0" max="100" value="75" oninput="updateAlternatives()">
+                    <div class="slider-value"><span id="resource-need-display">75</span>/100</div>
+                </div>
+
+                <div class="alternatives-grid" id="alternatives-grid">
+                    <div class="alternative-card" onclick="toggleAlternative(0)">
+                        <h5>💰 Supply Inducements</h5>
+                        <p>Can you offer something they want?</p>
+                        <div class="slider-group" style="margin-top: 15px;">
+                            <input type="range" id="alt-0" min="0" max="100" value="30" oninput="updateAlternatives()">
+                            <div class="slider-value">Viability: <span id="alt-0-display">30</span>%</div>
+                        </div>
+                    </div>
+                    <div class="alternative-card" onclick="toggleAlternative(1)">
+                        <h5>🔄 Obtain Elsewhere</h5>
+                        <p>Are there alternative sources?</p>
+                        <div class="slider-group" style="margin-top: 15px;">
+                            <input type="range" id="alt-1" min="0" max="100" value="20" oninput="updateAlternatives()">
+                            <div class="slider-value">Viability: <span id="alt-1-display">20</span>%</div>
+                        </div>
+                    </div>
+                    <div class="alternative-card" onclick="toggleAlternative(2)">
+                        <h5>⚔️ Take by Force</h5>
+                        <p>Can you coerce the resource?</p>
+                        <div class="slider-group" style="margin-top: 15px;">
+                            <input type="range" id="alt-2" min="0" max="100" value="10" oninput="updateAlternatives()">
+                            <div class="slider-value">Viability: <span id="alt-2-display">10</span>%</div>
+                        </div>
+                    </div>
+                    <div class="alternative-card" onclick="toggleAlternative(3)">
+                        <h5>🧘 Do Without</h5>
+                        <p>Can you reduce your need?</p>
+                        <div class="slider-group" style="margin-top: 15px;">
+                            <input type="range" id="alt-3" min="0" max="100" value="25" oninput="updateAlternatives()">
+                            <div class="slider-value">Viability: <span id="alt-3-display">25</span>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Power Assessment</h4>
+                    <div class="result-value" id="power-over-you">High</div>
+                    <div class="result-label" id="power-interpretation">Their power over you based on blocked alternatives</div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Legitimation Analyzer -->
+            <div class="tool-container">
+                <h3>✅ Authority Legitimation Analyzer</h3>
+                <p style="color: #a5f3fc; margin-bottom: 20px;">Assess whether a power relationship has achieved legitimacy.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="slider-group">
+                            <label>Fair Exchange Rate</label>
+                            <input type="range" id="leg-fair" min="0" max="100" value="60" oninput="calculateLegitimacy()">
+                            <div class="slider-value"><span id="leg-fair-display">60</span>%</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Collective Benefit</label>
+                            <input type="range" id="leg-collective" min="0" max="100" value="70" oninput="calculateLegitimacy()">
+                            <div class="slider-value"><span id="leg-collective-display">70</span>%</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slider-group">
+                            <label>Normative Approval</label>
+                            <input type="range" id="leg-normative" min="0" max="100" value="55" oninput="calculateLegitimacy()">
+                            <div class="slider-value"><span id="leg-normative-display">55</span>%</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Institutionalization</label>
+                            <input type="range" id="leg-institution" min="0" max="100" value="45" oninput="calculateLegitimacy()">
+                            <div class="slider-value"><span id="leg-institution-display">45</span>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-meter" style="margin-top: 25px;">
+                    <p style="color: #67e8f9; margin-bottom: 15px;">Legitimation Spectrum</p>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="legitimacy-meter" style="width: 50%;"></div>
+                    </div>
+                    <div class="meter-labels">
+                        <span>Raw Power</span>
+                        <span>Legitimate Authority</span>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Authority Status</h4>
+                    <div class="result-value" id="legitimacy-result">Transitional</div>
+                    <div class="result-label" id="legitimacy-interpretation">Assessing legitimation level...</div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Group Power Differentiation Simulator -->
+            <div class="tool-container">
+                <h3>📊 Group Power Differentiation Simulator</h3>
+                <p style="color: #a5f3fc; margin-bottom: 20px;">Simulate how power differentials emerge from contribution differences in a group.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: #a5f3fc; display: block; margin-bottom: 10px;">Set contribution levels for 5 group members:</label>
+                    <div class="grid-3" style="gap: 10px;">
+                        <div class="slider-group">
+                            <label>Member 1</label>
+                            <input type="range" id="member-1" min="0" max="100" value="90" oninput="simulateGroupPower()">
+                            <div class="slider-value"><span id="member-1-display">90</span></div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Member 2</label>
+                            <input type="range" id="member-2" min="0" max="100" value="70" oninput="simulateGroupPower()">
+                            <div class="slider-value"><span id="member-2-display">70</span></div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Member 3</label>
+                            <input type="range" id="member-3" min="0" max="100" value="50" oninput="simulateGroupPower()">
+                            <div class="slider-value"><span id="member-3-display">50</span></div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Member 4</label>
+                            <input type="range" id="member-4" min="0" max="100" value="40" oninput="simulateGroupPower()">
+                            <div class="slider-value"><span id="member-4-display">40</span></div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Member 5</label>
+                            <input type="range" id="member-5" min="0" max="100" value="30" oninput="simulateGroupPower()">
+                            <div class="slider-value"><span id="member-5-display">30</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="group-hierarchy" style="margin-top: 30px;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <div class="result-box">
+                    <h4>Group Structure</h4>
+                    <div class="result-value" id="hierarchy-type">Differentiated</div>
+                    <div class="result-label" id="hierarchy-interpretation">Analyzing power distribution...</div>
+                </div>
+            </div>
+
+            <!-- Tool 5: Exchange Scenario Builder -->
+            <div class="tool-container">
+                <h3>🎭 Exchange Scenario Builder</h3>
+                <p style="color: #a5f3fc; margin-bottom: 20px;">Build and analyze common exchange scenarios from organizational life.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectScenario('mentor')">
+                        <h5>👨‍🏫 Mentor-Protégé</h5>
+                        <p>Senior guides junior's career</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('manager')">
+                        <h5>👔 Manager-Employee</h5>
+                        <p>Formal authority relationship</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('peers')">
+                        <h5>🤝 Peer Colleagues</h5>
+                        <p>Lateral exchange relationship</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('client')">
+                        <h5>💼 Service Provider-Client</h5>
+                        <p>Professional service exchange</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('investor')">
+                        <h5>💰 Investor-Founder</h5>
+                        <p>Funding relationship</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('advisor')">
+                        <h5>🎓 Advisor-Student</h5>
+                        <p>Academic supervision</p>
+                    </div>
+                </div>
+
+                <div id="scenario-analysis" class="result-box" style="display: none;">
+                    <h4 id="scenario-title">Scenario Analysis</h4>
+                    <div id="scenario-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Other Papers Navigation -->
+    <section class="other-papers">
+        <h3>Explore More Classic Papers</h3>
+        <div class="papers-grid">
+            <a href="granovetter-1973-weak-ties.html" class="paper-link">
+                <div class="year">1973</div>
+                <div class="title">Granovetter: Strength of Weak Ties</div>
+            </a>
+            <a href="meyer-rowan-1977-institutionalized-organizations.html" class="paper-link">
+                <div class="year">1977</div>
+                <div class="title">Meyer & Rowan: Myth and Ceremony</div>
+            </a>
+            <a href="pfeffer-salancik-1978-resource-dependence.html" class="paper-link">
+                <div class="year">1978</div>
+                <div class="title">Pfeffer & Salancik: Resource Dependence</div>
+            </a>
+            <a href="dimaggio-powell-1983-iron-cage.html" class="paper-link">
+                <div class="year">1983</div>
+                <div class="title">DiMaggio & Powell: Iron Cage</div>
+            </a>
+            <a href="williamson-1985-transaction-cost-economics.html" class="paper-link">
+                <div class="year">1985</div>
+                <div class="title">Williamson: Transaction Costs</div>
+            </a>
+            <a href="coleman-1988-social-capital.html" class="paper-link">
+                <div class="year">1988</div>
+                <div class="title">Coleman: Social Capital</div>
+            </a>
+            <a href="burt-1992-structural-holes.html" class="paper-link">
+                <div class="year">1992</div>
+                <div class="title">Burt: Structural Holes</div>
+            </a>
+            <a href="index.html" class="paper-link" style="border-color: #67e8f9;">
+                <div class="year">📚</div>
+                <div class="title">All Papers →</div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Tool 1: Exchange Balance Calculator
+        function calculateExchangeBalance() {
+            const aValue = parseInt(document.getElementById('a-value').value);
+            const aUnique = parseInt(document.getElementById('a-unique').value);
+            const bValue = parseInt(document.getElementById('b-value').value);
+            const bUnique = parseInt(document.getElementById('b-unique').value);
+
+            // Update displays
+            document.getElementById('a-value-display').textContent = aValue;
+            document.getElementById('a-unique-display').textContent = aUnique;
+            document.getElementById('b-value-display').textContent = bValue;
+            document.getElementById('b-unique-display').textContent = bUnique;
+
+            // Calculate power (value * uniqueness creates dependence)
+            const aPowerOverB = (aValue * aUnique) / 100;
+            const bPowerOverA = (bValue * bUnique) / 100;
+
+            document.getElementById('a-power').textContent = `Power: ${Math.round(aPowerOverB)}`;
+            document.getElementById('b-power').textContent = `Power: ${Math.round(bPowerOverA)}`;
+
+            const balance = aPowerOverB - bPowerOverA;
+            const resultEl = document.getElementById('balance-result');
+            const interpEl = document.getElementById('balance-interpretation');
+
+            if (Math.abs(balance) < 10) {
+                resultEl.textContent = 'Balanced Exchange';
+                resultEl.style.color = '#14b8a6';
+                interpEl.textContent = 'Relatively equal exchange. Both parties have similar leverage. Relationship likely stable and reciprocal.';
+            } else if (balance > 0) {
+                resultEl.textContent = `A Dominates (+${Math.round(balance)})`;
+                resultEl.style.color = '#06b6d4';
+                interpEl.textContent = `Party A has power over B. B is dependent on A's valuable, unique resources. B must comply, offer deference, or find alternatives.`;
+            } else {
+                resultEl.textContent = `B Dominates (${Math.round(balance)})`;
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = `Party B has power over A. A is dependent on B's valuable, unique resources. A must comply, offer deference, or find alternatives.`;
+            }
+        }
+
+        // Tool 2: Four Alternatives Analyzer
+        function updateAlternatives() {
+            const need = parseInt(document.getElementById('resource-need').value);
+            document.getElementById('resource-need-display').textContent = need;
+
+            let totalViability = 0;
+            for (let i = 0; i < 4; i++) {
+                const val = parseInt(document.getElementById(`alt-${i}`).value);
+                document.getElementById(`alt-${i}-display`).textContent = val;
+                totalViability += val;
+            }
+
+            const avgViability = totalViability / 4;
+            const powerLevel = need * (1 - avgViability / 100);
+
+            const resultEl = document.getElementById('power-over-you');
+            const interpEl = document.getElementById('power-interpretation');
+
+            if (powerLevel < 25) {
+                resultEl.textContent = 'Low Power';
+                resultEl.style.color = '#14b8a6';
+                interpEl.textContent = 'You have viable alternatives. Their power over you is limited.';
+            } else if (powerLevel < 50) {
+                resultEl.textContent = 'Moderate Power';
+                resultEl.style.color = '#06b6d4';
+                interpEl.textContent = 'Some alternatives exist but are imperfect. They have meaningful but not complete power.';
+            } else if (powerLevel < 75) {
+                resultEl.textContent = 'High Power';
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = 'Most alternatives are blocked. You are substantially dependent on them.';
+            } else {
+                resultEl.textContent = 'Complete Power';
+                resultEl.style.color = '#ef4444';
+                interpEl.textContent = 'All alternatives blocked. You have no choice but to comply with their demands.';
+            }
+        }
+
+        // Tool 3: Legitimation Analyzer
+        function calculateLegitimacy() {
+            const fair = parseInt(document.getElementById('leg-fair').value);
+            const collective = parseInt(document.getElementById('leg-collective').value);
+            const normative = parseInt(document.getElementById('leg-normative').value);
+            const institution = parseInt(document.getElementById('leg-institution').value);
+
+            document.getElementById('leg-fair-display').textContent = fair;
+            document.getElementById('leg-collective-display').textContent = collective;
+            document.getElementById('leg-normative-display').textContent = normative;
+            document.getElementById('leg-institution-display').textContent = institution;
+
+            const legitimacy = (fair + collective + normative + institution) / 4;
+            document.getElementById('legitimacy-meter').style.width = `${legitimacy}%`;
+
+            const resultEl = document.getElementById('legitimacy-result');
+            const interpEl = document.getElementById('legitimacy-interpretation');
+
+            if (legitimacy < 25) {
+                resultEl.textContent = 'Raw Power';
+                resultEl.style.color = '#ef4444';
+                interpEl.textContent = 'Coercive power lacking legitimacy. Requires constant enforcement. Resistance likely.';
+            } else if (legitimacy < 50) {
+                resultEl.textContent = 'Contested Power';
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = 'Some acceptance but significant doubts remain. Authority is fragile and may face challenges.';
+            } else if (legitimacy < 75) {
+                resultEl.textContent = 'Emerging Authority';
+                resultEl.style.color = '#06b6d4';
+                interpEl.textContent = 'Gaining legitimacy. Most subordinates accept the arrangement as proper. Becoming self-enforcing.';
+            } else {
+                resultEl.textContent = 'Legitimate Authority';
+                resultEl.style.color = '#14b8a6';
+                interpEl.textContent = 'Fully legitimate. Commands willing compliance. Taken for granted as the natural order.';
+            }
+        }
+
+        // Tool 4: Group Power Differentiation
+        function simulateGroupPower() {
+            const members = [];
+            for (let i = 1; i <= 5; i++) {
+                const contribution = parseInt(document.getElementById(`member-${i}`).value);
+                document.getElementById(`member-${i}-display`).textContent = contribution;
+                members.push({ id: i, contribution });
+            }
+
+            // Sort by contribution
+            members.sort((a, b) => b.contribution - a.contribution);
+
+            // Calculate status and power
+            const total = members.reduce((sum, m) => sum + m.contribution, 0);
+            const avg = total / 5;
+
+            let html = '<div style="display: flex; flex-direction: column; gap: 10px;">';
+            members.forEach((m, idx) => {
+                const status = m.contribution > avg ? 'High Status' : m.contribution < avg * 0.7 ? 'Low Status' : 'Middle Status';
+                const role = idx === 0 ? '👑 Leader' : idx < 2 ? '⭐ Inner Circle' : '👤 Member';
+                const barWidth = m.contribution;
+
+                html += `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #67e8f9; min-width: 100px;">${role}</span>
+                        <span style="color: #a5f3fc; min-width: 80px;">Member ${m.id}</span>
+                        <div style="flex: 1; height: 25px; background: rgba(6, 182, 212, 0.2); border-radius: 12px; overflow: hidden;">
+                            <div style="width: ${barWidth}%; height: 100%; background: linear-gradient(90deg, #06b6d4, #14b8a6); border-radius: 12px;"></div>
+                        </div>
+                        <span style="color: #cbd5e1; min-width: 80px;">${status}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            document.getElementById('group-hierarchy').innerHTML = html;
+
+            // Analyze hierarchy type
+            const max = members[0].contribution;
+            const min = members[4].contribution;
+            const spread = max - min;
+
+            const resultEl = document.getElementById('hierarchy-type');
+            const interpEl = document.getElementById('hierarchy-interpretation');
+
+            if (spread < 20) {
+                resultEl.textContent = 'Egalitarian';
+                interpEl.textContent = 'Low differentiation. Power is relatively distributed. Consensus-based decisions likely.';
+            } else if (spread < 50) {
+                resultEl.textContent = 'Moderately Hierarchical';
+                interpEl.textContent = 'Clear status differences but not extreme. Leader has influence but must maintain contributions.';
+            } else {
+                resultEl.textContent = 'Strongly Hierarchical';
+                interpEl.textContent = 'Sharp differentiation. Leader has substantial power. Risk of exploitation or resentment from lower members.';
+            }
+        }
+
+        // Tool 5: Exchange Scenario Builder
+        const scenarios = {
+            mentor: {
+                title: 'Mentor-Protégé Exchange',
+                content: `
+                    <p><strong>What Mentor Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Career guidance and advice</li>
+                        <li>Access to networks and opportunities</li>
+                        <li>Sponsorship and advocacy</li>
+                        <li>Knowledge and expertise transfer</li>
+                    </ul>
+                    <p><strong>What Protégé Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Deference and respect</li>
+                        <li>Loyalty and support</li>
+                        <li>Legacy and validation</li>
+                        <li>Fresh ideas and energy</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Mentor holds more power due to resource asymmetry. Protégé's main alternatives: find another mentor, develop independently, or leave the field.</p>
+                    <p style="color: #67e8f9; margin-top: 15px;"><strong>Legitimation Path:</strong> Fair mentorship + protégé success = legitimate authority and lasting relationship.</p>
+                `
+            },
+            manager: {
+                title: 'Manager-Employee Exchange',
+                content: `
+                    <p><strong>What Manager Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Salary and benefits</li>
+                        <li>Work assignments and opportunities</li>
+                        <li>Performance evaluations</li>
+                        <li>Career advancement support</li>
+                    </ul>
+                    <p><strong>What Employee Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Labor and productivity</li>
+                        <li>Compliance with directives</li>
+                        <li>Loyalty and commitment</li>
+                        <li>Expertise and skills</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Manager has formal authority. Employee's alternatives: find another job, negotiate, unionize, or accept conditions.</p>
+                    <p style="color: #67e8f9; margin-top: 15px;"><strong>Legitimation Path:</strong> Fair treatment + organizational benefit = willing compliance rather than mere obedience.</p>
+                `
+            },
+            peers: {
+                title: 'Peer Colleague Exchange',
+                content: `
+                    <p><strong>Mutual Exchange:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Information and knowledge sharing</li>
+                        <li>Collaboration on projects</li>
+                        <li>Social support and friendship</li>
+                        <li>Mutual assistance and backup</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Ideally balanced, but can become imbalanced if one peer has unique expertise or better connections. Status differences may emerge from contribution differences.</p>
+                    <p style="color: #67e8f9; margin-top: 15px;"><strong>Key Principle:</strong> Reciprocity norm is critical. Violations (free-riding, exploitation) damage relationship and trigger sanctions.</p>
+                `
+            },
+            client: {
+                title: 'Service Provider-Client Exchange',
+                content: `
+                    <p><strong>What Provider Offers:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Professional expertise</li>
+                        <li>Service delivery</li>
+                        <li>Problem-solving</li>
+                        <li>Quality and reliability</li>
+                    </ul>
+                    <p><strong>What Client Offers:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Payment</li>
+                        <li>Repeat business</li>
+                        <li>Referrals and reputation</li>
+                        <li>Feedback and direction</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Depends on market conditions. Scarce expertise = provider power. Many providers = client power.</p>
+                    <p style="color: #67e8f9; margin-top: 15px;"><strong>Exchange Balance:</strong> Long-term relationships require fair exchange rates that both parties view as equitable.</p>
+                `
+            },
+            investor: {
+                title: 'Investor-Founder Exchange',
+                content: `
+                    <p><strong>What Investor Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Capital and funding</li>
+                        <li>Network access</li>
+                        <li>Credibility signal</li>
+                        <li>Strategic guidance</li>
+                    </ul>
+                    <p><strong>What Founder Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Equity ownership</li>
+                        <li>Execution and effort</li>
+                        <li>Vision and innovation</li>
+                        <li>Potential returns</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Often investor-dominant due to capital scarcity. Founder alternatives limited: bootstrap, find other investors, or abandon venture.</p>
+                    <p style="color: #f59e0b; margin-top: 15px;"><strong>Risk:</strong> High power asymmetry can lead to exploitation. Board seats and terms create formal power structures.</p>
+                `
+            },
+            advisor: {
+                title: 'Advisor-Student Exchange',
+                content: `
+                    <p><strong>What Advisor Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Research guidance and training</li>
+                        <li>Access to resources and funding</li>
+                        <li>Career sponsorship</li>
+                        <li>Credential certification (degree)</li>
+                    </ul>
+                    <p><strong>What Student Provides:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li>Research labor</li>
+                        <li>Deference and respect</li>
+                        <li>Intellectual contribution</li>
+                        <li>Legacy and reputation building</li>
+                    </ul>
+                    <p><strong>Power Dynamic:</strong> Highly asymmetric. Student has few alternatives: changing advisors is costly, doing without degree may not be viable.</p>
+                    <p style="color: #f59e0b; margin-top: 15px;"><strong>Vulnerability:</strong> Classic case where all four alternatives are often blocked, creating high potential for exploitation.</p>
+                `
+            }
+        };
+
+        function selectScenario(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const scenario = scenarios[key];
+            document.getElementById('scenario-title').textContent = scenario.title;
+            document.getElementById('scenario-content').innerHTML = scenario.content;
+            document.getElementById('scenario-analysis').style.display = 'block';
+        }
+
+        // Initialize tools on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateExchangeBalance();
+            updateAlternatives();
+            calculateLegitimacy();
+            simulateGroupPower();
+        });
+    </script>
+</body>
+</html>
