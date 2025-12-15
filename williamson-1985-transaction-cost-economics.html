@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Williamson (1985) - The Economic Institutions of Capitalism</title>
+    <!--
+      Review of:
+      Williamson, O. E. (1985).
+      The Economic Institutions of Capitalism: Firms, Markets, Relational Contracting.
+      Free Press.
+
+      This is TRANSACTION COST ECONOMICS - explaining why economic activity is organized
+      within firms (hierarchies) vs. across markets based on transaction characteristics,
+      particularly asset specificity, bounded rationality, and opportunism.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #f59e0b 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #92400e 100%);
+            color: #e2e8f0;
+        }
+
+        .dark-mode .section-card,
+        .dark-mode .key-point,
+        .dark-mode .example-box,
+        .dark-mode .governance-card,
+        .dark-mode .tool-card {
+            background: #78350f;
+            border-color: #b45309;
+        }
+
+        .dark-mode .nav-container {
+            background: rgba(120, 53, 15, 0.95);
+        }
+
+        .dark-mode .page-btn {
+            color: #fcd34d;
+        }
+
+        .dark-mode .page-btn:hover,
+        .dark-mode .page-btn.active {
+            background: #f59e0b;
+            color: #451a03;
+        }
+
+        .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4 {
+            color: #fcd34d;
+        }
+
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #b45309 100%);
+        }
+
+        .dark-mode p, .dark-mode li, .dark-mode td {
+            color: #fef3c7;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 30px;
+            box-shadow: 0 2px 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #b45309;
+        }
+
+        .back-link {
+            color: #b45309;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            background: #fef3c7;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .dark-mode .back-link {
+            background: #92400e;
+            color: #fcd34d;
+        }
+
+        .dark-mode .back-link:hover {
+            background: #f59e0b;
+            color: #451a03;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 8px 20px;
+            border: none;
+            background: #fffbeb;
+            color: #b45309;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .dark-mode-toggle {
+            padding: 8px 16px;
+            border: 2px solid #f59e0b;
+            background: transparent;
+            color: #b45309;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .dark-mode .dark-mode-toggle {
+            border-color: #fcd34d;
+            color: #fcd34d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #f59e0b 100%);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .citation {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero .award {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 25px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #b45309;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-card h3 {
+            color: #92400e;
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+
+        .section-card p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-card li {
+            margin-bottom: 10px;
+        }
+
+        /* Key Point Boxes */
+        .key-point {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .key-point h4 {
+            color: #b45309;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .key-point {
+            background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+        }
+
+        /* Central Thesis Box */
+        .central-thesis {
+            background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .central-thesis h3 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .central-thesis p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: #451a03;
+            color: #fcd34d;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #f59e0b;
+        }
+
+        .formula-box .explanation {
+            color: #fef3c7;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Governance Cards */
+        .governance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .governance-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 5px solid #f59e0b;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .governance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.2);
+        }
+
+        .governance-card h4 {
+            color: #b45309;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .governance-card p {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .dark-mode .governance-card p {
+            color: #fef3c7;
+        }
+
+        .governance-card .characteristics {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #fde68a;
+        }
+
+        .governance-card .char-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .governance-card .char-label {
+            color: #78350f;
+            font-weight: 600;
+        }
+
+        .governance-card .char-value {
+            color: #b45309;
+        }
+
+        /* Concept Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .concept-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .concept-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #fde68a;
+            background: white;
+        }
+
+        .dark-mode .comparison-table td {
+            background: #78350f;
+            border-bottom-color: #b45309;
+        }
+
+        .comparison-table tr:hover td {
+            background: #fffbeb;
+        }
+
+        .dark-mode .comparison-table tr:hover td {
+            background: #92400e;
+        }
+
+        /* Interactive Tools */
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .tool-card h3 {
+            color: #b45309;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-group {
+            margin: 25px 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #b45309;
+        }
+
+        .slider-value {
+            background: #f59e0b;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #fef3c7;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f59e0b;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f59e0b;
+            cursor: pointer;
+            border: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dark-mode .result-box {
+            background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+        }
+
+        .result-score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #b45309;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .result-score {
+            color: #fcd34d;
+        }
+
+        .result-interpretation {
+            padding: 20px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 8px;
+        }
+
+        .dark-mode .result-interpretation {
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Asset Specificity Types */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .asset-type {
+            background: #fffbeb;
+            border: 2px solid #fde68a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .asset-type:hover, .asset-type.selected {
+            background: #f59e0b;
+            border-color: #f59e0b;
+            color: white;
+        }
+
+        .asset-type .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .asset-type h5 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .asset-type p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .dark-mode .asset-type {
+            background: #92400e;
+            border-color: #b45309;
+            color: #fef3c7;
+        }
+
+        .dark-mode .asset-type:hover, .dark-mode .asset-type.selected {
+            background: #f59e0b;
+            color: #451a03;
+        }
+
+        /* Select Inputs */
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #fde68a;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+
+        .dark-mode select {
+            background: #78350f;
+            border-color: #b45309;
+            color: #fef3c7;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Example Box */
+        .example-box {
+            background: #fffbeb;
+            border: 2px solid #fde68a;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .example-box h5 {
+            color: #b45309;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .example-box {
+            background: #92400e;
+            border-color: #b45309;
+        }
+
+        /* Diagram Container */
+        .diagram-container {
+            background: #fffbeb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .dark-mode .diagram-container {
+            background: #451a03;
+        }
+
+        /* Other Papers Navigation */
+        .other-papers {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+        }
+
+        .other-papers h3 {
+            color: #fcd34d;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paper-link {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(252, 211, 77, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .paper-link:hover {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: #f59e0b;
+            transform: translateY(-3px);
+        }
+
+        .paper-link .year {
+            font-size: 0.9rem;
+            color: #fcd34d;
+        }
+
+        .paper-link .title {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-left {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">Williamson (1985)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('theory', this)">Theory & Concepts</button>
+                <button class="page-btn" onclick="switchPage('governance', this)">Governance Structures</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>The Economic Institutions of Capitalism</h1>
+        <p class="citation">Williamson, O. E. (1985). Free Press.</p>
+        <p class="tagline">"The transaction is the basic unit of analysis... governance structures are the organizational frameworks within which the integrity of transactions is decided."</p>
+        <p class="award">🏆 2009 Nobel Prize in Economic Sciences</p>
+    </header>
+
+    <div class="container">
+        <!-- PAGE 1: Main Overview -->
+        <div id="main" class="page-content active">
+            <section class="section-card">
+                <h2>📚 Transaction Cost Economics: Overview</h2>
+
+                <div class="central-thesis">
+                    <h3>The Central Question</h3>
+                    <p>Why do firms exist? Why doesn't all economic activity happen through market transactions? Williamson's answer: because transactions have costs, and different governance structures minimize those costs for different types of transactions.</p>
+                </div>
+
+                <h3>The Core Insight</h3>
+                <p>
+                    Transaction Cost Economics (TCE) views the firm not as a production function, but as a <strong>governance structure</strong>.
+                    The fundamental question isn't "how do we produce efficiently?" but rather "how do we organize transactions to minimize
+                    the costs of governing them?"
+                </p>
+
+                <div class="key-point">
+                    <h4>💡 The Make-or-Buy Decision</h4>
+                    <p>Should a firm make a component internally (hierarchy) or buy it from the market? TCE provides a systematic framework
+                    for answering this question based on the characteristics of the transaction—particularly asset specificity, uncertainty,
+                    and frequency.</p>
+                </div>
+
+                <h3>Building on Coase</h3>
+                <p>
+                    Ronald Coase (1937) asked why firms exist if markets are efficient. His answer: transaction costs.
+                    Williamson operationalized this insight by specifying:
+                </p>
+                <ul>
+                    <li><strong>What makes transaction costs high?</strong> — Asset specificity, uncertainty, frequency</li>
+                    <li><strong>What behavioral assumptions matter?</strong> — Bounded rationality, opportunism</li>
+                    <li><strong>What governance structures exist?</strong> — Markets, hybrids, hierarchies</li>
+                    <li><strong>How do we match transactions to governance?</strong> — The discriminating alignment hypothesis</li>
+                </ul>
+
+                <div class="formula-box">
+                    <p>The Discriminating Alignment Hypothesis:</p>
+                    <p class="formula">Transactions → Governance Structures</p>
+                    <p class="explanation">Transactions, which differ in their attributes, are aligned with governance structures, which differ in their costs and competencies, to effect a transaction-cost-economizing outcome.</p>
+                </div>
+
+                <h3>The Two Behavioral Assumptions</h3>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>🧠 Bounded Rationality</h4>
+                        <p>Human decision-makers are "intendedly rational, but only limitedly so" (Simon). We cannot foresee all contingencies or write complete contracts. This creates a need for adaptive governance.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🎭 Opportunism</h4>
+                        <p>"Self-interest seeking with guile." Economic actors may lie, cheat, steal, or strategically withhold information. Contracts must be designed with this risk in mind.</p>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <h4>💡 Why Both Assumptions Matter</h4>
+                    <p>If humans were fully rational, we could write complete contracts covering all contingencies—no need for hierarchy.
+                    If humans weren't opportunistic, simple promises would suffice—no need for safeguards. TCE assumes <em>both</em>
+                    bounded rationality AND opportunism, which together create the need for governance structures beyond simple spot markets.</p>
+                </div>
+
+                <h3>Historical Context</h3>
+                <p>
+                    Williamson's 1985 book synthesized and extended ideas he had been developing since the early 1970s:
+                </p>
+                <ul>
+                    <li><strong>1971:</strong> "The Vertical Integration of Production" — Early ideas on make-or-buy</li>
+                    <li><strong>1975:</strong> "Markets and Hierarchies" — The foundational text</li>
+                    <li><strong>1979:</strong> "Transaction-Cost Economics: The Governance of Contractual Relations"</li>
+                    <li><strong>1985:</strong> "The Economic Institutions of Capitalism" — The mature statement</li>
+                    <li><strong>1991:</strong> "Comparative Economic Organization" — Added hybrid governance</li>
+                </ul>
+
+                <div class="example-box">
+                    <h5>📖 Classic Example: Fisher Body and General Motors</h5>
+                    <p>In the 1920s, GM outsourced car body manufacturing to Fisher Body. As automobile demand grew, Fisher needed to make
+                    GM-specific investments (dedicated presses, specialized skills). This created a "hold-up" problem—Fisher could
+                    demand better terms, knowing GM was locked in.</p>
+                    <p style="margin-top: 10px;"><strong>The Solution?</strong> GM vertically integrated by acquiring Fisher Body in 1926.
+                    When asset specificity is high and opportunism is a risk, hierarchy (vertical integration) becomes the efficient governance structure.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: Theory & Concepts -->
+        <div id="theory" class="page-content">
+            <section class="section-card">
+                <h2>🎯 Core Theory: The Dimensions of Transactions</h2>
+
+                <p>
+                    Williamson identifies three critical dimensions that characterize transactions and determine the
+                    appropriate governance structure:
+                </p>
+
+                <div class="governance-grid">
+                    <div class="governance-card">
+                        <h4>🔧 1. Asset Specificity</h4>
+                        <p>The degree to which an asset can be redeployed to alternative uses without loss of value. This is the most important dimension.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Low specificity:</span>
+                                <span class="char-value">Standard equipment, generic skills</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">High specificity:</span>
+                                <span class="char-value">Custom machinery, specialized training</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="governance-card">
+                        <h4>❓ 2. Uncertainty</h4>
+                        <p>The degree to which future contingencies are unknown or unpredictable. Higher uncertainty requires more adaptive governance.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Low uncertainty:</span>
+                                <span class="char-value">Stable markets, mature technology</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">High uncertainty:</span>
+                                <span class="char-value">Volatile markets, emerging tech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="governance-card">
+                        <h4>🔄 3. Frequency</h4>
+                        <p>How often the transaction recurs. Frequent transactions justify investments in specialized governance structures.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Low frequency:</span>
+                                <span class="char-value">One-time purchases</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">High frequency:</span>
+                                <span class="char-value">Repeated, ongoing exchange</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>The Six Types of Asset Specificity</h3>
+                <p>Williamson identified several forms that asset specificity can take:</p>
+
+                <div class="asset-grid">
+                    <div class="asset-type">
+                        <div class="icon">📍</div>
+                        <h5>Site Specificity</h5>
+                        <p>Assets located in proximity to reduce transport/inventory costs</p>
+                    </div>
+                    <div class="asset-type">
+                        <div class="icon">⚙️</div>
+                        <h5>Physical Asset</h5>
+                        <p>Specialized equipment designed for specific transactions</p>
+                    </div>
+                    <div class="asset-type">
+                        <div class="icon">👤</div>
+                        <h5>Human Asset</h5>
+                        <p>Specialized knowledge and skills learned through experience</p>
+                    </div>
+                    <div class="asset-type">
+                        <div class="icon">🏭</div>
+                        <h5>Dedicated Assets</h5>
+                        <p>General investments made for a specific customer</p>
+                    </div>
+                    <div class="asset-type">
+                        <div class="icon">⏱️</div>
+                        <h5>Temporal</h5>
+                        <p>Time-sensitive assets where value depends on timing</p>
+                    </div>
+                    <div class="asset-type">
+                        <div class="icon">™️</div>
+                        <h5>Brand Capital</h5>
+                        <p>Reputation investments specific to a relationship</p>
+                    </div>
+                </div>
+
+                <h3>The Fundamental Transformation</h3>
+                <p>
+                    One of Williamson's most important insights is the "fundamental transformation" that occurs
+                    once asset-specific investments are made:
+                </p>
+
+                <div class="diagram-container">
+                    <svg viewBox="0 0 600 200" style="max-width: 600px; width: 100%;">
+                        <!-- Ex-ante: Large Numbers -->
+                        <rect x="20" y="40" width="180" height="120" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="110" y="70" text-anchor="middle" font-weight="bold" fill="#78350f">EX-ANTE</text>
+                        <text x="110" y="95" text-anchor="middle" font-size="12" fill="#92400e">Large Numbers</text>
+                        <text x="110" y="115" text-anchor="middle" font-size="11" fill="#b45309">Many potential suppliers</text>
+                        <text x="110" y="135" text-anchor="middle" font-size="11" fill="#b45309">Competitive bidding</text>
+                        <text x="110" y="155" text-anchor="middle" font-size="11" fill="#b45309">Low switching costs</text>
+
+                        <!-- Arrow -->
+                        <path d="M 210 100 L 280 100" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <text x="245" y="85" text-anchor="middle" font-size="10" fill="#78350f">Specific</text>
+                        <text x="245" y="120" text-anchor="middle" font-size="10" fill="#78350f">Investment</text>
+
+                        <!-- Ex-post: Small Numbers -->
+                        <rect x="290" y="40" width="180" height="120" rx="10" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+                        <text x="380" y="70" text-anchor="middle" font-weight="bold" fill="#78350f">EX-POST</text>
+                        <text x="380" y="95" text-anchor="middle" font-size="12" fill="#92400e">Small Numbers</text>
+                        <text x="380" y="115" text-anchor="middle" font-size="11" fill="#b45309">Bilateral monopoly</text>
+                        <text x="380" y="135" text-anchor="middle" font-size="11" fill="#b45309">Lock-in effect</text>
+                        <text x="380" y="155" text-anchor="middle" font-size="11" fill="#b45309">Hold-up risk</text>
+
+                        <!-- Consequence -->
+                        <path d="M 480 100 L 550 100" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <text x="560" y="90" text-anchor="start" font-size="11" fill="#78350f">Need for</text>
+                        <text x="560" y="110" text-anchor="start" font-size="11" fill="#78350f">Safeguards</text>
+
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <div class="key-point">
+                    <h4>💡 The Hold-Up Problem</h4>
+                    <p>Once party A makes relationship-specific investments, party B can "hold up" A by demanding better terms.
+                    A cannot easily walk away because the investment has little value outside the relationship. This transforms
+                    what began as competitive bidding into a bilateral monopoly, creating a need for governance safeguards.</p>
+                </div>
+
+                <h3>Transaction Costs: A Typology</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Ex-Ante (Before Contract)</th>
+                            <th>Ex-Post (After Contract)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Search & Information</strong></td>
+                            <td>Finding partners, assessing quality</td>
+                            <td>Monitoring performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bargaining</strong></td>
+                            <td>Negotiating terms, drafting contracts</td>
+                            <td>Renegotiating, handling disputes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enforcement</strong></td>
+                            <td>Creating credible commitments</td>
+                            <td>Litigation, arbitration, sanctions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maladaptation</strong></td>
+                            <td>Incomplete contracting costs</td>
+                            <td>Costs of failing to adapt to change</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>The Organizational Failures Framework</h3>
+                <p>
+                    Williamson's framework explains when markets "fail" and hierarchy becomes necessary:
+                </p>
+
+                <div class="formula-box">
+                    <p>Human Factors × Environmental Factors = Market Failure</p>
+                    <p class="formula">(Bounded Rationality + Opportunism) × (Uncertainty + Small Numbers) = Need for Hierarchy</p>
+                    <p class="explanation">When all four conditions are present, simple market contracting breaks down and internal organization becomes the efficient solution.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 3: Governance Structures -->
+        <div id="governance" class="page-content">
+            <section class="section-card">
+                <h2>⚖️ The Three Governance Structures</h2>
+
+                <p>
+                    Williamson identifies three generic governance modes, each with distinct characteristics
+                    suited to different types of transactions:
+                </p>
+
+                <div class="governance-grid">
+                    <div class="governance-card" style="border-top-color: #22c55e;">
+                        <h4 style="color: #16a34a;">🏪 Market Governance</h4>
+                        <p>Coordination through prices and competition. Anonymous parties engage in spot transactions with no ongoing relationship.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Incentive Intensity:</span>
+                                <span class="char-value" style="color: #16a34a;">High</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Administrative Control:</span>
+                                <span class="char-value" style="color: #16a34a;">Low</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Adaptation:</span>
+                                <span class="char-value" style="color: #16a34a;">Autonomous</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Contract Law:</span>
+                                <span class="char-value" style="color: #16a34a;">Classical</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Best for:</strong> Non-specific assets, low uncertainty, infrequent transactions</p>
+                    </div>
+
+                    <div class="governance-card" style="border-top-color: #f59e0b;">
+                        <h4 style="color: #b45309;">🤝 Hybrid Governance</h4>
+                        <p>Long-term contracts, alliances, franchises, joint ventures. Parties maintain separate ownership but coordinate closely.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Incentive Intensity:</span>
+                                <span class="char-value" style="color: #b45309;">Medium</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Administrative Control:</span>
+                                <span class="char-value" style="color: #b45309;">Medium</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Adaptation:</span>
+                                <span class="char-value" style="color: #b45309;">Bilateral</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Contract Law:</span>
+                                <span class="char-value" style="color: #b45309;">Neoclassical</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Best for:</strong> Medium asset specificity, moderate uncertainty</p>
+                    </div>
+
+                    <div class="governance-card" style="border-top-color: #ef4444;">
+                        <h4 style="color: #dc2626;">🏢 Hierarchy</h4>
+                        <p>Unified ownership. Transactions occur within the firm under administrative control rather than market prices.</p>
+                        <div class="characteristics">
+                            <div class="char-item">
+                                <span class="char-label">Incentive Intensity:</span>
+                                <span class="char-value" style="color: #dc2626;">Low</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Administrative Control:</span>
+                                <span class="char-value" style="color: #dc2626;">High</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Adaptation:</span>
+                                <span class="char-value" style="color: #dc2626;">Coordinated</span>
+                            </div>
+                            <div class="char-item">
+                                <span class="char-label">Contract Law:</span>
+                                <span class="char-value" style="color: #dc2626;">Forbearance</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Best for:</strong> High asset specificity, high uncertainty, frequent transactions</p>
+                    </div>
+                </div>
+
+                <h3>The Efficient Alignment Principle</h3>
+
+                <div class="diagram-container">
+                    <svg viewBox="0 0 600 300" style="max-width: 600px; width: 100%;">
+                        <!-- Axes -->
+                        <line x1="80" y1="250" x2="550" y2="250" stroke="#78350f" stroke-width="2"/>
+                        <line x1="80" y1="250" x2="80" y2="50" stroke="#78350f" stroke-width="2"/>
+
+                        <!-- Axis Labels -->
+                        <text x="315" y="290" text-anchor="middle" font-weight="bold" fill="#78350f">Asset Specificity (k)</text>
+                        <text x="30" y="150" text-anchor="middle" font-weight="bold" fill="#78350f" transform="rotate(-90, 30, 150)">Governance Costs</text>
+
+                        <!-- k=0 marker -->
+                        <text x="80" y="270" text-anchor="middle" font-size="11" fill="#78350f">k=0</text>
+                        <text x="550" y="270" text-anchor="middle" font-size="11" fill="#78350f">High k</text>
+
+                        <!-- Market line (lowest at low k) -->
+                        <path d="M 80 220 Q 250 180, 550 80" stroke="#22c55e" stroke-width="3" fill="none"/>
+                        <text x="560" y="75" font-size="12" fill="#22c55e" font-weight="bold">M (Market)</text>
+
+                        <!-- Hybrid line (middle) -->
+                        <path d="M 80 200 Q 300 160, 550 120" stroke="#f59e0b" stroke-width="3" fill="none"/>
+                        <text x="560" y="115" font-size="12" fill="#f59e0b" font-weight="bold">X (Hybrid)</text>
+
+                        <!-- Hierarchy line (lowest at high k) -->
+                        <path d="M 80 180 Q 350 150, 550 150" stroke="#ef4444" stroke-width="3" fill="none"/>
+                        <text x="560" y="155" font-size="12" fill="#ef4444" font-weight="bold">H (Hierarchy)</text>
+
+                        <!-- Crossover points -->
+                        <circle cx="200" cy="195" r="6" fill="#78350f"/>
+                        <text x="200" y="185" text-anchor="middle" font-size="10" fill="#78350f">k̄₁</text>
+
+                        <circle cx="380" cy="140" r="6" fill="#78350f"/>
+                        <text x="380" y="130" text-anchor="middle" font-size="10" fill="#78350f">k̄₂</text>
+
+                        <!-- Regions -->
+                        <text x="140" y="240" font-size="11" fill="#22c55e" font-weight="bold">Market</text>
+                        <text x="290" y="200" font-size="11" fill="#f59e0b" font-weight="bold">Hybrid</text>
+                        <text x="480" y="180" font-size="11" fill="#ef4444" font-weight="bold">Hierarchy</text>
+                    </svg>
+                </div>
+
+                <div class="key-point">
+                    <h4>💡 Reading the Graph</h4>
+                    <p><strong>At low asset specificity (k ≈ 0):</strong> Market governance is cheapest. High-powered incentives and price competition work well.</p>
+                    <p style="margin-top: 10px;"><strong>At moderate asset specificity (k̄₁ < k < k̄₂):</strong> Hybrid arrangements become efficient. Long-term contracts provide some protection while preserving incentives.</p>
+                    <p style="margin-top: 10px;"><strong>At high asset specificity (k > k̄₂):</strong> Hierarchy dominates. The hold-up risk is too severe for market or hybrid solutions.</p>
+                </div>
+
+                <h3>Contract Law Regimes</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Regime</th>
+                            <th>Governance Mode</th>
+                            <th>Characteristics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Classical Contract</strong></td>
+                            <td>Market</td>
+                            <td>Sharp, legalistic terms. Court enforcement. Easy exit. "A deal is a deal."</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Neoclassical Contract</strong></td>
+                            <td>Hybrid</td>
+                            <td>Flexibility built in. Third-party arbitration. Gap-filling and adjustment provisions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forbearance</strong></td>
+                            <td>Hierarchy</td>
+                            <td>Hierarchy is its own court. Internal dispute resolution. No external legal recourse for internal divisions.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Why Not Always Use Hierarchy?</h3>
+                <p>
+                    If hierarchy protects against opportunism, why not organize everything within firms?
+                    Because hierarchy has costs too:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">
+                        <h4>📉 Dulled Incentives</h4>
+                        <p>Internal suppliers don't face the same competitive pressure as external markets. This can lead to slack and inefficiency.</p>
+                    </div>
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">
+                        <h4>🏛️ Bureaucracy Costs</h4>
+                        <p>Administrative overhead, coordination costs, and decision-making delays increase with organizational size.</p>
+                    </div>
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">
+                        <h4>🔒 Internal Politicking</h4>
+                        <p>Resources get allocated by politics rather than performance. Influence activities consume productive effort.</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h5>📖 Example: Franchising as Hybrid Governance</h5>
+                    <p>McDonald's doesn't own most of its restaurants—it franchises them. Why not full integration (hierarchy) or pure market (licensing)?</p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Not pure market:</strong> McDonald's has significant brand-specific assets at risk. Licensees could free-ride on quality.</li>
+                        <li><strong>Not pure hierarchy:</strong> Local operators have better information about local markets. High-powered incentives from ownership improve effort.</li>
+                        <li><strong>Hybrid solution:</strong> Franchise contracts provide brand protection (franchisor controls quality) while preserving local incentives (franchisee owns residual profits).</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <section class="section-card">
+                <h2>🛠️ Interactive Tools</h2>
+                <p>
+                    Explore Transaction Cost Economics through these interactive tools. Analyze transactions,
+                    determine optimal governance structures, and understand make-or-buy decisions.
+                </p>
+            </section>
+
+            <!-- Tool 1: Governance Mode Selector -->
+            <div class="tool-card">
+                <h3>⚖️ Governance Mode Selector</h3>
+                <p>Input transaction characteristics to determine the optimal governance structure.</p>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Asset Specificity</span>
+                        <span class="slider-value" id="specificity-value">50%</span>
+                    </div>
+                    <input type="range" id="specificity-slider" min="0" max="100" value="50" oninput="updateSlider('specificity')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How redeployable are the assets? (0 = generic, 100 = highly specific)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Uncertainty</span>
+                        <span class="slider-value" id="uncertainty-value">50%</span>
+                    </div>
+                    <input type="range" id="uncertainty-slider" min="0" max="100" value="50" oninput="updateSlider('uncertainty')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How unpredictable is the environment? (0 = stable, 100 = highly volatile)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Transaction Frequency</span>
+                        <span class="slider-value" id="frequency-value">50%</span>
+                    </div>
+                    <input type="range" id="frequency-slider" min="0" max="100" value="50" oninput="updateSlider('frequency')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How often does this transaction recur? (0 = one-time, 100 = continuous)</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Opportunism Risk</span>
+                        <span class="slider-value" id="opportunism-value">50%</span>
+                    </div>
+                    <input type="range" id="opportunism-slider" min="0" max="100" value="50" oninput="updateSlider('opportunism')">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">How likely is the counterparty to behave opportunistically? (0 = trustworthy, 100 = high risk)</p>
+                </div>
+
+                <button class="calculate-btn" onclick="selectGovernance()">Determine Optimal Governance</button>
+
+                <div class="result-box" id="governance-result">
+                    <div class="result-score" id="governance-recommendation">Market</div>
+                    <p style="text-align: center; margin-bottom: 15px; font-weight: 600;" id="governance-subtitle">Recommended Governance Structure</p>
+                    <div class="result-interpretation" id="governance-interpretation"></div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Make-or-Buy Decision Tool -->
+            <div class="tool-card">
+                <h3>🏭 Make-or-Buy Decision Framework</h3>
+                <p>Structured analysis for vertical integration decisions.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 25px 0;">
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Component Type</label>
+                        <select id="component-type">
+                            <option value="commodity">Commodity (standard, widely available)</option>
+                            <option value="specialized">Specialized (custom design needed)</option>
+                            <option value="proprietary">Proprietary (core to competitive advantage)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Supplier Market</label>
+                        <select id="supplier-market">
+                            <option value="competitive">Many qualified suppliers</option>
+                            <option value="oligopoly">Few qualified suppliers</option>
+                            <option value="monopoly">Single supplier available</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Technology Change Rate</label>
+                        <select id="tech-change">
+                            <option value="slow">Slow (stable technology)</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="rapid">Rapid (fast-changing)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Your Core Competencies</label>
+                        <select id="competencies">
+                            <option value="unrelated">Unrelated to this activity</option>
+                            <option value="adjacent">Adjacent/related capabilities</option>
+                            <option value="core">This IS a core competency</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="makeOrBuyAnalysis()">Analyze Make vs. Buy</button>
+
+                <div class="result-box" id="makeorbuy-result">
+                    <div id="makeorbuy-content"></div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Asset Specificity Analyzer -->
+            <div class="tool-card">
+                <h3>🔧 Asset Specificity Analyzer</h3>
+                <p>Assess the types and levels of asset specificity in your transaction.</p>
+
+                <div style="margin: 25px 0;">
+                    <p style="font-weight: 600; color: #b45309; margin-bottom: 15px;">Rate each type of asset specificity (0 = none, 5 = very high):</p>
+
+                    <div style="display: grid; gap: 20px;">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>📍 Site Specificity</span>
+                                <span class="slider-value" id="site-value">0</span>
+                            </div>
+                            <input type="range" id="site-slider" min="0" max="5" value="0" oninput="updateAssetSlider('site')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Location-bound investments (co-located facilities)</p>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>⚙️ Physical Asset Specificity</span>
+                                <span class="slider-value" id="physical-value">0</span>
+                            </div>
+                            <input type="range" id="physical-slider" min="0" max="5" value="0" oninput="updateAssetSlider('physical')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Specialized equipment or tooling</p>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>👤 Human Asset Specificity</span>
+                                <span class="slider-value" id="human-value">0</span>
+                            </div>
+                            <input type="range" id="human-slider" min="0" max="5" value="0" oninput="updateAssetSlider('human')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Specialized skills and knowledge</p>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>🏭 Dedicated Assets</span>
+                                <span class="slider-value" id="dedicated-value">0</span>
+                            </div>
+                            <input type="range" id="dedicated-slider" min="0" max="5" value="0" oninput="updateAssetSlider('dedicated')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Capacity investments for specific customer</p>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>⏱️ Temporal Specificity</span>
+                                <span class="slider-value" id="temporal-value">0</span>
+                            </div>
+                            <input type="range" id="temporal-slider" min="0" max="5" value="0" oninput="updateAssetSlider('temporal')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Time-sensitive delivery requirements</p>
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>™️ Brand Capital</span>
+                                <span class="slider-value" id="brand-value">0</span>
+                            </div>
+                            <input type="range" id="brand-slider" min="0" max="5" value="0" oninput="updateAssetSlider('brand')">
+                            <p style="font-size: 0.8rem; color: #64748b;">Reputation at stake in this relationship</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="analyzeAssetSpecificity()">Analyze Asset Specificity</button>
+
+                <div class="result-box" id="asset-result">
+                    <div id="asset-content"></div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Hold-Up Risk Calculator -->
+            <div class="tool-card">
+                <h3>⚠️ Hold-Up Risk Assessment</h3>
+                <p>Evaluate the risk of opportunistic hold-up in your transaction.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 25px 0;">
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Who Makes Specific Investment?</label>
+                        <select id="investment-party">
+                            <option value="you">Primarily Your Organization</option>
+                            <option value="them">Primarily the Other Party</option>
+                            <option value="both">Both Parties Equally</option>
+                            <option value="neither">Neither (Generic Assets)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Contract Duration</label>
+                        <select id="contract-duration">
+                            <option value="spot">Spot transaction</option>
+                            <option value="short">Short-term (< 1 year)</option>
+                            <option value="medium">Medium-term (1-5 years)</option>
+                            <option value="long">Long-term (> 5 years)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Relationship History</label>
+                        <select id="relationship-history">
+                            <option value="none">No prior relationship</option>
+                            <option value="some">Some prior dealings</option>
+                            <option value="extensive">Extensive history & trust</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; color: #b45309; display: block; margin-bottom: 8px;">Verification Difficulty</label>
+                        <select id="verification">
+                            <option value="easy">Easy to verify quality/effort</option>
+                            <option value="moderate">Moderately difficult</option>
+                            <option value="hard">Very difficult to verify</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="assessHoldUpRisk()">Assess Hold-Up Risk</button>
+
+                <div class="result-box" id="holdup-result">
+                    <div id="holdup-content"></div>
+                </div>
+            </div>
+
+            <!-- Tool 5: Transaction Cost Comparison -->
+            <div class="tool-card">
+                <h3>📊 Governance Cost Comparison</h3>
+                <p>Compare estimated governance costs across the three modes for your transaction.</p>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Transaction Complexity</span>
+                        <span class="slider-value" id="complexity-value">50%</span>
+                    </div>
+                    <input type="range" id="complexity-slider" min="0" max="100" value="50" oninput="updateSlider('complexity')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Need for Adaptation</span>
+                        <span class="slider-value" id="adaptation-value">50%</span>
+                    </div>
+                    <input type="range" id="adaptation-slider" min="0" max="100" value="50" oninput="updateSlider('adaptation')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Measurement Difficulty</span>
+                        <span class="slider-value" id="measurement-value">50%</span>
+                    </div>
+                    <input type="range" id="measurement-slider" min="0" max="100" value="50" oninput="updateSlider('measurement')">
+                </div>
+
+                <button class="calculate-btn" onclick="compareCosts()">Compare Governance Costs</button>
+
+                <div class="result-box" id="comparison-result">
+                    <div id="comparison-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Papers Navigation -->
+    <section class="other-papers">
+        <h3>Explore More Classic Papers</h3>
+        <div class="papers-grid">
+            <a href="granovetter-1973-weak-ties.html" class="paper-link">
+                <div class="year">1973</div>
+                <div class="title">Granovetter: Strength of Weak Ties</div>
+            </a>
+            <a href="meyer-rowan-1977-institutionalized-organizations.html" class="paper-link">
+                <div class="year">1977</div>
+                <div class="title">Meyer & Rowan: Myth and Ceremony</div>
+            </a>
+            <a href="pfeffer-salancik-1978-resource-dependence.html" class="paper-link">
+                <div class="year">1978</div>
+                <div class="title">Pfeffer & Salancik: Resource Dependence</div>
+            </a>
+            <a href="dimaggio-powell-1983-iron-cage.html" class="paper-link">
+                <div class="year">1983</div>
+                <div class="title">DiMaggio & Powell: Iron Cage</div>
+            </a>
+            <a href="coleman-1988-social-capital.html" class="paper-link">
+                <div class="year">1988</div>
+                <div class="title">Coleman: Social Capital</div>
+            </a>
+            <a href="burt-1992-structural-holes.html" class="paper-link">
+                <div class="year">1992</div>
+                <div class="title">Burt: Structural Holes</div>
+            </a>
+            <a href="blau-1964-exchange-power.html" class="paper-link">
+                <div class="year">1964</div>
+                <div class="title">Blau: Exchange and Power</div>
+            </a>
+            <a href="judge-piccolo-2004-leadership-meta-analysis.html" class="paper-link">
+                <div class="year">2004</div>
+                <div class="title">Judge & Piccolo: Leadership</div>
+            </a>
+            <a href="avolio-2010-leadership-development-roi.html" class="paper-link">
+                <div class="year">2010</div>
+                <div class="title">Avolio: Leadership ROI</div>
+            </a>
+            <a href="maurer-2017-error-management-culture.html" class="paper-link">
+                <div class="year">2017</div>
+                <div class="title">Maurer: Error Management</div>
+            </a>
+            <a href="index.html" class="paper-link" style="border-color: #fcd34d;">
+                <div class="year">📚</div>
+                <div class="title">All Papers →</div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // Slider Updates
+        function updateSlider(name) {
+            const slider = document.getElementById(`${name}-slider`);
+            const value = document.getElementById(`${name}-value`);
+            value.textContent = slider.value + '%';
+        }
+
+        function updateAssetSlider(name) {
+            const slider = document.getElementById(`${name}-slider`);
+            const value = document.getElementById(`${name}-value`);
+            value.textContent = slider.value;
+        }
+
+        // Tool 1: Governance Mode Selector
+        function selectGovernance() {
+            const specificity = parseInt(document.getElementById('specificity-slider').value);
+            const uncertainty = parseInt(document.getElementById('uncertainty-slider').value);
+            const frequency = parseInt(document.getElementById('frequency-slider').value);
+            const opportunism = parseInt(document.getElementById('opportunism-slider').value);
+
+            // Weighted score for hierarchy tendency
+            const hierarchyScore = (specificity * 0.4) + (uncertainty * 0.25) + (frequency * 0.15) + (opportunism * 0.2);
+
+            const resultBox = document.getElementById('governance-result');
+            const recEl = document.getElementById('governance-recommendation');
+            const subtitleEl = document.getElementById('governance-subtitle');
+            const interpEl = document.getElementById('governance-interpretation');
+
+            let recommendation, color, interpretation;
+
+            if (hierarchyScore < 30) {
+                recommendation = '🏪 MARKET';
+                color = '#22c55e';
+                interpretation = `
+                    <h4 style="color: #22c55e; margin-bottom: 15px;">Market Governance Recommended</h4>
+                    <p>Your transaction characteristics favor <strong>market governance</strong>:</p>
+                    <ul style="margin: 15px 0 15px 20px;">
+                        <li>Low asset specificity means easy switching between suppliers</li>
+                        <li>Competitive pressures provide strong incentives</li>
+                        <li>Price signals efficiently coordinate activity</li>
+                        <li>Classical contracting is sufficient</li>
+                    </ul>
+                    <p><strong>Recommendation:</strong> Use spot markets or short-term contracts. Maintain multiple supplier relationships. Let competition drive efficiency.</p>
+                `;
+            } else if (hierarchyScore < 60) {
+                recommendation = '🤝 HYBRID';
+                color = '#f59e0b';
+                interpretation = `
+                    <h4 style="color: #f59e0b; margin-bottom: 15px;">Hybrid Governance Recommended</h4>
+                    <p>Your transaction characteristics favor <strong>hybrid governance</strong>:</p>
+                    <ul style="margin: 15px 0 15px 20px;">
+                        <li>Moderate asset specificity creates some lock-in</li>
+                        <li>Long-term contracts provide stability</li>
+                        <li>Preserves market incentives while adding safeguards</li>
+                        <li>Bilateral adaptation mechanisms needed</li>
+                    </ul>
+                    <p><strong>Options to consider:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px;">
+                        <li>Long-term contracts with adjustment clauses</li>
+                        <li>Strategic alliances or partnerships</li>
+                        <li>Franchising arrangements</li>
+                        <li>Joint ventures</li>
+                    </ul>
+                `;
+            } else {
+                recommendation = '🏢 HIERARCHY';
+                color = '#ef4444';
+                interpretation = `
+                    <h4 style="color: #ef4444; margin-bottom: 15px;">Hierarchy (Vertical Integration) Recommended</h4>
+                    <p>Your transaction characteristics favor <strong>hierarchical governance</strong>:</p>
+                    <ul style="margin: 15px 0 15px 20px;">
+                        <li>High asset specificity creates significant hold-up risk</li>
+                        <li>Unified ownership eliminates opportunism concerns</li>
+                        <li>Administrative coordination enables flexible adaptation</li>
+                        <li>Forbearance law regime avoids costly litigation</li>
+                    </ul>
+                    <p><strong>Recommendation:</strong> Consider vertical integration (make rather than buy). If acquisition isn't feasible, explore very tight hybrid arrangements with equity stakes, hostages, or other credible commitments.</p>
+                    <p style="margin-top: 10px; color: #dc2626;"><strong>Warning:</strong> Hierarchy has costs too—dulled incentives, bureaucracy, internal politics. Ensure the benefits outweigh these costs.</p>
+                `;
+            }
+
+            recEl.textContent = recommendation;
+            recEl.style.color = color;
+            subtitleEl.textContent = `Score: ${hierarchyScore.toFixed(0)} (0=Market, 100=Hierarchy)`;
+            interpEl.innerHTML = interpretation;
+            resultBox.classList.add('show');
+        }
+
+        // Tool 2: Make-or-Buy Analysis
+        function makeOrBuyAnalysis() {
+            const componentType = document.getElementById('component-type').value;
+            const supplierMarket = document.getElementById('supplier-market').value;
+            const techChange = document.getElementById('tech-change').value;
+            const competencies = document.getElementById('competencies').value;
+
+            let makeScore = 0;
+            let buyScore = 0;
+            let factors = [];
+
+            // Component type
+            if (componentType === 'commodity') {
+                buyScore += 3;
+                factors.push({ factor: 'Commodity component', favors: 'Buy', reason: 'Standard items efficiently procured from competitive markets' });
+            } else if (componentType === 'specialized') {
+                makeScore += 1;
+                buyScore += 1;
+                factors.push({ factor: 'Specialized component', favors: 'Mixed', reason: 'Could go either way—depends on other factors' });
+            } else {
+                makeScore += 3;
+                factors.push({ factor: 'Proprietary component', favors: 'Make', reason: 'Core competitive assets should be controlled internally' });
+            }
+
+            // Supplier market
+            if (supplierMarket === 'competitive') {
+                buyScore += 2;
+                factors.push({ factor: 'Competitive supplier market', favors: 'Buy', reason: 'Many alternatives reduce hold-up risk' });
+            } else if (supplierMarket === 'oligopoly') {
+                makeScore += 1;
+                factors.push({ factor: 'Oligopolistic supply', favors: 'Make (weak)', reason: 'Limited alternatives increase dependence' });
+            } else {
+                makeScore += 3;
+                factors.push({ factor: 'Monopoly supplier', favors: 'Make', reason: 'Single source creates severe hold-up risk' });
+            }
+
+            // Technology change
+            if (techChange === 'slow') {
+                makeScore += 1;
+                factors.push({ factor: 'Slow technology change', favors: 'Make (weak)', reason: 'Stable tech allows internal investment recovery' });
+            } else if (techChange === 'moderate') {
+                factors.push({ factor: 'Moderate tech change', favors: 'Neutral', reason: 'No strong implication either way' });
+            } else {
+                buyScore += 2;
+                factors.push({ factor: 'Rapid technology change', favors: 'Buy', reason: 'External sourcing maintains flexibility, avoids obsolescence' });
+            }
+
+            // Competencies
+            if (competencies === 'unrelated') {
+                buyScore += 3;
+                factors.push({ factor: 'Unrelated to core competencies', favors: 'Buy', reason: 'Focus resources on what you do best' });
+            } else if (competencies === 'adjacent') {
+                factors.push({ factor: 'Adjacent capabilities', favors: 'Neutral', reason: 'Could build or buy depending on strategy' });
+            } else {
+                makeScore += 3;
+                factors.push({ factor: 'Core competency', favors: 'Make', reason: 'Strategic capability should remain internal' });
+            }
+
+            const resultBox = document.getElementById('makeorbuy-result');
+            const contentEl = document.getElementById('makeorbuy-content');
+
+            let recommendation, color;
+            if (makeScore > buyScore + 2) {
+                recommendation = 'MAKE (Vertical Integration)';
+                color = '#ef4444';
+            } else if (buyScore > makeScore + 2) {
+                recommendation = 'BUY (Market Procurement)';
+                color = '#22c55e';
+            } else {
+                recommendation = 'HYBRID (Partnership/Alliance)';
+                color = '#f59e0b';
+            }
+
+            let factorsHTML = factors.map(f => `
+                <tr>
+                    <td>${f.factor}</td>
+                    <td style="color: ${f.favors.includes('Make') ? '#ef4444' : f.favors.includes('Buy') ? '#22c55e' : '#f59e0b'}; font-weight: 600;">${f.favors}</td>
+                    <td>${f.reason}</td>
+                </tr>
+            `).join('');
+
+            contentEl.innerHTML = `
+                <h4 style="color: ${color}; text-align: center; font-size: 1.5rem; margin-bottom: 20px;">${recommendation}</h4>
+                <p style="text-align: center; margin-bottom: 20px;">Make Score: ${makeScore} | Buy Score: ${buyScore}</p>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #fef3c7;">
+                            <th style="padding: 10px; text-align: left;">Factor</th>
+                            <th style="padding: 10px; text-align: left;">Favors</th>
+                            <th style="padding: 10px; text-align: left;">Reasoning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${factorsHTML}
+                    </tbody>
+                </table>
+            `;
+            resultBox.classList.add('show');
+        }
+
+        // Tool 3: Asset Specificity Analyzer
+        function analyzeAssetSpecificity() {
+            const site = parseInt(document.getElementById('site-slider').value);
+            const physical = parseInt(document.getElementById('physical-slider').value);
+            const human = parseInt(document.getElementById('human-slider').value);
+            const dedicated = parseInt(document.getElementById('dedicated-slider').value);
+            const temporal = parseInt(document.getElementById('temporal-slider').value);
+            const brand = parseInt(document.getElementById('brand-slider').value);
+
+            const total = site + physical + human + dedicated + temporal + brand;
+            const max = 30;
+            const percentage = (total / max) * 100;
+
+            const resultBox = document.getElementById('asset-result');
+            const contentEl = document.getElementById('asset-content');
+
+            let level, color, implications;
+            if (percentage < 25) {
+                level = 'LOW';
+                color = '#22c55e';
+                implications = 'Market governance is likely efficient. Easy to switch suppliers/partners.';
+            } else if (percentage < 50) {
+                level = 'MODERATE';
+                color = '#f59e0b';
+                implications = 'Hybrid governance may be appropriate. Some safeguards needed.';
+            } else if (percentage < 75) {
+                level = 'HIGH';
+                color = '#f97316';
+                implications = 'Significant lock-in risk. Consider tight hybrids or vertical integration.';
+            } else {
+                level = 'VERY HIGH';
+                color = '#ef4444';
+                implications = 'Severe hold-up risk. Vertical integration strongly recommended.';
+            }
+
+            // Find dominant types
+            const types = [
+                { name: 'Site', value: site, icon: '📍' },
+                { name: 'Physical', value: physical, icon: '⚙️' },
+                { name: 'Human', value: human, icon: '👤' },
+                { name: 'Dedicated', value: dedicated, icon: '🏭' },
+                { name: 'Temporal', value: temporal, icon: '⏱️' },
+                { name: 'Brand', value: brand, icon: '™️' }
+            ].sort((a, b) => b.value - a.value);
+
+            const dominant = types.filter(t => t.value >= 3);
+            const dominantHTML = dominant.length > 0
+                ? dominant.map(t => `<span style="background: ${color}; color: white; padding: 5px 12px; border-radius: 15px; margin: 3px; display: inline-block;">${t.icon} ${t.name}: ${t.value}/5</span>`).join('')
+                : '<span style="color: #64748b;">No dominant types (all below 3)</span>';
+
+            contentEl.innerHTML = `
+                <h4 style="color: ${color}; text-align: center; font-size: 1.8rem; margin-bottom: 10px;">${level} ASSET SPECIFICITY</h4>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 20px;">Overall Score: ${total}/${max} (${percentage.toFixed(0)}%)</p>
+
+                <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">Dominant Types:</p>
+                    <div>${dominantHTML}</div>
+                </div>
+
+                <div style="background: white; border-left: 4px solid ${color}; padding: 15px; border-radius: 8px;">
+                    <p style="font-weight: 600; color: ${color};">Governance Implications:</p>
+                    <p style="margin-top: 10px;">${implications}</p>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">All Types Breakdown:</p>
+                    ${types.map(t => `
+                        <div style="display: flex; align-items: center; margin: 8px 0;">
+                            <span style="width: 100px;">${t.icon} ${t.name}</span>
+                            <div style="flex: 1; background: #e5e7eb; height: 20px; border-radius: 10px; overflow: hidden;">
+                                <div style="width: ${(t.value/5)*100}%; height: 100%; background: ${color};"></div>
+                            </div>
+                            <span style="width: 40px; text-align: right;">${t.value}/5</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            resultBox.classList.add('show');
+        }
+
+        // Tool 4: Hold-Up Risk Assessment
+        function assessHoldUpRisk() {
+            const investmentParty = document.getElementById('investment-party').value;
+            const duration = document.getElementById('contract-duration').value;
+            const history = document.getElementById('relationship-history').value;
+            const verification = document.getElementById('verification').value;
+
+            let riskScore = 0;
+            let factors = [];
+
+            // Investment party
+            if (investmentParty === 'you') {
+                riskScore += 4;
+                factors.push({ text: 'You make the specific investment', impact: 'High risk', color: '#ef4444' });
+            } else if (investmentParty === 'them') {
+                riskScore += 1;
+                factors.push({ text: 'They make the specific investment', impact: 'Low risk (you have leverage)', color: '#22c55e' });
+            } else if (investmentParty === 'both') {
+                riskScore += 2;
+                factors.push({ text: 'Mutual specific investments', impact: 'Moderate (mutual hostages)', color: '#f59e0b' });
+            } else {
+                riskScore += 0;
+                factors.push({ text: 'No specific investments', impact: 'Minimal risk', color: '#22c55e' });
+            }
+
+            // Duration
+            if (duration === 'spot') {
+                riskScore += 0;
+                factors.push({ text: 'Spot transaction', impact: 'No lock-in', color: '#22c55e' });
+            } else if (duration === 'short') {
+                riskScore += 1;
+                factors.push({ text: 'Short-term contract', impact: 'Limited exposure', color: '#22c55e' });
+            } else if (duration === 'medium') {
+                riskScore += 2;
+                factors.push({ text: 'Medium-term contract', impact: 'Moderate exposure', color: '#f59e0b' });
+            } else {
+                riskScore += 3;
+                factors.push({ text: 'Long-term contract', impact: 'Extended exposure', color: '#f97316' });
+            }
+
+            // Relationship history
+            if (history === 'none') {
+                riskScore += 3;
+                factors.push({ text: 'No prior relationship', impact: 'No trust basis', color: '#ef4444' });
+            } else if (history === 'some') {
+                riskScore += 1;
+                factors.push({ text: 'Some prior dealings', impact: 'Some trust', color: '#f59e0b' });
+            } else {
+                riskScore -= 1;
+                factors.push({ text: 'Extensive history', impact: 'Strong trust (reduces risk)', color: '#22c55e' });
+            }
+
+            // Verification
+            if (verification === 'easy') {
+                riskScore += 0;
+                factors.push({ text: 'Easy verification', impact: 'Can monitor easily', color: '#22c55e' });
+            } else if (verification === 'moderate') {
+                riskScore += 2;
+                factors.push({ text: 'Moderate verification difficulty', impact: 'Some information asymmetry', color: '#f59e0b' });
+            } else {
+                riskScore += 3;
+                factors.push({ text: 'Hard to verify', impact: 'Severe information asymmetry', color: '#ef4444' });
+            }
+
+            riskScore = Math.max(0, Math.min(13, riskScore));
+            const percentage = (riskScore / 13) * 100;
+
+            const resultBox = document.getElementById('holdup-result');
+            const contentEl = document.getElementById('holdup-content');
+
+            let level, color, recommendation;
+            if (percentage < 25) {
+                level = 'LOW';
+                color = '#22c55e';
+                recommendation = 'Standard market contracting should suffice. Monitor normally.';
+            } else if (percentage < 50) {
+                level = 'MODERATE';
+                color = '#f59e0b';
+                recommendation = 'Include contractual safeguards. Build relationship gradually. Consider hostage exchanges.';
+            } else if (percentage < 75) {
+                level = 'HIGH';
+                color = '#f97316';
+                recommendation = 'Strong safeguards essential. Consider equity stakes, detailed contracts with penalties, or third-party escrow.';
+            } else {
+                level = 'SEVERE';
+                color = '#ef4444';
+                recommendation = 'Avoid this transaction structure or pursue vertical integration. Market contracting is too risky.';
+            }
+
+            contentEl.innerHTML = `
+                <h4 style="color: ${color}; text-align: center; font-size: 1.8rem; margin-bottom: 10px;">${level} HOLD-UP RISK</h4>
+                <p style="text-align: center; margin-bottom: 20px;">Risk Score: ${riskScore}/13 (${percentage.toFixed(0)}%)</p>
+
+                <div style="margin-bottom: 20px;">
+                    ${factors.map(f => `
+                        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #e5e7eb;">
+                            <span>${f.text}</span>
+                            <span style="color: ${f.color}; font-weight: 600;">${f.impact}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div style="background: ${color}15; border-left: 4px solid ${color}; padding: 15px; border-radius: 8px;">
+                    <p style="font-weight: 600; color: ${color};">Recommendation:</p>
+                    <p style="margin-top: 10px;">${recommendation}</p>
+                </div>
+            `;
+            resultBox.classList.add('show');
+        }
+
+        // Tool 5: Cost Comparison
+        function compareCosts() {
+            const complexity = parseInt(document.getElementById('complexity-slider').value);
+            const adaptation = parseInt(document.getElementById('adaptation-slider').value);
+            const measurement = parseInt(document.getElementById('measurement-slider').value);
+
+            // Market costs increase with complexity and measurement difficulty
+            const marketCost = 20 + (complexity * 0.5) + (measurement * 0.4) + (adaptation * 0.1);
+
+            // Hybrid costs are moderate across the board
+            const hybridCost = 40 + (complexity * 0.2) + (measurement * 0.2) + (adaptation * 0.2);
+
+            // Hierarchy costs are high baseline but don't increase as much
+            const hierarchyCost = 50 + (complexity * 0.1) + (measurement * 0.1) + (adaptation * 0.05);
+
+            const minCost = Math.min(marketCost, hybridCost, hierarchyCost);
+            const winner = marketCost === minCost ? 'Market' : hybridCost === minCost ? 'Hybrid' : 'Hierarchy';
+
+            const resultBox = document.getElementById('comparison-result');
+            const contentEl = document.getElementById('comparison-content');
+
+            contentEl.innerHTML = `
+                <h4 style="text-align: center; color: #b45309; margin-bottom: 20px;">Estimated Governance Costs</h4>
+
+                <div style="margin-bottom: 25px;">
+                    <div style="display: flex; align-items: center; margin: 15px 0;">
+                        <span style="width: 100px; font-weight: 600;">🏪 Market</span>
+                        <div style="flex: 1; background: #e5e7eb; height: 30px; border-radius: 8px; overflow: hidden; position: relative;">
+                            <div style="width: ${marketCost}%; height: 100%; background: #22c55e;"></div>
+                            <span style="position: absolute; right: 10px; top: 5px; font-weight: 600;">${marketCost.toFixed(0)}</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 15px 0;">
+                        <span style="width: 100px; font-weight: 600;">🤝 Hybrid</span>
+                        <div style="flex: 1; background: #e5e7eb; height: 30px; border-radius: 8px; overflow: hidden; position: relative;">
+                            <div style="width: ${hybridCost}%; height: 100%; background: #f59e0b;"></div>
+                            <span style="position: absolute; right: 10px; top: 5px; font-weight: 600;">${hybridCost.toFixed(0)}</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 15px 0;">
+                        <span style="width: 100px; font-weight: 600;">🏢 Hierarchy</span>
+                        <div style="flex: 1; background: #e5e7eb; height: 30px; border-radius: 8px; overflow: hidden; position: relative;">
+                            <div style="width: ${hierarchyCost}%; height: 100%; background: #ef4444;"></div>
+                            <span style="position: absolute; right: 10px; top: 5px; font-weight: 600;">${hierarchyCost.toFixed(0)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 20px; border-radius: 8px; text-align: center;">
+                    <p style="font-weight: 600; color: #b45309;">Lowest Cost Option:</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: #78350f;">${winner} Governance</p>
+                </div>
+
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">
+                    <strong>Note:</strong> This is a simplified illustration. Real governance cost analysis requires
+                    detailed assessment of production costs, transaction costs, and organizational capabilities.
+                </p>
+            `;
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+</html>

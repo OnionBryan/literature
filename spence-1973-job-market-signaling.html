@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Market Signaling - Spence (1973)</title>
+    <style>
+        :root {
+            /* Dark mode (default) */
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-card: #1c2128;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #388bfd;
+            --accent-gradient-start: #1f6feb;
+            --accent-gradient-end: #58a6ff;
+            --border-color: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --info: #58a6ff;
+            --highlight-bg: rgba(56, 139, 253, 0.15);
+            --shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #eaeef2;
+            --bg-card: #ffffff;
+            --text-primary: #1f2328;
+            --text-secondary: #57606a;
+            --text-muted: #6e7781;
+            --accent-primary: #0969da;
+            --accent-secondary: #0550ae;
+            --accent-gradient-start: #0969da;
+            --accent-gradient-end: #54aeff;
+            --border-color: #d0d7de;
+            --success: #1a7f37;
+            --warning: #9a6700;
+            --danger: #cf222e;
+            --info: #0969da;
+            --highlight-bg: rgba(9, 105, 218, 0.1);
+            --shadow: 0 8px 24px rgba(140,149,159,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .theme-toggle-icon {
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .paper-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .authors {
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .journal {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .nobel-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a1a;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .abstract {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .abstract h2 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .abstract p {
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--bg-secondary);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background: var(--bg-secondary);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-section h3 {
+            color: var(--accent-primary);
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight-box h4 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        /* Example Cards */
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .example-card .example-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .example-card .example-icon {
+            font-size: 1.5rem;
+        }
+
+        .example-card .example-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .example-card .example-context {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .example-card .example-content {
+            color: var(--text-secondary);
+        }
+
+        .example-card .signal-cost {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .example-card .signal-cost.high {
+            background: rgba(248, 81, 73, 0.2);
+            color: var(--danger);
+        }
+
+        .example-card .signal-cost.medium {
+            background: rgba(210, 153, 34, 0.2);
+            color: var(--warning);
+        }
+
+        .example-card .signal-cost.low {
+            background: rgba(63, 185, 80, 0.2);
+            color: var(--success);
+        }
+
+        /* Tool Sections */
+        .tool-section {
+            background: var(--bg-tertiary);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .slider-container label span {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-secondary);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+            border: 2px solid var(--bg-primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .result-display {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-display h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .scenario-btn {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+            margin: 4px;
+        }
+
+        .scenario-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+        }
+
+        .scenario-btn.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* Signal Visualization */
+        .signal-viz {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .signal-box {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .signal-box.credible {
+            border-color: var(--success);
+        }
+
+        .signal-box.not-credible {
+            border-color: var(--danger);
+        }
+
+        .signal-box h5 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .signal-meter {
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .signal-meter-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .signal-meter-fill.high {
+            background: linear-gradient(90deg, var(--success), #2ea043);
+        }
+
+        .signal-meter-fill.low {
+            background: linear-gradient(90deg, var(--danger), #da3633);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+
+        /* Key Insight Box */
+        .key-insight {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-insight h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .key-insight p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Footer */
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .signal-viz {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span class="theme-toggle-label" id="themeLabel">Dark</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="paper-icon">📜</div>
+            <h1>Job Market Signaling</h1>
+            <p class="authors">Michael Spence</p>
+            <p class="journal">The Quarterly Journal of Economics, 1973</p>
+            <div class="nobel-badge">🏆 Nobel Prize in Economics 2001</div>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Spence's groundbreaking paper establishes signaling theory—a framework for understanding how parties with private information can credibly communicate their quality to uninformed parties. In markets characterized by information asymmetry, where one party knows more than the other, signals become crucial mechanisms for conveying unobservable attributes. A signal is only credible if it is costly to acquire, and critically, if it is more costly for low-quality types to obtain than high-quality types. This "separating equilibrium" allows markets to function despite uncertainty, but creates systematic advantages for those who can more easily acquire signals.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('theory')">The Theory</button>
+            <button class="nav-tab" onclick="switchPage('examples')">Real-World Examples</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: The Information Problem</h2>
+
+            <p>Imagine you're an employer trying to hire a software engineer. You want a productive employee, but productivity is unobservable before hiring—you can't directly see how good someone will be at the job. Candidates know their own abilities, but you don't. This is <strong>information asymmetry</strong>: one party has information the other lacks.</p>
+
+            <h3>The Problem with Asymmetry</h3>
+            <p>Without some mechanism to distinguish high-quality from low-quality candidates, employers face a dilemma. If they offer a single wage based on average productivity, high-quality workers may refuse (they can get better offers elsewhere), while low-quality workers accept eagerly. Over time, the pool becomes dominated by lower-quality workers—a phenomenon called <strong>adverse selection</strong>.</p>
+
+            <div class="key-insight">
+                <h4>💡 Spence's Key Insight</h4>
+                <p>High-quality workers can distinguish themselves by acquiring costly "signals" that low-quality workers would find prohibitively expensive to obtain. Education is the paradigmatic example: not because it necessarily increases productivity, but because completing it is easier for high-ability individuals.</p>
+            </div>
+
+            <h3>What Makes a Signal Work?</h3>
+            <p>Not every action serves as a credible signal. For a signal to successfully separate high and low types:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>It must be observable:</strong> The receiver must be able to see the signal</li>
+                    <li><strong>It must be costly:</strong> Acquiring the signal requires real investment</li>
+                    <li><strong>Costs must differ by type:</strong> High-quality types must find it cheaper to acquire</li>
+                    <li><strong>The cost differential must be large enough:</strong> Low types won't mimic if the cost exceeds the benefit</li>
+                </ul>
+            </div>
+
+            <h3>The Education Example</h3>
+            <p>Spence used education as his central example, with a deliberately provocative assumption: education might not increase productivity at all. Yet it still "works" as a signal because:</p>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🎓</span>
+                    <span class="example-title">Education as a Signal</span>
+                </div>
+                <div class="example-context">Even if a degree doesn't teach job-relevant skills...</div>
+                <div class="example-content">
+                    <ul>
+                        <li><strong>High-ability individuals</strong> find coursework easier, can complete faster, with less stress</li>
+                        <li><strong>Low-ability individuals</strong> struggle more, take longer, may not finish at all</li>
+                        <li><strong>Result:</strong> Even if education is "just a hoop," it's a hoop that correlates with ability</li>
+                    </ul>
+                </div>
+                <span class="signal-cost high">High Cost Signal</span>
+            </div>
+
+            <h3>Why This Matters for Power</h3>
+            <p>Signaling theory reveals a mechanism for reproducing inequality. Those who can more easily acquire signals—due to family wealth, prior advantages, or innate characteristics—can command higher wages and better opportunities. The signal requirement can lock out qualified individuals who face higher barriers to signaling, even if their underlying quality is identical.</p>
+        </section>
+
+        <section id="theory" class="content-section">
+            <h2>Signaling Theory in Depth</h2>
+
+            <h3>Signals vs. Indices</h3>
+            <p>Spence distinguishes between two types of observable characteristics:</p>
+
+            <div class="signal-viz">
+                <div class="signal-box">
+                    <h5>📊 Indices</h5>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Fixed characteristics the individual cannot change</p>
+                    <ul style="text-align: left; font-size: 0.9rem; margin-top: 10px;">
+                        <li>Age</li>
+                        <li>Race</li>
+                        <li>Gender</li>
+                        <li>Family background</li>
+                    </ul>
+                </div>
+                <div class="signal-box">
+                    <h5>📝 Signals</h5>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Alterable characteristics chosen by the individual</p>
+                    <ul style="text-align: left; font-size: 0.9rem; margin-top: 10px;">
+                        <li>Education level</li>
+                        <li>Certifications</li>
+                        <li>Work experience</li>
+                        <li>Portfolio/track record</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>The interaction between indices and signals creates complexity. A signal's cost may vary with indices—for example, education may be more costly (financially or psychologically) for first-generation college students than for those from academic families.</p>
+
+            <h3>Separating vs. Pooling Equilibria</h3>
+            <p>Two types of market equilibria can emerge:</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Equilibrium Type</th>
+                    <th>Description</th>
+                    <th>When It Occurs</th>
+                </tr>
+                <tr>
+                    <td><strong>Separating</strong></td>
+                    <td>High and low types choose different signal levels; employers can distinguish them</td>
+                    <td>When signaling cost differential is large enough to prevent mimicking</td>
+                </tr>
+                <tr>
+                    <td><strong>Pooling</strong></td>
+                    <td>All types choose the same signal level; employers cannot distinguish</td>
+                    <td>When signaling is too cheap (everyone signals) or too expensive (no one signals)</td>
+                </tr>
+            </table>
+
+            <h3>The Social Cost of Signaling</h3>
+            <p>A profound implication: signaling can be socially wasteful. If education functions purely as a signal (not increasing actual productivity), then the resources spent on it—time, money, effort—represent a pure cost to society. The degrees sort workers, but don't make them more productive.</p>
+
+            <div class="highlight-box">
+                <h4>🔄 The Signaling Arms Race</h4>
+                <p>When everyone signals, the signal becomes devalued, leading to escalation:</p>
+                <ol>
+                    <li>High school diploma was once a strong signal → Now expected baseline</li>
+                    <li>Bachelor's degree became the new signal → Now increasingly common</li>
+                    <li>Master's degree emerges as differentiator → Becoming more common</li>
+                    <li>Elite credentials (top schools, prestige employers) become the new signal</li>
+                </ol>
+                <p style="margin-top: 10px; color: var(--warning);">Each escalation raises the cost of entry while potentially adding little social value.</p>
+            </div>
+
+            <h3>Conditions for Effective Signaling</h3>
+            <p>For a signal to create a separating equilibrium, the following must hold:</p>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">⚖️</span>
+                    <span class="example-title">The Single-Crossing Property</span>
+                </div>
+                <div class="example-content">
+                    <p>The marginal cost of signaling must be lower for high-quality types than for low-quality types at every signal level. Graphically, the indifference curves of different types "cross only once"—ensuring that a signal level exists where:</p>
+                    <ul>
+                        <li>High types prefer to signal (benefit exceeds cost)</li>
+                        <li>Low types prefer not to signal (cost exceeds benefit)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="content-section">
+            <h2>Real-World Signaling Examples</h2>
+
+            <p>Signaling theory applies far beyond the job market. Here are detailed examples across different domains:</p>
+
+            <h3>🎓 Education and Credentials</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🏛️</span>
+                    <span class="example-title">Elite University Admission</span>
+                </div>
+                <div class="example-context">Signal: Acceptance to Harvard, Stanford, MIT, etc.</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> Getting in requires high test scores, grades, extracurriculars, and often legacy/wealth advantages. The selection process itself is the signal—these schools accept students they believe will succeed, making admission a credibility marker.</p>
+                    <p><strong>Cost differential:</strong> Students from well-resourced backgrounds have tutoring, college counselors, extracurricular opportunities that make admission easier.</p>
+                    <p><strong>Power implication:</strong> Elite credentials provide lifetime advantages in hiring, networking, and credibility—often regardless of actual learning.</p>
+                </div>
+                <span class="signal-cost high">Very High Cost Signal</span>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">📋</span>
+                    <span class="example-title">Professional Certifications</span>
+                </div>
+                <div class="example-context">Signal: CPA, CFA, PMP, AWS Certified, Bar Exam passage</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> Passing requires demonstrated knowledge and commitment. The certification body's reputation backs the credential.</p>
+                    <p><strong>Cost differential:</strong> Those with relevant experience or education find exams easier. Study time is more costly for those with demanding jobs or family obligations.</p>
+                    <p><strong>Power implication:</strong> Creates gatekeeping—qualified practitioners without credentials may be locked out of opportunities.</p>
+                </div>
+                <span class="signal-cost medium">Medium Cost Signal</span>
+            </div>
+
+            <h3>💼 Entrepreneurship and Investment</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">💰</span>
+                    <span class="example-title">Founder's Personal Investment</span>
+                </div>
+                <div class="example-context">Signal: Entrepreneur puts personal savings into the venture</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> "Skin in the game" signals the founder believes in the venture. If they weren't confident, they wouldn't risk their own money.</p>
+                    <p><strong>Cost differential:</strong> A founder who knows the business will fail would not invest; one who believes it will succeed gladly invests.</p>
+                    <p><strong>Power implication:</strong> Disadvantages founders from low-wealth backgrounds who can't afford personal investment, even if their ideas are equally good.</p>
+                </div>
+                <span class="signal-cost high">High Cost Signal</span>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🤝</span>
+                    <span class="example-title">Prestigious VC Backing</span>
+                </div>
+                <div class="example-context">Signal: Investment from Sequoia, a16z, or other top-tier VCs</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> Top VCs have strong deal flow and can be selective. Their investment signals they've done due diligence and believe in the company.</p>
+                    <p><strong>Cost differential:</strong> Getting top VC attention requires warm introductions (often through elite networks), prior success, or exceptional traction.</p>
+                    <p><strong>Power implication:</strong> Creates a "rich get richer" dynamic—VC backing attracts talent, customers, and more investors.</p>
+                </div>
+                <span class="signal-cost high">Very High Cost Signal</span>
+            </div>
+
+            <h3>🏠 Consumer Markets</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🔧</span>
+                    <span class="example-title">Product Warranties</span>
+                </div>
+                <div class="example-context">Signal: Manufacturer offers extended warranty</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> A company confident in product quality can afford to offer warranties; one selling defective products would face costly claims.</p>
+                    <p><strong>Cost differential:</strong> High-quality manufacturers face low warranty costs; low-quality manufacturers would face prohibitive claim rates.</p>
+                    <p><strong>Power implication:</strong> Established brands can afford warranty infrastructure; new entrants may struggle to offer comparable guarantees.</p>
+                </div>
+                <span class="signal-cost medium">Medium Cost Signal</span>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">💎</span>
+                    <span class="example-title">Luxury Brand Pricing</span>
+                </div>
+                <div class="example-context">Signal: High price itself signals quality and exclusivity</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> Conspicuous consumption signals wealth and status. The high price ensures only those who can afford it participate in the signal.</p>
+                    <p><strong>Cost differential:</strong> For the wealthy, the price is affordable; for others, it represents a significant sacrifice.</p>
+                    <p><strong>Power implication:</strong> Creates visible markers of social class that reinforce status hierarchies.</p>
+                </div>
+                <span class="signal-cost high">High Cost Signal</span>
+            </div>
+
+            <h3>💑 Social and Dating Markets</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">💐</span>
+                    <span class="example-title">Costly Courtship Rituals</span>
+                </div>
+                <div class="example-context">Signal: Time, attention, and resources invested in dating</div>
+                <div class="example-content">
+                    <p><strong>Why it works:</strong> Someone genuinely interested invests time and effort; someone not serious wouldn't bother with costly courtship.</p>
+                    <p><strong>Cost differential:</strong> For someone genuinely interested, the "cost" of attention feels like a pleasure; for someone not interested, it's a burden.</p>
+                    <p><strong>Power implication:</strong> Those with more resources can signal more intensively; those with time constraints are disadvantaged.</p>
+                </div>
+                <span class="signal-cost medium">Medium Cost Signal</span>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>📊 Signal Credibility Calculator</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Evaluate whether a potential signal will effectively separate high and low types.</p>
+
+                <div class="slider-container">
+                    <label>Signal Acquisition Cost <span id="costValue">$50,000</span></label>
+                    <input type="range" id="costSlider" min="0" max="200000" step="5000" value="50000" oninput="updateSignal()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Wage Premium for Signal <span id="premiumValue">$20,000/year</span></label>
+                    <input type="range" id="premiumSlider" min="0" max="50000" step="1000" value="20000" oninput="updateSignal()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Cost Differential (High vs Low Type) <span id="diffValue">40%</span></label>
+                    <input type="range" id="diffSlider" min="0" max="80" value="40" oninput="updateSignal()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Career Length (years to recoup) <span id="careerValue">30 years</span></label>
+                    <input type="range" id="careerSlider" min="5" max="40" value="30" oninput="updateSignal()">
+                </div>
+
+                <div class="result-display">
+                    <h4>Signal Analysis</h4>
+                    <div class="signal-viz" id="signalViz"></div>
+                    <div id="signalAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🎯 Signal Strategy Advisor</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Get recommendations for signaling in your specific situation.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: var(--text-secondary); display: block; margin-bottom: 10px;">Select Your Context:</label>
+                    <button class="scenario-btn active" onclick="selectContext('job-seeker')">Job Seeker</button>
+                    <button class="scenario-btn" onclick="selectContext('entrepreneur')">Entrepreneur</button>
+                    <button class="scenario-btn" onclick="selectContext('freelancer')">Freelancer</button>
+                    <button class="scenario-btn" onclick="selectContext('career-changer')">Career Changer</button>
+                </div>
+
+                <div class="result-display" id="strategyResult">
+                    <h4 id="strategyTitle">Signal Strategy: Job Seeker</h4>
+                    <div id="strategyAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>⚖️ Signal vs. Substance Analyzer</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Evaluate whether a credential represents real skill or pure signaling.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectCredential('mba')">MBA Degree</button>
+                    <button class="scenario-btn" onclick="selectCredential('bootcamp')">Coding Bootcamp</button>
+                    <button class="scenario-btn" onclick="selectCredential('certification')">Industry Certification</button>
+                    <button class="scenario-btn" onclick="selectCredential('portfolio')">Portfolio/GitHub</button>
+                    <button class="scenario-btn" onclick="selectCredential('referral')">Employee Referral</button>
+                </div>
+
+                <div class="result-display" id="credentialResult">
+                    <h4 id="credentialTitle">Analysis: MBA Degree</h4>
+                    <div id="credentialAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🔮 Signaling Arms Race Simulator</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">See how signal requirements escalate over time as more people acquire them.</p>
+
+                <div class="slider-container">
+                    <label>Starting Signal Adoption Rate <span id="adoptionValue">10%</span></label>
+                    <input type="range" id="adoptionSlider" min="5" max="50" value="10" oninput="updateArmsRace()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Annual Increase in Signaling <span id="increaseValue">5%</span></label>
+                    <input type="range" id="increaseSlider" min="1" max="15" value="5" oninput="updateArmsRace()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Years to Simulate <span id="yearsValue">20</span></label>
+                    <input type="range" id="yearsSlider" min="5" max="30" value="20" oninput="updateArmsRace()">
+                </div>
+
+                <div class="result-display" id="armsRaceResult">
+                    <h4>Signal Inflation Over Time</h4>
+                    <div id="armsRaceAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeIcon').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+
+            // Initialize tools
+            updateSignal();
+            selectContext('job-seeker');
+            selectCredential('mba');
+            updateArmsRace();
+        });
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateSignal() {
+            const cost = parseInt(document.getElementById('costSlider').value);
+            const premium = parseInt(document.getElementById('premiumSlider').value);
+            const diff = parseInt(document.getElementById('diffSlider').value);
+            const career = parseInt(document.getElementById('careerSlider').value);
+
+            document.getElementById('costValue').textContent = '$' + cost.toLocaleString();
+            document.getElementById('premiumValue').textContent = '$' + premium.toLocaleString() + '/year';
+            document.getElementById('diffValue').textContent = diff + '%';
+            document.getElementById('careerValue').textContent = career + ' years';
+
+            const lifetimePremium = premium * career;
+            const highTypeCost = cost * (1 - diff/100);
+            const lowTypeCost = cost;
+
+            const highTypeROI = ((lifetimePremium - highTypeCost) / highTypeCost * 100);
+            const lowTypeROI = ((lifetimePremium - lowTypeCost) / lowTypeCost * 100);
+
+            const highWillSignal = highTypeROI > 50;
+            const lowWillSignal = lowTypeROI > 50;
+
+            let equilibrium, analysis;
+            if (highWillSignal && !lowWillSignal) {
+                equilibrium = "Separating";
+                analysis = `<p style="color: var(--success);"><strong>✓ Effective Signal!</strong></p>
+                    <p>This signal successfully separates types:</p>
+                    <ul>
+                        <li>High types pay $${highTypeCost.toLocaleString()} and earn ${highTypeROI.toFixed(0)}% ROI — <strong>they will signal</strong></li>
+                        <li>Low types pay $${lowTypeCost.toLocaleString()} and earn ${lowTypeROI.toFixed(0)}% ROI — <strong>they won't mimic</strong></li>
+                    </ul>
+                    <p>Employers can trust this signal to distinguish quality.</p>`;
+            } else if (highWillSignal && lowWillSignal) {
+                equilibrium = "Pooling (Everyone Signals)";
+                analysis = `<p style="color: var(--warning);"><strong>⚠ Signal Inflation!</strong></p>
+                    <p>Both types find signaling worthwhile:</p>
+                    <ul>
+                        <li>High types: ${highTypeROI.toFixed(0)}% ROI — will signal</li>
+                        <li>Low types: ${lowTypeROI.toFixed(0)}% ROI — will also signal</li>
+                    </ul>
+                    <p>The signal becomes meaningless—employers must find new ways to distinguish quality. This leads to credential inflation.</p>`;
+            } else if (!highWillSignal && !lowWillSignal) {
+                equilibrium = "Pooling (No One Signals)";
+                analysis = `<p style="color: var(--danger);"><strong>✗ Signal Too Costly!</strong></p>
+                    <p>Neither type finds signaling worthwhile:</p>
+                    <ul>
+                        <li>High types: ${highTypeROI.toFixed(0)}% ROI — won't signal</li>
+                        <li>Low types: ${lowTypeROI.toFixed(0)}% ROI — won't signal</li>
+                    </ul>
+                    <p>The market remains opaque—employers cannot distinguish quality, leading to adverse selection.</p>`;
+            } else {
+                equilibrium = "Perverse (Only Low Types Signal)";
+                analysis = `<p style="color: var(--danger);"><strong>✗ Broken Signal!</strong></p>
+                    <p>Something is wrong with the cost structure—only low types would signal. This shouldn't happen with proper cost differentials.</p>`;
+            }
+
+            document.getElementById('signalViz').innerHTML = `
+                <div class="signal-box ${highWillSignal ? 'credible' : 'not-credible'}">
+                    <h5>High-Quality Type</h5>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Effective Cost: $${highTypeCost.toLocaleString()}</p>
+                    <div class="signal-meter">
+                        <div class="signal-meter-fill ${highWillSignal ? 'high' : 'low'}" style="width: ${Math.min(100, Math.max(0, highTypeROI/3))}%"></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: ${highWillSignal ? 'var(--success)' : 'var(--danger)'};">
+                        ${highWillSignal ? 'Will Signal ✓' : 'Won\'t Signal ✗'}
+                    </p>
+                </div>
+                <div class="signal-box ${!lowWillSignal ? 'credible' : 'not-credible'}">
+                    <h5>Low-Quality Type</h5>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Effective Cost: $${lowTypeCost.toLocaleString()}</p>
+                    <div class="signal-meter">
+                        <div class="signal-meter-fill ${lowWillSignal ? 'high' : 'low'}" style="width: ${Math.min(100, Math.max(0, lowTypeROI/3))}%"></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: ${!lowWillSignal ? 'var(--success)' : 'var(--warning)'};">
+                        ${lowWillSignal ? 'Will Mimic ⚠' : 'Won\'t Mimic ✓'}
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('signalAnalysis').innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: var(--bg-tertiary); border-radius: 8px;">
+                    <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 10px;">Equilibrium: ${equilibrium}</p>
+                    ${analysis}
+                </div>
+            `;
+        }
+
+        function selectContext(context) {
+            document.querySelectorAll('.tool-section:nth-child(2) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const contexts = {
+                'job-seeker': {
+                    title: 'Signal Strategy: Job Seeker',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Key Signals to Consider:</strong></p>
+                            <ul>
+                                <li><strong>Education credentials</strong> — Degree from recognized institution signals baseline competence and persistence</li>
+                                <li><strong>Relevant certifications</strong> — Industry-specific credentials (AWS, Google, PMP) signal current knowledge</li>
+                                <li><strong>Portfolio/GitHub</strong> — Demonstrates actual work quality (substance + signal)</li>
+                                <li><strong>Referrals</strong> — Someone inside vouches for you, reducing employer uncertainty</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Strategic Advice:</strong></p>
+                            <ul>
+                                <li>Invest in signals with highest ROI for your target role</li>
+                                <li>Combine signals—education + portfolio + referral is stronger than any alone</li>
+                                <li>Consider which signals your target employers actually value</li>
+                                <li>Build relationships for referrals—often the highest-value signal with lowest direct cost</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: var(--warning);"><strong>Watch Out:</strong> Don't over-invest in signals that are becoming inflated. An MBA meant more in 1990 than today.</p>
+                        </div>
+                    `
+                },
+                'entrepreneur': {
+                    title: 'Signal Strategy: Entrepreneur',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Key Signals to Investors:</strong></p>
+                            <ul>
+                                <li><strong>Traction metrics</strong> — Revenue, users, growth rate demonstrate market validation</li>
+                                <li><strong>Team credentials</strong> — Prior exits, big company experience, domain expertise</li>
+                                <li><strong>Warm introductions</strong> — Referrals from other founders or VCs signal social proof</li>
+                                <li><strong>Personal investment</strong> — "Skin in the game" signals belief in the venture</li>
+                                <li><strong>Angel/seed investors</strong> — Previous sophisticated investors signal due diligence</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Strategic Advice:</strong></p>
+                            <ul>
+                                <li>Build traction before raising—best signal of product-market fit</li>
+                                <li>Get introductions through your network rather than cold outreach</li>
+                                <li>Frame team experience to highlight relevant signals</li>
+                                <li>Consider strategic angels whose names signal credibility</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: var(--warning);"><strong>Watch Out:</strong> Signal requirements can disadvantage great founders from non-traditional backgrounds. Find investors who look beyond typical signals.</p>
+                        </div>
+                    `
+                },
+                'freelancer': {
+                    title: 'Signal Strategy: Freelancer',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Key Signals to Clients:</strong></p>
+                            <ul>
+                                <li><strong>Portfolio of past work</strong> — Direct evidence of quality (substance + signal)</li>
+                                <li><strong>Client testimonials</strong> — Social proof from satisfied customers</li>
+                                <li><strong>Platform ratings</strong> — Upwork, Fiverr scores aggregate client feedback</li>
+                                <li><strong>Pricing</strong> — Higher rates can signal higher quality (use carefully)</li>
+                                <li><strong>Response time and professionalism</strong> — Signals reliability</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Strategic Advice:</strong></p>
+                            <ul>
+                                <li>Build portfolio with your best work prominently featured</li>
+                                <li>Proactively request testimonials from satisfied clients</li>
+                                <li>Consider initial lower rates to build ratings, then increase</li>
+                                <li>Specialize to become the obvious choice in a niche</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: var(--warning);"><strong>Watch Out:</strong> Platform ratings can be gamed; sophisticated clients look at portfolio quality and direct references.</p>
+                        </div>
+                    `
+                },
+                'career-changer': {
+                    title: 'Signal Strategy: Career Changer',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>The Challenge:</strong> Your existing signals (experience, credentials) are from a different domain and may not transfer.</p>
+                            <p><strong>Key Signals to Build:</strong></p>
+                            <ul>
+                                <li><strong>New credentials</strong> — Certifications, bootcamps, courses in target field</li>
+                                <li><strong>Side projects</strong> — Demonstrate skills without needing permission</li>
+                                <li><strong>Volunteer/pro-bono work</strong> — Build experience in new domain</li>
+                                <li><strong>Transferable skill framing</strong> — Translate old experience into new context</li>
+                                <li><strong>Network in new field</strong> — Referrals from insiders are powerful</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Strategic Advice:</strong></p>
+                            <ul>
+                                <li>Start building signals before you need them—evenings and weekends</li>
+                                <li>Find the "bridge" between old and new careers—hybrid roles</li>
+                                <li>Network aggressively in target field—informational interviews</li>
+                                <li>Consider a stepping stone role that combines old and new skills</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: var(--warning);"><strong>Watch Out:</strong> Don't devalue your existing experience—maturity and transferable skills are genuine assets.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('strategyTitle').textContent = contexts[context].title;
+            document.getElementById('strategyAnalysis').innerHTML = contexts[context].analysis;
+        }
+
+        function selectCredential(credential) {
+            document.querySelectorAll('.tool-section:nth-child(3) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const credentials = {
+                'mba': {
+                    title: 'Analysis: MBA Degree',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📚</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Substance</div>
+                                    <div style="font-size: 1.5rem; color: var(--warning);">40%</div>
+                                </div>
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📜</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Signal</div>
+                                    <div style="font-size: 1.5rem; color: var(--accent-primary);">60%</div>
+                                </div>
+                            </div>
+                            <p><strong>Substance Component:</strong> Frameworks, case studies, some quantitative skills. Network building. Career services.</p>
+                            <p><strong>Signal Component:</strong> School prestige, selectivity signal, alumni network access, "safe" hire for employers.</p>
+                            <p><strong>Verdict:</strong> Heavy signal weighting, especially from top programs. The actual learning is often secondary to the credential and network. ROI varies dramatically by school ranking—top 10 MBAs have very different value than unranked programs.</p>
+                        </div>
+                    `
+                },
+                'bootcamp': {
+                    title: 'Analysis: Coding Bootcamp',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📚</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Substance</div>
+                                    <div style="font-size: 1.5rem; color: var(--success);">65%</div>
+                                </div>
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📜</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Signal</div>
+                                    <div style="font-size: 1.5rem; color: var(--accent-primary);">35%</div>
+                                </div>
+                            </div>
+                            <p><strong>Substance Component:</strong> Practical coding skills, project experience, portfolio building. Intensive practice.</p>
+                            <p><strong>Signal Component:</strong> Completion shows commitment and ability to learn quickly. Bootcamp reputation matters.</p>
+                            <p><strong>Verdict:</strong> Higher substance ratio than many credentials. However, signal is weakening as bootcamps proliferate. Best bootcamps are selective, making admission itself a signal. The portfolio produced is often more valuable than the credential.</p>
+                        </div>
+                    `
+                },
+                'certification': {
+                    title: 'Analysis: Industry Certification',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📚</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Substance</div>
+                                    <div style="font-size: 1.5rem; color: var(--success);">55%</div>
+                                </div>
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📜</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Signal</div>
+                                    <div style="font-size: 1.5rem; color: var(--accent-primary);">45%</div>
+                                </div>
+                            </div>
+                            <p><strong>Substance Component:</strong> Demonstrates specific knowledge tested by exam. Must actually know the material.</p>
+                            <p><strong>Signal Component:</strong> Shows commitment to professional development, meets hiring checkboxes, reduces perceived risk.</p>
+                            <p><strong>Verdict:</strong> Varies widely by certification. Technical certs (AWS, Cisco) tend to have more substance; management certs (PMP) more signal. Best when required for the job or when you genuinely need to learn the material.</p>
+                        </div>
+                    `
+                },
+                'portfolio': {
+                    title: 'Analysis: Portfolio/GitHub',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📚</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Substance</div>
+                                    <div style="font-size: 1.5rem; color: var(--success);">85%</div>
+                                </div>
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📜</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Signal</div>
+                                    <div style="font-size: 1.5rem; color: var(--accent-primary);">15%</div>
+                                </div>
+                            </div>
+                            <p><strong>Substance Component:</strong> Direct demonstration of actual work quality. Shows what you can actually do.</p>
+                            <p><strong>Signal Component:</strong> Shows initiative, passion for craft, ability to complete projects.</p>
+                            <p><strong>Verdict:</strong> Highest substance ratio of common credentials. Hard to fake—the work speaks for itself. Increasingly valued by sophisticated employers who distrust credential inflation. Build this regardless of other credentials.</p>
+                        </div>
+                    `
+                },
+                'referral': {
+                    title: 'Analysis: Employee Referral',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📚</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Substance</div>
+                                    <div style="font-size: 1.5rem; color: var(--warning);">30%</div>
+                                </div>
+                                <div style="padding: 15px; background: var(--bg-tertiary); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 5px;">📜</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">Signal</div>
+                                    <div style="font-size: 1.5rem; color: var(--accent-primary);">70%</div>
+                                </div>
+                            </div>
+                            <p><strong>Substance Component:</strong> If the referrer knows your work, there's real information content. Reduces information asymmetry.</p>
+                            <p><strong>Signal Component:</strong> Referrer stakes their reputation. Shows social capital and network strength.</p>
+                            <p><strong>Verdict:</strong> Extremely high-value signal because the referrer faces reputational cost if you fail. This is why referred candidates get hired at much higher rates. Build relationships even when you're not job hunting.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('credentialTitle').textContent = credentials[credential].title;
+            document.getElementById('credentialAnalysis').innerHTML = credentials[credential].analysis;
+        }
+
+        function updateArmsRace() {
+            const adoption = parseInt(document.getElementById('adoptionSlider').value);
+            const increase = parseInt(document.getElementById('increaseSlider').value);
+            const years = parseInt(document.getElementById('yearsSlider').value);
+
+            document.getElementById('adoptionValue').textContent = adoption + '%';
+            document.getElementById('increaseValue').textContent = increase + '%';
+            document.getElementById('yearsValue').textContent = years;
+
+            let timeline = [];
+            let currentAdoption = adoption;
+            let signalLevel = 1;
+
+            for (let y = 0; y <= years; y += 5) {
+                if (currentAdoption >= 50 && signalLevel < 4) {
+                    signalLevel++;
+                    currentAdoption = adoption;
+                }
+
+                const signalNames = ['High School', 'Bachelor\'s', 'Master\'s', 'Elite/PhD'];
+                timeline.push({
+                    year: y,
+                    adoption: Math.min(95, currentAdoption),
+                    signal: signalNames[signalLevel - 1]
+                });
+
+                currentAdoption += increase * 5;
+            }
+
+            let html = `
+                <div style="margin-top: 15px;">
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Year</th>
+                            <th>Baseline Signal</th>
+                            <th>Adoption Rate</th>
+                            <th>Status</th>
+                        </tr>
+            `;
+
+            timeline.forEach(t => {
+                const status = t.adoption >= 80 ? '⚠️ Saturated' : t.adoption >= 50 ? '🔄 Inflating' : '✓ Effective';
+                html += `
+                    <tr>
+                        <td>Year ${t.year}</td>
+                        <td>${t.signal}</td>
+                        <td>${t.adoption}%</td>
+                        <td>${status}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </table>
+                    <p style="margin-top: 15px; color: var(--text-secondary);">
+                        <strong>Pattern:</strong> As each signal becomes widespread, it loses differentiating power.
+                        The market shifts to the next level of signal. Those who cannot afford to keep up fall behind,
+                        while the cost of entry to the job market continuously increases.
+                    </p>
+                    <p style="margin-top: 10px; color: var(--warning);">
+                        <strong>Implication:</strong> In ${years} years, the baseline credential has escalated
+                        ${signalLevel - 1} level(s). Workers must invest more just to stay competitive,
+                        while actual productivity gains may be minimal.
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('armsRaceAnalysis').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

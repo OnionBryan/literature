@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Conditions of Knowledge Production - Bourdieu (1975)</title>
+    <style>
+        :root {
+            --bg-primary: #0f0a1a;
+            --bg-secondary: #1a1328;
+            --bg-tertiary: #241c35;
+            --bg-card: #1e1630;
+            --text-primary: #e8e4f0;
+            --text-secondary: #a89ec0;
+            --text-muted: #7a6d96;
+            --accent-primary: #9d7cd8;
+            --accent-secondary: #7c5fc4;
+            --accent-gradient-start: #7c3aed;
+            --accent-gradient-end: #a78bfa;
+            --border-color: #3d3055;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --info: #9d7cd8;
+            --highlight-bg: rgba(157, 124, 216, 0.15);
+            --shadow: 0 8px 24px rgba(0,0,0,0.5);
+            --gold: #fbbf24;
+            --silver: #94a3b8;
+            --bronze: #cd7f32;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #faf8ff;
+            --bg-secondary: #f0ebfa;
+            --bg-tertiary: #e8e0f5;
+            --bg-card: #ffffff;
+            --text-primary: #1e1030;
+            --text-secondary: #4a3b6a;
+            --text-muted: #6b5a8a;
+            --accent-primary: #7c3aed;
+            --accent-secondary: #6d28d9;
+            --accent-gradient-start: #7c3aed;
+            --accent-gradient-end: #a78bfa;
+            --border-color: #d4c8e8;
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --danger: #dc2626;
+            --info: #7c3aed;
+            --highlight-bg: rgba(124, 58, 237, 0.1);
+            --shadow: 0 8px 24px rgba(100,80,140,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .theme-toggle-icon { font-size: 1.2rem; }
+        .theme-toggle-label { font-size: 0.85rem; color: var(--text-secondary); }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .paper-icon { font-size: 4rem; margin-bottom: 20px; }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .authors { font-size: 1.3rem; color: var(--accent-primary); margin-bottom: 10px; }
+        .journal { color: var(--text-secondary); font-style: italic; }
+
+        .french-quote {
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: var(--highlight-bg);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .abstract {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .abstract h2 { color: var(--text-primary); margin-bottom: 15px; font-size: 1.3rem; }
+        .abstract p { color: var(--text-secondary); text-align: justify; }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--bg-secondary);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .nav-tab.active { background: var(--accent-primary); color: white; }
+
+        .content-section {
+            display: none;
+            background: var(--bg-secondary);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section.active { display: block; }
+
+        .content-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-section h3 {
+            color: var(--accent-primary);
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p { margin-bottom: 15px; color: var(--text-secondary); }
+
+        .highlight-box {
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight-box h4 { color: var(--text-primary); margin-bottom: 10px; }
+
+        /* Capital Cards */
+        .capital-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .capital-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .capital-card .capital-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .capital-card h4 { color: var(--text-primary); margin-bottom: 8px; }
+        .capital-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+        .capital-card.economic { border-top: 3px solid var(--gold); }
+        .capital-card.cultural { border-top: 3px solid #60a5fa; }
+        .capital-card.social { border-top: 3px solid var(--success); }
+        .capital-card.symbolic { border-top: 3px solid var(--accent-primary); }
+
+        /* Tool Sections */
+        .tool-section {
+            background: var(--bg-tertiary);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-container { margin: 20px 0; }
+
+        .slider-container label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .slider-container label span { color: var(--accent-primary); font-weight: 600; }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-secondary);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .result-display {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-display h4 { color: var(--text-primary); margin-bottom: 15px; font-size: 1.1rem; }
+
+        .scenario-btn {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+            margin: 4px;
+        }
+
+        .scenario-btn:hover { border-color: var(--accent-primary); color: var(--text-primary); }
+        .scenario-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        /* Field Position Visualization */
+        .field-viz {
+            position: relative;
+            height: 300px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .field-axis {
+            position: absolute;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .field-axis.x-left { bottom: 10px; left: 10px; }
+        .field-axis.x-right { bottom: 10px; right: 10px; }
+        .field-axis.y-top { top: 10px; left: 50%; transform: translateX(-50%); }
+        .field-axis.y-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+
+        .field-position {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .field-position:hover { transform: scale(1.2); z-index: 10; }
+
+        /* Hierarchy Levels */
+        .hierarchy-level {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .hierarchy-level .level-icon { font-size: 2rem; margin-right: 15px; }
+        .hierarchy-level .level-content { flex: 1; }
+        .hierarchy-level h5 { color: var(--text-primary); margin-bottom: 5px; }
+        .hierarchy-level p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .hierarchy-level.elite { border-left: 4px solid var(--gold); }
+        .hierarchy-level.established { border-left: 4px solid var(--silver); }
+        .hierarchy-level.aspiring { border-left: 4px solid var(--bronze); }
+        .hierarchy-level.outsider { border-left: 4px solid var(--text-muted); }
+
+        ul, ol { margin-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; color: var(--text-secondary); }
+        li strong { color: var(--text-primary); }
+
+        /* Key Concept Box */
+        .key-concept {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-concept h4 { margin-bottom: 10px; font-size: 1.1rem; }
+        .key-concept p { color: rgba(255,255,255,0.9); }
+
+        /* Example Cards */
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .example-card .example-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .example-card .example-icon { font-size: 1.5rem; }
+        .example-card .example-title { font-weight: 600; color: var(--text-primary); }
+        .example-card .example-content { color: var(--text-secondary); }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .footer-nav a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .capital-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.7rem; }
+            .nav-tabs { flex-direction: column; }
+            .nav-tab { width: 100%; text-align: center; }
+            .theme-toggle { top: 10px; right: 10px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span class="theme-toggle-label" id="themeLabel">Dark</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="paper-icon">🏛️</div>
+            <h1>The Social Conditions of Knowledge Production</h1>
+            <p class="authors">Pierre Bourdieu</p>
+            <p class="journal">Actes de la Recherche en Sciences Sociales, 1975</p>
+            <div class="french-quote">
+                "Le champ scientifique est le lieu d'une lutte de concurrence qui a pour enjeu le monopole de l'autorité scientifique."
+                <br><span style="color: var(--text-muted); font-size: 0.9rem;">— The scientific field is the site of competitive struggle for the monopoly of scientific authority.</span>
+            </div>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Bourdieu revolutionized our understanding of academic life by revealing it as a competitive "field" where scholars struggle for "symbolic capital"—prestige, recognition, and the authority to define legitimate knowledge. Far from the idealized image of disinterested pursuit of truth, academia operates through power dynamics where established scholars act as gatekeepers, their paradigms dominate discourse, and newcomers must conform to succeed. This framework exposes how intellectual hierarchies are created, maintained, and reproduced through institutional mechanisms that appear meritocratic but systematically advantage those already in positions of power.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('field')">Field Theory</button>
+            <button class="nav-tab" onclick="switchPage('capital')">Forms of Capital</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: Academia as a Field of Struggle</h2>
+
+            <p>Pierre Bourdieu, one of the most influential sociologists of the 20th century, turned his analytical lens on academia itself. His insight: the scientific and academic worlds, often portrayed as meritocracies dedicated to truth-seeking, are in fact structured by power relations similar to those in any social field.</p>
+
+            <h3>The Core Argument</h3>
+            <p>Academic knowledge production isn't simply a matter of discovering truths—it's a competition. Scholars compete not just for resources, but for the authority to define what counts as legitimate knowledge, important questions, and valid methodologies. This competition produces winners and losers, hierarchies and exclusions.</p>
+
+            <div class="key-concept">
+                <h4>💡 Bourdieu's Central Insight</h4>
+                <p>The scientific field is not a neutral space of pure ideas, but a social arena where agents compete for "scientific capital"—the authority to speak and be heard, to define problems and solutions, to consecrate some work as important and dismiss other work as marginal.</p>
+            </div>
+
+            <h3>The Academic Hierarchy</h3>
+
+            <div class="hierarchy-level elite">
+                <div class="level-icon">👑</div>
+                <div class="level-content">
+                    <h5>Dominant Scholars</h5>
+                    <p>Hold chairs at elite institutions, edit major journals, sit on grant committees. Their paradigms define "normal science." They have the power to consecrate—to declare what work matters.</p>
+                </div>
+            </div>
+
+            <div class="hierarchy-level established">
+                <div class="level-icon">🎓</div>
+                <div class="level-content">
+                    <h5>Established Academics</h5>
+                    <p>Tenured at recognized institutions, published in respectable venues. They work within dominant paradigms, contributing incremental advances. Enough capital to have a voice, but not to reshape the field.</p>
+                </div>
+            </div>
+
+            <div class="hierarchy-level aspiring">
+                <div class="level-icon">📚</div>
+                <div class="level-content">
+                    <h5>Aspiring Scholars</h5>
+                    <p>Graduate students, postdocs, junior faculty. Must demonstrate mastery of established approaches before being heard. Career success depends on approval from those above.</p>
+                </div>
+            </div>
+
+            <div class="hierarchy-level outsider">
+                <div class="level-icon">🚪</div>
+                <div class="level-content">
+                    <h5>Outsiders & Heterodox</h5>
+                    <p>Those who challenge dominant paradigms, work in unfashionable areas, or lack institutional affiliation. May produce important work, but lack the capital to have it recognized.</p>
+                </div>
+            </div>
+
+            <h3>Why This Matters Beyond Academia</h3>
+            <p>Bourdieu's framework applies wherever knowledge claims intersect with power:</p>
+            <ul>
+                <li><strong>Corporate Strategy:</strong> Consulting firms compete to define "best practices"</li>
+                <li><strong>Technology:</strong> Tech giants compete to define standards and paradigms</li>
+                <li><strong>Media:</strong> Outlets compete to define what constitutes "news"</li>
+                <li><strong>Any profession:</strong> Established practitioners define what counts as expertise</li>
+            </ul>
+        </section>
+
+        <section id="field" class="content-section">
+            <h2>Field Theory: The Structure of Academic Competition</h2>
+
+            <h3>What is a Field?</h3>
+            <p>A "field" in Bourdieu's sense is a structured social space with its own logic, rules, and stakes. It's a semi-autonomous arena where agents compete for field-specific capital. The academic field has distinctive features:</p>
+
+            <div class="highlight-box">
+                <h4>Characteristics of the Academic Field</h4>
+                <ul>
+                    <li><strong>Relative Autonomy:</strong> Has its own rules not reducible to economic or political logic</li>
+                    <li><strong>Specific Stakes:</strong> Agents compete for recognition, not just money</li>
+                    <li><strong>Position-Taking:</strong> Intellectual positions reflect structural positions</li>
+                    <li><strong>Illusio:</strong> Participants believe the game is worth playing</li>
+                    <li><strong>Doxa:</strong> Unquestioned assumptions shared by all players</li>
+                </ul>
+            </div>
+
+            <h3>The Two Poles of Scientific Capital</h3>
+            <p>Bourdieu identifies two forms of power in academia that often conflict:</p>
+
+            <div class="capital-grid">
+                <div class="capital-card cultural">
+                    <div class="capital-icon">🔬</div>
+                    <h4>Scientific Capital (Proper)</h4>
+                    <p>Recognition from peers for intellectual contributions. Comes from publications, citations, breakthrough ideas. "Pure" prestige based on work quality.</p>
+                </div>
+                <div class="capital-card social">
+                    <div class="capital-icon">🏛️</div>
+                    <h4>Institutional Capital</h4>
+                    <p>Power over resources and positions. Comes from administrative roles, committee memberships, editorial positions. "Temporal" power over careers.</p>
+                </div>
+            </div>
+
+            <p>A senior administrator may have enormous institutional capital (controls hiring, grants) but limited scientific capital (hasn't published important work recently). A brilliant but unconnected researcher may have the reverse. The most powerful combine both.</p>
+
+            <h3>Orthodoxy vs. Heresy</h3>
+            <p>Fields are structured by the tension between:</p>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">⚖️</span>
+                    <span class="example-title">Conservation vs. Subversion</span>
+                </div>
+                <div class="example-content">
+                    <p><strong>Orthodox strategies (by dominants):</strong> Defend existing paradigms, set high barriers to entry, define what counts as "rigorous" or "serious" work, control journals and conferences.</p>
+                    <p style="margin-top: 10px;"><strong>Heterodox strategies (by challengers):</strong> Question foundations, import methods from other fields, claim established approaches are outdated, build alternative venues.</p>
+                    <p style="margin-top: 10px;"><strong>The irony:</strong> Successful heretics often become the new orthodoxy—and defend their position against the next generation of challengers.</p>
+                </div>
+            </div>
+
+            <h3>Gatekeeping Mechanisms</h3>
+            <p>Dominant scholars maintain their position through control of:</p>
+
+            <ul>
+                <li><strong>Journal Peer Review:</strong> Anonymous review allows paradigm enforcement without accountability</li>
+                <li><strong>Grant Committees:</strong> "Track record" requirements advantage established players</li>
+                <li><strong>Hiring Decisions:</strong> "Fit" often means conformity to department's approach</li>
+                <li><strong>Conference Invitations:</strong> Keynotes and panels signal who matters</li>
+                <li><strong>PhD Training:</strong> Students socialized into advisors' paradigms</li>
+                <li><strong>Citation Networks:</strong> Mutual citation among allies amplifies visibility</li>
+            </ul>
+        </section>
+
+        <section id="capital" class="content-section">
+            <h2>Forms of Capital and Their Conversion</h2>
+
+            <h3>Bourdieu's Four Forms of Capital</h3>
+            <p>Bourdieu expanded our understanding of what constitutes "resources" in social competition:</p>
+
+            <div class="capital-grid">
+                <div class="capital-card economic">
+                    <div class="capital-icon">💰</div>
+                    <h4>Economic Capital</h4>
+                    <p>Money and material resources. In academia: salaries, grants, research budgets, lab equipment.</p>
+                </div>
+                <div class="capital-card cultural">
+                    <div class="capital-icon">📖</div>
+                    <h4>Cultural Capital</h4>
+                    <p>Knowledge, skills, education, credentials. In academia: PhD, publications, methodological expertise, disciplinary knowledge.</p>
+                </div>
+                <div class="capital-card social">
+                    <div class="capital-icon">🤝</div>
+                    <h4>Social Capital</h4>
+                    <p>Networks and relationships. In academia: co-authorship networks, mentors, professional association ties, alumni connections.</p>
+                </div>
+                <div class="capital-card symbolic">
+                    <div class="capital-icon">✨</div>
+                    <h4>Symbolic Capital</h4>
+                    <p>Recognition and prestige. In academia: reputation, awards, citations, being seen as "important" or "brilliant."</p>
+                </div>
+            </div>
+
+            <h3>Capital Conversion</h3>
+            <p>Crucially, forms of capital can be converted into each other—but not equally by everyone:</p>
+
+            <div class="highlight-box">
+                <h4>Conversion Pathways</h4>
+                <ul>
+                    <li><strong>Economic → Cultural:</strong> Buy education, attend conferences, hire research assistants</li>
+                    <li><strong>Cultural → Economic:</strong> PhD credentials command higher salaries; publications win grants</li>
+                    <li><strong>Social → Symbolic:</strong> Well-connected scholars get invited to keynotes, gain visibility</li>
+                    <li><strong>Symbolic → Social:</strong> Famous scholars attract collaboration requests, expand networks</li>
+                    <li><strong>Symbolic → Economic:</strong> Prestige attracts grants, consulting fees, book deals</li>
+                </ul>
+            </div>
+
+            <div class="key-concept">
+                <h4>🔄 The Conversion Advantage</h4>
+                <p>Those born into families with high capital (academic parents, wealth, connections) start with conversion advantages. A professor's child learns academic habitus at home, attends elite schools, inherits networks. They convert capitals more efficiently, making "meritocracy" reproduce privilege.</p>
+            </div>
+
+            <h3>Symbolic Violence</h3>
+            <p>One of Bourdieu's most powerful concepts: the dominated often accept their domination as legitimate because they've internalized the criteria by which they're judged inferior.</p>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🎭</span>
+                    <span class="example-title">How Symbolic Violence Works in Academia</span>
+                </div>
+                <div class="example-content">
+                    <ul>
+                        <li>Students from non-academic backgrounds feel like "imposters"—accepting that they lack something</li>
+                        <li>Scholars outside elite institutions see their exclusion as reflecting lesser ability, not structural disadvantage</li>
+                        <li>Heterodox researchers internalize that their work is "less rigorous"</li>
+                        <li>The dominated participate in their own domination by accepting the game's rules</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Habitus: The Embodied Game Sense</h3>
+            <p>"Habitus" is the set of dispositions, tastes, and intuitions we acquire through socialization. In academia:</p>
+
+            <ul>
+                <li><strong>Elite habitus:</strong> Comfortable in seminars, knows the "right" questions to ask, when to cite whom, how to present ideas confidently</li>
+                <li><strong>First-generation habitus:</strong> May have knowledge but lacks intuitive sense of field's unwritten rules</li>
+                <li><strong>Disciplinary habitus:</strong> Economists think differently than sociologists—different "feel for the game"</li>
+            </ul>
+
+            <p>Those with the "right" habitus appear naturally talented; others must consciously learn what elites do unconsciously.</p>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>💱 Capital Portfolio Analyzer</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Map your academic capital and see how it positions you in the field.</p>
+
+                <div class="slider-container">
+                    <label>Economic Capital (grants, resources) <span id="econValue">Medium</span></label>
+                    <input type="range" id="econSlider" min="1" max="5" value="3" oninput="updateCapital()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Cultural Capital (credentials, expertise) <span id="cultValue">Medium</span></label>
+                    <input type="range" id="cultSlider" min="1" max="5" value="3" oninput="updateCapital()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Social Capital (networks, connections) <span id="socValue">Medium</span></label>
+                    <input type="range" id="socSlider" min="1" max="5" value="3" oninput="updateCapital()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Symbolic Capital (recognition, prestige) <span id="symbValue">Medium</span></label>
+                    <input type="range" id="symbSlider" min="1" max="5" value="3" oninput="updateCapital()">
+                </div>
+
+                <div class="result-display" id="capitalResult">
+                    <h4>Your Field Position</h4>
+                    <div id="capitalAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🎯 Gatekeeping Dynamics Simulator</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">See how gatekeeping mechanisms affect different scholars.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: var(--text-secondary); display: block; margin-bottom: 10px;">Select Scholar Profile:</label>
+                    <button class="scenario-btn active" onclick="selectScholar('elite')">Elite Background</button>
+                    <button class="scenario-btn" onclick="selectScholar('standard')">Standard Track</button>
+                    <button class="scenario-btn" onclick="selectScholar('first-gen')">First-Generation</button>
+                    <button class="scenario-btn" onclick="selectScholar('heterodox')">Heterodox Researcher</button>
+                </div>
+
+                <div class="result-display" id="gateResult">
+                    <h4 id="gateTitle">Elite Background Scholar</h4>
+                    <div id="gateAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🏆 Career Strategy Advisor</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Get strategic advice based on your position and goals.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: var(--text-secondary); display: block; margin-bottom: 10px;">Select Your Goal:</label>
+                    <button class="scenario-btn active" onclick="selectGoal('tenure')">Get Tenure</button>
+                    <button class="scenario-btn" onclick="selectGoal('recognition')">Gain Recognition</button>
+                    <button class="scenario-btn" onclick="selectGoal('change')">Change the Field</button>
+                    <button class="scenario-btn" onclick="selectGoal('survive')">Survive & Thrive</button>
+                </div>
+
+                <div class="result-display" id="strategyResult">
+                    <h4 id="strategyTitle">Strategy: Get Tenure</h4>
+                    <div id="strategyAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🌐 Real-World Examples</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">See Bourdieu's concepts in action across different fields.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectExample('economics')">Economics</button>
+                    <button class="scenario-btn" onclick="selectExample('tech')">Tech Industry</button>
+                    <button class="scenario-btn" onclick="selectExample('medicine')">Medicine</button>
+                    <button class="scenario-btn" onclick="selectExample('art')">Art World</button>
+                </div>
+
+                <div class="result-display" id="exampleResult">
+                    <h4 id="exampleTitle">Field Dynamics: Economics</h4>
+                    <div id="exampleAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeIcon').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+            updateCapital();
+            selectScholar('elite');
+            selectGoal('tenure');
+            selectExample('economics');
+        });
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateCapital() {
+            const econ = parseInt(document.getElementById('econSlider').value);
+            const cult = parseInt(document.getElementById('cultSlider').value);
+            const soc = parseInt(document.getElementById('socSlider').value);
+            const symb = parseInt(document.getElementById('symbSlider').value);
+
+            const labels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            document.getElementById('econValue').textContent = labels[econ-1];
+            document.getElementById('cultValue').textContent = labels[cult-1];
+            document.getElementById('socValue').textContent = labels[soc-1];
+            document.getElementById('symbValue').textContent = labels[symb-1];
+
+            const total = econ + cult + soc + symb;
+            const avg = total / 4;
+
+            let position, analysis;
+            if (avg >= 4) {
+                position = "Dominant Position";
+                analysis = `<p style="color: var(--gold);"><strong>You occupy a dominant position in the field.</strong></p>
+                    <p>With high capital across dimensions, you have power to:</p>
+                    <ul>
+                        <li>Define what counts as important research</li>
+                        <li>Influence hiring and promotion decisions</li>
+                        <li>Shape the trajectory of your field</li>
+                    </ul>
+                    <p><strong>Risk:</strong> May become orthodox, defending position rather than innovating. May unconsciously close doors to those unlike you.</p>`;
+            } else if (avg >= 3) {
+                position = "Established Position";
+                analysis = `<p style="color: var(--silver);"><strong>You have a solid, established position.</strong></p>
+                    <p>You have enough capital to:</p>
+                    <ul>
+                        <li>Have your work taken seriously</li>
+                        <li>Mentor junior scholars</li>
+                        <li>Participate in field governance</li>
+                    </ul>
+                    <p><strong>Strategy:</strong> Continue building symbolic capital through quality work. Consider which form of capital is lowest and could be strengthened.</p>`;
+            } else if (avg >= 2) {
+                position = "Aspiring Position";
+                analysis = `<p style="color: var(--bronze);"><strong>You're building your position.</strong></p>
+                    <p>You have some capital but lack full recognition. Key challenges:</p>
+                    <ul>
+                        <li>Getting work noticed by dominant scholars</li>
+                        <li>Building networks that provide opportunities</li>
+                        <li>Accumulating credentials that open doors</li>
+                    </ul>
+                    <p><strong>Strategy:</strong> Focus on converting cultural capital (publications) into symbolic capital (recognition). Build social capital strategically.</p>`;
+            } else {
+                position = "Marginal Position";
+                analysis = `<p style="color: var(--text-muted);"><strong>You're outside the main power structure.</strong></p>
+                    <p>Low capital makes it difficult to:</p>
+                    <ul>
+                        <li>Get past gatekeepers (reviewers, hiring committees)</li>
+                        <li>Have ideas taken seriously regardless of quality</li>
+                        <li>Access resources needed for research</li>
+                    </ul>
+                    <p><strong>Strategy:</strong> Consider alternative paths—build capital outside traditional channels, find niche allies, or consider whether this field is the right one for you.</p>`;
+            }
+
+            document.getElementById('capitalAnalysis').innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-primary);">${position}</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">Total Capital Score: ${total}/20</div>
+                </div>
+                ${analysis}
+            `;
+        }
+
+        function selectScholar(type) {
+            document.querySelectorAll('.tool-section:nth-child(2) .scenario-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const scholars = {
+                'elite': {
+                    title: 'Elite Background Scholar',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Starting Advantages:</strong></p>
+                        <ul>
+                            <li>Parents' academic habitus transmitted early—knows "how to play"</li>
+                            <li>Elite undergrad → smooth path to top PhD programs</li>
+                            <li>Family networks provide introductions to established scholars</li>
+                            <li>Economic security allows focus on research without financial stress</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Gatekeeping Experience:</strong></p>
+                        <ul>
+                            <li>Letters of recommendation from well-known scholars</li>
+                            <li>Research assistant positions available through connections</li>
+                            <li>Peer review more favorable—name recognition helps</li>
+                            <li>"Fit" evaluations always favorable—shares evaluators' habitus</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Blind Spot:</strong> May not recognize advantages as structural, attributing success entirely to merit.</p>
+                    </div>`
+                },
+                'standard': {
+                    title: 'Standard Track Scholar',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Profile:</strong> Middle-class background, good state university, worked way into decent PhD program.</p>
+                        <p><strong>Gatekeeping Experience:</strong></p>
+                        <ul>
+                            <li>Must build network from scratch—no inherited connections</li>
+                            <li>Publications essential—no reputation to coast on</li>
+                            <li>Job market competitive—not "known" in advance</li>
+                            <li>Must learn unwritten rules through observation and mistakes</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Strategy Needed:</strong></p>
+                        <ul>
+                            <li>Deliberately cultivate mentors and sponsors</li>
+                            <li>Target publications strategically for visibility</li>
+                            <li>Attend conferences and make yourself known</li>
+                            <li>Find a niche where you can become recognized</li>
+                        </ul>
+                    </div>`
+                },
+                'first-gen': {
+                    title: 'First-Generation Scholar',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Profile:</strong> First in family to attend college, may have faced economic hardships, unfamiliar with academic culture.</p>
+                        <p><strong>Gatekeeping Challenges:</strong></p>
+                        <ul>
+                            <li>Imposter syndrome—internalized sense of not belonging</li>
+                            <li>No family guidance on academic career navigation</li>
+                            <li>May work differently—practical orientation vs. theoretical</li>
+                            <li>Lack of economic buffer makes risk-taking harder</li>
+                            <li>"Cultural mismatch" in informal interactions</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Countervailing Strengths:</strong></p>
+                        <ul>
+                            <li>Fresh perspective—may see what others miss</li>
+                            <li>Resilience developed through overcoming obstacles</li>
+                            <li>Motivation to prove doubters wrong</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--success);"><strong>Key:</strong> Find mentors who understand your background. Build community with others who share your experience.</p>
+                    </div>`
+                },
+                'heterodox': {
+                    title: 'Heterodox Researcher',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Profile:</strong> Challenges dominant paradigms, uses unconventional methods, asks different questions.</p>
+                        <p><strong>Gatekeeping Challenges:</strong></p>
+                        <ul>
+                            <li>Peer review biased toward orthodoxy—"not rigorous" = "not like us"</li>
+                            <li>Grant committees favor established approaches</li>
+                            <li>Hiring committees seek "fit" with existing department</li>
+                            <li>Citation networks exclude heterodox work</li>
+                            <li>May be dismissed as "not serious" or "ideological"</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Survival Strategies:</strong></p>
+                        <ul>
+                            <li>Build alternative venues—new journals, conferences</li>
+                            <li>Find allies in adjacent fields who value your approach</li>
+                            <li>Establish credibility in orthodox terms first, then challenge</li>
+                            <li>Wait for paradigm crisis when heterodoxy becomes attractive</li>
+                        </ul>
+                    </div>`
+                }
+            };
+
+            document.getElementById('gateTitle').textContent = scholars[type].title;
+            document.getElementById('gateAnalysis').innerHTML = scholars[type].analysis;
+        }
+
+        function selectGoal(goal) {
+            document.querySelectorAll('.tool-section:nth-child(3) .scenario-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const goals = {
+                'tenure': {
+                    title: 'Strategy: Get Tenure',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Game:</strong> Tenure decisions are made by those already in power. You must demonstrate value in their terms.</p>
+                        <p><strong>Key Moves:</strong></p>
+                        <ul>
+                            <li><strong>Publications:</strong> Target journals your department respects. Quality and fit matter more than raw quantity.</li>
+                            <li><strong>External Validation:</strong> Grants, invitations, citations signal that outsiders value you—reduces risk for committee.</li>
+                            <li><strong>Teaching:</strong> Be competent, don't be a liability. Excellence rarely compensates for weak research.</li>
+                            <li><strong>Collegiality:</strong> Be a good citizen—but not at expense of research time.</li>
+                            <li><strong>Sponsors:</strong> Cultivate senior faculty who will advocate for you in closed-door discussions.</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Warning:</strong> The tenure game rewards conformity. Innovative work is risky—save radical moves for after tenure.</p>
+                    </div>`
+                },
+                'recognition': {
+                    title: 'Strategy: Gain Recognition',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Game:</strong> Recognition = symbolic capital. It comes from being seen by the right people, for the right work.</p>
+                        <p><strong>Key Moves:</strong></p>
+                        <ul>
+                            <li><strong>Visibility:</strong> Publish in high-profile venues; present at major conferences</li>
+                            <li><strong>Distinctiveness:</strong> Be known for something specific—a method, finding, or perspective</li>
+                            <li><strong>Networks:</strong> Collaborate with recognized scholars; their capital can transfer</li>
+                            <li><strong>Media/Public:</strong> For some fields, public engagement builds profile</li>
+                            <li><strong>Awards:</strong> Apply for prizes; nominations raise visibility even if you don't win</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--info);"><strong>Key Insight:</strong> Recognition often follows status more than quality. Focus on positioning, not just production.</p>
+                    </div>`
+                },
+                'change': {
+                    title: 'Strategy: Change the Field',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Game:</strong> Paradigm change is rare and risky. The field resists challenges to its foundations.</p>
+                        <p><strong>Key Moves:</strong></p>
+                        <ul>
+                            <li><strong>Build Capital First:</strong> Heretics with no capital are ignored. Establish credibility before challenging.</li>
+                            <li><strong>Find Anomalies:</strong> Identify problems the current paradigm can't explain well.</li>
+                            <li><strong>Build Alliances:</strong> Find others dissatisfied with status quo; change requires collective action.</li>
+                            <li><strong>Create Alternatives:</strong> New journals, conferences, networks for heterodox work.</li>
+                            <li><strong>Wait for Crisis:</strong> Paradigms are most vulnerable when they conspicuously fail.</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--danger);"><strong>Reality Check:</strong> Most would-be revolutionaries fail. The personal cost is high. Be sure this is your fight.</p>
+                    </div>`
+                },
+                'survive': {
+                    title: 'Strategy: Survive & Thrive',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Game:</strong> Academia can be brutal. Focus on sustainable success and wellbeing.</p>
+                        <p><strong>Key Moves:</strong></p>
+                        <ul>
+                            <li><strong>Manage Expectations:</strong> Not everyone will be a star. Define success on your own terms.</li>
+                            <li><strong>Find Your Niche:</strong> A small pond where you can be a big fish beats drowning in the ocean.</li>
+                            <li><strong>Build Community:</strong> Colleagues, mentors, and peers provide support and opportunities.</li>
+                            <li><strong>Protect Time:</strong> Say no to service that doesn't advance your goals.</li>
+                            <li><strong>Alternative Paths:</strong> Administration, teaching-focused roles, industry, consulting—options exist.</li>
+                            <li><strong>Mental Health:</strong> Academia's pressures are real. Seek support when needed.</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--success);"><strong>Remember:</strong> The field's values are not the only values. Define your own criteria for a good life.</p>
+                    </div>`
+                }
+            };
+
+            document.getElementById('strategyTitle').textContent = goals[goal].title;
+            document.getElementById('strategyAnalysis').innerHTML = goals[goal].analysis;
+        }
+
+        function selectExample(field) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const examples = {
+                'economics': {
+                    title: 'Field Dynamics: Economics',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Orthodox Position:</strong> Neoclassical/mainstream economics dominates. Mathematical modeling, rational actor assumptions, market-based analysis.</p>
+                        <p><strong>Dominant Institutions:</strong> Harvard, MIT, Chicago, Stanford. Top 5 journals (AER, QJE, JPE, Econometrica, ReStud) are extreme gatekeepers.</p>
+                        <p><strong>Symbolic Capital Markers:</strong></p>
+                        <ul>
+                            <li>Clark Medal (under 40) → Nobel Prize predictor</li>
+                            <li>NBER membership</li>
+                            <li>Fed, World Bank, IMF positions</li>
+                        </ul>
+                        <p><strong>Heterodox Positions:</strong> Institutional economics, ecological economics, MMT, Marxian economics—marginalized, separate journals, limited job market.</p>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Notable:</strong> Economics is perhaps the most hierarchical and paradigm-enforcing of social sciences. Dissent carries high career cost.</p>
+                    </div>`
+                },
+                'tech': {
+                    title: 'Field Dynamics: Tech Industry',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Orthodox Position:</strong> "Move fast and break things," venture-backed growth, disruption narrative, meritocracy mythology.</p>
+                        <p><strong>Dominant Institutions:</strong> FAANG companies, Y Combinator, a16z, Stanford/MIT CS programs.</p>
+                        <p><strong>Symbolic Capital Markers:</strong></p>
+                        <ul>
+                            <li>Successful exit (IPO/acquisition)</li>
+                            <li>Unicorn founder status</li>
+                            <li>Twitter following among tech elite</li>
+                            <li>TED talks, conference keynotes</li>
+                        </ul>
+                        <p><strong>Heterodox Positions:</strong> Tech critics, ethical AI advocates, cooperative tech, digital rights activists—growing but still marginal.</p>
+                        <p style="margin-top: 15px; color: var(--info);"><strong>Notable:</strong> Tech has its own "habitus"—hoodies and sneakers signal belonging, suits signal outsider status.</p>
+                    </div>`
+                },
+                'medicine': {
+                    title: 'Field Dynamics: Medicine',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Orthodox Position:</strong> Evidence-based medicine, RCTs as gold standard, specialist hierarchy, pharmaceutical relationships.</p>
+                        <p><strong>Dominant Institutions:</strong> Academic medical centers (Hopkins, Harvard, UCSF), specialty boards, NIH.</p>
+                        <p><strong>Symbolic Capital Markers:</strong></p>
+                        <ul>
+                            <li>Department chair at major medical school</li>
+                            <li>NIH R01 grants (especially multiple)</li>
+                            <li>Editor of major journal (NEJM, JAMA, Lancet)</li>
+                            <li>Guideline committee membership</li>
+                        </ul>
+                        <p><strong>Heterodox Positions:</strong> Integrative medicine, social determinants focus, pharma-critical researchers—face skepticism, funding challenges.</p>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Notable:</strong> Medical hierarchy is reinforced through explicit titles (intern, resident, attending, professor) and intense socialization during training.</p>
+                    </div>`
+                },
+                'art': {
+                    title: 'Field Dynamics: Art World',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>The Orthodox Position:</strong> Contemporary art legitimated by the gallery-museum-auction house complex. Conceptual sophistication over technical skill.</p>
+                        <p><strong>Dominant Institutions:</strong> MoMA, Tate, Gagosian, Christie's/Sotheby's, Venice Biennale, Art Basel.</p>
+                        <p><strong>Symbolic Capital Markers:</strong></p>
+                        <ul>
+                            <li>Blue-chip gallery representation</li>
+                            <li>Museum acquisitions and retrospectives</li>
+                            <li>Auction records</li>
+                            <li>Biennale inclusion</li>
+                            <li>Critical coverage in Artforum, October</li>
+                        </ul>
+                        <p><strong>Heterodox Positions:</strong> Street art, outsider art, community art, craft—may gain popularity but face legitimacy barriers in "high art" world.</p>
+                        <p style="margin-top: 15px; color: var(--info);"><strong>Notable:</strong> Art world perfectly illustrates arbitrary consecration—insiders decide what counts as "art" and their decisions become self-fulfilling.</p>
+                    </div>`
+                }
+            };
+
+            document.getElementById('exampleTitle').textContent = examples[field].title;
+            document.getElementById('exampleAnalysis').innerHTML = examples[field].analysis;
+        }
+    </script>
+</body>
+</html>

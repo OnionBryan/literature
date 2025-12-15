@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Small World Problem - Milgram (1967)</title>
+    <style>
+        :root {
+            --bg-primary: #0c1929;
+            --bg-secondary: #132337;
+            --bg-tertiary: #1a3048;
+            --bg-card: #162a40;
+            --text-primary: #e8f1fa;
+            --text-secondary: #a3c2e0;
+            --text-muted: #6b9bc7;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #2563eb;
+            --accent-gradient-start: #2563eb;
+            --accent-gradient-end: #60a5fa;
+            --border-color: #2a4a6d;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --highlight-bg: rgba(59, 130, 246, 0.15);
+            --shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f0f7ff;
+            --bg-secondary: #e1efff;
+            --bg-tertiary: #d0e5ff;
+            --bg-card: #ffffff;
+            --text-primary: #0c1929;
+            --text-secondary: #2a4a6d;
+            --text-muted: #4a6d8c;
+            --accent-primary: #2563eb;
+            --accent-secondary: #1d4ed8;
+            --accent-gradient-start: #2563eb;
+            --accent-gradient-end: #60a5fa;
+            --border-color: #b8d4f0;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --highlight-bg: rgba(37, 99, 235, 0.1);
+            --shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover { border-color: var(--accent-primary); }
+        .theme-toggle-icon { font-size: 1.2rem; }
+        .theme-toggle-label { font-size: 0.85rem; color: var(--text-secondary); }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .paper-icon { font-size: 4rem; margin-bottom: 20px; }
+        h1 { font-size: 2.2rem; margin-bottom: 15px; color: var(--text-primary); font-weight: 600; }
+        .authors { font-size: 1.3rem; color: var(--accent-primary); margin-bottom: 10px; }
+        .journal { color: var(--text-secondary); font-style: italic; }
+
+        .six-degrees-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .abstract {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .abstract h2 { color: var(--text-primary); margin-bottom: 15px; font-size: 1.3rem; }
+        .abstract p { color: var(--text-secondary); text-align: justify; }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--bg-secondary);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .nav-tab.active { background: var(--accent-primary); color: white; }
+
+        .content-section {
+            display: none;
+            background: var(--bg-secondary);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section.active { display: block; }
+
+        .content-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-section h3 {
+            color: var(--accent-primary);
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p { margin-bottom: 15px; color: var(--text-secondary); }
+
+        .highlight-box {
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight-box h4 { color: var(--text-primary); margin-bottom: 10px; }
+
+        /* Six Degrees Visualization */
+        .degrees-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+        }
+
+        .person-node {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border: 3px solid var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .person-node.start {
+            background: linear-gradient(135deg, var(--success), #16a34a);
+            border-color: var(--success);
+        }
+
+        .person-node.end {
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            border-color: var(--warning);
+        }
+
+        .chain-link {
+            width: 30px;
+            height: 3px;
+            background: var(--accent-primary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .stat-card .label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Tool Sections */
+        .tool-section {
+            background: var(--bg-tertiary);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .slider-container { margin: 20px 0; }
+
+        .slider-container label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .slider-container label span { color: var(--accent-primary); font-weight: 600; }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-secondary);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+        }
+
+        .result-display {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-display h4 { color: var(--text-primary); margin-bottom: 15px; }
+
+        .scenario-btn {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+            margin: 4px;
+        }
+
+        .scenario-btn:hover { border-color: var(--accent-primary); color: var(--text-primary); }
+        .scenario-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        /* Example Cards */
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .example-card .example-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .example-card .example-icon { font-size: 1.5rem; }
+        .example-card .example-title { font-weight: 600; color: var(--text-primary); }
+        .example-card .example-content { color: var(--text-secondary); }
+
+        ul, ol { margin-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; color: var(--text-secondary); }
+        li strong { color: var(--text-primary); }
+
+        .key-insight {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-insight h4 { margin-bottom: 10px; }
+        .key-insight p { color: rgba(255,255,255,0.9); }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .footer-nav a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .nav-tabs { flex-direction: column; }
+            .nav-tab { width: 100%; text-align: center; }
+            .theme-toggle { top: 10px; right: 10px; padding: 6px 12px; }
+            .degrees-visual { gap: 5px; }
+            .person-node { width: 40px; height: 40px; font-size: 1rem; }
+            .chain-link { width: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span class="theme-toggle-label" id="themeLabel">Dark</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="paper-icon">🌐</div>
+            <h1>The Small World Problem</h1>
+            <p class="authors">Stanley Milgram</p>
+            <p class="journal">Psychology Today, 1967</p>
+            <div class="six-degrees-badge">🔗 Six Degrees of Separation</div>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Milgram's landmark experiment demonstrated the surprising interconnectedness of human social networks. By asking participants to forward letters to a target person through personal acquaintances, he discovered that people are connected by remarkably short chains—on average just six intermediaries. This "small world" phenomenon revealed that social networks, while seemingly vast, are efficiently structured for information flow. The study laid groundwork for understanding how resources, opportunities, and influence travel through networks, showing that the path to any person—including powerful ones—is often shorter than we imagine.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('experiment')">The Experiment</button>
+            <button class="nav-tab" onclick="switchPage('implications')">Network Implications</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: A Surprisingly Connected World</h2>
+
+            <p>In the 1960s, Stanley Milgram posed a simple but profound question: How many intermediary acquaintances does it take to connect any two randomly selected people in the United States? The answer—roughly six—challenged intuitions about the vastness of human society and launched an entirely new field of network science.</p>
+
+            <h3>The Six Degrees Phenomenon</h3>
+
+            <div class="degrees-visual">
+                <div class="person-node start">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node">👤</div>
+                <div class="chain-link"></div>
+                <div class="person-node end">🎯</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">5.5</div>
+                    <div class="label">Average Chain Length</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">64</div>
+                    <div class="label">Chains Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">296</div>
+                    <div class="label">Starting Participants</div>
+                </div>
+            </div>
+
+            <div class="key-insight">
+                <h4>💡 The Counterintuitive Finding</h4>
+                <p>Despite the U.S. population of 200 million, any two people were connected through just a handful of acquaintances. The world is both vast and intimately connected—"small" in a structural sense even when geographically enormous.</p>
+            </div>
+
+            <h3>Why "Small World" Matters</h3>
+            <p>The small world phenomenon has profound implications beyond social curiosity:</p>
+
+            <ul>
+                <li><strong>Information Spread:</strong> News, rumors, and innovations can travel remarkably fast through social networks</li>
+                <li><strong>Disease Transmission:</strong> Epidemics spread through the same network structures</li>
+                <li><strong>Job Finding:</strong> Granovetter later showed that most jobs come through network connections</li>
+                <li><strong>Access to Power:</strong> Influential people are often closer than we think—a few introductions away</li>
+                <li><strong>Social Capital:</strong> Your network position determines what information and opportunities reach you</li>
+            </ul>
+        </section>
+
+        <section id="experiment" class="content-section">
+            <h2>The Experiment: Tracing Human Chains</h2>
+
+            <h3>The Experimental Design</h3>
+            <p>Milgram's methodology was elegantly simple:</p>
+
+            <div class="highlight-box">
+                <h4>Experimental Procedure</h4>
+                <ol>
+                    <li>Select a "target person"—a stockbroker in Boston</li>
+                    <li>Recruit starting participants from Omaha, Nebraska and Wichita, Kansas</li>
+                    <li>Give each starter a document with the target's name, occupation, and location</li>
+                    <li>Instruction: Send to someone you know on a first-name basis who might be closer to the target</li>
+                    <li>Each recipient records their name and forwards the chain</li>
+                    <li>Track how many steps until the document reaches the target</li>
+                </ol>
+            </div>
+
+            <h3>Key Findings</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">📊</span>
+                    <span class="example-title">Chain Length Distribution</span>
+                </div>
+                <div class="example-content">
+                    <p>Of the 64 chains that reached the target:</p>
+                    <ul>
+                        <li>Shortest chain: 2 intermediaries</li>
+                        <li>Longest chain: 11 intermediaries</li>
+                        <li>Median chain length: 5 people</li>
+                        <li>Most common: 5-6 intermediaries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">🔑</span>
+                    <span class="example-title">The "Funneling" Effect</span>
+                </div>
+                <div class="example-content">
+                    <p>A remarkable pattern emerged: many chains converged through the same few people near the target. One clothing merchant alone accounted for over 25% of successful chains. This revealed the existence of highly connected "hubs" or "connectors" in social networks—people who bridge otherwise disconnected social worlds.</p>
+                </div>
+            </div>
+
+            <h3>Limitations and Criticisms</h3>
+            <p>The study had important limitations:</p>
+
+            <ul>
+                <li><strong>Completion Rate:</strong> Only 64 of 296 chains (22%) reached the target—those that failed might have been much longer</li>
+                <li><strong>Self-Selection:</strong> People who forwarded chains may be more connected than average</li>
+                <li><strong>Strategy vs. Reality:</strong> Participants chose routes they thought would work—actual social distance might differ</li>
+                <li><strong>U.S. Specific:</strong> Results might not generalize to other societies or cultures</li>
+            </ul>
+
+            <p>Despite these limitations, subsequent studies—including a 2003 email-based replication with 60,000+ participants—confirmed the basic finding: most people are connected through 5-7 intermediaries.</p>
+        </section>
+
+        <section id="implications" class="content-section">
+            <h2>Network Implications: Power and Access</h2>
+
+            <h3>The Network Structure Behind Small Worlds</h3>
+            <p>Later research (especially Watts & Strogatz, 1998) revealed why small worlds exist. The key ingredients:</p>
+
+            <div class="highlight-box">
+                <h4>Small World Network Structure</h4>
+                <ul>
+                    <li><strong>High Clustering:</strong> Your friends likely know each other (local clusters)</li>
+                    <li><strong>Short Path Lengths:</strong> Despite clustering, any two people are connected by few steps</li>
+                    <li><strong>The Secret:</strong> A few "long-range ties" that bridge distant clusters dramatically shorten paths</li>
+                </ul>
+            </div>
+
+            <h3>Implications for Power and Opportunity</h3>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">💼</span>
+                    <span class="example-title">Job Market Access</span>
+                </div>
+                <div class="example-content">
+                    <p>Granovetter's "Strength of Weak Ties" (1973) showed that most jobs come through acquaintances, not close friends. In a small world, your weak ties connect you to information and opportunities circulating in distant clusters. Those without diverse networks are cut off from these flows.</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">👔</span>
+                    <span class="example-title">Access to Decision-Makers</span>
+                </div>
+                <div class="example-content">
+                    <p>The small world phenomenon suggests that powerful people are often just a few introductions away. But here's the catch: knowing the path exists doesn't mean you can travel it. Each link requires someone willing to make an introduction—and willingness depends on the strength and nature of the relationship.</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <span class="example-icon">📢</span>
+                    <span class="example-title">Information and Influence Spread</span>
+                </div>
+                <div class="example-content">
+                    <p>In small world networks, information (and misinformation) can spread rapidly. Ideas, trends, and innovations that catch on can reach most of the population in just a few "generations" of transmission. This has implications for viral marketing, social movements, and public health.</p>
+                </div>
+            </div>
+
+            <h3>The Unequal Small World</h3>
+            <p>While the world may be structurally small, it's not equally small for everyone:</p>
+
+            <ul>
+                <li><strong>Hub Positions:</strong> Those who bridge multiple social worlds (connectors) have shorter paths to everyone</li>
+                <li><strong>Peripheral Positions:</strong> Those embedded in only one cluster have longer paths and less access</li>
+                <li><strong>Social Barriers:</strong> Class, race, geography create clusters that are hard to bridge</li>
+                <li><strong>Reciprocity Gap:</strong> You may know someone is 3 degrees away, but they may not accept the connection</li>
+            </ul>
+
+            <div class="key-insight">
+                <h4>🔍 Strategic Implication</h4>
+                <p>Understanding small world structure suggests a strategy: cultivate diverse ties across different social worlds. One "bridging" relationship to a new cluster can dramatically expand your effective network reach.</p>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>🔢 Path Length Calculator</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Estimate how many steps separate you from different targets.</p>
+
+                <div class="slider-container">
+                    <label>Your Network Size (people you know by first name) <span id="networkValue">250</span></label>
+                    <input type="range" id="networkSlider" min="50" max="1000" value="250" oninput="updatePath()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Target's Network Size <span id="targetNetworkValue">250</span></label>
+                    <input type="range" id="targetNetworkSlider" min="50" max="1000" value="250" oninput="updatePath()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Population Size <span id="popValue">330 million</span></label>
+                    <input type="range" id="popSlider" min="1000000" max="8000000000" step="1000000" value="330000000" oninput="updatePath()">
+                </div>
+
+                <div class="result-display">
+                    <h4>Estimated Path Length</h4>
+                    <div id="pathResult"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>📍 Network Position Analyzer</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Assess your position in social network terms.</p>
+
+                <div class="slider-container">
+                    <label>Diversity of Your Contacts (different social worlds) <span id="diversityValue">Medium</span></label>
+                    <input type="range" id="diversitySlider" min="1" max="5" value="3" oninput="updatePosition()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Strength of Your Ties (how close are your contacts) <span id="strengthValue">Medium</span></label>
+                    <input type="range" id="strengthSlider" min="1" max="5" value="3" oninput="updatePosition()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Connector Access (know people who know everyone) <span id="connectorValue">Medium</span></label>
+                    <input type="range" id="connectorSlider" min="1" max="5" value="3" oninput="updatePosition()">
+                </div>
+
+                <div class="result-display" id="positionResult">
+                    <h4>Your Network Position</h4>
+                    <div id="positionAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🎯 Reaching the Target</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Strategize how to reach different types of targets.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectTarget('executive')">Corporate Executive</button>
+                    <button class="scenario-btn" onclick="selectTarget('celebrity')">Celebrity</button>
+                    <button class="scenario-btn" onclick="selectTarget('politician')">Politician</button>
+                    <button class="scenario-btn" onclick="selectTarget('expert')">Industry Expert</button>
+                </div>
+
+                <div class="result-display" id="targetResult">
+                    <h4 id="targetTitle">Reaching: Corporate Executive</h4>
+                    <div id="targetAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🌐 Modern Network Examples</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">See how small world dynamics play out in different contexts.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectNetwork('linkedin')">LinkedIn</button>
+                    <button class="scenario-btn" onclick="selectNetwork('academic')">Academic Citations</button>
+                    <button class="scenario-btn" onclick="selectNetwork('startup')">Startup Ecosystem</button>
+                    <button class="scenario-btn" onclick="selectNetwork('hollywood')">Hollywood</button>
+                </div>
+
+                <div class="result-display" id="networkResult">
+                    <h4 id="networkTitle">Network: LinkedIn</h4>
+                    <div id="networkAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeIcon').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = savedTheme === 'light' ? 'Light' : 'Dark';
+            updatePath();
+            updatePosition();
+            selectTarget('executive');
+            selectNetwork('linkedin');
+        });
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updatePath() {
+            const network = parseInt(document.getElementById('networkSlider').value);
+            const targetNetwork = parseInt(document.getElementById('targetNetworkSlider').value);
+            const pop = parseInt(document.getElementById('popSlider').value);
+
+            document.getElementById('networkValue').textContent = network;
+            document.getElementById('targetNetworkValue').textContent = targetNetwork;
+            document.getElementById('popValue').textContent = (pop / 1000000).toFixed(0) + ' million';
+
+            const avgNetwork = (network + targetNetwork) / 2;
+            const pathLength = Math.ceil(Math.log(pop) / Math.log(avgNetwork));
+            const adjustedPath = Math.max(2, Math.min(pathLength, 12));
+
+            document.getElementById('pathResult').innerHTML = `
+                <div style="text-align: center; margin: 20px 0;">
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--accent-primary);">${adjustedPath}</div>
+                    <div style="color: var(--text-muted);">degrees of separation</div>
+                </div>
+                <p style="color: var(--text-secondary);">With average network sizes of ${Math.round(avgNetwork)} and a population of ${(pop/1000000).toFixed(0)} million, you're approximately ${adjustedPath} steps from any random person.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Note: This is a simplified mathematical estimate. Real-world path lengths depend on network structure, social barriers, and willingness to connect.</p>
+            `;
+        }
+
+        function updatePosition() {
+            const diversity = parseInt(document.getElementById('diversitySlider').value);
+            const strength = parseInt(document.getElementById('strengthSlider').value);
+            const connector = parseInt(document.getElementById('connectorSlider').value);
+
+            const labels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            document.getElementById('diversityValue').textContent = labels[diversity-1];
+            document.getElementById('strengthValue').textContent = labels[strength-1];
+            document.getElementById('connectorValue').textContent = labels[connector-1];
+
+            const reach = (diversity * 0.4 + connector * 0.4 + strength * 0.2);
+            const influence = (strength * 0.5 + diversity * 0.3 + connector * 0.2);
+
+            let position, analysis;
+            if (reach >= 4) {
+                position = "Bridge / Connector";
+                analysis = `You're in an excellent network position. High diversity means you can reach many different social worlds, and connector access gives you shortcuts. You likely hear about opportunities early and can make valuable introductions.`;
+            } else if (reach >= 2.5) {
+                position = "Well-Connected";
+                analysis = `You have a solid network position with reasonable reach. You can access most social worlds through a few steps. Consider whether there are clusters you're not connected to that might offer new opportunities.`;
+            } else {
+                position = "Locally Embedded";
+                analysis = `Your network is strong within your immediate circle but may lack bridges to other worlds. While you have trust and strong ties locally, you might miss opportunities circulating in other clusters. Consider cultivating some "weak ties" to different communities.`;
+            }
+
+            document.getElementById('positionAnalysis').innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 1.3rem; font-weight: 600; color: var(--accent-primary);">${position}</div>
+                </div>
+                <p style="color: var(--text-secondary);">${analysis}</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 15px; background: var(--highlight-bg); border-radius: 8px;">
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">Network Reach</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent-primary);">${(reach/5*100).toFixed(0)}%</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: var(--highlight-bg); border-radius: 8px;">
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">Influence Potential</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent-primary);">${(influence/5*100).toFixed(0)}%</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectTarget(type) {
+            document.querySelectorAll('.tool-section:nth-child(3) .scenario-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const targets = {
+                'executive': {
+                    title: 'Reaching: Corporate Executive',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Typical Path Length:</strong> 3-5 steps</p>
+                        <p style="margin-top: 10px;"><strong>Common Chains:</strong></p>
+                        <ul>
+                            <li>You → Someone in their industry → Their colleague → Executive</li>
+                            <li>You → Alumni connection → Board member → Executive</li>
+                            <li>You → Investor/advisor → Portfolio company → Executive</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Key Connectors:</strong> Executive assistants, board members, investors, industry conference organizers, PR professionals</p>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Challenge:</strong> Executives are heavily guarded. Having the path isn't enough—you need a compelling reason for each person to make the introduction.</p>
+                    </div>`
+                },
+                'celebrity': {
+                    title: 'Reaching: Celebrity',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Typical Path Length:</strong> 4-6 steps</p>
+                        <p style="margin-top: 10px;"><strong>Common Chains:</strong></p>
+                        <ul>
+                            <li>You → Entertainment industry contact → Agent/Manager → Celebrity</li>
+                            <li>You → Charity board member → Celebrity patron → Celebrity</li>
+                            <li>You → Media professional → PR team → Celebrity</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Key Connectors:</strong> Agents, managers, publicists, producers, charity organizers, high-end service providers</p>
+                        <p style="margin-top: 15px; color: var(--warning);"><strong>Challenge:</strong> Celebrities have professional gatekeepers specifically to prevent unwanted access. Alternative: Engage through their public work or causes.</p>
+                    </div>`
+                },
+                'politician': {
+                    title: 'Reaching: Politician',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Typical Path Length:</strong> 3-5 steps</p>
+                        <p style="margin-top: 10px;"><strong>Common Chains:</strong></p>
+                        <ul>
+                            <li>You → Local party member → State official → Politician</li>
+                            <li>You → Major donor → Fundraiser contact → Politician</li>
+                            <li>You → Lobbyist/advocate → Chief of Staff → Politician</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Key Connectors:</strong> Political donors, party activists, lobbyists, chiefs of staff, policy advocates, local officials</p>
+                        <p style="margin-top: 15px; color: var(--success);"><strong>Opportunity:</strong> Politicians need constituents. Town halls, campaign events, and policy advocacy create legitimate access points.</p>
+                    </div>`
+                },
+                'expert': {
+                    title: 'Reaching: Industry Expert',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Typical Path Length:</strong> 2-4 steps</p>
+                        <p style="margin-top: 10px;"><strong>Common Chains:</strong></p>
+                        <ul>
+                            <li>You → Conference attendee → Expert's colleague → Expert</li>
+                            <li>You → Author of related work → Mutual citation → Expert</li>
+                            <li>You → Professional association → Committee member → Expert</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Key Connectors:</strong> Conference organizers, journal editors, professional association leaders, podcast hosts, other experts</p>
+                        <p style="margin-top: 15px; color: var(--success);"><strong>Opportunity:</strong> Experts often want to share knowledge. A thoughtful question about their work, sent via appropriate channels, can open doors.</p>
+                    </div>`
+                }
+            };
+
+            document.getElementById('targetTitle').textContent = targets[type].title;
+            document.getElementById('targetAnalysis').innerHTML = targets[type].analysis;
+        }
+
+        function selectNetwork(type) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const networks = {
+                'linkedin': {
+                    title: 'Network: LinkedIn',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Average Degrees of Separation:</strong> 3.5 (among all LinkedIn members)</p>
+                        <p style="margin-top: 10px;"><strong>Small World Features:</strong></p>
+                        <ul>
+                            <li>High clustering by industry, company, and location</li>
+                            <li>Bridging ties through recruiters, investors, and industry analysts</li>
+                            <li>"2nd degree" connections visible—shows actual path</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Power Dynamic:</strong> "Super-connectors" (500+ connections) create shortcuts. Premium features let you see and message outside your network—a paid path through the small world.</p>
+                    </div>`
+                },
+                'academic': {
+                    title: 'Network: Academic Citations',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Average Degrees of Separation:</strong> 4-5 (among published researchers)</p>
+                        <p style="margin-top: 10px;"><strong>Small World Features:</strong></p>
+                        <ul>
+                            <li>High clustering within disciplines and research areas</li>
+                            <li>Bridging through interdisciplinary researchers and review articles</li>
+                            <li>"Erdős number" concept captures distance from central nodes</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Power Dynamic:</strong> Citation networks determine visibility. Well-cited papers become hubs. New researchers struggle to enter citation chains without institutional connections.</p>
+                    </div>`
+                },
+                'startup': {
+                    title: 'Network: Startup Ecosystem',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Average Degrees of Separation:</strong> 3-4 (within a regional ecosystem like Silicon Valley)</p>
+                        <p style="margin-top: 10px;"><strong>Small World Features:</strong></p>
+                        <ul>
+                            <li>Dense clustering around accelerators (YC, Techstars), VCs, and major companies</li>
+                            <li>Serial entrepreneurs and angel investors bridge cohorts</li>
+                            <li>Geographic clustering (SF, NYC, Austin) creates tight local networks</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Power Dynamic:</strong> The "warm intro" is currency. Being 2 degrees from a top VC is common; getting them to actually take the intro is the barrier.</p>
+                    </div>`
+                },
+                'hollywood': {
+                    title: 'Network: Hollywood',
+                    analysis: `<div style="margin-top: 15px;">
+                        <p><strong>Average Degrees of Separation:</strong> 3-4 (the "Kevin Bacon" number)</p>
+                        <p style="margin-top: 10px;"><strong>Small World Features:</strong></p>
+                        <ul>
+                            <li>Extremely clustered around major studios and agencies</li>
+                            <li>Character actors who work across many productions are bridges</li>
+                            <li>The "Oracle of Bacon" shows most actors are 3 steps from Kevin Bacon</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Power Dynamic:</strong> The industry is famously insular—"who you know" determines who gets cast. A small world that's hard to enter but easy to navigate once inside.</p>
+                    </div>`
+                }
+            };
+
+            document.getElementById('networkTitle').textContent = networks[type].title;
+            document.getElementById('networkAnalysis').innerHTML = networks[type].analysis;
+        }
+    </script>
+</body>
+</html>

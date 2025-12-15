@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit, Voice, and Loyalty - Hirschman (1970)</title>
+    <style>
+        :root {
+            --bg-primary: #0a1a0a;
+            --bg-secondary: #152515;
+            --bg-tertiary: rgba(15, 30, 15, 0.6);
+            --text-primary: #e8f0e8;
+            --text-secondary: #c8d8c8;
+            --text-muted: #a0b0a0;
+            --accent-primary: #4a9a4a;
+            --accent-secondary: #7ab87a;
+            --accent-light: #a8d8a8;
+            --border-color: rgba(100, 180, 100, 0.2);
+            --border-hover: rgba(100, 180, 100, 0.3);
+            --card-bg: rgba(45, 90, 45, 0.2);
+            --card-bg-hover: rgba(45, 90, 45, 0.3);
+            --tool-bg: rgba(30, 60, 30, 0.4);
+            --tab-bg: rgba(25, 50, 25, 0.5);
+            --tab-hover: rgba(45, 90, 45, 0.5);
+            --exit-color: #e74c3c;
+            --exit-bg: rgba(231, 76, 60, 0.2);
+            --exit-border: rgba(231, 76, 60, 0.5);
+            --voice-color: #3498db;
+            --voice-bg: rgba(52, 152, 219, 0.2);
+            --voice-border: rgba(52, 152, 219, 0.5);
+            --loyalty-color: #f1c40f;
+            --loyalty-bg: rgba(241, 196, 15, 0.2);
+            --loyalty-border: rgba(241, 196, 15, 0.5);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5faf5;
+            --bg-secondary: #eaf5ea;
+            --bg-tertiary: #ffffff;
+            --text-primary: #1a2f1a;
+            --text-secondary: #2d4a2d;
+            --text-muted: #4a6b4a;
+            --accent-primary: #2d7a2d;
+            --accent-secondary: #3d8a3d;
+            --accent-light: #1d5a1d;
+            --border-color: rgba(45, 120, 45, 0.25);
+            --border-hover: rgba(45, 120, 45, 0.4);
+            --card-bg: rgba(100, 180, 100, 0.12);
+            --card-bg-hover: rgba(100, 180, 100, 0.2);
+            --tool-bg: rgba(220, 245, 220, 0.9);
+            --tab-bg: rgba(180, 220, 180, 0.3);
+            --tab-hover: rgba(140, 200, 140, 0.4);
+            --exit-color: #c0392b;
+            --exit-bg: rgba(192, 57, 43, 0.12);
+            --exit-border: rgba(192, 57, 43, 0.4);
+            --voice-color: #2980b9;
+            --voice-bg: rgba(41, 128, 185, 0.12);
+            --voice-border: rgba(41, 128, 185, 0.4);
+            --loyalty-color: #d4a000;
+            --loyalty-bg: rgba(212, 160, 0, 0.12);
+            --loyalty-border: rgba(212, 160, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: 100vh;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: 'Georgia', serif;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--card-bg-hover);
+            border-color: var(--border-hover);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        .theme-label {
+            font-size: 0.9rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--card-bg), var(--tab-bg));
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .paper-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .authors {
+            font-size: 1.3rem;
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+        }
+
+        .journal {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .abstract {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .abstract h2 {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .abstract p {
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
+        }
+
+        .content-section {
+            display: none;
+            background: var(--bg-tertiary);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--border-hover);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: var(--accent-secondary);
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--card-bg), var(--card-bg-hover));
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid var(--border-hover);
+        }
+
+        .concept-card {
+            background: var(--tool-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid;
+        }
+
+        .concept-card.exit {
+            border-color: var(--exit-color);
+        }
+
+        .concept-card.voice {
+            border-color: var(--voice-color);
+        }
+
+        .concept-card.loyalty {
+            border-color: var(--loyalty-color);
+        }
+
+        .concept-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-card.exit h4 {
+            color: var(--exit-color);
+        }
+
+        .concept-card.voice h4 {
+            color: var(--voice-color);
+        }
+
+        .concept-card.loyalty h4 {
+            color: var(--loyalty-color);
+        }
+
+        .tool-section {
+            background: var(--tool-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-section h3 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--accent-secondary);
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--tab-bg);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+        }
+
+        .slider-value {
+            text-align: center;
+            margin-top: 5px;
+            color: var(--accent-light);
+            font-weight: bold;
+        }
+
+        .result-display {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-hover);
+        }
+
+        .result-display h4 {
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+
+        .response-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .response-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .response-card.exit {
+            background: var(--exit-bg);
+            border: 2px solid var(--exit-border);
+        }
+
+        .response-card.voice {
+            background: var(--voice-bg);
+            border: 2px solid var(--voice-border);
+        }
+
+        .response-card.loyalty {
+            background: var(--loyalty-bg);
+            border: 2px solid var(--loyalty-border);
+        }
+
+        .response-card.recommended {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(100, 180, 100, 0.4);
+        }
+
+        .response-card .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .response-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .response-card.exit .value {
+            color: var(--exit-color);
+        }
+
+        .response-card.voice .value {
+            color: var(--voice-color);
+        }
+
+        .response-card.loyalty .value {
+            color: var(--loyalty-color);
+        }
+
+        .scenario-btn {
+            padding: 12px 20px;
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            margin: 5px;
+        }
+
+        .scenario-btn:hover, .scenario-btn.active {
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-hover);
+        }
+
+        .matrix-table th {
+            background: var(--card-bg-hover);
+            color: var(--accent-light);
+        }
+
+        .matrix-table td {
+            background: var(--tool-bg);
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .recommendation-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .recommendation-box.exit {
+            background: linear-gradient(135deg, var(--exit-bg), rgba(192, 57, 43, 0.15));
+            border: 2px solid var(--exit-color);
+        }
+
+        .recommendation-box.voice {
+            background: linear-gradient(135deg, var(--voice-bg), rgba(41, 128, 185, 0.15));
+            border: 2px solid var(--voice-color);
+        }
+
+        .recommendation-box.loyalty {
+            background: linear-gradient(135deg, var(--loyalty-bg), rgba(243, 156, 18, 0.15));
+            border: 2px solid var(--loyalty-color);
+        }
+
+        .recommendation-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .recommendation-box p {
+            color: var(--text-secondary);
+        }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--bg-tertiary);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent-light);
+        }
+
+        @media (max-width: 768px) {
+            .response-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .theme-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="paper-icon">🚪</div>
+            <h1>Exit, Voice, and Loyalty</h1>
+            <p class="authors">Albert O. Hirschman</p>
+            <p class="journal">Harvard University Press, 1970</p>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Hirschman presents a powerful framework for understanding how individuals respond to decline in organizations, firms, and states. When facing deteriorating quality or dissatisfaction, people have two primary options: "exit" (leaving the relationship) or "voice" (attempting to change things from within). The choice between these responses is mediated by "loyalty," which makes exit less likely and voice more likely. This framework reveals how power imbalances shape strategic options—the ability to exit credibly is itself a source of power, while those without exit options must rely on voice, whose effectiveness depends on their relative power within the relationship.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('framework')">The Framework</button>
+            <button class="nav-tab" onclick="switchPage('implications')">Power Implications</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: Responses to Decline</h2>
+
+            <p>Albert O. Hirschman's "Exit, Voice, and Loyalty" is one of the most influential social science works of the 20th century. Originally framed as a contribution to economics and political science, its framework has been applied across disciplines—from organizational behavior to international relations, from consumer behavior to romantic relationships.</p>
+
+            <h3>The Central Question</h3>
+            <p>Hirschman begins with a deceptively simple observation: organizations, firms, and states sometimes deteriorate. Quality declines, responsiveness wanes, and members or customers become dissatisfied. How do people respond? The traditional economic answer focuses on "exit"—dissatisfied customers switch to competitors. The political science answer emphasizes "voice"—citizens organize and protest. Hirschman's genius was to recognize these as two points on a spectrum, with "loyalty" as a key moderating factor.</p>
+
+            <div class="concept-card exit">
+                <h4>Exit</h4>
+                <p>The market response. Leave the organization, switch products, quit the job, end the relationship. Exit is clean, decisive, and sends a clear signal—but only if alternatives exist and exit is noticed.</p>
+            </div>
+
+            <div class="concept-card voice">
+                <h4>Voice</h4>
+                <p>The political response. Speak up, complain, organize, protest, negotiate. Voice attempts to change the situation from within. It's messy, time-consuming, and requires that someone listen—but it can produce systemic change.</p>
+            </div>
+
+            <div class="concept-card loyalty">
+                <h4>Loyalty</h4>
+                <p>The emotional bond that makes exit costly and voice more likely. Loyalty isn't merely inertia—it represents genuine attachment and investment in the relationship's improvement. Loyal members give organizations more time to recover.</p>
+            </div>
+
+            <h3>Why This Matters</h3>
+            <p>The framework illuminates a fundamental truth about power: your options define your leverage. A customer who can easily switch has power over the firm. An employee who can easily find another job has power in salary negotiations. A country that can form alternative alliances has power in international relations. The exit option is a BATNA (Best Alternative to Negotiated Agreement)—and the credibility of that option determines your negotiating strength.</p>
+        </section>
+
+        <section id="framework" class="content-section">
+            <h2>The Exit-Voice-Loyalty Framework</h2>
+
+            <h3>Exit: The Economic Mechanism</h3>
+            <p>In standard economic theory, exit is the primary recuperative mechanism. When quality declines, customers leave, revenue drops, and firms are forced to improve or die. This market discipline is powerful but has important limitations:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Information Loss:</strong> Exit tells the firm something is wrong but not what or how to fix it</li>
+                    <li><strong>Alternative Required:</strong> Exit only works if alternatives exist (monopolies are immune)</li>
+                    <li><strong>Detection Lag:</strong> Firms may not notice exit until damage is severe</li>
+                    <li><strong>Collective Action Problem:</strong> Individual exits may not reach the threshold needed for change</li>
+                </ul>
+            </div>
+
+            <h3>Voice: The Political Mechanism</h3>
+            <p>Voice is any attempt to change, rather than escape from, an objectionable state of affairs. It ranges from quiet grumbling to formal complaints to organized collective action. Voice has its own characteristics:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Information Rich:</strong> Voice tells the organization specifically what's wrong</li>
+                    <li><strong>Costly:</strong> Voice requires time, energy, and often courage</li>
+                    <li><strong>Uncertain Outcome:</strong> Voice may or may not be heard or acted upon</li>
+                    <li><strong>Power-Dependent:</strong> Voice effectiveness depends on the speaker's standing and leverage</li>
+                </ul>
+            </div>
+
+            <h3>The Exit-Voice Trade-off</h3>
+            <p>A crucial insight: exit and voice are substitutes. The availability of easy exit can actually undermine voice. Why go through the trouble of organizing a complaint when you can simply leave? This has profound implications:</p>
+
+            <table class="matrix-table">
+                <tr>
+                    <th>Exit Availability</th>
+                    <th>Effect on Voice</th>
+                    <th>Result for Organization</th>
+                </tr>
+                <tr>
+                    <td>High (many alternatives)</td>
+                    <td>Voice suppressed</td>
+                    <td>Silent deterioration; no feedback</td>
+                </tr>
+                <tr>
+                    <td>Low (few alternatives)</td>
+                    <td>Voice more likely</td>
+                    <td>Protest and pressure for change</td>
+                </tr>
+                <tr>
+                    <td>Moderate (exit as threat)</td>
+                    <td>Voice most effective</td>
+                    <td>Optimal balance of feedback and loyalty</td>
+                </tr>
+            </table>
+
+            <h3>Loyalty: The Binding Force</h3>
+            <p>Loyalty modifies the exit-voice calculation. The loyal member experiences higher costs from exit (psychological, social, identity-based) and therefore is more willing to exercise voice. But loyalty must be balanced:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Too Little Loyalty:</strong> Exit at first sign of trouble; no opportunity for voice</li>
+                    <li><strong>Optimal Loyalty:</strong> Gives organization time to respond to voice; makes exit credible as last resort</li>
+                    <li><strong>Too Much Loyalty:</strong> Enables prolonged decline; "voice without exit" has no teeth</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="implications" class="content-section">
+            <h2>Power Implications</h2>
+
+            <h3>Exit as Power</h3>
+            <p>The ability to exit is a form of structural power. Those who can credibly threaten to leave have leverage that those who cannot lack entirely. This creates systematic advantages for:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Capital vs. Labor:</strong> Capital is more mobile than labor; investors can exit faster than workers</li>
+                    <li><strong>High-Status Employees:</strong> Star performers have more exit options than average workers</li>
+                    <li><strong>Large Customers:</strong> Key accounts can credibly threaten to leave; small customers cannot</li>
+                    <li><strong>Wealthy Citizens:</strong> The rich can emigrate; the poor cannot</li>
+                </ul>
+            </div>
+
+            <h3>The Paradox of Powerlessness</h3>
+            <p>Those with the fewest exit options must rely most heavily on voice—but voice effectiveness often correlates with exit options. This creates a cruel paradox: the people who most need voice are often those least able to exercise it effectively. Their voice can be safely ignored because their exit is not credible.</p>
+
+            <h3>Voice and Hierarchy</h3>
+            <p>Within organizations, voice effectiveness is shaped by position in the hierarchy:</p>
+
+            <table class="matrix-table">
+                <tr>
+                    <th>Position</th>
+                    <th>Exit Options</th>
+                    <th>Voice Effectiveness</th>
+                    <th>Power Level</th>
+                </tr>
+                <tr>
+                    <td>Senior Executive</td>
+                    <td>High (sought by competitors)</td>
+                    <td>High (voice is heard)</td>
+                    <td>Very High</td>
+                </tr>
+                <tr>
+                    <td>Skilled Professional</td>
+                    <td>Moderate-High</td>
+                    <td>Moderate-High</td>
+                    <td>Moderate-High</td>
+                </tr>
+                <tr>
+                    <td>Entry-Level Worker</td>
+                    <td>Low-Moderate</td>
+                    <td>Low</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Marginalized Worker</td>
+                    <td>Very Low</td>
+                    <td>Very Low</td>
+                    <td>Very Low</td>
+                </tr>
+            </table>
+
+            <h3>Collective Voice</h3>
+            <p>Hirschman recognized that voice could be amplified through collective action. Unions, professional associations, consumer groups, and political movements aggregate individual voice into a force that cannot be easily ignored. This is particularly important for those with limited exit options—collective voice can compensate for individual powerlessness.</p>
+
+            <h3>Strategic Implications</h3>
+            <p>For the less powerful party in an asymmetric relationship:</p>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Cultivate Exit Options:</strong> Even if you don't use them, credible alternatives increase your leverage</li>
+                    <li><strong>Make Exit Visible:</strong> A hidden exit option has no bargaining power</li>
+                    <li><strong>Coordinate Voice:</strong> Join with others in similar positions to amplify your voice</li>
+                    <li><strong>Understand Loyalty:</strong> Recognize how emotional attachment may be keeping you in suboptimal situations</li>
+                    <li><strong>Time Exit Strategically:</strong> Exit threats are most powerful when the organization most needs you</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>🎯 Exit-Voice-Loyalty Calculator</h3>
+                <p>Analyze your situation to determine the optimal response strategy.</p>
+
+                <div class="slider-container">
+                    <label>Exit Options (Alternative Availability): <span id="exitValue">50</span>%</label>
+                    <input type="range" id="exitSlider" min="0" max="100" value="50" oninput="updateEVL()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Voice Effectiveness (Likelihood of Being Heard): <span id="voiceValue">50</span>%</label>
+                    <input type="range" id="voiceSlider" min="0" max="100" value="50" oninput="updateEVL()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Loyalty Level (Emotional Investment): <span id="loyaltyValue">50</span>%</label>
+                    <input type="range" id="loyaltySlider" min="0" max="100" value="50" oninput="updateEVL()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Dissatisfaction Level: <span id="dissatValue">50</span>%</label>
+                    <input type="range" id="dissatSlider" min="0" max="100" value="50" oninput="updateEVL()">
+                </div>
+
+                <div class="result-display" id="evlResult">
+                    <h4>Recommended Response Strategy</h4>
+                    <div class="response-grid" id="responseGrid"></div>
+                    <div id="recommendationBox"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>📊 Scenario Analysis</h3>
+                <p>Explore how exit-voice dynamics play out in different contexts.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectScenario('employee')">Unhappy Employee</button>
+                    <button class="scenario-btn" onclick="selectScenario('customer')">Dissatisfied Customer</button>
+                    <button class="scenario-btn" onclick="selectScenario('citizen')">Citizen in Decline</button>
+                    <button class="scenario-btn" onclick="selectScenario('relationship')">Personal Relationship</button>
+                </div>
+
+                <div class="result-display" id="scenarioResult">
+                    <h4 id="scenarioTitle">Scenario: Unhappy Employee</h4>
+                    <div id="scenarioAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>⚖️ Power Position Analyzer</h3>
+                <p>Assess your relative power based on exit and voice options.</p>
+
+                <div class="slider-container">
+                    <label>Your Exit Costs (financial, emotional, practical): <span id="yourExitValue">Medium</span></label>
+                    <input type="range" id="yourExitSlider" min="1" max="5" value="3" oninput="updatePower()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Their Dependence on You: <span id="theirDepValue">Medium</span></label>
+                    <input type="range" id="theirDepSlider" min="1" max="5" value="3" oninput="updatePower()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Your Alternative Options: <span id="yourAltValue">Some</span></label>
+                    <input type="range" id="yourAltSlider" min="1" max="5" value="3" oninput="updatePower()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Their Alternative Options: <span id="theirAltValue">Some</span></label>
+                    <input type="range" id="theirAltSlider" min="1" max="5" value="3" oninput="updatePower()">
+                </div>
+
+                <div class="result-display" id="powerResult">
+                    <h4>Power Balance Assessment</h4>
+                    <div id="powerAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🔄 Voice Strategy Optimizer</h3>
+                <p>If you've decided to use voice, optimize your approach.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: var(--accent-secondary); display: block; margin-bottom: 10px;">Select Your Voice Channel:</label>
+                    <button class="scenario-btn active" onclick="selectVoice('individual')">Individual Complaint</button>
+                    <button class="scenario-btn" onclick="selectVoice('collective')">Collective Action</button>
+                    <button class="scenario-btn" onclick="selectVoice('public')">Public Pressure</button>
+                    <button class="scenario-btn" onclick="selectVoice('formal')">Formal Grievance</button>
+                </div>
+
+                <div class="result-display" id="voiceResult">
+                    <h4 id="voiceTitle">Voice Strategy: Individual Complaint</h4>
+                    <div id="voiceAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateEVL() {
+            const exit = parseInt(document.getElementById('exitSlider').value);
+            const voice = parseInt(document.getElementById('voiceSlider').value);
+            const loyalty = parseInt(document.getElementById('loyaltySlider').value);
+            const dissat = parseInt(document.getElementById('dissatSlider').value);
+
+            document.getElementById('exitValue').textContent = exit;
+            document.getElementById('voiceValue').textContent = voice;
+            document.getElementById('loyaltyValue').textContent = loyalty;
+            document.getElementById('dissatValue').textContent = dissat;
+
+            // Calculate response scores
+            const exitScore = (exit * 0.6 + dissat * 0.4) * (100 - loyalty) / 100;
+            const voiceScore = (voice * 0.5 + loyalty * 0.3 + dissat * 0.2);
+            const loyaltyScore = loyalty * (100 - dissat) / 100 * 0.8;
+
+            const total = exitScore + voiceScore + loyaltyScore;
+            const exitPct = Math.round(exitScore / total * 100);
+            const voicePct = Math.round(voiceScore / total * 100);
+            const loyaltyPct = Math.round(loyaltyScore / total * 100);
+
+            // Determine recommendation
+            let recommendation, recClass;
+            if (exitPct > voicePct && exitPct > loyaltyPct) {
+                recommendation = "EXIT is your strongest option. You have alternatives and low attachment. Consider leaving for better opportunities.";
+                recClass = "exit";
+            } else if (voicePct > exitPct && voicePct > loyaltyPct) {
+                recommendation = "VOICE is your strongest option. You have a reasonable chance of being heard and enough attachment to make it worthwhile.";
+                recClass = "voice";
+            } else {
+                recommendation = "LOYALTY suggests patience. Your attachment is high and dissatisfaction moderate. Give the situation time, but don't ignore problems.";
+                recClass = "loyalty";
+            }
+
+            document.getElementById('responseGrid').innerHTML = `
+                <div class="response-card exit ${exitPct >= voicePct && exitPct >= loyaltyPct ? 'recommended' : ''}">
+                    <div class="label">Exit</div>
+                    <div class="value">${exitPct}%</div>
+                </div>
+                <div class="response-card voice ${voicePct > exitPct && voicePct > loyaltyPct ? 'recommended' : ''}">
+                    <div class="label">Voice</div>
+                    <div class="value">${voicePct}%</div>
+                </div>
+                <div class="response-card loyalty ${loyaltyPct > exitPct && loyaltyPct > voicePct ? 'recommended' : ''}">
+                    <div class="label">Loyalty</div>
+                    <div class="value">${loyaltyPct}%</div>
+                </div>
+            `;
+
+            document.getElementById('recommendationBox').innerHTML = `
+                <div class="recommendation-box ${recClass}">
+                    <h4>Recommendation</h4>
+                    <p>${recommendation}</p>
+                </div>
+            `;
+        }
+
+        function selectScenario(scenario) {
+            document.querySelectorAll('.tool-section:nth-child(2) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const scenarios = {
+                'employee': {
+                    title: 'Scenario: Unhappy Employee',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Exit Options Depend On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Job market conditions in your field</li>
+                                <li>Your skills and credentials portability</li>
+                                <li>Geographic flexibility</li>
+                                <li>Financial runway to survive job search</li>
+                            </ul>
+                            <p><strong>Voice Effectiveness Depends On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Your position and reputation</li>
+                                <li>Existence of formal grievance channels</li>
+                                <li>Union membership or collective representation</li>
+                                <li>Management's responsiveness to feedback</li>
+                            </ul>
+                            <p><strong>Key Insight:</strong> High performers have both better exit options AND more effective voice. This double advantage creates a Matthew Effect in workplace power.</p>
+                        </div>
+                    `
+                },
+                'customer': {
+                    title: 'Scenario: Dissatisfied Customer',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Exit Options Depend On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Availability of competing products/services</li>
+                                <li>Switching costs (contracts, learning curves)</li>
+                                <li>Lock-in effects (data, network effects)</li>
+                                <li>Geographic availability of alternatives</li>
+                            </ul>
+                            <p><strong>Voice Effectiveness Depends On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Your customer value (spend level, influence)</li>
+                                <li>Social media amplification potential</li>
+                                <li>Regulatory complaint options</li>
+                                <li>Company's reputation sensitivity</li>
+                            </ul>
+                            <p><strong>Key Insight:</strong> Tech platforms often design to maximize switching costs, reducing exit options and therefore customer power. Your complaint is only powerful if they fear you'll leave—and take others with you.</p>
+                        </div>
+                    `
+                },
+                'citizen': {
+                    title: 'Scenario: Citizen in Declining State',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Exit Options Depend On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Immigration policies of other countries</li>
+                                <li>Your wealth and human capital</li>
+                                <li>Language skills and cultural adaptability</li>
+                                <li>Family and social ties</li>
+                            </ul>
+                            <p><strong>Voice Effectiveness Depends On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Degree of democracy and free speech</li>
+                                <li>Access to media and public forums</li>
+                                <li>Organizational capacity (parties, movements)</li>
+                                <li>Elite responsiveness to popular pressure</li>
+                            </ul>
+                            <p><strong>Key Insight:</strong> "Brain drain" represents exit by those with the most options, leaving behind those with the least. This can further weaken voice, as the most capable voices have left.</p>
+                        </div>
+                    `
+                },
+                'relationship': {
+                    title: 'Scenario: Personal Relationship',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Exit Options Depend On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Financial independence</li>
+                                <li>Social support network</li>
+                                <li>Legal/custody complications</li>
+                                <li>Housing and logistical factors</li>
+                            </ul>
+                            <p><strong>Voice Effectiveness Depends On:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Partner's willingness to listen</li>
+                                <li>Communication skills</li>
+                                <li>Power balance in relationship</li>
+                                <li>Access to counseling or mediation</li>
+                            </ul>
+                            <p><strong>Key Insight:</strong> Abusive relationships often involve systematic destruction of exit options (financial control, isolation) precisely because exit represents the ultimate escape from power. Voice without credible exit can be safely ignored.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('scenarioTitle').textContent = scenarios[scenario].title;
+            document.getElementById('scenarioAnalysis').innerHTML = scenarios[scenario].analysis;
+        }
+
+        function updatePower() {
+            const yourExit = parseInt(document.getElementById('yourExitSlider').value);
+            const theirDep = parseInt(document.getElementById('theirDepSlider').value);
+            const yourAlt = parseInt(document.getElementById('yourAltSlider').value);
+            const theirAlt = parseInt(document.getElementById('theirAltSlider').value);
+
+            const exitLabels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            const depLabels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            const altLabels = ['None', 'Few', 'Some', 'Many', 'Abundant'];
+
+            document.getElementById('yourExitValue').textContent = exitLabels[yourExit - 1];
+            document.getElementById('theirDepValue').textContent = depLabels[theirDep - 1];
+            document.getElementById('yourAltValue').textContent = altLabels[yourAlt - 1];
+            document.getElementById('theirAltValue').textContent = altLabels[theirAlt - 1];
+
+            // Calculate power score
+            const yourPower = (6 - yourExit) * 0.3 + theirDep * 0.35 + yourAlt * 0.35;
+            const theirPower = yourExit * 0.3 + (6 - theirDep) * 0.35 + theirAlt * 0.35;
+
+            const balance = yourPower - theirPower;
+            let assessment, strategy;
+
+            if (balance > 1.5) {
+                assessment = "You have significant power advantage";
+                strategy = "You can use voice confidently and exit is a credible threat. Use this leverage wisely—don't exploit it in ways that damage long-term relationships.";
+            } else if (balance > 0.5) {
+                assessment = "You have moderate power advantage";
+                strategy = "You have reasonable leverage. Voice should be effective, and exit is viable if needed. A good position for negotiation.";
+            } else if (balance > -0.5) {
+                assessment = "Power is roughly balanced";
+                strategy = "Neither party dominates. This is often the healthiest situation—both have incentives to cooperate and address concerns.";
+            } else if (balance > -1.5) {
+                assessment = "They have moderate power advantage";
+                strategy = "Your voice may be less effective. Focus on building alternatives and connections that increase your exit options over time.";
+            } else {
+                assessment = "They have significant power advantage";
+                strategy = "Your position is weak. Priority should be building exit options and finding collective voice through allies. Avoid burning bridges while you're dependent.";
+            }
+
+            document.getElementById('powerAnalysis').innerHTML = `
+                <div style="margin-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.9rem; color: var(--accent-secondary);">Your Power Score</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--accent-primary);">${yourPower.toFixed(1)}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.9rem; color: var(--accent-secondary);">Their Power Score</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--exit-color);">${theirPower.toFixed(1)}</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-box ${balance > 0 ? 'voice' : balance < 0 ? 'exit' : 'loyalty'}">
+                        <h4>${assessment}</h4>
+                        <p>${strategy}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectVoice(channel) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const voiceData = {
+                'individual': {
+                    title: 'Voice Strategy: Individual Complaint',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Best When:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>You have personal standing/relationship with decision-makers</li>
+                                <li>The issue is specific and addressable</li>
+                                <li>Privacy is important</li>
+                                <li>Quick resolution is possible</li>
+                            </ul>
+                            <p><strong>Tactics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Document the issue clearly</li>
+                                <li>Request a specific remedy</li>
+                                <li>Escalate through proper channels if initial response fails</li>
+                                <li>Maintain professional tone (don't burn bridges)</li>
+                            </ul>
+                            <p><strong>Risk:</strong> Easy to ignore if you lack power. No social proof of the problem.</p>
+                        </div>
+                    `
+                },
+                'collective': {
+                    title: 'Voice Strategy: Collective Action',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Best When:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Multiple people share the grievance</li>
+                                <li>Individual voice has been ineffective</li>
+                                <li>The issue is systemic, not personal</li>
+                                <li>You can coordinate with others</li>
+                            </ul>
+                            <p><strong>Tactics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Build coalition before going public</li>
+                                <li>Present unified demands</li>
+                                <li>Use petitions, group letters, or formal organizing</li>
+                                <li>Leverage collective exit threat ("we'll all leave")</li>
+                            </ul>
+                            <p><strong>Risk:</strong> Retaliation against organizers. Collective action problems (free riders).</p>
+                        </div>
+                    `
+                },
+                'public': {
+                    title: 'Voice Strategy: Public Pressure',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Best When:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Internal channels have failed</li>
+                                <li>The organization is reputation-sensitive</li>
+                                <li>You have platform/audience</li>
+                                <li>The issue resonates with public values</li>
+                            </ul>
+                            <p><strong>Tactics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Social media campaigns</li>
+                                <li>Media outreach</li>
+                                <li>Public reviews and ratings</li>
+                                <li>Ally with advocacy groups</li>
+                            </ul>
+                            <p><strong>Risk:</strong> Escalation makes reconciliation harder. May face legal threats. Reputational risk to yourself.</p>
+                        </div>
+                    `
+                },
+                'formal': {
+                    title: 'Voice Strategy: Formal Grievance',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Best When:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Legal or regulatory violations involved</li>
+                                <li>Formal grievance procedures exist</li>
+                                <li>You need documentation for protection</li>
+                                <li>Other channels have failed</li>
+                            </ul>
+                            <p><strong>Tactics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Document everything meticulously</li>
+                                <li>Follow procedures exactly</li>
+                                <li>Consider legal consultation</li>
+                                <li>File with relevant regulatory bodies if applicable</li>
+                            </ul>
+                            <p><strong>Risk:</strong> Slow process. May create adversarial relationship. Career implications in some contexts.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('voiceTitle').textContent = voiceData[channel].title;
+            document.getElementById('voiceAnalysis').innerHTML = voiceData[channel].analysis;
+        }
+
+        // Initialize tools and theme
+        document.addEventListener('DOMContentLoaded', function() {
+            // Restore saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeLabel').textContent = 'Light';
+            }
+
+            updateEVL();
+            selectScenario('employee');
+            updatePower();
+            selectVoice('individual');
+        });
+    </script>
+</body>
+</html>

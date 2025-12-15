@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerson (1962) - Power-Dependence Relations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 50%, #6d28d9 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(46, 16, 101, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #a78bfa;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: #ddd6fe;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .dark-mode-toggle {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: #ddd6fe;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(167, 139, 250, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #c4b5fd;
+            margin-bottom: 10px;
+        }
+
+        .hero .meta {
+            color: #ddd6fe;
+            font-size: 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #c4b5fd;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 {
+            color: #ddd6fe;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            color: #cbd5e1;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Concept boxes */
+        .concept-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .concept-box h4 {
+            color: #c4b5fd;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+            border-left: 4px solid #8b5cf6;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Formula display */
+        .formula {
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .formula-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            color: #c4b5fd;
+            font-style: italic;
+        }
+
+        .formula-explanation {
+            color: #ddd6fe;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        /* Interactive Tools Styles */
+        .tool-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .tool-container h3 {
+            color: #c4b5fd;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-group label {
+            display: block;
+            color: #ddd6fe;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(167, 139, 250, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
+        }
+
+        .slider-value {
+            text-align: right;
+            color: #c4b5fd;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-box h4 {
+            color: #c4b5fd;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .result-label {
+            color: #ddd6fe;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(167, 139, 250, 0.4);
+        }
+
+        /* Selection buttons */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .selection-btn {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(167, 139, 250, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .selection-btn:hover {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .selection-btn.active {
+            border-color: #8b5cf6;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+        }
+
+        .selection-btn h5 {
+            color: #c4b5fd;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .selection-btn p {
+            color: #ddd6fe;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Visual diagrams */
+        .power-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .actor-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(124, 58, 237, 0.2) 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 16px;
+            padding: 25px 35px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .actor-box h4 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .actor-box .power-level {
+            color: #c4b5fd;
+            font-size: 0.95rem;
+        }
+
+        .dependency-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .arrow-label {
+            color: #ddd6fe;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Power meter */
+        .power-meter {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .meter-bar {
+            height: 30px;
+            background: rgba(167, 139, 250, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+        }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #ddd6fe;
+            font-size: 0.85rem;
+        }
+
+        /* Balancing operations cards */
+        .balance-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .balance-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-3px);
+        }
+
+        .balance-card.selected {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.25);
+        }
+
+        .balance-card h5 {
+            color: #c4b5fd;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .balance-card p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Table styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .comparison-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: #cbd5e1;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Other Papers Navigation */
+        .other-papers {
+            background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+        }
+
+        .other-papers h3 {
+            color: #c4b5fd;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paper-link {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(167, 139, 250, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .paper-link:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #8b5cf6;
+            transform: translateY(-3px);
+        }
+
+        .paper-link .year {
+            font-size: 0.9rem;
+            color: #c4b5fd;
+        }
+
+        .paper-link .title {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body.dark-mode .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        body.dark-mode .card {
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .power-visual {
+                flex-direction: column;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">Emerson (1962)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('theory', this)">Core Theory</button>
+                <button class="page-btn" onclick="switchPage('balancing', this)">Balancing Operations</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Page 1: Overview -->
+        <div id="main" class="page-content active">
+            <div class="hero">
+                <h1>Power-Dependence Relations</h1>
+                <div class="subtitle">Richard M. Emerson</div>
+                <div class="meta">1962 • American Sociological Review • Foundational Exchange Theory</div>
+            </div>
+
+            <div class="card">
+                <h2>📚 Core Argument</h2>
+                <p>Emerson's groundbreaking paper revolutionized how we understand power by defining it as fundamentally <strong>relational</strong>. Rather than treating power as an attribute that individuals possess, Emerson showed that power exists only within relationships and is inherently tied to <strong>dependence</strong>.</p>
+
+                <div class="highlight-box">
+                    <p>"The power of A over B is equal to, and based upon, the dependence of B upon A."</p>
+                </div>
+
+                <p>This seemingly simple formulation has profound implications. Power is not a thing you have—it's a relationship you're in. The same person can be powerful in one relationship and powerless in another. And crucially, power imbalances create instabilities that drive social change.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>🔗 Power as Relation</h4>
+                        <p>Power is a property of social relations, not of actors. It cannot be understood by looking at one party alone—you must analyze the relationship between parties.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>⚖️ Power = Dependence</h4>
+                        <p>A's power over B equals B's dependence on A. Power and dependence are two sides of the same coin, defined in terms of each other.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>📊 Two Determinants</h4>
+                        <p>Dependence is a function of: (1) motivational investment in goals the other mediates, and (2) availability of alternatives outside the relationship.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🔄 Balancing Operations</h4>
+                        <p>Imbalanced power creates tensions that actors try to resolve through four types of "balancing operations" that reduce or equalize power.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Key Contributions</h2>
+
+                <h3>1. Relational Definition of Power</h3>
+                <p>Before Emerson, power was often treated as an individual attribute (strength, charisma, resources). Emerson shifted the focus to relationships. Your power isn't determined by what you have, but by how much others depend on what you have. This relational view became foundational for exchange theory, resource dependence, and network approaches to power.</p>
+
+                <h3>2. The Dependence Formula</h3>
+                <p>Emerson specified that dependence has two components:</p>
+                <ul>
+                    <li><strong>Motivational investment:</strong> How much does B want or need what A provides?</li>
+                    <li><strong>Availability of alternatives:</strong> Can B get this elsewhere, or is A the only source?</li>
+                </ul>
+                <p>This formula makes power analyzable and even quantifiable in terms of concrete structural conditions.</p>
+
+                <h3>3. Power-Balancing Operations</h3>
+                <p>Emerson identified that imbalanced power relations are inherently unstable. The less powerful party will attempt to restore balance through:</p>
+                <ul>
+                    <li><strong>Withdrawal:</strong> Reduce motivational investment in the goal</li>
+                    <li><strong>Extension of power network:</strong> Find alternative sources</li>
+                    <li><strong>Status giving:</strong> Give status to increase the other's dependence</li>
+                    <li><strong>Coalition formation:</strong> Band together with other dependents</li>
+                </ul>
+
+                <h3>4. Foundation for Later Theories</h3>
+                <p>Emerson's framework directly influenced Blau's <em>Exchange and Power</em>, Pfeffer & Salancik's <em>Resource Dependence Theory</em>, and Cook's <em>Network Exchange Theory</em>. His relational approach to power remains central to organizational sociology.</p>
+            </div>
+
+            <div class="card">
+                <h2>💡 Theoretical Significance</h2>
+                <p>Emerson's work provides the micro-foundations for understanding power at all levels of analysis:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Interpersonal Relations</h4>
+                        <p>Explains power dynamics in dyads: friendships, marriages, mentor-mentee, boss-subordinate.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Organizational Power</h4>
+                        <p>Departments that control critical, non-substitutable resources gain power over others.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Inter-organizational</h4>
+                        <p>Resource dependence between firms creates power asymmetries in supply chains and alliances.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Core Theory -->
+        <div id="theory" class="page-content">
+            <div class="card">
+                <h2>🔗 The Power-Dependence Framework</h2>
+
+                <p>Emerson begins with a simple but revolutionary premise: power should be defined as a <strong>potential</strong>, located in a particular type of relationship, rather than as an attribute of actors.</p>
+
+                <div class="formula">
+                    <div class="formula-text">P<sub>ab</sub> = D<sub>ba</sub></div>
+                    <div class="formula-explanation">The power of A over B equals the dependence of B on A</div>
+                </div>
+
+                <p>This equation expresses the core insight: power and dependence are inverse perspectives on the same relationship. If we understand what makes B dependent on A, we understand what gives A power over B.</p>
+
+                <h3>What Creates Dependence?</h3>
+                <p>Emerson specifies two structural conditions that determine the degree of dependence:</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>1. Motivational Investment</h4>
+                        <p>Dependence increases with the importance of the goals mediated by the other party. The more you need or want something, the more dependent you are on whoever controls access to it.</p>
+                        <p style="margin-top: 10px; color: #a5b4fc;"><strong>Examples:</strong> Need for income, desire for approval, importance of a particular resource to production.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>2. Availability of Alternatives</h4>
+                        <p>Dependence decreases with the availability of alternative sources for the same goals. The more places you can get what you need, the less dependent you are on any single source.</p>
+                        <p style="margin-top: 10px; color: #a5b4fc;"><strong>Examples:</strong> Multiple job offers, competing suppliers, alternative relationship partners.</p>
+                    </div>
+                </div>
+
+                <div class="formula" style="margin-top: 30px;">
+                    <div class="formula-text">D<sub>ba</sub> = f(Goals mediated by A × Scarcity of alternatives to A)</div>
+                    <div class="formula-explanation">Dependence is directly proportional to goal importance and inversely proportional to alternatives</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚖️ Power Balance and Imbalance</h2>
+
+                <p>In any relationship, we can compare the power each party has over the other. This comparison reveals whether power is balanced or imbalanced:</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Balanced Relations</h4>
+                        <p>When P<sub>ab</sub> = P<sub>ba</sub> (mutual dependence is equal), the relationship is balanced. Neither party has power over the other beyond their own dependence. These relationships tend to be stable.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Imbalanced Relations</h4>
+                        <p>When P<sub>ab</sub> ≠ P<sub>ba</sub>, one party has a power advantage. These relationships are inherently unstable—the disadvantaged party will seek to balance the relationship.</p>
+                    </div>
+                </div>
+
+                <h3>The Cost of Power</h3>
+                <p>Emerson notes that exercising power has a "cost." When A uses their power advantage over B, A receives compliance but may sacrifice B's positive regard. Over time, this can erode the relationship or provoke resistance. The more power is used, the more the less powerful party seeks to escape or rebalance.</p>
+
+                <div class="highlight-box">
+                    <p>"Power is a potential that need not be exercised to be effective. The very knowledge of another's power can change behavior without any overt exercise of that power."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌐 Power in Networks</h2>
+
+                <p>Emerson extended his analysis beyond dyads to networks of power-dependence relations. In networks, an actor's power position depends not just on their direct relationships but on the structure of the entire network.</p>
+
+                <h3>Structural Power</h3>
+                <p>An actor is powerful in a network to the extent that:</p>
+                <ul>
+                    <li>Others depend on them for valued resources</li>
+                    <li>They have alternatives (are not dependent on any single other)</li>
+                    <li>Their exchange partners lack alternatives</li>
+                </ul>
+
+                <h3>Network Position Effects</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Position</th>
+                        <th>Power Level</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>Central (many connections)</td>
+                        <td>High</td>
+                        <td>Many alternatives, others dependent</td>
+                    </tr>
+                    <tr>
+                        <td>Broker (bridges groups)</td>
+                        <td>Very High</td>
+                        <td>Unique access, no substitutes</td>
+                    </tr>
+                    <tr>
+                        <td>Peripheral (few connections)</td>
+                        <td>Low</td>
+                        <td>Few alternatives, high dependence</td>
+                    </tr>
+                    <tr>
+                        <td>Isolated (single connection)</td>
+                        <td>Very Low</td>
+                        <td>No alternatives, complete dependence</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>📖 Comparison with Other Approaches</h2>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Approach</th>
+                        <th>Definition of Power</th>
+                        <th>Emerson's Critique/Contribution</th>
+                    </tr>
+                    <tr>
+                        <td>Weber</td>
+                        <td>Ability to achieve goals despite resistance</td>
+                        <td>Focuses on actor, not relationship; doesn't explain source of power</td>
+                    </tr>
+                    <tr>
+                        <td>French & Raven</td>
+                        <td>Bases: reward, coercive, legitimate, expert, referent</td>
+                        <td>Categorizes power types but doesn't explain when each applies</td>
+                    </tr>
+                    <tr>
+                        <td>Resource-Based</td>
+                        <td>Power = control of resources</td>
+                        <td>Emerson adds: resources only create power if others depend on them</td>
+                    </tr>
+                    <tr>
+                        <td>Exchange Theory</td>
+                        <td>Power from unequal exchange</td>
+                        <td>Emerson provides the foundational logic for why exchange is unequal</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 3: Balancing Operations -->
+        <div id="balancing" class="page-content">
+            <div class="card">
+                <h2>🔄 Power-Balancing Operations</h2>
+
+                <p>A central insight of Emerson's theory is that imbalanced power relations are <strong>inherently unstable</strong>. The party with less power experiences "costs" and will seek to restore balance. Emerson identifies four fundamental "balancing operations" through which this occurs:</p>
+
+                <div class="highlight-box">
+                    <p>"Unbalanced power relations are unstable because the power advantage tempts the advantaged party to use it, while the disadvantaged party is motivated to restore balance."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📉 Operation 1: Withdrawal (Motivational Withdrawal)</h2>
+
+                <p>The less powerful party reduces their motivational investment in the goals mediated by the powerful party. By wanting less, they become less dependent.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Mechanism</h4>
+                        <p>Reduce the value placed on what the other provides. Lower your goals, change your preferences, or develop indifference to outcomes the other controls.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Examples</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1; font-size: 0.9rem;">
+                            <li>Employee stops caring about promotion</li>
+                            <li>Romantic partner becomes emotionally distant</li>
+                            <li>Firm pivots away from dependent market</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Effectiveness</h3>
+                <p>Withdrawal is individually achievable but often psychologically costly. It may also harm the relationship itself. However, it's often the first response to power imbalance—people protect themselves by caring less.</p>
+            </div>
+
+            <div class="card">
+                <h2>🔀 Operation 2: Extension of Power Network</h2>
+
+                <p>The less powerful party cultivates alternative sources for the same goals, reducing dependence on any single source.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Mechanism</h4>
+                        <p>Find or create new relationships that can provide the same resources. Diversify your sources so no single actor has unique control over your goals.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Examples</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1; font-size: 0.9rem;">
+                            <li>Supplier develops multiple customers</li>
+                            <li>Employee builds external network for job options</li>
+                            <li>Firm finds alternative suppliers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Effectiveness</h3>
+                <p>This is often the most effective balancing operation because it directly addresses the "availability of alternatives" component of dependence. However, it requires access to alternatives, which may be structurally constrained.</p>
+            </div>
+
+            <div class="card">
+                <h2>⭐ Operation 3: Status Giving (Emergence of Status)</h2>
+
+                <p>The less powerful party gives status, deference, or other valuable social resources to the powerful party, making them more dependent in return.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Mechanism</h4>
+                        <p>Provide the powerful party with something they value—respect, admiration, loyalty, compliance—creating mutual dependence. The powerful party becomes invested in maintaining the status-giving relationship.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Examples</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1; font-size: 0.9rem;">
+                            <li>Subordinate becomes indispensable through loyalty</li>
+                            <li>Fan creates value for celebrity through admiration</li>
+                            <li>Client gives prestige through their reputation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Effectiveness</h3>
+                <p>Status giving can balance power by increasing the powerful party's dependence. However, it can also legitimate and stabilize the power advantage, converting raw power into accepted authority. This is a double-edged mechanism.</p>
+            </div>
+
+            <div class="card">
+                <h2>🤝 Operation 4: Coalition Formation</h2>
+
+                <p>Multiple less powerful parties band together to collectively reduce their dependence or increase the powerful party's dependence on them.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Mechanism</h4>
+                        <p>Combine with others in similar positions to create collective alternatives, aggregate bargaining power, or threaten collective withdrawal. Unity transforms individual weakness into collective strength.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Examples</h4>
+                        <ul style="margin-top: 10px; color: #cbd5e1; font-size: 0.9rem;">
+                            <li>Workers form labor union</li>
+                            <li>Small suppliers create buying cooperative</li>
+                            <li>Nations form trade bloc against dominant power</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Effectiveness</h3>
+                <p>Coalition formation is the most powerful balancing operation but also the hardest to achieve. It requires coordination among the less powerful, who may have competing interests. The powerful party often tries to prevent coalitions by dividing and creating competition among dependents.</p>
+            </div>
+
+            <div class="card">
+                <h2>📊 Comparing Balancing Operations</h2>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Operation</th>
+                        <th>Changes What?</th>
+                        <th>Difficulty</th>
+                        <th>Side Effects</th>
+                    </tr>
+                    <tr>
+                        <td>Withdrawal</td>
+                        <td>Own motivation</td>
+                        <td>Medium</td>
+                        <td>May harm relationship, psychological cost</td>
+                    </tr>
+                    <tr>
+                        <td>Network Extension</td>
+                        <td>Availability of alternatives</td>
+                        <td>High</td>
+                        <td>Requires access, may signal disloyalty</td>
+                    </tr>
+                    <tr>
+                        <td>Status Giving</td>
+                        <td>Other's dependence</td>
+                        <td>Low</td>
+                        <td>May legitimate power advantage</td>
+                    </tr>
+                    <tr>
+                        <td>Coalition Formation</td>
+                        <td>Collective power</td>
+                        <td>Very High</td>
+                        <td>Coordination problems, retaliation risk</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Applications to Organizational Life</h2>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Employee-Employer Relations</h4>
+                        <p><strong>Imbalance:</strong> Employer controls salary, assignments, career.<br>
+                        <strong>Withdrawal:</strong> "Quiet quitting," reducing effort.<br>
+                        <strong>Extension:</strong> Building external options, networking.<br>
+                        <strong>Status:</strong> Becoming indispensable, building loyalty.<br>
+                        <strong>Coalition:</strong> Unionization, collective bargaining.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Supplier-Buyer Relations</h4>
+                        <p><strong>Imbalance:</strong> Large buyer dominates small supplier.<br>
+                        <strong>Withdrawal:</strong> Exit the market or reduce investment.<br>
+                        <strong>Extension:</strong> Diversify customer base.<br>
+                        <strong>Status:</strong> Become preferred supplier, build switching costs.<br>
+                        <strong>Coalition:</strong> Supplier associations, collective standards.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Department Power</h4>
+                        <p><strong>Imbalance:</strong> One department controls critical resource.<br>
+                        <strong>Withdrawal:</strong> Reduce reliance on that resource.<br>
+                        <strong>Extension:</strong> Develop internal capability or external source.<br>
+                        <strong>Status:</strong> Give political support for budget.<br>
+                        <strong>Coalition:</strong> Dependent departments ally against powerful one.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Startup-Investor Relations</h4>
+                        <p><strong>Imbalance:</strong> Investor controls needed capital.<br>
+                        <strong>Withdrawal:</strong> Bootstrap, reduce growth ambitions.<br>
+                        <strong>Extension:</strong> Multiple term sheets, revenue growth.<br>
+                        <strong>Status:</strong> Signal quality through metrics, advisors.<br>
+                        <strong>Coalition:</strong> Founder networks, collective negotiation norms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <div class="card">
+                <h2>🛠️ Interactive Analysis Tools</h2>
+                <p>Use these tools to explore Emerson's power-dependence concepts through hands-on analysis.</p>
+            </div>
+
+            <!-- Tool 1: Power-Dependence Calculator -->
+            <div class="tool-container">
+                <h3>⚡ Power-Dependence Calculator</h3>
+                <p style="color: #ddd6fe; margin-bottom: 20px;">Calculate the power balance between two parties based on their mutual dependence.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #c4b5fd; margin-bottom: 15px;">B's Dependence on A:</h4>
+                        <div class="slider-group">
+                            <label>B's Motivational Investment (How much B needs what A provides)</label>
+                            <input type="range" id="b-motivation" min="0" max="100" value="75" oninput="calculatePowerDependence()">
+                            <div class="slider-value"><span id="b-motivation-display">75</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>B's Alternatives (Can B get it elsewhere?)</label>
+                            <input type="range" id="b-alternatives" min="0" max="100" value="20" oninput="calculatePowerDependence()">
+                            <div class="slider-value"><span id="b-alternatives-display">20</span>/100</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="color: #c4b5fd; margin-bottom: 15px;">A's Dependence on B:</h4>
+                        <div class="slider-group">
+                            <label>A's Motivational Investment (How much A needs what B provides)</label>
+                            <input type="range" id="a-motivation" min="0" max="100" value="40" oninput="calculatePowerDependence()">
+                            <div class="slider-value"><span id="a-motivation-display">40</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>A's Alternatives (Can A get it elsewhere?)</label>
+                            <input type="range" id="a-alternatives" min="0" max="100" value="60" oninput="calculatePowerDependence()">
+                            <div class="slider-value"><span id="a-alternatives-display">60</span>/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-visual" id="power-visual">
+                    <div class="actor-box" id="actor-a-box">
+                        <h4>Party A</h4>
+                        <div class="power-level" id="a-power-level">Power: Calculating...</div>
+                    </div>
+                    <div class="dependency-arrow">
+                        <div class="arrow-label" id="dep-b-on-a">B depends on A</div>
+                        <div class="arrow-line"></div>
+                        <div class="arrow-label" id="dep-a-on-b">A depends on B</div>
+                    </div>
+                    <div class="actor-box" id="actor-b-box">
+                        <h4>Party B</h4>
+                        <div class="power-level" id="b-power-level">Power: Calculating...</div>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Power Balance Analysis</h4>
+                    <div class="result-value" id="power-balance-result">Balanced</div>
+                    <div class="result-label" id="power-balance-interpretation">Analyzing relationship dynamics...</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Balancing Operations Simulator -->
+            <div class="tool-container">
+                <h3>🔄 Balancing Operations Simulator</h3>
+                <p style="color: #ddd6fe; margin-bottom: 20px;">Start with an imbalanced relationship and apply different balancing operations to see their effects.</p>
+
+                <div class="power-meter" style="margin-bottom: 25px;">
+                    <p style="color: #c4b5fd; margin-bottom: 15px;">Current Power Balance (A's Power Advantage)</p>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="balance-meter" style="width: 75%;"></div>
+                    </div>
+                    <div class="meter-labels">
+                        <span>B has advantage</span>
+                        <span>Balanced</span>
+                        <span>A has advantage</span>
+                    </div>
+                </div>
+
+                <p style="color: #ddd6fe; margin-bottom: 15px;">Apply a balancing operation (from B's perspective):</p>
+
+                <div class="grid-2" style="margin-bottom: 25px;">
+                    <div class="balance-card" onclick="applyBalancing('withdrawal')">
+                        <h5>📉 Withdrawal</h5>
+                        <p>B reduces motivational investment in goals A controls</p>
+                    </div>
+                    <div class="balance-card" onclick="applyBalancing('extension')">
+                        <h5>🔀 Network Extension</h5>
+                        <p>B finds alternative sources for what A provides</p>
+                    </div>
+                    <div class="balance-card" onclick="applyBalancing('status')">
+                        <h5>⭐ Status Giving</h5>
+                        <p>B gives status/deference to increase A's dependence</p>
+                    </div>
+                    <div class="balance-card" onclick="applyBalancing('coalition')">
+                        <h5>🤝 Coalition Formation</h5>
+                        <p>B joins with other dependents to increase collective power</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <button class="btn btn-secondary" onclick="resetBalancing()">Reset to Imbalanced State</button>
+                </div>
+
+                <div class="result-box">
+                    <h4>Operation Effect</h4>
+                    <div class="result-value" id="balancing-result">A Dominates</div>
+                    <div class="result-label" id="balancing-interpretation">A has a significant power advantage over B. B is highly dependent with few alternatives.</div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Network Position Analyzer -->
+            <div class="tool-container">
+                <h3>🌐 Network Position Analyzer</h3>
+                <p style="color: #ddd6fe; margin-bottom: 20px;">Analyze how network position affects power based on dependence structure.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectNetworkPosition('central')">
+                        <h5>🎯 Central Position</h5>
+                        <p>Many connections to others</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectNetworkPosition('broker')">
+                        <h5>🌉 Broker Position</h5>
+                        <p>Bridges disconnected groups</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectNetworkPosition('peripheral')">
+                        <h5>🔵 Peripheral Position</h5>
+                        <p>Few connections, on the edge</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectNetworkPosition('isolated')">
+                        <h5>⚫ Isolated Position</h5>
+                        <p>Single connection to network</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="network-analysis" style="display: none;">
+                    <h4 id="network-position-title">Position Analysis</h4>
+                    <div id="network-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Real-World Scenario Analyzer -->
+            <div class="tool-container">
+                <h3>🎭 Real-World Scenario Analyzer</h3>
+                <p style="color: #ddd6fe; margin-bottom: 20px;">Apply Emerson's framework to common power-dependence scenarios.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectScenario('employee')">
+                        <h5>👔 Employee-Employer</h5>
+                        <p>Workplace power dynamics</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('supplier')">
+                        <h5>📦 Supplier-Buyer</h5>
+                        <p>Supply chain relationships</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('startup')">
+                        <h5>🚀 Startup-Investor</h5>
+                        <p>Funding relationships</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('academic')">
+                        <h5>🎓 Student-Advisor</h5>
+                        <p>Academic supervision</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('romantic')">
+                        <h5>💕 Romantic Partners</h5>
+                        <p>Relationship dynamics</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectScenario('platform')">
+                        <h5>📱 Platform-User</h5>
+                        <p>Digital platform dependence</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="scenario-analysis" style="display: none;">
+                    <h4 id="scenario-title">Scenario Analysis</h4>
+                    <div id="scenario-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 5: Coalition Effectiveness Calculator -->
+            <div class="tool-container">
+                <h3>🤝 Coalition Effectiveness Calculator</h3>
+                <p style="color: #ddd6fe; margin-bottom: 20px;">Calculate when coalition formation is likely to succeed as a balancing operation.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="slider-group">
+                            <label>Number of Potential Coalition Members</label>
+                            <input type="range" id="coalition-size" min="2" max="20" value="5" oninput="calculateCoalition()">
+                            <div class="slider-value"><span id="coalition-size-display">5</span> members</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Shared Interest Alignment</label>
+                            <input type="range" id="interest-alignment" min="0" max="100" value="60" oninput="calculateCoalition()">
+                            <div class="slider-value"><span id="interest-alignment-display">60</span>%</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slider-group">
+                            <label>Communication/Coordination Ability</label>
+                            <input type="range" id="coordination" min="0" max="100" value="50" oninput="calculateCoalition()">
+                            <div class="slider-value"><span id="coordination-display">50</span>%</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Dominant Party's Ability to Divide</label>
+                            <input type="range" id="divide-ability" min="0" max="100" value="40" oninput="calculateCoalition()">
+                            <div class="slider-value"><span id="divide-ability-display">40</span>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Coalition Success Probability</h4>
+                    <div class="result-value" id="coalition-result">55%</div>
+                    <div class="result-label" id="coalition-interpretation">Analyzing coalition viability...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Other Papers Navigation -->
+    <section class="other-papers">
+        <h3>Explore More Classic Papers</h3>
+        <div class="papers-grid">
+            <a href="blau-1964-exchange-power.html" class="paper-link">
+                <div class="year">1964</div>
+                <div class="title">Blau: Exchange & Power</div>
+            </a>
+            <a href="granovetter-1973-weak-ties.html" class="paper-link">
+                <div class="year">1973</div>
+                <div class="title">Granovetter: Strength of Weak Ties</div>
+            </a>
+            <a href="meyer-rowan-1977-institutionalized-organizations.html" class="paper-link">
+                <div class="year">1977</div>
+                <div class="title">Meyer & Rowan: Myth and Ceremony</div>
+            </a>
+            <a href="pfeffer-salancik-1978-resource-dependence.html" class="paper-link">
+                <div class="year">1978</div>
+                <div class="title">Pfeffer & Salancik: Resource Dependence</div>
+            </a>
+            <a href="dimaggio-powell-1983-iron-cage.html" class="paper-link">
+                <div class="year">1983</div>
+                <div class="title">DiMaggio & Powell: Iron Cage</div>
+            </a>
+            <a href="williamson-1985-transaction-cost-economics.html" class="paper-link">
+                <div class="year">1985</div>
+                <div class="title">Williamson: Transaction Costs</div>
+            </a>
+            <a href="coleman-1988-social-capital.html" class="paper-link">
+                <div class="year">1988</div>
+                <div class="title">Coleman: Social Capital</div>
+            </a>
+            <a href="burt-1992-structural-holes.html" class="paper-link">
+                <div class="year">1992</div>
+                <div class="title">Burt: Structural Holes</div>
+            </a>
+            <a href="judge-piccolo-2004-leadership-meta-analysis.html" class="paper-link">
+                <div class="year">2004</div>
+                <div class="title">Judge & Piccolo: Leadership Meta-Analysis</div>
+            </a>
+            <a href="avolio-2010-leadership-development-roi.html" class="paper-link">
+                <div class="year">2010</div>
+                <div class="title">Avolio: Leadership ROI</div>
+            </a>
+            <a href="maurer-2017-error-management-culture.html" class="paper-link">
+                <div class="year">2017</div>
+                <div class="title">Maurer: Error Management Culture</div>
+            </a>
+            <a href="index.html" class="paper-link" style="border-color: #c4b5fd;">
+                <div class="year">📚</div>
+                <div class="title">All Papers →</div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Tool 1: Power-Dependence Calculator
+        function calculatePowerDependence() {
+            const bMotivation = parseInt(document.getElementById('b-motivation').value);
+            const bAlternatives = parseInt(document.getElementById('b-alternatives').value);
+            const aMotivation = parseInt(document.getElementById('a-motivation').value);
+            const aAlternatives = parseInt(document.getElementById('a-alternatives').value);
+
+            // Update displays
+            document.getElementById('b-motivation-display').textContent = bMotivation;
+            document.getElementById('b-alternatives-display').textContent = bAlternatives;
+            document.getElementById('a-motivation-display').textContent = aMotivation;
+            document.getElementById('a-alternatives-display').textContent = aAlternatives;
+
+            // Calculate dependence (motivation * lack of alternatives)
+            const bDependenceOnA = bMotivation * (100 - bAlternatives) / 100;
+            const aDependenceOnB = aMotivation * (100 - aAlternatives) / 100;
+
+            // Power = other's dependence
+            const aPower = bDependenceOnA;
+            const bPower = aDependenceOnB;
+
+            document.getElementById('a-power-level').textContent = `Power: ${Math.round(aPower)}`;
+            document.getElementById('b-power-level').textContent = `Power: ${Math.round(bPower)}`;
+
+            document.getElementById('dep-b-on-a').textContent = `B depends on A: ${Math.round(bDependenceOnA)}`;
+            document.getElementById('dep-a-on-b').textContent = `A depends on B: ${Math.round(aDependenceOnB)}`;
+
+            const balance = aPower - bPower;
+            const resultEl = document.getElementById('power-balance-result');
+            const interpEl = document.getElementById('power-balance-interpretation');
+
+            if (Math.abs(balance) < 10) {
+                resultEl.textContent = 'Balanced Relationship';
+                resultEl.style.color = '#a78bfa';
+                interpEl.textContent = 'Mutual dependence is relatively equal. Neither party has significant power over the other. This relationship is likely stable.';
+            } else if (balance > 0) {
+                resultEl.textContent = `A Dominates (+${Math.round(balance)})`;
+                resultEl.style.color = '#8b5cf6';
+                interpEl.textContent = `A has a power advantage. B is more dependent on A than vice versa. B may seek to balance through withdrawal, finding alternatives, status giving, or coalition formation.`;
+            } else {
+                resultEl.textContent = `B Dominates (${Math.round(balance)})`;
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = `B has a power advantage. A is more dependent on B than vice versa. A may seek to balance through withdrawal, finding alternatives, status giving, or coalition formation.`;
+            }
+        }
+
+        // Tool 2: Balancing Operations Simulator
+        let currentBalance = 75; // A's power advantage (0-100, 50 = balanced)
+
+        function updateBalanceMeter() {
+            document.getElementById('balance-meter').style.width = `${currentBalance}%`;
+
+            const resultEl = document.getElementById('balancing-result');
+            const interpEl = document.getElementById('balancing-interpretation');
+
+            if (currentBalance > 60) {
+                resultEl.textContent = 'A Dominates';
+                resultEl.style.color = '#8b5cf6';
+                interpEl.textContent = 'A has a significant power advantage over B. B is highly dependent with few alternatives.';
+            } else if (currentBalance > 40) {
+                resultEl.textContent = 'Balanced';
+                resultEl.style.color = '#a78bfa';
+                interpEl.textContent = 'Power is relatively balanced. Neither party has significant advantage. Relationship is stable.';
+            } else {
+                resultEl.textContent = 'B Gains Advantage';
+                resultEl.style.color = '#22c55e';
+                interpEl.textContent = 'B has successfully reduced A\'s power advantage or even gained their own advantage.';
+            }
+        }
+
+        function applyBalancing(operation) {
+            document.querySelectorAll('.balance-card').forEach(c => c.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            const interpEl = document.getElementById('balancing-interpretation');
+
+            switch(operation) {
+                case 'withdrawal':
+                    currentBalance -= 10;
+                    interpEl.textContent = 'B reduces motivational investment in goals A controls. By caring less, B becomes less dependent. Effect: Moderate reduction in A\'s power advantage.';
+                    break;
+                case 'extension':
+                    currentBalance -= 15;
+                    interpEl.textContent = 'B cultivates alternative sources. By having other options, B\'s dependence on A decreases directly. Effect: Strong reduction in A\'s power advantage.';
+                    break;
+                case 'status':
+                    currentBalance -= 8;
+                    interpEl.textContent = 'B gives status/deference to A, making A value the relationship more. A becomes somewhat more dependent on B\'s continued regard. Effect: Modest reduction in power imbalance.';
+                    break;
+                case 'coalition':
+                    currentBalance -= 20;
+                    interpEl.textContent = 'B joins with other dependents to increase collective bargaining power. Together they can threaten collective withdrawal or demand better terms. Effect: Strong reduction in A\'s power advantage.';
+                    break;
+            }
+
+            currentBalance = Math.max(0, Math.min(100, currentBalance));
+            updateBalanceMeter();
+        }
+
+        function resetBalancing() {
+            currentBalance = 75;
+            document.querySelectorAll('.balance-card').forEach(c => c.classList.remove('selected'));
+            updateBalanceMeter();
+        }
+
+        // Tool 3: Network Position Analyzer
+        const networkPositions = {
+            central: {
+                title: 'Central Network Position',
+                content: `
+                    <p><strong>Power-Dependence Analysis:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li><strong>Many alternatives:</strong> Connected to multiple others, reducing dependence on any single party</li>
+                        <li><strong>Others depend on you:</strong> Your many connections make you a valuable exchange partner</li>
+                        <li><strong>Information advantage:</strong> Access to diverse information from multiple sources</li>
+                    </ul>
+                    <p><strong>Power Level:</strong> <span style="color: #8b5cf6;">High</span></p>
+                    <p style="margin-top: 15px;"><strong>Emerson's Analysis:</strong> Central actors have low dependence (many alternatives) while others have high dependence on them (central actors control access to the network). This creates a significant power advantage.</p>
+                `
+            },
+            broker: {
+                title: 'Broker Network Position',
+                content: `
+                    <p><strong>Power-Dependence Analysis:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li><strong>Unique position:</strong> Only connection between otherwise separate groups</li>
+                        <li><strong>No alternatives to you:</strong> If groups want to connect, they must go through you</li>
+                        <li><strong>Control over flows:</strong> Information and resources must pass through your position</li>
+                    </ul>
+                    <p><strong>Power Level:</strong> <span style="color: #22c55e;">Very High</span></p>
+                    <p style="margin-top: 15px;"><strong>Emerson's Analysis:</strong> The broker position maximizes others' dependence (you're irreplaceable) while maintaining alternatives (connected to multiple groups). This is the most powerful structural position in Emerson's framework.</p>
+                `
+            },
+            peripheral: {
+                title: 'Peripheral Network Position',
+                content: `
+                    <p><strong>Power-Dependence Analysis:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li><strong>Few connections:</strong> Limited alternatives for exchange</li>
+                        <li><strong>Dependent on few:</strong> Must maintain relationships with limited partners</li>
+                        <li><strong>Others have options:</strong> Your exchange partners likely have other connections</li>
+                    </ul>
+                    <p><strong>Power Level:</strong> <span style="color: #f59e0b;">Low</span></p>
+                    <p style="margin-top: 15px;"><strong>Emerson's Analysis:</strong> Peripheral actors have high dependence (few alternatives) while others have low dependence on them (easily replaceable). Need to apply balancing operations: extend network, form coalitions with other peripherals.</p>
+                `
+            },
+            isolated: {
+                title: 'Isolated Network Position',
+                content: `
+                    <p><strong>Power-Dependence Analysis:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #cbd5e1;">
+                        <li><strong>Single connection:</strong> Completely dependent on one relationship</li>
+                        <li><strong>No alternatives:</strong> If this relationship fails, complete exclusion</li>
+                        <li><strong>Highly vulnerable:</strong> Your only connection has complete power over you</li>
+                    </ul>
+                    <p><strong>Power Level:</strong> <span style="color: #ef4444;">Very Low (Powerless)</span></p>
+                    <p style="margin-top: 15px;"><strong>Emerson's Analysis:</strong> Maximum dependence, zero alternatives. This is the most vulnerable position. Critical need for balancing operations, especially network extension. The connecting party has near-complete power.</p>
+                `
+            }
+        };
+
+        function selectNetworkPosition(position) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const data = networkPositions[position];
+            document.getElementById('network-position-title').textContent = data.title;
+            document.getElementById('network-content').innerHTML = data.content;
+            document.getElementById('network-analysis').style.display = 'block';
+        }
+
+        // Tool 4: Real-World Scenario Analyzer
+        const scenarios = {
+            employee: {
+                title: 'Employee-Employer Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>Employee depends on employer for:</strong> Income, benefits, career advancement, professional identity, social connections</p>
+                    <p style="color: #ddd6fe;"><strong>Employer depends on employee for:</strong> Labor, skills, institutional knowledge, client relationships</p>
+
+                    <p style="margin-top: 15px;"><strong>Typical Power Balance:</strong> <span style="color: #f59e0b;">Employer Advantage</span></p>
+                    <p style="color: #cbd5e1;">Employees typically have fewer alternatives (one job) than employers (many potential hires), creating employer power advantage.</p>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations Available:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Withdrawal:</strong> "Quiet quitting," reduced engagement</li>
+                        <li><strong>Extension:</strong> Build external network, get other offers</li>
+                        <li><strong>Status:</strong> Become indispensable through unique skills</li>
+                        <li><strong>Coalition:</strong> Union formation, collective bargaining</li>
+                    </ul>
+                `
+            },
+            supplier: {
+                title: 'Supplier-Buyer Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>Supplier depends on buyer for:</strong> Revenue, capacity utilization, market access</p>
+                    <p style="color: #ddd6fe;"><strong>Buyer depends on supplier for:</strong> Components, quality, delivery reliability</p>
+
+                    <p style="margin-top: 15px;"><strong>Power Balance Varies:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li>Large buyer, small supplier → <span style="color: #f59e0b;">Buyer advantage</span></li>
+                        <li>Unique/specialized supplier → <span style="color: #22c55e;">Supplier advantage</span></li>
+                        <li>Commodity market, many alternatives → <span style="color: #8b5cf6;">Balanced</span></li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Extension:</strong> Diversify customer base (supplier) or supplier base (buyer)</li>
+                        <li><strong>Status:</strong> Become "preferred supplier" or "anchor customer"</li>
+                        <li><strong>Coalition:</strong> Supplier associations, industry standards</li>
+                    </ul>
+                `
+            },
+            startup: {
+                title: 'Startup-Investor Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>Startup depends on investor for:</strong> Capital, network access, credibility signal, strategic guidance</p>
+                    <p style="color: #ddd6fe;"><strong>Investor depends on startup for:</strong> Returns, deal flow reputation, portfolio success</p>
+
+                    <p style="margin-top: 15px;"><strong>Typical Power Balance:</strong> <span style="color: #f59e0b;">Strong Investor Advantage</span></p>
+                    <p style="color: #cbd5e1;">Capital is scarce; investor sees many deals while founder has few funding options. Creates significant power imbalance favoring investors.</p>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Withdrawal:</strong> Bootstrap, reduce capital needs</li>
+                        <li><strong>Extension:</strong> Multiple term sheets, revenue growth reduces dependence</li>
+                        <li><strong>Status:</strong> Signal quality (top accelerator, previous exits, metrics)</li>
+                        <li><strong>Coalition:</strong> Founder networks sharing term sheet info</li>
+                    </ul>
+                `
+            },
+            academic: {
+                title: 'Student-Advisor Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>Student depends on advisor for:</strong> Degree completion, career sponsorship, research guidance, funding, letters of recommendation</p>
+                    <p style="color: #ddd6fe;"><strong>Advisor depends on student for:</strong> Research labor, publications, grant productivity, reputation building</p>
+
+                    <p style="margin-top: 15px;"><strong>Typical Power Balance:</strong> <span style="color: #ef4444;">Extreme Advisor Advantage</span></p>
+                    <p style="color: #cbd5e1;">Classic case of blocked alternatives: student cannot easily switch advisors, cannot do without degree, cannot coerce. Advisor controls all critical resources.</p>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations (Limited):</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Withdrawal:</strong> Psychologically disengage, "just get through it"</li>
+                        <li><strong>Extension:</strong> Build committee relationships, external collaborations</li>
+                        <li><strong>Status:</strong> Become highly productive, making advisor dependent on output</li>
+                        <li><strong>Coalition:</strong> Graduate student unions, ombudsperson offices</li>
+                    </ul>
+                `
+            },
+            romantic: {
+                title: 'Romantic Partner Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>Each partner depends on the other for:</strong> Emotional support, companionship, shared resources, identity, future plans</p>
+
+                    <p style="margin-top: 15px;"><strong>Power Balance:</strong> <span style="color: #8b5cf6;">Varies by "Principle of Least Interest"</span></p>
+                    <p style="color: #cbd5e1;">The partner who is less invested (lower motivational investment) or has better alternatives (more attractive to others) has more power. "The one who cares less controls the relationship."</p>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Withdrawal:</strong> Emotional distancing, caring less (often harmful)</li>
+                        <li><strong>Extension:</strong> Maintaining outside friendships, personal interests</li>
+                        <li><strong>Status:</strong> Being a good partner, increasing other's investment</li>
+                        <li><strong>Coalition:</strong> Not typically applicable (dyadic)</li>
+                    </ul>
+
+                    <p style="margin-top: 15px; color: #c4b5fd;"><strong>Note:</strong> Healthy relationships aim for balance through mutual investment, not through reducing care or cultivating exit options.</p>
+                `
+            },
+            platform: {
+                title: 'Platform-User Power Analysis',
+                content: `
+                    <p><strong>Dependence Structure:</strong></p>
+                    <p style="color: #ddd6fe;"><strong>User depends on platform for:</strong> Social connections, business reach, information access, entertainment, identity expression</p>
+                    <p style="color: #ddd6fe;"><strong>Platform depends on user for:</strong> Data, content, network effects, attention (ad revenue)</p>
+
+                    <p style="margin-top: 15px;"><strong>Typical Power Balance:</strong> <span style="color: #ef4444;">Extreme Platform Advantage</span></p>
+                    <p style="color: #cbd5e1;">Network effects lock users in; switching costs are high; platform has millions of users while each user has one platform. Structural monopoly power.</p>
+
+                    <p style="margin-top: 15px;"><strong>Balancing Operations:</strong></p>
+                    <ul style="margin: 10px 0 0 20px; color: #cbd5e1;">
+                        <li><strong>Withdrawal:</strong> Digital detox, reduced usage</li>
+                        <li><strong>Extension:</strong> Multi-homing (use multiple platforms)</li>
+                        <li><strong>Status:</strong> Become influential creator (platform depends on your content)</li>
+                        <li><strong>Coalition:</strong> User advocacy, regulatory pressure, collective action</li>
+                    </ul>
+                `
+            }
+        };
+
+        function selectScenario(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const scenario = scenarios[key];
+            document.getElementById('scenario-title').textContent = scenario.title;
+            document.getElementById('scenario-content').innerHTML = scenario.content;
+            document.getElementById('scenario-analysis').style.display = 'block';
+        }
+
+        // Tool 5: Coalition Effectiveness Calculator
+        function calculateCoalition() {
+            const size = parseInt(document.getElementById('coalition-size').value);
+            const alignment = parseInt(document.getElementById('interest-alignment').value);
+            const coordination = parseInt(document.getElementById('coordination').value);
+            const divideAbility = parseInt(document.getElementById('divide-ability').value);
+
+            document.getElementById('coalition-size-display').textContent = size;
+            document.getElementById('interest-alignment-display').textContent = alignment;
+            document.getElementById('coordination-display').textContent = coordination;
+            document.getElementById('divide-ability-display').textContent = divideAbility;
+
+            // Coalition success factors
+            const sizeBonus = Math.min(size * 3, 30); // More members = more power, but diminishing
+            const alignmentFactor = alignment * 0.3;
+            const coordinationFactor = coordination * 0.25;
+            const divideResistance = (100 - divideAbility) * 0.15;
+
+            let probability = sizeBonus + alignmentFactor + coordinationFactor + divideResistance;
+            probability = Math.min(95, Math.max(5, probability));
+
+            const resultEl = document.getElementById('coalition-result');
+            const interpEl = document.getElementById('coalition-interpretation');
+
+            resultEl.textContent = `${Math.round(probability)}%`;
+
+            if (probability < 30) {
+                resultEl.style.color = '#ef4444';
+                interpEl.textContent = 'Coalition unlikely to succeed. Interests are misaligned, coordination is poor, and the dominant party can easily divide members. Individual balancing operations may be more effective.';
+            } else if (probability < 50) {
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = 'Coalition has modest chance. Success requires better alignment or coordination. The dominant party will likely attempt to divide with selective benefits.';
+            } else if (probability < 70) {
+                resultEl.style.color = '#a78bfa';
+                interpEl.textContent = 'Coalition has reasonable chance of success. Shared interests and coordination ability can overcome divide-and-conquer tactics. Persistence is key.';
+            } else {
+                resultEl.style.color = '#22c55e';
+                interpEl.textContent = 'Coalition well-positioned for success. Strong alignment, good coordination, and resistance to division create favorable conditions for collective action.';
+            }
+        }
+
+        // Initialize tools on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            calculatePowerDependence();
+            updateBalanceMeter();
+            calculateCoalition();
+        });
+    </script>
+</body>
+</html>
