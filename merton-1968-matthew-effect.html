@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Matthew Effect in Science - Merton (1968)</title>
     <style>
+        :root {
+            --bg-primary: #1a0a0a;
+            --bg-secondary: #2d1515;
+            --bg-tertiary: rgba(30, 15, 15, 0.6);
+            --text-primary: #f5f0f0;
+            --text-secondary: #d8c8c8;
+            --text-muted: #b0a0a0;
+            --accent-primary: #dc6969;
+            --accent-secondary: #dc9090;
+            --accent-light: #f5c6c6;
+            --accent-gold: #daa520;
+            --accent-gold-dark: #b8860b;
+            --border-color: rgba(220, 100, 100, 0.2);
+            --border-hover: rgba(220, 100, 100, 0.3);
+            --card-bg: rgba(139, 69, 69, 0.2);
+            --card-bg-hover: rgba(139, 69, 69, 0.3);
+            --tool-bg: rgba(50, 25, 25, 0.4);
+            --tab-bg: rgba(80, 30, 30, 0.5);
+            --tab-hover: rgba(139, 69, 69, 0.5);
+            --junior-color: #a0a0a0;
+            --junior-bg: rgba(100, 100, 100, 0.3);
+            --junior-border: rgba(150, 150, 150, 0.5);
+            --progress-bg: rgba(50, 25, 25, 0.5);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #faf8f8;
+            --bg-secondary: #f5f0f0;
+            --bg-tertiary: #ffffff;
+            --text-primary: #2d1515;
+            --text-secondary: #4a3535;
+            --text-muted: #6b5555;
+            --accent-primary: #b84545;
+            --accent-secondary: #c45555;
+            --accent-light: #8b3030;
+            --accent-gold: #b8860b;
+            --accent-gold-dark: #8b6508;
+            --border-color: rgba(180, 70, 70, 0.25);
+            --border-hover: rgba(180, 70, 70, 0.4);
+            --card-bg: rgba(220, 150, 150, 0.15);
+            --card-bg-hover: rgba(220, 150, 150, 0.25);
+            --tool-bg: rgba(245, 235, 235, 0.9);
+            --tab-bg: rgba(220, 180, 180, 0.3);
+            --tab-hover: rgba(200, 130, 130, 0.4);
+            --junior-color: #555555;
+            --junior-bg: rgba(150, 150, 150, 0.2);
+            --junior-border: rgba(120, 120, 120, 0.4);
+            --progress-bg: rgba(200, 180, 180, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,9 +65,9 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
-            color: #e8e0e0;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
@@ -25,13 +77,44 @@
             padding: 40px 20px;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: 'Georgia', serif;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--card-bg-hover);
+            border-color: var(--border-hover);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        .theme-label {
+            font-size: 0.9rem;
+        }
+
         header {
             text-align: center;
             margin-bottom: 50px;
             padding: 40px;
-            background: linear-gradient(135deg, rgba(139, 69, 69, 0.3), rgba(80, 30, 30, 0.3));
+            background: linear-gradient(135deg, var(--card-bg), var(--tab-bg));
             border-radius: 20px;
-            border: 1px solid rgba(220, 100, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .paper-icon {
@@ -42,37 +125,37 @@
         h1 {
             font-size: 2.2rem;
             margin-bottom: 15px;
-            color: #f5c6c6;
+            color: var(--accent-light);
             font-weight: 600;
         }
 
         .authors {
             font-size: 1.3rem;
-            color: #dc9090;
+            color: var(--accent-secondary);
             margin-bottom: 10px;
         }
 
         .journal {
-            color: #b08080;
+            color: var(--text-muted);
             font-style: italic;
         }
 
         .abstract {
-            background: rgba(139, 69, 69, 0.2);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 40px;
-            border-left: 4px solid #dc6969;
+            border-left: 4px solid var(--accent-primary);
         }
 
         .abstract h2 {
-            color: #f5c6c6;
+            color: var(--accent-light);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
 
         .abstract p {
-            color: #d8c8c8;
+            color: var(--text-secondary);
             text-align: justify;
         }
 
@@ -86,10 +169,10 @@
 
         .nav-tab {
             padding: 12px 24px;
-            background: rgba(80, 30, 30, 0.5);
-            border: 1px solid rgba(220, 100, 100, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 10px;
-            color: #d8c8c8;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -97,17 +180,17 @@
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: rgba(139, 69, 69, 0.5);
-            color: #f5c6c6;
-            border-color: #dc6969;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .content-section {
             display: none;
-            background: rgba(30, 15, 15, 0.6);
+            background: var(--bg-tertiary);
             padding: 35px;
             border-radius: 15px;
-            border: 1px solid rgba(220, 100, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .content-section.active {
@@ -115,30 +198,30 @@
         }
 
         .content-section h2 {
-            color: #f5c6c6;
+            color: var(--accent-light);
             margin-bottom: 20px;
             font-size: 1.6rem;
-            border-bottom: 2px solid rgba(220, 100, 100, 0.3);
+            border-bottom: 2px solid var(--border-hover);
             padding-bottom: 10px;
         }
 
         .content-section h3 {
-            color: #dc9090;
+            color: var(--accent-secondary);
             margin: 25px 0 15px 0;
             font-size: 1.2rem;
         }
 
         .content-section p {
             margin-bottom: 15px;
-            color: #d8c8c8;
+            color: var(--text-secondary);
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(139, 69, 69, 0.3), rgba(100, 40, 40, 0.3));
+            background: linear-gradient(135deg, var(--card-bg), var(--card-bg-hover));
             padding: 20px;
             border-radius: 12px;
             margin: 20px 0;
-            border: 1px solid rgba(220, 100, 100, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .biblical-quote {
@@ -146,28 +229,33 @@
             padding: 25px;
             border-radius: 12px;
             margin: 20px 0;
-            border-left: 4px solid #daa520;
+            border-left: 4px solid var(--accent-gold);
             font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        [data-theme="light"] .biblical-quote {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(180, 130, 20, 0.1));
         }
 
         .biblical-quote .reference {
             display: block;
             margin-top: 10px;
-            color: #daa520;
+            color: var(--accent-gold);
             font-style: normal;
             font-weight: bold;
         }
 
         .tool-section {
-            background: rgba(50, 25, 25, 0.4);
+            background: var(--tool-bg);
             padding: 25px;
             border-radius: 12px;
             margin: 25px 0;
-            border: 1px solid rgba(220, 100, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .tool-section h3 {
-            color: #f5c6c6;
+            color: var(--accent-light);
             margin-bottom: 20px;
         }
 
@@ -178,14 +266,14 @@
         .slider-container label {
             display: block;
             margin-bottom: 8px;
-            color: #dc9090;
+            color: var(--accent-secondary);
         }
 
         .slider-container input[type="range"] {
             width: 100%;
             height: 8px;
             border-radius: 4px;
-            background: rgba(80, 30, 30, 0.5);
+            background: var(--progress-bg);
             outline: none;
             -webkit-appearance: none;
         }
@@ -195,27 +283,27 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #dc6969;
+            background: var(--accent-primary);
             cursor: pointer;
         }
 
         .slider-value {
             text-align: center;
             margin-top: 5px;
-            color: #f5c6c6;
+            color: var(--accent-light);
             font-weight: bold;
         }
 
         .result-display {
-            background: rgba(139, 69, 69, 0.2);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            border: 1px solid rgba(220, 100, 100, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .result-display h4 {
-            color: #f5c6c6;
+            color: var(--accent-light);
             margin-bottom: 10px;
         }
 
@@ -237,14 +325,18 @@
             border: 1px solid rgba(218, 165, 32, 0.5);
         }
 
+        [data-theme="light"] .comparison-card.eminent {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.2), rgba(180, 130, 20, 0.15));
+        }
+
         .comparison-card.junior {
-            background: linear-gradient(135deg, rgba(100, 100, 100, 0.3), rgba(80, 80, 80, 0.3));
-            border: 1px solid rgba(150, 150, 150, 0.5);
+            background: var(--junior-bg);
+            border: 1px solid var(--junior-border);
         }
 
         .comparison-card .label {
             font-size: 0.9rem;
-            color: #b0a0a0;
+            color: var(--text-muted);
             margin-bottom: 5px;
         }
 
@@ -254,19 +346,19 @@
         }
 
         .comparison-card.eminent .value {
-            color: #daa520;
+            color: var(--accent-gold);
         }
 
         .comparison-card.junior .value {
-            color: #a0a0a0;
+            color: var(--junior-color);
         }
 
         .scenario-btn {
             padding: 12px 20px;
-            background: rgba(80, 30, 30, 0.5);
-            border: 1px solid rgba(220, 100, 100, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 8px;
-            color: #d8c8c8;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -274,9 +366,9 @@
         }
 
         .scenario-btn:hover, .scenario-btn.active {
-            background: rgba(139, 69, 69, 0.5);
-            color: #f5c6c6;
-            border-color: #dc6969;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .mechanism-list {
@@ -287,10 +379,10 @@
         .mechanism-list li {
             padding: 12px 15px;
             margin: 8px 0;
-            background: rgba(50, 25, 25, 0.4);
+            background: var(--tool-bg);
             border-radius: 8px;
-            border-left: 3px solid #dc6969;
-            color: #d8c8c8;
+            border-left: 3px solid var(--accent-primary);
+            color: var(--text-secondary);
         }
 
         .timeline-item {
@@ -298,20 +390,20 @@
             gap: 15px;
             margin: 15px 0;
             padding: 15px;
-            background: rgba(50, 25, 25, 0.3);
+            background: var(--tool-bg);
             border-radius: 8px;
         }
 
         .timeline-year {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #daa520;
+            color: var(--accent-gold);
             min-width: 60px;
         }
 
         .progress-bar {
             height: 24px;
-            background: rgba(50, 25, 25, 0.5);
+            background: var(--progress-bg);
             border-radius: 12px;
             overflow: hidden;
             margin: 10px 0;
@@ -329,7 +421,7 @@
         }
 
         .progress-fill.eminent {
-            background: linear-gradient(90deg, #daa520, #b8860b);
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-dark));
             color: #1a0a0a;
         }
 
@@ -345,27 +437,27 @@
 
         li {
             margin-bottom: 8px;
-            color: #d8c8c8;
+            color: var(--text-secondary);
         }
 
         .footer-nav {
             margin-top: 50px;
             padding: 30px;
-            background: rgba(30, 15, 15, 0.6);
+            background: var(--bg-tertiary);
             border-radius: 15px;
-            border: 1px solid rgba(220, 100, 100, 0.2);
+            border: 1px solid var(--border-color);
             text-align: center;
         }
 
         .footer-nav a {
-            color: #dc9090;
+            color: var(--accent-secondary);
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
         .footer-nav a:hover {
-            color: #f5c6c6;
+            color: var(--accent-light);
         }
 
         @media (max-width: 768px) {
@@ -385,10 +477,25 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .theme-label {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark</span>
+    </button>
+
     <div class="container">
         <header>
             <div class="paper-icon">👑</div>
@@ -617,7 +724,7 @@
                         </div>
                     </div>
 
-                    <p style="margin-top: 15px; font-style: italic; color: #b0a0a0;" id="citationInsight"></p>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--text-muted);" id="citationInsight"></p>
                 </div>
             </div>
 
@@ -626,7 +733,7 @@
                 <p>See how credit is distributed in collaborative work based on status differentials.</p>
 
                 <div style="margin-bottom: 20px;">
-                    <label style="color: #dc9090; display: block; margin-bottom: 10px;">Select Collaboration Type:</label>
+                    <label style="color: var(--accent-secondary); display: block; margin-bottom: 10px;">Select Collaboration Type:</label>
                     <button class="scenario-btn active" onclick="selectCollabType('senior-junior')">Senior + Junior</button>
                     <button class="scenario-btn" onclick="selectCollabType('equal-status')">Equal Status</button>
                     <button class="scenario-btn" onclick="selectCollabType('multi-author')">Multi-Author Team</button>
@@ -664,6 +771,16 @@
     </div>
 
     <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
         function switchPage(pageId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
@@ -755,7 +872,7 @@
                                     <div class="progress-fill junior" style="width: 20%">20%</div>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #b0a0a0;"><em>Common phrases: "From [Senior]'s lab", "Under [Senior]'s supervision", "[Senior] et al."</em></p>
+                            <p style="margin-top: 15px; color: var(--text-muted);"><em>Common phrases: "From [Senior]'s lab", "Under [Senior]'s supervision", "[Senior] et al."</em></p>
                         </div>
                     `
                 },
@@ -780,7 +897,7 @@
                                     <div class="progress-fill junior" style="width: 50%">50%</div>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #b0a0a0;"><em>Paradox: Equal split of a smaller total. Paper may receive less attention without a "star" author.</em></p>
+                            <p style="margin-top: 15px; color: var(--text-muted);"><em>Paradox: Equal split of a smaller total. Paper may receive less attention without a "star" author.</em></p>
                         </div>
                     `
                 },
@@ -813,7 +930,7 @@
                                     <div class="progress-fill junior" style="width: 15%">15%</div>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #b0a0a0;"><em>"Middle author syndrome": Significant contributions may be essentially invisible.</em></p>
+                            <p style="margin-top: 15px; color: var(--text-muted);"><em>"Middle author syndrome": Significant contributions may be essentially invisible.</em></p>
                         </div>
                     `
                 },
@@ -838,7 +955,7 @@
                                     <div class="progress-fill junior" style="width: 35%">35%</div>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #b0a0a0;"><em>The "halo" of institutional prestige extends to individuals, regardless of actual contribution.</em></p>
+                            <p style="margin-top: 15px; color: var(--text-muted);"><em>The "halo" of institutional prestige extends to individuals, regardless of actual contribution.</em></p>
                         </div>
                     `
                 }
@@ -867,7 +984,7 @@
                                 <li>Award accumulation: Prizes beget more prizes</li>
                             </ul>
                             <p><strong>Example:</strong> A Nature paper from a Nobel laureate may receive 10x the citations of an equivalent paper in a lower-tier journal from an unknown researcher.</p>
-                            <p style="margin-top: 15px; color: #daa520;"><strong>Countermeasures:</strong> Double-blind review, lottery-based grants, transparent authorship contributions</p>
+                            <p style="margin-top: 15px; color: var(--accent-gold);"><strong>Countermeasures:</strong> Double-blind review, lottery-based grants, transparent authorship contributions</p>
                         </div>
                     `
                 },
@@ -883,7 +1000,7 @@
                                 <li>Network effects: Larger platforms become more valuable, attracting more users</li>
                             </ul>
                             <p><strong>Example:</strong> A startup funded by Sequoia gets more attention, better terms, and higher valuations than an identical startup with unknown backers.</p>
-                            <p style="margin-top: 15px; color: #daa520;"><strong>Implication:</strong> Early-stage advantages in reputation compound into massive market power over time.</p>
+                            <p style="margin-top: 15px; color: var(--accent-gold);"><strong>Implication:</strong> Early-stage advantages in reputation compound into massive market power over time.</p>
                         </div>
                     `
                 },
@@ -899,7 +1016,7 @@
                                 <li>Standard-setting: Market leaders define industry standards</li>
                             </ul>
                             <p><strong>Example:</strong> Google's search dominance generates data that improves results, reinforcing dominance. New entrants face "cold start" problem.</p>
-                            <p style="margin-top: 15px; color: #daa520;"><strong>Policy debate:</strong> Antitrust concerns about how cumulative advantage creates natural monopolies.</p>
+                            <p style="margin-top: 15px; color: var(--accent-gold);"><strong>Policy debate:</strong> Antitrust concerns about how cumulative advantage creates natural monopolies.</p>
                         </div>
                     `
                 },
@@ -915,7 +1032,7 @@
                                 <li>Credential cascades: Elite colleges → elite jobs → resources for children</li>
                             </ul>
                             <p><strong>Example:</strong> Children who enter kindergarten with larger vocabularies learn faster, compounding initial family advantages throughout schooling.</p>
-                            <p style="margin-top: 15px; color: #daa520;"><strong>Intervention point:</strong> Early childhood education as way to reduce initial disparities before compounding.</p>
+                            <p style="margin-top: 15px; color: var(--accent-gold);"><strong>Intervention point:</strong> Early childhood education as way to reduce initial disparities before compounding.</p>
                         </div>
                     `
                 },
@@ -931,7 +1048,7 @@
                                 <li>Media coverage: Viral content gets news coverage, spreading further</li>
                             </ul>
                             <p><strong>Example:</strong> A YouTube video that gets early engagement enters recommended feeds, potentially gaining millions of views. An identical video posted later may get hundreds.</p>
-                            <p style="margin-top: 15px; color: #daa520;"><strong>Implication:</strong> Success in content often depends more on timing and initial exposure than on quality.</p>
+                            <p style="margin-top: 15px; color: var(--accent-gold);"><strong>Implication:</strong> Success in content often depends more on timing and initial exposure than on quality.</p>
                         </div>
                     `
                 }
@@ -941,8 +1058,16 @@
             document.getElementById('domainAnalysis').innerHTML = domainData[domain].analysis;
         }
 
-        // Initialize tools
+        // Initialize tools and theme
         document.addEventListener('DOMContentLoaded', function() {
+            // Restore saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeLabel').textContent = 'Light';
+            }
+
             updateAdvantage();
             updateCitations();
             selectCollabType('senior-junior');

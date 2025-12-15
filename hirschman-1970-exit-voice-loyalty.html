@@ -5,6 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exit, Voice, and Loyalty - Hirschman (1970)</title>
     <style>
+        :root {
+            --bg-primary: #0a1a0a;
+            --bg-secondary: #152515;
+            --bg-tertiary: rgba(15, 30, 15, 0.6);
+            --text-primary: #e8f0e8;
+            --text-secondary: #c8d8c8;
+            --text-muted: #a0b0a0;
+            --accent-primary: #4a9a4a;
+            --accent-secondary: #7ab87a;
+            --accent-light: #a8d8a8;
+            --border-color: rgba(100, 180, 100, 0.2);
+            --border-hover: rgba(100, 180, 100, 0.3);
+            --card-bg: rgba(45, 90, 45, 0.2);
+            --card-bg-hover: rgba(45, 90, 45, 0.3);
+            --tool-bg: rgba(30, 60, 30, 0.4);
+            --tab-bg: rgba(25, 50, 25, 0.5);
+            --tab-hover: rgba(45, 90, 45, 0.5);
+            --exit-color: #e74c3c;
+            --exit-bg: rgba(231, 76, 60, 0.2);
+            --exit-border: rgba(231, 76, 60, 0.5);
+            --voice-color: #3498db;
+            --voice-bg: rgba(52, 152, 219, 0.2);
+            --voice-border: rgba(52, 152, 219, 0.5);
+            --loyalty-color: #f1c40f;
+            --loyalty-bg: rgba(241, 196, 15, 0.2);
+            --loyalty-border: rgba(241, 196, 15, 0.5);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5faf5;
+            --bg-secondary: #eaf5ea;
+            --bg-tertiary: #ffffff;
+            --text-primary: #1a2f1a;
+            --text-secondary: #2d4a2d;
+            --text-muted: #4a6b4a;
+            --accent-primary: #2d7a2d;
+            --accent-secondary: #3d8a3d;
+            --accent-light: #1d5a1d;
+            --border-color: rgba(45, 120, 45, 0.25);
+            --border-hover: rgba(45, 120, 45, 0.4);
+            --card-bg: rgba(100, 180, 100, 0.12);
+            --card-bg-hover: rgba(100, 180, 100, 0.2);
+            --tool-bg: rgba(220, 245, 220, 0.9);
+            --tab-bg: rgba(180, 220, 180, 0.3);
+            --tab-hover: rgba(140, 200, 140, 0.4);
+            --exit-color: #c0392b;
+            --exit-bg: rgba(192, 57, 43, 0.12);
+            --exit-border: rgba(192, 57, 43, 0.4);
+            --voice-color: #2980b9;
+            --voice-bg: rgba(41, 128, 185, 0.12);
+            --voice-border: rgba(41, 128, 185, 0.4);
+            --loyalty-color: #d4a000;
+            --loyalty-bg: rgba(212, 160, 0, 0.12);
+            --loyalty-border: rgba(212, 160, 0, 0.4);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,9 +69,9 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #0a1a0a 0%, #152515 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
-            color: #e0e8e0;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
@@ -25,13 +81,44 @@
             padding: 40px 20px;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: 'Georgia', serif;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--card-bg-hover);
+            border-color: var(--border-hover);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        .theme-label {
+            font-size: 0.9rem;
+        }
+
         header {
             text-align: center;
             margin-bottom: 50px;
             padding: 40px;
-            background: linear-gradient(135deg, rgba(45, 90, 45, 0.3), rgba(25, 50, 25, 0.3));
+            background: linear-gradient(135deg, var(--card-bg), var(--tab-bg));
             border-radius: 20px;
-            border: 1px solid rgba(100, 180, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .paper-icon {
@@ -42,37 +129,37 @@
         h1 {
             font-size: 2.2rem;
             margin-bottom: 15px;
-            color: #a8d8a8;
+            color: var(--accent-light);
             font-weight: 600;
         }
 
         .authors {
             font-size: 1.3rem;
-            color: #7ab87a;
+            color: var(--accent-secondary);
             margin-bottom: 10px;
         }
 
         .journal {
-            color: #608860;
+            color: var(--text-muted);
             font-style: italic;
         }
 
         .abstract {
-            background: rgba(45, 90, 45, 0.2);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 40px;
-            border-left: 4px solid #4a9a4a;
+            border-left: 4px solid var(--accent-primary);
         }
 
         .abstract h2 {
-            color: #a8d8a8;
+            color: var(--accent-light);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
 
         .abstract p {
-            color: #c8d8c8;
+            color: var(--text-secondary);
             text-align: justify;
         }
 
@@ -86,10 +173,10 @@
 
         .nav-tab {
             padding: 12px 24px;
-            background: rgba(25, 50, 25, 0.5);
-            border: 1px solid rgba(100, 180, 100, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 10px;
-            color: #c8d8c8;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -97,17 +184,17 @@
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: rgba(45, 90, 45, 0.5);
-            color: #a8d8a8;
-            border-color: #4a9a4a;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .content-section {
             display: none;
-            background: rgba(15, 30, 15, 0.6);
+            background: var(--bg-tertiary);
             padding: 35px;
             border-radius: 15px;
-            border: 1px solid rgba(100, 180, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .content-section.active {
@@ -115,34 +202,34 @@
         }
 
         .content-section h2 {
-            color: #a8d8a8;
+            color: var(--accent-light);
             margin-bottom: 20px;
             font-size: 1.6rem;
-            border-bottom: 2px solid rgba(100, 180, 100, 0.3);
+            border-bottom: 2px solid var(--border-hover);
             padding-bottom: 10px;
         }
 
         .content-section h3 {
-            color: #7ab87a;
+            color: var(--accent-secondary);
             margin: 25px 0 15px 0;
             font-size: 1.2rem;
         }
 
         .content-section p {
             margin-bottom: 15px;
-            color: #c8d8c8;
+            color: var(--text-secondary);
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(45, 90, 45, 0.3), rgba(35, 70, 35, 0.3));
+            background: linear-gradient(135deg, var(--card-bg), var(--card-bg-hover));
             padding: 20px;
             border-radius: 12px;
             margin: 20px 0;
-            border: 1px solid rgba(100, 180, 100, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .concept-card {
-            background: rgba(25, 50, 25, 0.4);
+            background: var(--tool-bg);
             padding: 20px;
             border-radius: 12px;
             margin: 15px 0;
@@ -150,15 +237,15 @@
         }
 
         .concept-card.exit {
-            border-color: #e74c3c;
+            border-color: var(--exit-color);
         }
 
         .concept-card.voice {
-            border-color: #3498db;
+            border-color: var(--voice-color);
         }
 
         .concept-card.loyalty {
-            border-color: #f1c40f;
+            border-color: var(--loyalty-color);
         }
 
         .concept-card h4 {
@@ -167,27 +254,27 @@
         }
 
         .concept-card.exit h4 {
-            color: #e74c3c;
+            color: var(--exit-color);
         }
 
         .concept-card.voice h4 {
-            color: #3498db;
+            color: var(--voice-color);
         }
 
         .concept-card.loyalty h4 {
-            color: #f1c40f;
+            color: var(--loyalty-color);
         }
 
         .tool-section {
-            background: rgba(30, 60, 30, 0.4);
+            background: var(--tool-bg);
             padding: 25px;
             border-radius: 12px;
             margin: 25px 0;
-            border: 1px solid rgba(100, 180, 100, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .tool-section h3 {
-            color: #a8d8a8;
+            color: var(--accent-light);
             margin-bottom: 20px;
         }
 
@@ -198,14 +285,14 @@
         .slider-container label {
             display: block;
             margin-bottom: 8px;
-            color: #7ab87a;
+            color: var(--accent-secondary);
         }
 
         .slider-container input[type="range"] {
             width: 100%;
             height: 8px;
             border-radius: 4px;
-            background: rgba(25, 50, 25, 0.5);
+            background: var(--tab-bg);
             outline: none;
             -webkit-appearance: none;
         }
@@ -215,27 +302,27 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #4a9a4a;
+            background: var(--accent-primary);
             cursor: pointer;
         }
 
         .slider-value {
             text-align: center;
             margin-top: 5px;
-            color: #a8d8a8;
+            color: var(--accent-light);
             font-weight: bold;
         }
 
         .result-display {
-            background: rgba(45, 90, 45, 0.2);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            border: 1px solid rgba(100, 180, 100, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .result-display h4 {
-            color: #a8d8a8;
+            color: var(--accent-light);
             margin-bottom: 10px;
         }
 
@@ -254,18 +341,18 @@
         }
 
         .response-card.exit {
-            background: rgba(231, 76, 60, 0.2);
-            border: 2px solid rgba(231, 76, 60, 0.5);
+            background: var(--exit-bg);
+            border: 2px solid var(--exit-border);
         }
 
         .response-card.voice {
-            background: rgba(52, 152, 219, 0.2);
-            border: 2px solid rgba(52, 152, 219, 0.5);
+            background: var(--voice-bg);
+            border: 2px solid var(--voice-border);
         }
 
         .response-card.loyalty {
-            background: rgba(241, 196, 15, 0.2);
-            border: 2px solid rgba(241, 196, 15, 0.5);
+            background: var(--loyalty-bg);
+            border: 2px solid var(--loyalty-border);
         }
 
         .response-card.recommended {
@@ -275,7 +362,7 @@
 
         .response-card .label {
             font-size: 0.9rem;
-            color: #a0b0a0;
+            color: var(--text-muted);
             margin-bottom: 5px;
         }
 
@@ -285,23 +372,23 @@
         }
 
         .response-card.exit .value {
-            color: #e74c3c;
+            color: var(--exit-color);
         }
 
         .response-card.voice .value {
-            color: #3498db;
+            color: var(--voice-color);
         }
 
         .response-card.loyalty .value {
-            color: #f1c40f;
+            color: var(--loyalty-color);
         }
 
         .scenario-btn {
             padding: 12px 20px;
-            background: rgba(25, 50, 25, 0.5);
-            border: 1px solid rgba(100, 180, 100, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 8px;
-            color: #c8d8c8;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -309,9 +396,9 @@
         }
 
         .scenario-btn:hover, .scenario-btn.active {
-            background: rgba(45, 90, 45, 0.5);
-            color: #a8d8a8;
-            border-color: #4a9a4a;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .matrix-table {
@@ -323,16 +410,17 @@
         .matrix-table th, .matrix-table td {
             padding: 12px;
             text-align: left;
-            border: 1px solid rgba(100, 180, 100, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .matrix-table th {
-            background: rgba(45, 90, 45, 0.3);
-            color: #a8d8a8;
+            background: var(--card-bg-hover);
+            color: var(--accent-light);
         }
 
         .matrix-table td {
-            background: rgba(25, 50, 25, 0.3);
+            background: var(--tool-bg);
+            color: var(--text-secondary);
         }
 
         ul {
@@ -342,7 +430,7 @@
 
         li {
             margin-bottom: 8px;
-            color: #c8d8c8;
+            color: var(--text-secondary);
         }
 
         .recommendation-box {
@@ -353,43 +441,48 @@
         }
 
         .recommendation-box.exit {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
-            border: 2px solid #e74c3c;
+            background: linear-gradient(135deg, var(--exit-bg), rgba(192, 57, 43, 0.15));
+            border: 2px solid var(--exit-color);
         }
 
         .recommendation-box.voice {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(41, 128, 185, 0.3));
-            border: 2px solid #3498db;
+            background: linear-gradient(135deg, var(--voice-bg), rgba(41, 128, 185, 0.15));
+            border: 2px solid var(--voice-color);
         }
 
         .recommendation-box.loyalty {
-            background: linear-gradient(135deg, rgba(241, 196, 15, 0.3), rgba(243, 156, 18, 0.3));
-            border: 2px solid #f1c40f;
+            background: linear-gradient(135deg, var(--loyalty-bg), rgba(243, 156, 18, 0.15));
+            border: 2px solid var(--loyalty-color);
         }
 
         .recommendation-box h4 {
             font-size: 1.3rem;
             margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .recommendation-box p {
+            color: var(--text-secondary);
         }
 
         .footer-nav {
             margin-top: 50px;
             padding: 30px;
-            background: rgba(15, 30, 15, 0.6);
+            background: var(--bg-tertiary);
             border-radius: 15px;
-            border: 1px solid rgba(100, 180, 100, 0.2);
+            border: 1px solid var(--border-color);
             text-align: center;
         }
 
         .footer-nav a {
-            color: #7ab87a;
+            color: var(--accent-secondary);
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
         .footer-nav a:hover {
-            color: #a8d8a8;
+            color: var(--accent-light);
         }
 
         @media (max-width: 768px) {
@@ -409,10 +502,25 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .theme-label {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark</span>
+    </button>
+
     <div class="container">
         <header>
             <div class="paper-icon">🚪</div>
@@ -681,7 +789,7 @@
                 <p>If you've decided to use voice, optimize your approach.</p>
 
                 <div style="margin-bottom: 20px;">
-                    <label style="color: #7ab87a; display: block; margin-bottom: 10px;">Select Your Voice Channel:</label>
+                    <label style="color: var(--accent-secondary); display: block; margin-bottom: 10px;">Select Your Voice Channel:</label>
                     <button class="scenario-btn active" onclick="selectVoice('individual')">Individual Complaint</button>
                     <button class="scenario-btn" onclick="selectVoice('collective')">Collective Action</button>
                     <button class="scenario-btn" onclick="selectVoice('public')">Public Pressure</button>
@@ -701,6 +809,16 @@
     </div>
 
     <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
         function switchPage(pageId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
@@ -914,12 +1032,12 @@
                 <div style="margin-top: 15px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <div style="text-align: center;">
-                            <div style="font-size: 0.9rem; color: #7ab87a;">Your Power Score</div>
-                            <div style="font-size: 2rem; font-weight: bold; color: #4a9a4a;">${yourPower.toFixed(1)}</div>
+                            <div style="font-size: 0.9rem; color: var(--accent-secondary);">Your Power Score</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--accent-primary);">${yourPower.toFixed(1)}</div>
                         </div>
                         <div style="text-align: center;">
-                            <div style="font-size: 0.9rem; color: #7ab87a;">Their Power Score</div>
-                            <div style="font-size: 2rem; font-weight: bold; color: #e74c3c;">${theirPower.toFixed(1)}</div>
+                            <div style="font-size: 0.9rem; color: var(--accent-secondary);">Their Power Score</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--exit-color);">${theirPower.toFixed(1)}</div>
                         </div>
                     </div>
                     <div class="recommendation-box ${balance > 0 ? 'voice' : balance < 0 ? 'exit' : 'loyalty'}">
@@ -1031,8 +1149,16 @@
             document.getElementById('voiceAnalysis').innerHTML = voiceData[channel].analysis;
         }
 
-        // Initialize tools
+        // Initialize tools and theme
         document.addEventListener('DOMContentLoaded', function() {
+            // Restore saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeLabel').textContent = 'Light';
+            }
+
             updateEVL();
             selectScenario('employee');
             updatePower();

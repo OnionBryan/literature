@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status Characteristics and Social Interaction - Berger, Cohen & Zelditch (1972)</title>
     <style>
+        :root {
+            --bg-primary: #1a1510;
+            --bg-secondary: #2d2520;
+            --bg-tertiary: rgba(30, 20, 15, 0.6);
+            --text-primary: #f0e8e0;
+            --text-secondary: #d0c8c0;
+            --text-muted: #9a7b5b;
+            --accent-primary: #cd7f32;
+            --accent-secondary: #b8956b;
+            --accent-light: #d4a574;
+            --accent-gold: #ffd700;
+            --border-color: rgba(205, 127, 50, 0.2);
+            --border-hover: rgba(205, 127, 50, 0.3);
+            --card-bg: rgba(139, 90, 43, 0.2);
+            --card-bg-hover: rgba(139, 90, 43, 0.3);
+            --tool-bg: rgba(50, 35, 25, 0.4);
+            --tab-bg: rgba(80, 50, 30, 0.5);
+            --tab-hover: rgba(139, 90, 43, 0.5);
+            --tier-high: #ffd700;
+            --tier-mid: #c0c0c0;
+            --tier-low: #8b4513;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #faf8f5;
+            --bg-secondary: #f0ebe5;
+            --bg-tertiary: #ffffff;
+            --text-primary: #2d2520;
+            --text-secondary: #4a3d35;
+            --text-muted: #7a6b5b;
+            --accent-primary: #a06020;
+            --accent-secondary: #8a6040;
+            --accent-light: #704020;
+            --accent-gold: #b8860b;
+            --border-color: rgba(160, 96, 32, 0.25);
+            --border-hover: rgba(160, 96, 32, 0.4);
+            --card-bg: rgba(205, 127, 50, 0.1);
+            --card-bg-hover: rgba(205, 127, 50, 0.18);
+            --tool-bg: rgba(250, 245, 238, 0.95);
+            --tab-bg: rgba(220, 200, 180, 0.4);
+            --tab-hover: rgba(200, 160, 120, 0.4);
+            --tier-high: #b8860b;
+            --tier-mid: #808080;
+            --tier-low: #654321;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,9 +59,9 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a1510 0%, #2d2520 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
-            color: #e8e0d8;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
@@ -25,13 +71,44 @@
             padding: 40px 20px;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: 'Georgia', serif;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--card-bg-hover);
+            border-color: var(--border-hover);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        .theme-label {
+            font-size: 0.9rem;
+        }
+
         header {
             text-align: center;
             margin-bottom: 50px;
             padding: 40px;
-            background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(139, 90, 43, 0.2));
+            background: linear-gradient(135deg, var(--card-bg), var(--tab-bg));
             border-radius: 20px;
-            border: 1px solid rgba(205, 127, 50, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .paper-icon {
@@ -42,37 +119,37 @@
         h1 {
             font-size: 2rem;
             margin-bottom: 15px;
-            color: #d4a574;
+            color: var(--accent-light);
             font-weight: 600;
         }
 
         .authors {
             font-size: 1.2rem;
-            color: #b8956b;
+            color: var(--accent-secondary);
             margin-bottom: 10px;
         }
 
         .journal {
-            color: #9a7b5b;
+            color: var(--text-muted);
             font-style: italic;
         }
 
         .abstract {
-            background: rgba(139, 90, 43, 0.2);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 40px;
-            border-left: 4px solid #cd7f32;
+            border-left: 4px solid var(--accent-primary);
         }
 
         .abstract h2 {
-            color: #d4a574;
+            color: var(--accent-light);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
 
         .abstract p {
-            color: #d0c8c0;
+            color: var(--text-secondary);
             text-align: justify;
         }
 
@@ -86,10 +163,10 @@
 
         .nav-tab {
             padding: 12px 24px;
-            background: rgba(80, 50, 30, 0.5);
-            border: 1px solid rgba(205, 127, 50, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 10px;
-            color: #d0c8c0;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -97,17 +174,17 @@
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: rgba(139, 90, 43, 0.5);
-            color: #d4a574;
-            border-color: #cd7f32;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .content-section {
             display: none;
-            background: rgba(30, 20, 15, 0.6);
+            background: var(--bg-tertiary);
             padding: 35px;
             border-radius: 15px;
-            border: 1px solid rgba(205, 127, 50, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .content-section.active {
@@ -115,30 +192,35 @@
         }
 
         .content-section h2 {
-            color: #d4a574;
+            color: var(--accent-light);
             margin-bottom: 20px;
             font-size: 1.6rem;
-            border-bottom: 2px solid rgba(205, 127, 50, 0.3);
+            border-bottom: 2px solid var(--border-hover);
             padding-bottom: 10px;
         }
 
         .content-section h3 {
-            color: #b8956b;
+            color: var(--accent-secondary);
             margin: 25px 0 15px 0;
             font-size: 1.2rem;
         }
 
         .content-section p {
             margin-bottom: 15px;
-            color: #d0c8c0;
+            color: var(--text-secondary);
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(139, 90, 43, 0.3), rgba(100, 65, 30, 0.3));
+            background: linear-gradient(135deg, var(--card-bg), var(--card-bg-hover));
             padding: 20px;
             border-radius: 12px;
             margin: 20px 0;
-            border: 1px solid rgba(205, 127, 50, 0.3);
+            border: 1px solid var(--border-hover);
+        }
+
+        .highlight-box h4 {
+            color: var(--accent-light);
+            margin-bottom: 10px;
         }
 
         .status-tier {
@@ -147,7 +229,7 @@
             padding: 15px;
             margin: 10px 0;
             border-radius: 10px;
-            background: rgba(50, 35, 25, 0.4);
+            background: var(--tool-bg);
         }
 
         .tier-icon {
@@ -156,27 +238,27 @@
         }
 
         .tier-high {
-            border-left: 4px solid #ffd700;
+            border-left: 4px solid var(--tier-high);
         }
 
         .tier-equal {
-            border-left: 4px solid #c0c0c0;
+            border-left: 4px solid var(--tier-mid);
         }
 
         .tier-low {
-            border-left: 4px solid #8b4513;
+            border-left: 4px solid var(--tier-low);
         }
 
         .tool-section {
-            background: rgba(50, 35, 25, 0.4);
+            background: var(--tool-bg);
             padding: 25px;
             border-radius: 12px;
             margin: 25px 0;
-            border: 1px solid rgba(205, 127, 50, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .tool-section h3 {
-            color: #d4a574;
+            color: var(--accent-light);
             margin-bottom: 20px;
         }
 
@@ -187,14 +269,14 @@
         .slider-container label {
             display: block;
             margin-bottom: 8px;
-            color: #b8956b;
+            color: var(--accent-secondary);
         }
 
         .slider-container input[type="range"] {
             width: 100%;
             height: 8px;
             border-radius: 4px;
-            background: rgba(80, 50, 30, 0.5);
+            background: var(--tab-bg);
             outline: none;
             -webkit-appearance: none;
         }
@@ -204,29 +286,29 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #cd7f32;
+            background: var(--accent-primary);
             cursor: pointer;
         }
 
         .result-display {
-            background: rgba(139, 90, 43, 0.2);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            border: 1px solid rgba(205, 127, 50, 0.3);
+            border: 1px solid var(--border-hover);
         }
 
         .result-display h4 {
-            color: #d4a574;
+            color: var(--accent-light);
             margin-bottom: 10px;
         }
 
         .scenario-btn {
             padding: 12px 20px;
-            background: rgba(80, 50, 30, 0.5);
-            border: 1px solid rgba(205, 127, 50, 0.3);
+            background: var(--tab-bg);
+            border: 1px solid var(--border-hover);
             border-radius: 8px;
-            color: #d0c8c0;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
@@ -234,14 +316,14 @@
         }
 
         .scenario-btn:hover, .scenario-btn.active {
-            background: rgba(139, 90, 43, 0.5);
-            color: #d4a574;
-            border-color: #cd7f32;
+            background: var(--tab-hover);
+            color: var(--accent-light);
+            border-color: var(--accent-primary);
         }
 
         .expectation-bar {
             height: 30px;
-            background: rgba(50, 35, 25, 0.5);
+            background: var(--tool-bg);
             border-radius: 15px;
             margin: 10px 0;
             position: relative;
@@ -255,17 +337,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1a1510;
             font-weight: bold;
         }
 
         .expectation-fill.high {
-            background: linear-gradient(90deg, #ffd700, #daa520);
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-primary));
+            color: #1a1510;
         }
 
         .expectation-fill.low {
-            background: linear-gradient(90deg, #8b4513, #654321);
-            color: #d0c8c0;
+            background: linear-gradient(90deg, var(--tier-low), #4a3020);
+            color: var(--text-secondary);
         }
 
         .behavior-grid {
@@ -277,13 +359,13 @@
 
         .behavior-card {
             padding: 15px;
-            background: rgba(60, 40, 25, 0.4);
+            background: var(--tool-bg);
             border-radius: 10px;
-            border: 1px solid rgba(205, 127, 50, 0.2);
+            border: 1px solid var(--border-color);
         }
 
         .behavior-card h5 {
-            color: #d4a574;
+            color: var(--accent-light);
             margin-bottom: 10px;
         }
 
@@ -294,7 +376,7 @@
 
         li {
             margin-bottom: 8px;
-            color: #d0c8c0;
+            color: var(--text-secondary);
         }
 
         .characteristic-tag {
@@ -306,49 +388,49 @@
         }
 
         .tag-diffuse {
-            background: rgba(205, 127, 50, 0.3);
-            border: 1px solid #cd7f32;
-            color: #d4a574;
+            background: rgba(205, 127, 50, 0.2);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-light);
         }
 
         .tag-specific {
-            background: rgba(100, 100, 100, 0.3);
-            border: 1px solid #888;
-            color: #aaa;
+            background: rgba(150, 150, 150, 0.2);
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
         }
 
         .prophecy-box {
-            background: linear-gradient(135deg, rgba(100, 65, 30, 0.4), rgba(80, 50, 25, 0.4));
+            background: linear-gradient(135deg, var(--card-bg-hover), var(--card-bg));
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
-            border: 2px solid #cd7f32;
+            border: 2px solid var(--accent-primary);
             text-align: center;
         }
 
         .prophecy-box h4 {
-            color: #ffd700;
+            color: var(--accent-gold);
             margin-bottom: 10px;
         }
 
         .footer-nav {
             margin-top: 50px;
             padding: 30px;
-            background: rgba(30, 20, 15, 0.6);
+            background: var(--bg-tertiary);
             border-radius: 15px;
-            border: 1px solid rgba(205, 127, 50, 0.2);
+            border: 1px solid var(--border-color);
             text-align: center;
         }
 
         .footer-nav a {
-            color: #b8956b;
+            color: var(--accent-secondary);
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
         .footer-nav a:hover {
-            color: #d4a574;
+            color: var(--accent-light);
         }
 
         @media (max-width: 768px) {
@@ -368,10 +450,25 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .theme-label {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark</span>
+    </button>
+
     <div class="container">
         <header>
             <div class="paper-icon">🏛️</div>
@@ -598,7 +695,7 @@
                 <p>See how status differences play out in group dynamics.</p>
 
                 <div style="margin-bottom: 20px;">
-                    <label style="color: #b8956b; display: block; margin-bottom: 10px;">Select Group Composition:</label>
+                    <label style="color: var(--accent-secondary); display: block; margin-bottom: 10px;">Select Group Composition:</label>
                     <button class="scenario-btn active" onclick="selectGroup('homogeneous')">Homogeneous (similar status)</button>
                     <button class="scenario-btn" onclick="selectGroup('one-different')">One Different Member</button>
                     <button class="scenario-btn" onclick="selectGroup('mixed')">Mixed Status Group</button>
@@ -616,7 +713,7 @@
                 <p>Choose the best approach for disrupting status-based expectations.</p>
 
                 <div style="margin-bottom: 20px;">
-                    <label style="color: #b8956b; display: block; margin-bottom: 10px;">Select Your Situation:</label>
+                    <label style="color: var(--accent-secondary); display: block; margin-bottom: 10px;">Select Your Situation:</label>
                     <button class="scenario-btn active" onclick="selectSituation('new-team')">New Team Forming</button>
                     <button class="scenario-btn" onclick="selectSituation('established')">Established Hierarchy</button>
                     <button class="scenario-btn" onclick="selectSituation('low-status')">You're Lower Status</button>
@@ -653,6 +750,16 @@
     </div>
 
     <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('themeIcon').textContent = newTheme === 'light' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = newTheme === 'light' ? 'Light' : 'Dark';
+            localStorage.setItem('theme', newTheme);
+        }
+
         function switchPage(pageId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
@@ -731,7 +838,7 @@
                                 <li>Leadership emergence based more on behavior than background</li>
                             </ul>
                             <p><strong>Dynamics:</strong> Without clear status differentials, groups often take longer to organize but may produce more creative outcomes since diverse viewpoints get heard.</p>
-                            <p style="color: #d4a574;"><strong>Watch For:</strong> Subtle distinctions (who spoke first, who's more assertive) may become exaggerated to create hierarchy where none naturally exists.</p>
+                            <p style="color: var(--accent-light);"><strong>Watch For:</strong> Subtle distinctions (who spoke first, who's more assertive) may become exaggerated to create hierarchy where none naturally exists.</p>
                         </div>
                     `
                 },
@@ -748,7 +855,7 @@
                             </ul>
                             <p><strong>If Token Has High Status:</strong> May be seen as spokesperson or expert for their category. Heavy burden of representation.</p>
                             <p><strong>If Token Has Low Status:</strong> May be marginalized, contributions discounted. Double disadvantage of status plus tokenism.</p>
-                            <p style="color: #d4a574;"><strong>Watch For:</strong> Stereotyping, isolation, and the burden of disproving negative expectations.</p>
+                            <p style="color: var(--accent-light);"><strong>Watch For:</strong> Stereotyping, isolation, and the burden of disproving negative expectations.</p>
                         </div>
                     `
                 },
@@ -764,7 +871,7 @@
                                 <li>Coalitions may form around shared characteristics</li>
                             </ul>
                             <p><strong>Dynamics:</strong> The most common real-world scenario. Status hierarchies still form, but are more complex and potentially contested.</p>
-                            <p style="color: #d4a574;"><strong>Opportunity:</strong> Task-relevant expertise can override diffuse status if made visible early. Mixed groups can be more egalitarian if properly facilitated.</p>
+                            <p style="color: var(--accent-light);"><strong>Opportunity:</strong> Task-relevant expertise can override diffuse status if made visible early. Mixed groups can be more egalitarian if properly facilitated.</p>
                         </div>
                     `
                 },
@@ -780,7 +887,7 @@
                                 <li>High-diffuse-status members may resist losing influence</li>
                             </ul>
                             <p><strong>Example:</strong> A young female engineer leading a team of older male executives on a technical project.</p>
-                            <p style="color: #d4a574;"><strong>Strategy:</strong> Make expertise undeniably visible early. Get public endorsement from authority figures. Maintain assertive but not aggressive communication style.</p>
+                            <p style="color: var(--accent-light);"><strong>Strategy:</strong> Make expertise undeniably visible early. Get public endorsement from authority figures. Maintain assertive but not aggressive communication style.</p>
                         </div>
                     `
                 }
@@ -878,7 +985,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #d4a574;"><strong>Warning:</strong> These strategies require extra effort that high-status members don't need to expend—a real but navigable inequality.</p>
+                            <p style="margin-top: 15px; color: var(--accent-light);"><strong>Warning:</strong> These strategies require extra effort that high-status members don't need to expend—a real but navigable inequality.</p>
                         </div>
                     `
                 },
@@ -907,7 +1014,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <p style="margin-top: 15px; color: #d4a574;"><strong>Key:</strong> Your deference to low-status members is a powerful signal that reshapes others' expectations.</p>
+                            <p style="margin-top: 15px; color: var(--accent-light);"><strong>Key:</strong> Your deference to low-status members is a powerful signal that reshapes others' expectations.</p>
                         </div>
                     `
                 }
@@ -936,7 +1043,7 @@
                                 <li><strong>Body Language:</strong> Others orient toward high-status members</li>
                                 <li><strong>Challenge Resistance:</strong> Disagreeing with high-status members is seen as inappropriate</li>
                             </ul>
-                            <p style="color: #d4a574;"><strong>Countermeasure:</strong> Use structured formats (timed contributions, written input before discussion) to reduce status effects.</p>
+                            <p style="color: var(--accent-light);"><strong>Countermeasure:</strong> Use structured formats (timed contributions, written input before discussion) to reduce status effects.</p>
                         </div>
                     `
                 },
@@ -951,7 +1058,7 @@
                                 <li><strong>"Culture Fit":</strong> Often code for matching interviewers' own status characteristics</li>
                                 <li><strong>Reference Checks:</strong> References from high-status people carry more weight</li>
                             </ul>
-                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Structured interviews, work sample tests, blind resume screening, diverse hiring panels.</p>
+                            <p style="color: var(--accent-light);"><strong>Countermeasures:</strong> Structured interviews, work sample tests, blind resume screening, diverse hiring panels.</p>
                         </div>
                     `
                 },
@@ -966,7 +1073,7 @@
                                 <li><strong>Subjective Criteria:</strong> "Leadership," "presence," "potential" favor high-status employees</li>
                                 <li><strong>Comparison Standards:</strong> High-status employees compared to others like them (lower bar)</li>
                             </ul>
-                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Objective metrics, calibration sessions, require specific behavioral examples, audit for patterns.</p>
+                            <p style="color: var(--accent-light);"><strong>Countermeasures:</strong> Objective metrics, calibration sessions, require specific behavioral examples, audit for patterns.</p>
                         </div>
                     `
                 },
@@ -982,7 +1089,7 @@
                                 <li><strong>Self-Promotion:</strong> Expected from high-status; penalized for low-status (especially women)</li>
                                 <li><strong>Risk Assessment:</strong> Promoting high-status seems "safer"—less career risk for decision-maker</li>
                             </ul>
-                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Transparent criteria, formal sponsorship programs, promotion panels with diverse members, track outcomes by demographics.</p>
+                            <p style="color: var(--accent-light);"><strong>Countermeasures:</strong> Transparent criteria, formal sponsorship programs, promotion panels with diverse members, track outcomes by demographics.</p>
                         </div>
                     `
                 }
@@ -992,8 +1099,16 @@
             document.getElementById('scenarioAnalysis').innerHTML = scenarios[scenario].analysis;
         }
 
-        // Initialize tools
+        // Initialize tools and theme
         document.addEventListener('DOMContentLoaded', function() {
+            // Restore saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeLabel').textContent = 'Light';
+            }
+
             updateExpectations();
             selectGroup('homogeneous');
             selectSituation('new-team');
