@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Garbage Can Model of Organizational Choice - Cohen, March & Olsen (1972)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.3), rgba(60, 60, 60, 0.3));
+            border-radius: 20px;
+            border: 1px solid rgba(150, 150, 150, 0.2);
+        }
+
+        .paper-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            margin-bottom: 15px;
+            color: #c0c0c0;
+            font-weight: 600;
+        }
+
+        .authors {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+
+        .journal {
+            color: #808080;
+            font-style: italic;
+        }
+
+        .abstract {
+            background: rgba(80, 80, 80, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 4px solid #808080;
+        }
+
+        .abstract h2 {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .abstract p {
+            color: #b0b0b0;
+            text-align: justify;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: rgba(60, 60, 60, 0.5);
+            border: 1px solid rgba(150, 150, 150, 0.3);
+            border-radius: 10px;
+            color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(100, 100, 100, 0.5);
+            color: #d0d0d0;
+            border-color: #909090;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(30, 30, 30, 0.6);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(150, 150, 150, 0.2);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid rgba(150, 150, 150, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #a0a0a0;
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(80, 80, 80, 0.3), rgba(60, 60, 60, 0.3));
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(150, 150, 150, 0.3);
+        }
+
+        .stream-card {
+            background: rgba(50, 50, 50, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid;
+        }
+
+        .stream-card.problems {
+            border-color: #e74c3c;
+        }
+
+        .stream-card.solutions {
+            border-color: #2ecc71;
+        }
+
+        .stream-card.participants {
+            border-color: #3498db;
+        }
+
+        .stream-card.opportunities {
+            border-color: #f1c40f;
+        }
+
+        .stream-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .stream-card.problems h4 { color: #e74c3c; }
+        .stream-card.solutions h4 { color: #2ecc71; }
+        .stream-card.participants h4 { color: #3498db; }
+        .stream-card.opportunities h4 { color: #f1c40f; }
+
+        .tool-section {
+            background: rgba(50, 50, 50, 0.4);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid rgba(150, 150, 150, 0.2);
+        }
+
+        .tool-section h3 {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a0a0a0;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(60, 60, 60, 0.5);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #808080;
+            cursor: pointer;
+        }
+
+        .slider-value {
+            text-align: center;
+            margin-top: 5px;
+            color: #c0c0c0;
+            font-weight: bold;
+        }
+
+        .result-display {
+            background: rgba(80, 80, 80, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid rgba(150, 150, 150, 0.3);
+        }
+
+        .result-display h4 {
+            color: #c0c0c0;
+            margin-bottom: 10px;
+        }
+
+        .scenario-btn {
+            padding: 12px 20px;
+            background: rgba(60, 60, 60, 0.5);
+            border: 1px solid rgba(150, 150, 150, 0.3);
+            border-radius: 8px;
+            color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            margin: 5px;
+        }
+
+        .scenario-btn:hover, .scenario-btn.active {
+            background: rgba(100, 100, 100, 0.5);
+            color: #d0d0d0;
+            border-color: #909090;
+        }
+
+        .garbage-can {
+            background: linear-gradient(180deg, rgba(70, 70, 70, 0.4), rgba(40, 40, 40, 0.6));
+            border-radius: 10px 10px 20px 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid rgba(100, 100, 100, 0.5);
+            min-height: 150px;
+        }
+
+        .floating-item {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-item.problem {
+            background: rgba(231, 76, 60, 0.3);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .floating-item.solution {
+            background: rgba(46, 204, 113, 0.3);
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .floating-item.participant {
+            background: rgba(52, 152, 219, 0.3);
+            border: 1px solid #3498db;
+            color: #3498db;
+        }
+
+        .floating-item.opportunity {
+            background: rgba(241, 196, 15, 0.3);
+            border: 1px solid #f1c40f;
+            color: #f1c40f;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .decision-outcome {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .decision-outcome.resolution {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3));
+            border: 2px solid #2ecc71;
+        }
+
+        .decision-outcome.oversight {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(41, 128, 185, 0.3));
+            border: 2px solid #3498db;
+        }
+
+        .decision-outcome.flight {
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.3), rgba(243, 156, 18, 0.3));
+            border: 2px solid #f1c40f;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #b0b0b0;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .strategy-card {
+            padding: 15px;
+            background: rgba(60, 60, 60, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(150, 150, 150, 0.3);
+        }
+
+        .strategy-card h5 {
+            color: #c0c0c0;
+            margin-bottom: 10px;
+        }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(150, 150, 150, 0.2);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #c0c0c0;
+        }
+
+        @media (max-width: 768px) {
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="paper-icon">🗑️</div>
+            <h1>A Garbage Can Model of Organizational Choice</h1>
+            <p class="authors">Michael D. Cohen, James G. March, & Johan P. Olsen</p>
+            <p class="journal">Administrative Science Quarterly, 1972</p>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Cohen, March, and Olsen present a radical alternative to rational models of organizational decision-making. In "organized anarchies" like universities, decisions are not made through systematic problem-solving. Instead, four relatively independent streams—problems, solutions, participants, and choice opportunities—flow through the organization. A decision occurs when these streams happen to intersect at a "garbage can" (choice opportunity). This model reveals that power often belongs not to those with the best ideas, but to those with the persistence, time, and energy to be present when opportunities arise.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('model')">The Model</button>
+            <button class="nav-tab" onclick="switchPage('implications')">Power & Strategy</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: Decision-Making in Organized Anarchies</h2>
+
+            <p>The "garbage can" model emerged from James March's work at the Carnegie School, which had already challenged classical assumptions about organizational rationality. But this paper went further, suggesting that in certain organizational contexts, decision-making is fundamentally decoupled from rational problem-solving.</p>
+
+            <h3>The Organized Anarchy</h3>
+            <p>The model applies specifically to "organized anarchies"—organizations characterized by:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Problematic Preferences:</strong> Goals are unclear, inconsistent, or discovered through action rather than guiding it</li>
+                    <li><strong>Unclear Technology:</strong> Members don't fully understand the organization's own processes; they learn by trial and error</li>
+                    <li><strong>Fluid Participation:</strong> Participants wander in and out of decision arenas; attention is scarce and variable</li>
+                </ul>
+            </div>
+
+            <p>Universities are the paradigmatic example, but elements of organized anarchy exist in many organizations—especially in strategic planning, R&D, and any context characterized by ambiguity and professional autonomy.</p>
+
+            <h3>The Four Streams</h3>
+            <p>Rather than a linear process of "identify problem → generate solutions → choose best option," the garbage can model posits four independent streams flowing through the organization:</p>
+
+            <div class="stream-card problems">
+                <h4>Problems</h4>
+                <p>Issues and concerns that people bring to the organization. Problems exist independently of solutions—people may have concerns without knowing how to address them, or solutions without knowing what problems they solve.</p>
+            </div>
+
+            <div class="stream-card solutions">
+                <h4>Solutions</h4>
+                <p>Answers looking for questions. People often have preferred solutions (technologies, approaches, ideas) that they carry around and attach to whatever problems become available. "A solution is an answer actively looking for a question."</p>
+            </div>
+
+            <div class="stream-card participants">
+                <h4>Participants</h4>
+                <p>Decision-makers with varying amounts of time and energy. Attention is the scarce resource. Who happens to be in the room when a decision is made profoundly shapes the outcome.</p>
+            </div>
+
+            <div class="stream-card opportunities">
+                <h4>Choice Opportunities</h4>
+                <p>Occasions when the organization is expected to produce a decision—meetings, deadlines, scheduled reviews. These are the "garbage cans" into which the other streams are dumped.</p>
+            </div>
+
+            <h3>When Decisions Happen</h3>
+            <p>A decision occurs when these four streams happen to connect at a choice opportunity. The resulting decision may have little to do with rational problem-solving—it depends on what problems, solutions, and participants happen to be present when the garbage can is "opened."</p>
+        </section>
+
+        <section id="model" class="content-section">
+            <h2>The Garbage Can Model in Detail</h2>
+
+            <h3>Three Decision Styles</h3>
+            <p>The model identifies three ways decisions can be made, only one of which resembles rational choice:</p>
+
+            <div class="highlight-box">
+                <h4>1. Resolution</h4>
+                <p>The rational ideal: a choice is made by resolving problems. A problem enters a garbage can, an appropriate solution is found, and the problem is solved. This is the rarest outcome in the model.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>2. Oversight</h4>
+                <p>A choice is made quickly before problems arrive. If a choice opportunity becomes available and participants make a decision before problems attach to it, the decision can be made by "oversight"—essentially, a decision without deliberation.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>3. Flight</h4>
+                <p>Problems leave to attach to other choice opportunities. A problem may enter a garbage can but then "fly away" to a more attractive opportunity, leaving the original choice to be made without it. The problem isn't solved—it just moves elsewhere.</p>
+            </div>
+
+            <h3>Key Dynamics</h3>
+
+            <div class="tool-section">
+                <h4>Energy Load and Decision Speed</h4>
+                <p>When participants have limited energy and many choice opportunities compete for attention, decisions are more likely to be made by oversight or flight. Heavy loads prevent thorough deliberation.</p>
+            </div>
+
+            <div class="tool-section">
+                <h4>Access Structure</h4>
+                <p>Not all problems and solutions have equal access to all choice opportunities. Formal rules, informal norms, and political dynamics determine what can be discussed where. Restricting access can prevent problems from overwhelming certain garbage cans.</p>
+            </div>
+
+            <div class="tool-section">
+                <h4>Decision Structure</h4>
+                <p>Not all participants have equal access to all choice opportunities. Some people are always in the room; others rarely. This creates systematic advantages for those with time and access.</p>
+            </div>
+
+            <h3>Implications for Organizational Behavior</h3>
+            <p>The garbage can model suggests several counter-intuitive organizational phenomena:</p>
+
+            <ul>
+                <li>Important problems may never get solved because they keep flying from garbage can to garbage can</li>
+                <li>Solutions may be implemented without a clear understanding of what problem they solve</li>
+                <li>The same proposal may succeed or fail depending on what else is in the garbage can at the time</li>
+                <li>Increasing the number of choice opportunities may slow decision-making by dispersing attention</li>
+                <li>Sometimes the best way to make a decision is to do it quickly, before it attracts problems</li>
+            </ul>
+        </section>
+
+        <section id="implications" class="content-section">
+            <h2>Power & Strategic Implications</h2>
+
+            <h3>Power in the Garbage Can</h3>
+            <p>The garbage can model reveals a distinctive form of power: not the power to control outcomes directly, but the power to shape what enters which garbage cans and when.</p>
+
+            <div class="highlight-box">
+                <h3>Sources of Power in Organized Anarchies</h3>
+                <ul>
+                    <li><strong>Persistence:</strong> The power to keep showing up, to wait out others, to still be there when the decision is finally made</li>
+                    <li><strong>Time and Energy:</strong> Those who can devote attention to a decision have disproportionate influence</li>
+                    <li><strong>Agenda Control:</strong> The power to determine which problems and solutions enter which garbage cans</li>
+                    <li><strong>Timing:</strong> Knowing when to introduce proposals—before problems accumulate, or when key opponents are absent</li>
+                    <li><strong>Problem Attachment:</strong> The ability to attach or detach problems from choice opportunities</li>
+                </ul>
+            </div>
+
+            <h3>Strategic Implications</h3>
+
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h5>For Those Seeking Change</h5>
+                    <ul>
+                        <li>Have your solution ready when problems emerge</li>
+                        <li>Attach your solution to high-priority problems</li>
+                        <li>Be present at as many choice opportunities as possible</li>
+                        <li>Time proposals for moments of crisis or opportunity</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h5>For Those Blocking Change</h5>
+                    <ul>
+                        <li>Overload choice opportunities with problems</li>
+                        <li>Introduce competing solutions to create confusion</li>
+                        <li>Divert problems to different garbage cans</li>
+                        <li>Ensure your presence at key decisions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Persistence Advantage</h3>
+            <p>Perhaps the most profound implication: in organized anarchies, power belongs to those who persist. Ideas don't win because they're best—they win because their champions keep showing up. This creates structural advantages for:</p>
+
+            <ul>
+                <li><strong>Senior members</strong> with accumulated political capital and routinized access</li>
+                <li><strong>Full-time administrators</strong> over part-time faculty or board members</li>
+                <li><strong>Those without competing time demands</strong> (favoring those with fewer external obligations)</li>
+                <li><strong>Those who enjoy the process</strong> (political actors who find meetings energizing, not draining)</li>
+            </ul>
+
+            <h3>Beyond Rationality</h3>
+            <p>The garbage can model doesn't suggest that rationality is impossible—but that it's one decision style among several, and often not the dominant one. Recognizing this opens space for alternative strategies that work with, rather than against, organizational ambiguity.</p>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>🗑️ Garbage Can Simulator</h3>
+                <p>Watch how problems, solutions, and participants mix in a choice opportunity.</p>
+
+                <div class="slider-container">
+                    <label>Problem Load (number of problems in the system): <span id="problemValue">Medium</span></label>
+                    <input type="range" id="problemSlider" min="1" max="5" value="3" oninput="updateGarbageCan()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Solution Availability: <span id="solutionValue">Medium</span></label>
+                    <input type="range" id="solutionSlider" min="1" max="5" value="3" oninput="updateGarbageCan()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Participant Energy: <span id="energyValue">Medium</span></label>
+                    <input type="range" id="energySlider" min="1" max="5" value="3" oninput="updateGarbageCan()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Choice Opportunities Available: <span id="choiceValue">Medium</span></label>
+                    <input type="range" id="choiceSlider" min="1" max="5" value="3" oninput="updateGarbageCan()">
+                </div>
+
+                <div class="garbage-can" id="garbageCanViz"></div>
+
+                <div id="decisionOutcome"></div>
+            </div>
+
+            <div class="tool-section">
+                <h3>📊 Organizational Context Analyzer</h3>
+                <p>Assess how "anarchic" your organization or decision context is.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectContext('university')">University</button>
+                    <button class="scenario-btn" onclick="selectContext('startup')">Startup</button>
+                    <button class="scenario-btn" onclick="selectContext('bureaucracy')">Government Bureau</button>
+                    <button class="scenario-btn" onclick="selectContext('corporation')">Corporation</button>
+                </div>
+
+                <div class="result-display" id="contextResult">
+                    <h4 id="contextTitle">Context: University</h4>
+                    <div id="contextAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🎯 Strategic Timing Calculator</h3>
+                <p>Determine the best time to introduce your proposal.</p>
+
+                <div class="slider-container">
+                    <label>Urgency of Your Proposal: <span id="urgencyValue">Medium</span></label>
+                    <input type="range" id="urgencySlider" min="1" max="5" value="3" oninput="updateTiming()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Current Problem Load in Target Garbage Can: <span id="loadValue">Medium</span></label>
+                    <input type="range" id="loadSlider" min="1" max="5" value="3" oninput="updateTiming()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Key Supporter Availability: <span id="supporterValue">Sometimes</span></label>
+                    <input type="range" id="supporterSlider" min="1" max="5" value="3" oninput="updateTiming()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Key Opponent Availability: <span id="opponentValue">Sometimes</span></label>
+                    <input type="range" id="opponentSlider" min="1" max="5" value="3" oninput="updateTiming()">
+                </div>
+
+                <div class="result-display" id="timingResult">
+                    <h4>Strategic Recommendation</h4>
+                    <div id="timingAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🔄 Decision Style Predictor</h3>
+                <p>Given current conditions, how will decisions likely be made?</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectCondition('light')">Light Load</button>
+                    <button class="scenario-btn" onclick="selectCondition('moderate')">Moderate Load</button>
+                    <button class="scenario-btn" onclick="selectCondition('heavy')">Heavy Load</button>
+                    <button class="scenario-btn" onclick="selectCondition('crisis')">Crisis Mode</button>
+                </div>
+
+                <div class="result-display" id="styleResult">
+                    <h4 id="styleTitle">Decision Style: Light Load</h4>
+                    <div id="styleAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateGarbageCan() {
+            const problems = parseInt(document.getElementById('problemSlider').value);
+            const solutions = parseInt(document.getElementById('solutionSlider').value);
+            const energy = parseInt(document.getElementById('energySlider').value);
+            const choices = parseInt(document.getElementById('choiceSlider').value);
+
+            const labels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            document.getElementById('problemValue').textContent = labels[problems - 1];
+            document.getElementById('solutionValue').textContent = labels[solutions - 1];
+            document.getElementById('energyValue').textContent = labels[energy - 1];
+            document.getElementById('choiceValue').textContent = labels[choices - 1];
+
+            // Generate floating items
+            const problemItems = ['Budget Cuts', 'Staff Morale', 'Quality Issues', 'Customer Complaints', 'Tech Debt'];
+            const solutionItems = ['New Software', 'Restructure', 'Training Program', 'Hire Consultant', 'Form Committee'];
+            const participantItems = ['CEO', 'Department Head', 'Staff Rep', 'Board Member', 'Advisor'];
+
+            let html = '';
+            for (let i = 0; i < problems; i++) {
+                html += `<span class="floating-item problem" style="animation-delay: ${i * 0.3}s">${problemItems[i]}</span>`;
+            }
+            for (let i = 0; i < solutions; i++) {
+                html += `<span class="floating-item solution" style="animation-delay: ${i * 0.4}s">${solutionItems[i]}</span>`;
+            }
+            for (let i = 0; i < Math.min(energy, 3); i++) {
+                html += `<span class="floating-item participant" style="animation-delay: ${i * 0.5}s">${participantItems[i]}</span>`;
+            }
+
+            document.getElementById('garbageCanViz').innerHTML = html;
+
+            // Determine outcome
+            let outcome, outcomeClass, explanation;
+
+            if (energy >= 4 && problems <= 2 && solutions >= 3) {
+                outcome = "RESOLUTION";
+                outcomeClass = "resolution";
+                explanation = "High participant energy and good solution availability with manageable problem load allows for rational problem-solving.";
+            } else if (energy <= 2 || choices >= 4) {
+                outcome = "OVERSIGHT";
+                outcomeClass = "oversight";
+                explanation = "Low energy or many competing opportunities means decisions will be made quickly before problems fully attach.";
+            } else {
+                outcome = "FLIGHT";
+                outcomeClass = "flight";
+                explanation = "Moderate conditions with high problem load—problems will likely fly to other garbage cans, leaving decisions unresolved or moved elsewhere.";
+            }
+
+            document.getElementById('decisionOutcome').innerHTML = `
+                <div class="decision-outcome ${outcomeClass}">
+                    <h4>Likely Decision Style: ${outcome}</h4>
+                    <p>${explanation}</p>
+                </div>
+            `;
+        }
+
+        function selectContext(context) {
+            document.querySelectorAll('.tool-section:nth-child(2) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const contexts = {
+                'university': {
+                    title: 'Context: University',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Anarchic Characteristics:</strong> HIGH</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Problematic Preferences:</strong> Multiple, conflicting goals (research, teaching, service, revenue)</li>
+                                <li><strong>Unclear Technology:</strong> How exactly does learning happen? Contested and unclear.</li>
+                                <li><strong>Fluid Participation:</strong> Faculty serve on committees sporadically; administrators rotate</li>
+                            </ul>
+                            <p><strong>Power Dynamics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Full-time administrators have persistence advantage over part-time faculty governance</li>
+                                <li>Tenured faculty can wait out administrators who have term limits</li>
+                                <li>Deans control agenda access to key garbage cans</li>
+                            </ul>
+                            <p style="color: #f1c40f;"><strong>Strategic Advice:</strong> Patience and persistence trump brilliance. Attach your proposals to whatever crisis is currently commanding attention.</p>
+                        </div>
+                    `
+                },
+                'startup': {
+                    title: 'Context: Startup',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Anarchic Characteristics:</strong> MODERATE-HIGH</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Problematic Preferences:</strong> Goals shift rapidly; pivots common</li>
+                                <li><strong>Unclear Technology:</strong> Product-market fit unclear; processes not yet established</li>
+                                <li><strong>Fluid Participation:</strong> Everyone wears multiple hats; roles blur</li>
+                            </ul>
+                            <p><strong>Power Dynamics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Founders have disproportionate influence through persistent presence</li>
+                                <li>Whoever is in the room when decisions happen shapes outcomes</li>
+                                <li>Investor board meetings become key garbage cans</li>
+                            </ul>
+                            <p style="color: #f1c40f;"><strong>Strategic Advice:</strong> Be in the room. Speed matters—act before problems accumulate. Have solutions ready for emerging problems.</p>
+                        </div>
+                    `
+                },
+                'bureaucracy': {
+                    title: 'Context: Government Bureau',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Anarchic Characteristics:</strong> MODERATE</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Problematic Preferences:</strong> Multiple stakeholders (public, legislators, executives) with conflicting demands</li>
+                                <li><strong>Unclear Technology:</strong> Formal procedures clear, but actual effectiveness often unclear</li>
+                                <li><strong>Fluid Participation:</strong> Political appointees rotate; career staff persist</li>
+                            </ul>
+                            <p><strong>Power Dynamics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Career civil servants outlast political appointees—persistence power</li>
+                                <li>Formal access rules determine who can participate in which decisions</li>
+                                <li>Budget cycles create predictable garbage cans</li>
+                            </ul>
+                            <p style="color: #f1c40f;"><strong>Strategic Advice:</strong> Master the formal rules while building informal networks. Time proposals to budget and electoral cycles.</p>
+                        </div>
+                    `
+                },
+                'corporation': {
+                    title: 'Context: Large Corporation',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Anarchic Characteristics:</strong> LOW-MODERATE</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Problematic Preferences:</strong> Profit is clear goal, but operationalization creates ambiguity</li>
+                                <li><strong>Unclear Technology:</strong> Core operations understood; strategy and innovation less so</li>
+                                <li><strong>Fluid Participation:</strong> Structured roles, but matrix organizations create ambiguity</li>
+                            </ul>
+                            <p><strong>Power Dynamics:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Hierarchy provides clearer decision rights than universities</li>
+                                <li>Strategic planning processes are key garbage cans</li>
+                                <li>Executive attention is the scarce resource</li>
+                            </ul>
+                            <p style="color: #f1c40f;"><strong>Strategic Advice:</strong> Less anarchic, but garbage can dynamics still apply to strategic decisions. Frame proposals as solutions to problems executives already recognize.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('contextTitle').textContent = contexts[context].title;
+            document.getElementById('contextAnalysis').innerHTML = contexts[context].analysis;
+        }
+
+        function updateTiming() {
+            const urgency = parseInt(document.getElementById('urgencySlider').value);
+            const load = parseInt(document.getElementById('loadSlider').value);
+            const supporter = parseInt(document.getElementById('supporterSlider').value);
+            const opponent = parseInt(document.getElementById('opponentSlider').value);
+
+            const urgencyLabels = ['Low', 'Moderate', 'Medium', 'High', 'Urgent'];
+            const loadLabels = ['Empty', 'Light', 'Medium', 'Heavy', 'Overloaded'];
+            const availLabels = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'];
+
+            document.getElementById('urgencyValue').textContent = urgencyLabels[urgency - 1];
+            document.getElementById('loadValue').textContent = loadLabels[load - 1];
+            document.getElementById('supporterValue').textContent = availLabels[supporter - 1];
+            document.getElementById('opponentValue').textContent = availLabels[opponent - 1];
+
+            let recommendation, timing;
+
+            if (load <= 2 && supporter >= 4 && opponent <= 2) {
+                timing = "Act NOW";
+                recommendation = "Perfect conditions: light problem load means your proposal won't get lost, supporters are present, opponents are absent. Strike immediately.";
+            } else if (load >= 4) {
+                timing = "WAIT";
+                recommendation = "Garbage can is overloaded—your proposal will get lost among competing problems. Wait for problems to fly elsewhere or resolve.";
+            } else if (opponent >= 4 && supporter <= 2) {
+                timing = "BUILD SUPPORT FIRST";
+                recommendation = "Opponents are present but supporters are absent. Don't act yet—build your coalition and wait for a more favorable configuration.";
+            } else if (urgency >= 4) {
+                timing = "Act SOON, but prepare";
+                recommendation = "Urgency is high, but conditions aren't ideal. Prepare your supporters, try to attach your proposal to existing problems, and act soon.";
+            } else {
+                timing = "MONITOR";
+                recommendation = "Conditions are mixed. Keep monitoring for better timing—watch for when opponents are distracted and supporters are energized.";
+            }
+
+            document.getElementById('timingAnalysis').innerHTML = `
+                <div style="margin-top: 15px;">
+                    <div style="text-align: center; padding: 20px; background: rgba(100, 100, 100, 0.2); border-radius: 10px; margin-bottom: 15px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #f1c40f;">${timing}</div>
+                    </div>
+                    <p>${recommendation}</p>
+                </div>
+            `;
+        }
+
+        function selectCondition(condition) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const conditions = {
+                'light': {
+                    title: 'Decision Style Under Light Load',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div style="text-align: center; padding: 15px; background: rgba(46, 204, 113, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #2ecc71;">60%</div>
+                                    <div style="font-size: 0.9rem;">Resolution</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #3498db;">25%</div>
+                                    <div style="font-size: 0.9rem;">Oversight</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(241, 196, 15, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #f1c40f;">15%</div>
+                                    <div style="font-size: 0.9rem;">Flight</div>
+                                </div>
+                            </div>
+                            <p><strong>Analysis:</strong> With manageable demands, participants have energy to engage with problems and find solutions. This is when rational decision-making is most possible. Good time to tackle important decisions.</p>
+                        </div>
+                    `
+                },
+                'moderate': {
+                    title: 'Decision Style Under Moderate Load',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div style="text-align: center; padding: 15px; background: rgba(46, 204, 113, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #2ecc71;">35%</div>
+                                    <div style="font-size: 0.9rem;">Resolution</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #3498db;">30%</div>
+                                    <div style="font-size: 0.9rem;">Oversight</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(241, 196, 15, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #f1c40f;">35%</div>
+                                    <div style="font-size: 0.9rem;">Flight</div>
+                                </div>
+                            </div>
+                            <p><strong>Analysis:</strong> Mixed outcomes. Some problems get resolved, some decisions made by oversight before problems attach, and some problems flight to other venues. Typical organizational conditions.</p>
+                        </div>
+                    `
+                },
+                'heavy': {
+                    title: 'Decision Style Under Heavy Load',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div style="text-align: center; padding: 15px; background: rgba(46, 204, 113, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #2ecc71;">15%</div>
+                                    <div style="font-size: 0.9rem;">Resolution</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #3498db;">35%</div>
+                                    <div style="font-size: 0.9rem;">Oversight</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(241, 196, 15, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #f1c40f;">50%</div>
+                                    <div style="font-size: 0.9rem;">Flight</div>
+                                </div>
+                            </div>
+                            <p><strong>Analysis:</strong> Problem flight dominates. Participants are exhausted and problems bounce between garbage cans without resolution. Quick oversight decisions become appealing to clear the queue. Not a good time for important decisions.</p>
+                        </div>
+                    `
+                },
+                'crisis': {
+                    title: 'Decision Style Under Crisis',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div style="text-align: center; padding: 15px; background: rgba(46, 204, 113, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #2ecc71;">20%</div>
+                                    <div style="font-size: 0.9rem;">Resolution</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(52, 152, 219, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #3498db;">55%</div>
+                                    <div style="font-size: 0.9rem;">Oversight</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: rgba(241, 196, 15, 0.3); border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #f1c40f;">25%</div>
+                                    <div style="font-size: 0.9rem;">Flight</div>
+                                </div>
+                            </div>
+                            <p><strong>Analysis:</strong> Crisis concentrates attention and collapses choice opportunities. Decisions are made quickly by oversight—often by whoever is present. This is a window of opportunity for those with prepared solutions. "Never let a crisis go to waste."</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('styleTitle').textContent = conditions[condition].title;
+            document.getElementById('styleAnalysis').innerHTML = conditions[condition].analysis;
+        }
+
+        // Initialize tools
+        document.addEventListener('DOMContentLoaded', function() {
+            updateGarbageCan();
+            selectContext('university');
+            updateTiming();
+            selectCondition('light');
+        });
+    </script>
+</body>
+</html>
