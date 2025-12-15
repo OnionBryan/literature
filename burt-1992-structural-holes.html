@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Holes: The Social Structure of Competition - Burt (1992)</title>
+    <!--
+      Review of:
+      Burt, R. S. (1992).
+      Structural Holes: The Social Structure of Competition.
+      Harvard University Press.
+
+      This is a STRUCTURAL THEORY explaining how gaps (structural holes) in social networks
+      create competitive advantages through brokerage and information control.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+
+        /* Typography */
+        h1, h2, h3, .definition-term, .result-box-label, .card h4, .breakdown-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Page Navigation */
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .page-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+
+        .page-btn.home {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffffff, #d4e9fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .citation {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .hero .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 15px auto 0;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease;
+        }
+
+        body.dark-mode .section-card {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        .section-card h2 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #1e3c72;
+            font-size: 2.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark-mode .section-card h2 {
+            color: #60a5fa;
+            border-bottom-color: #60a5fa;
+        }
+
+        .section-card h3 {
+            color: #2a5298;
+            margin: 25px 0 15px;
+            font-size: 1.6em;
+        }
+
+        body.dark-mode .section-card h3 {
+            color: #93c5fd;
+        }
+
+        .section-card p, .section-card li {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .section-card p,
+        body.dark-mode .section-card li {
+            color: #e2e8f0;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Key Concepts */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .concept-box h4 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .concept-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        /* Interactive Calculator */
+        .calculator-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .calculator-section {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+
+        .calculator-title {
+            font-size: 1.8rem;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        body.dark-mode .calculator-title {
+            color: #e2e8f0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .input-group label {
+            color: #cbd5e0;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-mode .input-group input,
+        body.dark-mode .input-group select {
+            background: #1a202c;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .result-box {
+            background: white;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        body.dark-mode .result-box {
+            background: #2d3748;
+            border-left-color: #9f7aea;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        body.dark-mode .result-value {
+            color: #9f7aea;
+        }
+
+        .result-interpretation {
+            font-size: 1.05rem;
+            color: #4a5568;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        body.dark-mode .result-interpretation {
+            color: #cbd5e0;
+            background: #1a202c;
+        }
+
+        /* Visual Network Diagram */
+        .network-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .svg-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        body.dark-mode .svg-container {
+            background: #2d3748;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .comparison-table {
+            background: #2d3748;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        body.dark-mode .comparison-table td {
+            border-bottom-color: #4a5568;
+            color: #cbd5e0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        body.dark-mode .comparison-table tr:hover {
+            background: #1a202c;
+        }
+
+        /* Stat Box Enhancements */
+        .stat-box {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30,60,114,0.4);
+        }
+
+        .stat-value {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card Enhancements */
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid #2a5298;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(30,60,114,0.15);
+            border-color: #2a5298;
+        }
+
+        body.dark-mode .card {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-top-color: #60a5fa;
+        }
+
+        body.dark-mode .card h4 {
+            color: #93c5fd;
+        }
+
+        /* Concept Box Improvements */
+        .concept-box {
+            transition: all 0.3s ease;
+        }
+
+        .concept-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Table Improvements */
+        .comparison-table {
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        body.dark-mode .comparison-table {
+            background: #0f172a;
+        }
+
+        body.dark-mode .comparison-table th {
+            background: #1e3c72;
+        }
+
+        body.dark-mode .comparison-table td {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .comparison-table tr:hover {
+            background: #334155;
+        }
+
+        /* Calculator Section Dark Mode */
+        body.dark-mode .calculator-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body.dark-mode .calculator-title {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .result-box {
+            background: #0f172a;
+            border-left-color: #9f7aea;
+        }
+
+        body.dark-mode .result-box h4 {
+            color: #e2e8f0;
+        }
+
+        /* Attribution Section */
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dark-mode-toggle {
+                top: 70px;
+                right: 10px;
+                font-size: 1em;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn home">← Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">📖 Main Content</button>
+            <button class="page-btn" onclick="switchPage('interactive', this)">🎮 Interactive Tools</button>
+        </div>
+    </nav>
+
+    <!-- Dark Mode Toggle (Fixed Position) -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <!-- MAIN CONTENT PAGE -->
+    <div id="main">
+        <div class="container">
+
+            <!-- Hero Section -->
+            <section class="hero">
+            <h1>Structural Holes:<br>The Social Structure of Competition</h1>
+            <p class="citation">Burt, R. S. (1992). Harvard University Press</p>
+            <p class="tagline">
+                "The people who stand near the holes in a social structure are at higher risk of having good ideas."
+            </p>
+        </section>
+
+        <!-- Historical Context -->
+        <section class="section-card">
+            <h2>📚 Historical Context: Origins of the Theory</h2>
+
+            <h3>The Intellectual Lineage</h3>
+            <p>
+                Burt's Structural Holes Theory didn't emerge in a vacuum. It builds on decades of sociological research into
+                social structure and network analysis:
+            </p>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <h4 style="color: #2d3748; margin-bottom: 15px;">Timeline of Key Influences</h4>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1950s: Georg Simmel</strong> — The "tertius gaudens" (third who benefits) concept. Simmel observed that a third party can gain advantage by mediating between two others who are in conflict or unconnected.</p>
+                </div>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1973: Mark Granovetter</strong> — "The Strength of Weak Ties" showed that distant acquaintances (weak ties) are more valuable for job searches than close friends because they provide non-redundant information.</p>
+                </div>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1974: Harrison White</strong> — Introduced formal network analysis methods and the concept of structural equivalence, showing that position in a network matters more than attributes.</p>
+                </div>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1982: Ronald Burt</strong> — Published "Toward a Structural Theory of Action" developing the foundations of structural autonomy and constraint.</p>
+                </div>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1988: James Coleman</strong> — "Social Capital in the Creation of Human Capital" argued for the value of network <em>closure</em> (dense networks) in building trust and norms.</p>
+                </div>
+
+                <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <p style="margin: 0;"><strong>1992: Ronald Burt</strong> — <em>Structural Holes: The Social Structure of Competition</em> published. Synthesizes prior work and introduces formal measurement of network constraint.</p>
+                </div>
+            </div>
+
+            <h3>Burt's Innovation: From Ties to Structure</h3>
+            <p>
+                While Granovetter focused on the <em>strength</em> of individual ties (strong vs. weak), Burt shifted attention
+                to the <em>structure</em> of the overall network:
+            </p>
+
+            <table class="comparison-table" style="margin: 20px 0;">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Pre-Burt Research</th>
+                        <th>Burt's Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Unit of Analysis</strong></td>
+                        <td>Individual ties (dyads)</td>
+                        <td>Network position (structural holes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Variable</strong></td>
+                        <td>Tie strength (strong/weak)</td>
+                        <td>Network constraint (redundancy)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mechanism</strong></td>
+                        <td>Weak ties provide novel information</td>
+                        <td>Structural position determines access & control</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Measurement</strong></td>
+                        <td>Qualitative descriptions</td>
+                        <td>Quantitative metric (C<sub>i</sub> formula)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Why 1992? The Context</h3>
+            <p>
+                The timing of Burt's book reflects broader trends in the early 1990s:
+            </p>
+            <ul>
+                <li><strong>Computational Advances:</strong> Desktop computers made network analysis feasible for large datasets. Prior work relied on small-scale studies or theoretical models.</li>
+                <li><strong>Organizational Change:</strong> The shift from hierarchical to matrix organizations in the 1980s-90s highlighted the importance of cross-functional coordination and bridging roles.</li>
+                <li><strong>Globalization:</strong> As markets globalized, the value of bridging geographically and culturally disconnected regions became apparent.</li>
+                <li><strong>Theoretical Maturity:</strong> By 1992, social network analysis had developed sufficient methodological sophistication to move beyond descriptive studies to predictive models.</li>
+            </ul>
+
+            <h3>Evolution of Burt's Thinking (1992 → 2005)</h3>
+            <p>
+                Burt's views evolved over time in response to empirical evidence and critiques:
+            </p>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>1992: Structural Holes</strong> — Strong emphasis on brokerage. Closure is seen as constraint.</p>
+                <p><strong>2000: Network Structure of Social Capital</strong> — Begins to acknowledge complementarity between brokerage and closure.</p>
+                <p><strong>2004: Structural Holes and Good Ideas</strong> — Empirical evidence solidifies the link between brokerage and innovation.</p>
+                <p style="margin-bottom: 0;"><strong>2005: Brokerage and Closure</strong> — Explicit synthesis: "Closure and brokerage are complements, not substitutes." Acknowledges that optimal strategy combines both.</p>
+            </div>
+
+            <h3>Impact on Multiple Disciplines</h3>
+            <p>
+                Structural Holes Theory has influenced research across many fields:
+            </p>
+
+            <div class="concept-grid">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: white;">📊 Management</h4>
+                    <p style="color: rgba(255,255,255,0.95); margin: 0; font-size: 0.95rem;">Strategic alliances, innovation management, organizational design</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: white;">💼 Economics</h4>
+                    <p style="color: rgba(255,255,255,0.95); margin: 0; font-size: 0.95rem;">Information asymmetry, market efficiency, entrepreneurship</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: white;">🎓 Sociology</h4>
+                    <p style="color: rgba(255,255,255,0.95); margin: 0; font-size: 0.95rem;">Social capital, inequality, stratification, social mobility</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: white;">🔬 Science Studies</h4>
+                    <p style="color: rgba(255,255,255,0.95); margin: 0; font-size: 0.95rem;">Scientific collaboration, interdisciplinarity, knowledge diffusion</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Theory -->
+        <section id="theory" class="section-card">
+            <h2>📐 Core Theory: Structural Holes as Competitive Advantage</h2>
+
+            <p>
+                Ronald Burt's <strong>Structural Holes Theory</strong> is one of the most influential frameworks in social network analysis.
+                Unlike Granovetter's focus on the strength of ties, Burt focuses on the <em>position</em> within the network structure itself.
+            </p>
+
+            <h3>What is a Structural Hole?</h3>
+            <p>
+                A <strong>structural hole</strong> is a gap between two individuals or groups who have complementary sources of information
+                or resources but are not directly connected. The person who bridges this gap—the <strong>broker</strong>—gains significant
+                competitive advantages.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-box">
+                    <h4>🎯 Information Advantage</h4>
+                    <p>Brokers access diverse, non-redundant information from disconnected groups, seeing opportunities others miss.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>⏱️ Timing Advantage</h4>
+                    <p>Brokers learn about opportunities and threats earlier than those embedded in closed networks.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>🎭 Control Advantage</h4>
+                    <p>Brokers can play groups against each other, negotiating better terms and extracting value from both sides.</p>
+                </div>
+                <div class="concept-box">
+                    <h4>💡 Innovation Advantage</h4>
+                    <p>Exposure to diverse ideas increases creativity and the ability to recombine knowledge in novel ways.</p>
+                </div>
+            </div>
+
+            <h3>Network Constraint: The Opposite of Structural Holes</h3>
+            <p>
+                Burt developed the concept of <strong>network constraint</strong> to measure how much your contacts limit your autonomy.
+                High constraint means your contacts are all connected to each other (a dense network with no structural holes).
+                Low constraint means you span many structural holes.
+            </p>
+
+            <ul>
+                <li><strong>Low Constraint (0-30):</strong> You occupy a brokerage position with many structural holes. High autonomy and information advantage.</li>
+                <li><strong>Medium Constraint (30-60):</strong> Moderate redundancy in your network. Some brokerage opportunities exist.</li>
+                <li><strong>High Constraint (60-100):</strong> Your contacts are highly interconnected. Limited access to diverse information.</li>
+            </ul>
+
+            <h3>Effective Network Size: A Key Metric</h3>
+            <p>
+                Burt introduced <strong>effective network size</strong> to measure how many <em>non-redundant</em> contacts you have.
+                If all your contacts know each other, your effective network size is just 1. If none of them know each other, your
+                effective network size equals your total number of contacts.
+            </p>
+            <p>
+                <strong>Formula:</strong> Effective Size = N - (Average redundancy per contact)<br>
+                Where N = total number of contacts
+            </p>
+            <p>
+                <strong>Network Efficiency</strong> = Effective Size / Total Size<br>
+                This ratio shows how much "bang for your buck" you get from each relationship. Perfect efficiency (1.0) means
+                zero redundancy; low efficiency (0.3) means high redundancy.
+            </p>
+        </section>
+
+        <!-- Mathematical Deep Dive -->
+        <section class="section-card">
+            <h2>🧮 Mathematical Foundations</h2>
+
+            <h3>Understanding Network Constraint (The Formula)</h3>
+            <p>
+                Burt's network constraint measures the degree to which your network limits your autonomy. Here's the actual formula:
+            </p>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea; margin: 20px 0;">
+                <p style="font-family: 'Courier New', monospace; font-size: 1.1rem; text-align: center; margin: 0;">
+                    C<sub>i</sub> = Σ<sub>j</sub> (p<sub>ij</sub> + Σ<sub>q</sub> p<sub>iq</sub> × p<sub>qj</sub>)<sup>2</sup>
+                </p>
+            </div>
+
+            <p><strong>Where:</strong></p>
+            <ul>
+                <li><strong>C<sub>i</sub></strong> = Network constraint for person i (ranges from 0 to 1, or 0% to 100%)</li>
+                <li><strong>p<sub>ij</sub></strong> = Proportion of i's time/energy invested in relationship with j</li>
+                <li><strong>p<sub>iq</sub></strong> = Proportion invested in relationship with q (a third party)</li>
+                <li><strong>p<sub>qj</sub></strong> = Proportion q invests in relationship with j</li>
+            </ul>
+
+            <h3>Breaking Down the Formula</h3>
+
+            <div class="concept-grid">
+                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h4 style="color: #2d3748; margin-bottom: 10px;">Direct Component: p<sub>ij</sub></h4>
+                    <p style="color: #4a5568; margin: 0;">
+                        How much time/energy you invest directly in person j. If you have 10 equal contacts, p<sub>ij</sub> = 0.10 for each.
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h4 style="color: #2d3748; margin-bottom: 10px;">Indirect Component: Σ p<sub>iq</sub> × p<sub>qj</sub></h4>
+                    <p style="color: #4a5568; margin: 0;">
+                        Your indirect connection to j through mutual contacts q. If all your contacts know each other, this increases constraint.
+                    </p>
+                </div>
+            </div>
+
+            <h3>Example Calculation</h3>
+            <p><strong>Scenario 1: Perfect Broker</strong></p>
+            <ul>
+                <li>You have 5 contacts</li>
+                <li>None of them know each other</li>
+                <li>p<sub>ij</sub> = 0.20 for each contact (1/5)</li>
+                <li>Indirect component = 0 (no mutual connections)</li>
+                <li><strong>Constraint = 5 × (0.20)<sup>2</sup> = 5 × 0.04 = 0.20 (20%)</strong></li>
+            </ul>
+
+            <p><strong>Scenario 2: Highly Constrained</strong></p>
+            <ul>
+                <li>You have 5 contacts</li>
+                <li>All of them know each other equally</li>
+                <li>p<sub>ij</sub> = 0.20 for each</li>
+                <li>For each j, there are 4 mutual contacts: Σ(0.20 × 0.25) = 0.20</li>
+                <li><strong>Constraint = 5 × (0.20 + 0.20)<sup>2</sup> = 5 × 0.16 = 0.80 (80%)</strong></li>
+            </ul>
+        </section>
+
+        <!-- Interactive Calculator -->
+        <section id="calculator" class="section-card">
+            <h2>🧮 Network Constraint Calculator</h2>
+
+            <div class="calculator-section">
+                <h3 class="calculator-title">Calculate Your Network Constraint</h3>
+                <p style="text-align: center; color: #4a5568; margin-bottom: 25px;">
+                    Assess whether your network provides brokerage opportunities or constrains your options.
+                </p>
+
+                <div class="input-group">
+                    <label for="totalContacts">Number of contacts in your network:</label>
+                    <input type="number" id="totalContacts" min="1" max="100" value="10" />
+                </div>
+
+                <div class="input-group">
+                    <label for="interconnections">How many of your contacts know each other? (0-100%):</label>
+                    <input type="range" id="interconnections" min="0" max="100" value="50"
+                           oninput="document.getElementById('interconnectValue').textContent = this.value + '%'" />
+                    <div style="text-align: center; font-weight: 600; color: #667eea; margin-top: 8px;">
+                        <span id="interconnectValue">50%</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="dominantContact">Do you have one contact who dominates your network? (connects you to most others):</label>
+                    <select id="dominantContact">
+                        <option value="no">No - my contacts are relatively equal</option>
+                        <option value="moderate">Moderate - one contact is more central</option>
+                        <option value="yes">Yes - one contact is the hub connecting everyone</option>
+                    </select>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateConstraint()">Calculate Network Constraint</button>
+
+                <div id="constraintResult" class="result-box">
+                    <h4 style="color: #1a202c; margin-bottom: 10px;">Your Network Constraint Score:</h4>
+                    <div class="result-value" id="constraintScore">--</div>
+                    <div class="result-interpretation" id="constraintInterpretation"></div>
+                </div>
+            </div>
+
+            <div class="calculator-section" style="margin-top: 40px;">
+                <h3 class="calculator-title">Effective Network Size Calculator</h3>
+                <p style="text-align: center; color: #4a5568; margin-bottom: 25px;">
+                    Calculate how many <em>non-redundant</em> contacts you have. This measures the true information value of your network.
+                </p>
+
+                <div class="input-group">
+                    <label for="totalContactsEffective">Total number of contacts:</label>
+                    <input type="number" id="totalContactsEffective" min="1" max="100" value="20" />
+                </div>
+
+                <div class="input-group">
+                    <label for="avgRedundancy">Average number of mutual connections per contact:</label>
+                    <input type="number" id="avgRedundancy" min="0" max="50" value="5"
+                           oninput="document.getElementById('redundancyDisplay').textContent = this.value" />
+                    <div style="text-align: center; font-weight: 600; color: #667eea; margin-top: 8px;">
+                        Each contact knows <span id="redundancyDisplay">5</span> of your other contacts on average
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateEffectiveSize()">Calculate Effective Network Size</button>
+
+                <div id="effectiveResult" class="result-box">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div>
+                            <h4 style="color: #1a202c; margin-bottom: 10px;">Total Size:</h4>
+                            <div class="result-value" style="font-size: 1.5rem;" id="totalSizeDisplay">--</div>
+                        </div>
+                        <div>
+                            <h4 style="color: #1a202c; margin-bottom: 10px;">Effective Size:</h4>
+                            <div class="result-value" style="font-size: 1.5rem;" id="effectiveSizeDisplay">--</div>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                        <h4 style="color: #1a202c; margin-bottom: 10px;">Network Efficiency:</h4>
+                        <div class="result-value" id="efficiencyScore">--</div>
+                        <div style="background: white; height: 30px; border-radius: 15px; overflow: hidden; margin-top: 15px; border: 2px solid #cbd5e0;">
+                            <div id="efficiencyBar" style="height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: 0%; transition: width 0.6s ease;"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-interpretation" id="effectiveInterpretation"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Examples -->
+        <section id="examples" class="section-card">
+            <h2>🎨 Visual Examples: Brokerage vs. Closure</h2>
+
+            <div class="network-visual">
+                <h3 style="color: #2d3748; margin-bottom: 20px;">Network Position Comparison</h3>
+                <div class="svg-container">
+                    <svg width="800" height="400" viewBox="0 0 800 400">
+                        <!-- Broker Network (Left) -->
+                        <text x="200" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#667eea">BROKER POSITION (Low Constraint)</text>
+
+                        <!-- Central broker node -->
+                        <circle cx="200" cy="200" r="25" fill="#667eea" />
+                        <text x="200" y="208" text-anchor="middle" fill="white" font-weight="bold" font-size="16">YOU</text>
+
+                        <!-- Group 1 (top left) -->
+                        <circle cx="80" cy="80" r="15" fill="#e2e8f0" />
+                        <circle cx="120" cy="60" r="15" fill="#e2e8f0" />
+                        <circle cx="100" cy="120" r="15" fill="#e2e8f0" />
+                        <line x1="80" y1="80" x2="120" y2="60" stroke="#cbd5e0" stroke-width="2" />
+                        <line x1="80" y1="80" x2="100" y2="120" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 1 -->
+                        <line x1="200" y1="200" x2="80" y2="80" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="120" y2="60" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="100" y2="120" stroke="#667eea" stroke-width="3" />
+
+                        <!-- Group 2 (bottom left) -->
+                        <circle cx="80" cy="320" r="15" fill="#e2e8f0" />
+                        <circle cx="120" cy="340" r="15" fill="#e2e8f0" />
+                        <circle cx="100" cy="280" r="15" fill="#e2e8f0" />
+                        <line x1="80" y1="320" x2="120" y2="340" stroke="#cbd5e0" stroke-width="2" />
+                        <line x1="80" y1="320" x2="100" y2="280" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 2 -->
+                        <line x1="200" y1="200" x2="80" y2="320" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="120" y2="340" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="100" y2="280" stroke="#667eea" stroke-width="3" />
+
+                        <!-- Group 3 (right) -->
+                        <circle cx="320" cy="180" r="15" fill="#e2e8f0" />
+                        <circle cx="320" cy="220" r="15" fill="#e2e8f0" />
+                        <line x1="320" y1="180" x2="320" y2="220" stroke="#cbd5e0" stroke-width="2" />
+
+                        <!-- Connections from YOU to Group 3 -->
+                        <line x1="200" y1="200" x2="320" y2="180" stroke="#667eea" stroke-width="3" />
+                        <line x1="200" y1="200" x2="320" y2="220" stroke="#667eea" stroke-width="3" />
+
+                        <text x="200" y="380" text-anchor="middle" font-size="14" fill="#4a5568">✓ Bridges multiple disconnected groups</text>
+
+                        <!-- Constrained Network (Right) -->
+                        <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#e53e3e">CONSTRAINED POSITION (High Constraint)</text>
+
+                        <!-- Central node -->
+                        <circle cx="600" cy="200" r="25" fill="#e53e3e" />
+                        <text x="600" y="208" text-anchor="middle" fill="white" font-weight="bold" font-size="16">YOU</text>
+
+                        <!-- Dense connected network -->
+                        <circle cx="530" cy="120" r="15" fill="#e2e8f0" />
+                        <circle cx="580" cy="100" r="15" fill="#e2e8f0" />
+                        <circle cx="620" cy="100" r="15" fill="#e2e8f0" />
+                        <circle cx="670" cy="120" r="15" fill="#e2e8f0" />
+                        <circle cx="690" cy="180" r="15" fill="#e2e8f0" />
+                        <circle cx="690" cy="220" r="15" fill="#e2e8f0" />
+                        <circle cx="670" cy="280" r="15" fill="#e2e8f0" />
+                        <circle cx="620" cy="300" r="15" fill="#e2e8f0" />
+                        <circle cx="580" cy="300" r="15" fill="#e2e8f0" />
+                        <circle cx="530" cy="280" r="15" fill="#e2e8f0" />
+                        <circle cx="510" cy="220" r="15" fill="#e2e8f0" />
+                        <circle cx="510" cy="180" r="15" fill="#e2e8f0" />
+
+                        <!-- Dense interconnections (everyone knows everyone) -->
+                        <line x1="530" y1="120" x2="580" y2="100" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="580" y1="100" x2="620" y2="100" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="620" y1="100" x2="670" y2="120" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="670" y1="120" x2="690" y2="180" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="690" y1="180" x2="690" y2="220" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="690" y1="220" x2="670" y2="280" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="670" y1="280" x2="620" y2="300" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="620" y1="300" x2="580" y2="300" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="580" y1="300" x2="530" y2="280" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="530" y1="280" x2="510" y2="220" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="510" y1="220" x2="510" y2="180" stroke="#cbd5e0" stroke-width="1.5" />
+                        <line x1="510" y1="180" x2="530" y2="120" stroke="#cbd5e0" stroke-width="1.5" />
+
+                        <!-- Additional cross connections -->
+                        <line x1="530" y1="120" x2="620" y2="100" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="580" y1="100" x2="670" y2="120" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="670" y1="280" x2="580" y2="300" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+                        <line x1="530" y1="280" x2="620" y2="300" stroke="#cbd5e0" stroke-width="1" opacity="0.5" />
+
+                        <!-- Connections from YOU to network -->
+                        <line x1="600" y1="200" x2="530" y2="120" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="580" y2="100" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="620" y2="100" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="670" y2="120" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="690" y2="180" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="690" y2="220" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="670" y2="280" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="620" y2="300" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="580" y2="300" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="530" y2="280" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="510" y2="220" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+                        <line x1="600" y1="200" x2="510" y2="180" stroke="#e53e3e" stroke-width="3" opacity="0.7" />
+
+                        <text x="600" y="380" text-anchor="middle" font-size="14" fill="#4a5568">✗ Embedded in single dense cluster</text>
+                    </svg>
+                </div>
+                <p style="text-align: center; color: #4a5568; margin-top: 20px; font-size: 1.05rem;">
+                    The broker on the left spans structural holes and accesses diverse information. The constrained person on the right
+                    receives redundant information from an interconnected group.
+                </p>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="section-card">
+            <h2>🌍 Real-World Applications</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Context</th>
+                        <th>Broker Position (Structural Holes)</th>
+                        <th>Constrained Position (Closure)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Corporate Innovation</strong></td>
+                        <td>Manager who connects R&D, marketing, and operations departments sees opportunities for new products</td>
+                        <td>Engineer embedded only in technical team misses market insights</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Venture Capital</strong></td>
+                        <td>VC who bridges Silicon Valley and emerging markets spots arbitrage opportunities</td>
+                        <td>VC who only networks within Sand Hill Road sees same deals as everyone else</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Academic Research</strong></td>
+                        <td>Researcher who collaborates across disciplines (e.g., AI + Biology) produces novel insights</td>
+                        <td>Researcher only working within one subfield increments existing knowledge</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Career Advancement</strong></td>
+                        <td>Professional who maintains contacts across different companies and industries has more opportunities</td>
+                        <td>Employee whose network is entirely within one company has limited external options</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supply Chain Management</strong></td>
+                        <td>Buyer who knows multiple suppliers in different regions negotiates better terms</td>
+                        <td>Buyer reliant on one supplier network has less bargaining power</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Empirical Evidence -->
+        <section id="empirical" class="section-card">
+            <h2>📊 Empirical Evidence: The Numbers Behind the Theory</h2>
+
+            <p>
+                Burt's theory is backed by decades of empirical research across multiple domains. Here are key findings from landmark studies:
+            </p>
+
+            <h3>1. Raytheon Study (1992): Early Promotions</h3>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Study Design:</strong> Analyzed network positions of 673 managers at Raytheon company.</p>
+                <p><strong>Key Finding:</strong> Managers with low network constraint (high brokerage) were promoted <strong>2.3 times faster</strong> than those in constrained networks.</p>
+                <p><strong>Effect Size:</strong> Each 10-point decrease in network constraint was associated with promotion occurring 5 months earlier.</p>
+                <p style="margin-bottom: 0;"><strong>Control Variables:</strong> The effect held even after controlling for performance evaluations, education, and tenure.</p>
+            </div>
+
+            <h3>2. Investment Banker Study (2004): Compensation Premium</h3>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Study Design:</strong> Examined 3,000+ investment bankers across 180 firms.</p>
+                <p><strong>Key Finding:</strong> Bankers with brokerage positions earned <strong>36% higher compensation</strong> than those in constrained positions, controlling for experience and firm size.</p>
+                <p><strong>Mechanism:</strong> Brokers had more diverse deal flow and could arbitrage information between disconnected market segments.</p>
+                <p style="margin-bottom: 0;"><strong>Citation:</strong> Network constraint is one of the strongest predictors of banker compensation, stronger than MBA pedigree or prior firm reputation.</p>
+            </div>
+
+            <h3>3. Innovation Study (2004): "Good Ideas"</h3>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Study Design:</strong> Surveyed 673 supply chain managers asking them to describe their "best idea" in the past year.</p>
+                <p><strong>Key Finding:</strong> Managers with networks rich in structural holes had ideas rated as <strong>1.7 times more valuable</strong> by senior management.</p>
+                <p><strong>Probability of Good Idea:</strong> Managers in the top quartile of brokerage had a 75% chance of having a "good idea" vs. 31% for bottom quartile.</p>
+                <p style="margin-bottom: 0;"><strong>Quote from Study:</strong> "The people who stand near the holes in a social structure are at higher risk of having good ideas."</p>
+            </div>
+
+            <h3>4. Academic Citations Study (2008): Intellectual Impact</h3>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Study Design:</strong> Analyzed co-authorship networks and citation counts of 2,000+ management scholars.</p>
+                <p><strong>Key Finding:</strong> Scholars who bridged different research communities received <strong>42% more citations</strong> than those embedded in single communities.</p>
+                <p><strong>Pattern:</strong> Interdisciplinary work (bridging structural holes between fields) has higher impact than within-field work.</p>
+                <p style="margin-bottom: 0;"><strong>Implication:</strong> Intellectual brokerage—combining insights from disconnected literatures—drives high-impact research.</p>
+            </div>
+
+            <h3>5. CEO Network Study (2011): Firm Performance</h3>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Study Design:</strong> Examined networks of 433 Fortune 500 CEOs through board interlocks and professional associations.</p>
+                <p><strong>Key Finding:</strong> CEOs with high brokerage scores led firms that generated <strong>24% higher ROA</strong> (return on assets) over a 5-year period.</p>
+                <p><strong>Mechanism:</strong> CEOs with diverse networks had better environmental scanning, earlier awareness of threats/opportunities, and access to more strategic options.</p>
+                <p style="margin-bottom: 0;"><strong>Control:</strong> Effect persisted after controlling for firm size, industry, and prior performance.</p>
+            </div>
+
+            <h3>Summary of Effect Sizes</h3>
+            <table class="comparison-table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Outcome Variable</th>
+                        <th>Effect Size</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Promotion Speed</strong></td>
+                        <td>2.3x faster</td>
+                        <td>Corporate managers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compensation</strong></td>
+                        <td>+36% premium</td>
+                        <td>Investment bankers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Innovation Quality</strong></td>
+                        <td>1.7x higher ratings</td>
+                        <td>Supply chain managers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Academic Citations</strong></td>
+                        <td>+42% more citations</td>
+                        <td>Management scholars</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Firm ROA</strong></td>
+                        <td>+24% higher returns</td>
+                        <td>Fortune 500 CEOs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="section-card">
+            <h2>📖 Detailed Case Studies</h2>
+
+            <h3>Case 1: The Medici Family (Historical Example)</h3>
+            <p>
+                Burt uses the Medici family as a classic illustration of structural holes and brokerage power in Renaissance Florence.
+            </p>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <p><strong>Context:</strong> 15th century Florence had multiple competing elite families, each controlling different resources (banking, military, church connections, trade guilds).</p>
+                <p><strong>Medici Strategy:</strong> Rather than becoming embedded in one elite faction, the Medici positioned themselves as <em>brokers</em> between multiple factions. They maintained marriage ties, business relationships, and political alliances across otherwise disconnected groups.</p>
+                <p><strong>Network Structure:</strong> The Medici had low network constraint—they connected groups that didn't connect to each other. Other families (like the Strozzi) had higher constraint despite having more total connections.</p>
+                <p><strong>Outcome:</strong> The Medici rose to become the most powerful family in Florence, eventually producing four Popes and two Queens of France, despite not initially being the wealthiest or most aristocratic family.</p>
+                <p style="margin-bottom: 0;"><strong>Lesson:</strong> Network <em>position</em> (spanning structural holes) matters more than network <em>size</em> or individual attributes.</p>
+            </div>
+
+            <h3>Case 2: Steve Jobs as Network Broker</h3>
+            <p>
+                Steve Jobs exemplified the power of brokerage by bridging multiple disconnected domains.
+            </p>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <p><strong>Structural Position:</strong> Jobs positioned himself at the intersection of:</p>
+                <ul style="margin: 10px 0 10px 25px;">
+                    <li>Technology/Engineering (Silicon Valley)</li>
+                    <li>Design/Aesthetics (influenced by Bauhaus, calligraphy)</li>
+                    <li>Business/Marketing (retail, consumer psychology)</li>
+                    <li>Liberal Arts/Humanities (storytelling, philosophy)</li>
+                </ul>
+                <p><strong>Brokerage Value:</strong> By spanning these typically disconnected domains, Jobs could synthesize insights that specialists in any one domain would miss. The iPhone, for example, required bridging insights from mobile computing, user interface design, music industry business models, and consumer behavior.</p>
+                <p><strong>Innovation Pattern:</strong> Most of Apple's breakthrough products weren't purely technological innovations—they were <em>recombinations</em> of existing ideas from different fields. Jobs's brokerage position enabled him to see connections others couldn't.</p>
+                <p style="margin-bottom: 0;"><strong>Quote:</strong> "Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something." - Steve Jobs</p>
+            </div>
+
+            <h3>Case 3: Mary Barra's Rise at General Motors</h3>
+            <p>
+                Mary Barra became the first female CEO of General Motors by strategically building a brokerage network.
+            </p>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <p><strong>Career Path:</strong> Barra didn't rise through a single functional silo. She held positions in:</p>
+                <ul style="margin: 10px 0 10px 25px;">
+                    <li>Engineering (manufacturing plant manager)</li>
+                    <li>HR (executive director of global HR)</li>
+                    <li>Communications (VP of global communications)</li>
+                    <li>Product development (VP of global product development)</li>
+                </ul>
+                <p><strong>Network Structure:</strong> This cross-functional career created a low-constraint network. Barra had relationships across departments that typically operated in silos. She could bridge engineering, HR, marketing, and operations—groups that rarely communicated directly.</p>
+                <p><strong>Strategic Advantage:</strong> When GM faced the ignition switch crisis, Barra's brokerage position allowed her to coordinate across functions and see systemic issues that others missed. Her cross-functional network was key to her appointment as CEO.</p>
+                <p style="margin-bottom: 0;"><strong>Lesson:</strong> Deliberately seeking cross-functional roles builds structural holes into your career network, creating promotion opportunities.</p>
+            </div>
+        </section>
+
+        <!-- Key Insights -->
+        <section id="implications" class="section-card">
+            <h2>💡 Key Insights & Strategic Implications</h2>
+
+            <h3>1. Position Matters More Than Personality</h3>
+            <p>
+                Burt's research shows that your <em>structural position</em> in a network has more impact on success than individual
+                attributes like intelligence or charisma. The "accident" of where you sit in a network determines your access to
+                information and opportunities.
+            </p>
+
+            <h3>2. Brokerage vs. Closure: The Fundamental Tradeoff</h3>
+            <p>
+                While Burt emphasizes brokerage, his later work (2005) acknowledges that <strong>closure</strong> (dense, interconnected networks)
+                also has value. Closure builds trust, enables coordination, and facilitates norm enforcement. The most effective strategy
+                combines both: use brokerage for vision and closure for execution.
+            </p>
+
+            <h3>3. Social Capital is About Network Structure</h3>
+            <p>
+                Burt's theory provides a <em>structural</em> definition of social capital: it's not just "who you know" but "where you sit"
+                in the pattern of connections. Two people with the same number of contacts can have vastly different social capital based
+                on whether those contacts are redundant or diverse.
+            </p>
+
+            <h3>4. Tertius Gaudens: "The Third Who Benefits"</h3>
+            <p>
+                Burt invokes the Latin phrase <em>tertius gaudens</em>—the third party who benefits from the disconnection of others.
+                The broker benefits not from cooperation, but from the <em>structural separation</em> of groups. This can create ethical
+                tensions, as the broker's gain comes from maintaining (rather than closing) structural holes.
+            </p>
+
+            <h3>5. Strategic Network Building</h3>
+            <p><strong>To maximize brokerage opportunities:</strong></p>
+            <ul>
+                <li>Cultivate contacts in <strong>different industries, disciplines, or social groups</strong></li>
+                <li>Avoid having all your contacts know each other</li>
+                <li>Look for "bridge" positions (e.g., cross-functional roles, interdisciplinary work)</li>
+                <li>Balance time investment: many weak ties across structural holes > few strong ties in one cluster</li>
+            </ul>
+        </section>
+
+        <!-- Practical Network Audit -->
+        <section id="audit" class="section-card">
+            <h2>🔍 Practical Network Audit: Assess Your Position</h2>
+
+            <p>
+                Use this structured audit to evaluate your network position and identify opportunities for building structural holes.
+            </p>
+
+            <h3>Step 1: Map Your Core Network</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Exercise:</strong> List your 15-20 most important professional contacts. For each person, note:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>Their primary domain/industry</li>
+                    <li>How you know them (work, school, hobby, etc.)</li>
+                    <li>How many of your other contacts they know</li>
+                </ul>
+                <p style="margin: 15px 0 0 0;"><strong>Red Flag:</strong> If most of your contacts are in the same industry/company/field and know each other, your network is highly constrained.</p>
+            </div>
+
+            <h3>Step 2: Identify Network Clusters</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Exercise:</strong> Group your contacts into clusters based on how they're interconnected:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li><strong>Cluster A:</strong> Your "work cluster" (colleagues, same industry)</li>
+                    <li><strong>Cluster B:</strong> Your "school cluster" (alumni, classmates)</li>
+                    <li><strong>Cluster C:</strong> Your "hobby/interest cluster" (sports, arts, volunteering)</li>
+                    <li><strong>Cluster D:</strong> Your "geographic cluster" (neighbors, local community)</li>
+                </ul>
+                <p style="margin: 15px 0 0 0;"><strong>Analysis:</strong> The more evenly distributed your contacts across clusters, the lower your constraint. If 80% are in one cluster, you have a constrained network.</p>
+            </div>
+
+            <h3>Step 3: Calculate Your Cluster Ratio</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Formula:</strong></p>
+                <div style="text-align: center; font-family: 'Courier New', monospace; font-size: 1.1rem; margin: 15px 0; padding: 15px; background: white; border-radius: 8px;">
+                    Cluster Ratio = (# contacts in largest cluster) / (total # contacts)
+                </div>
+                <ul style="margin-left: 25px;">
+                    <li><strong>Ratio < 0.30:</strong> Excellent diversity—low constraint</li>
+                    <li><strong>Ratio 0.30-0.50:</strong> Moderate diversity—some constraint</li>
+                    <li><strong>Ratio > 0.50:</strong> High concentration—high constraint</li>
+                </ul>
+                <p style="margin: 15px 0 0 0;"><strong>Example:</strong> If you have 20 contacts and 15 are coworkers in the same department, your ratio is 0.75 (very high constraint).</p>
+            </div>
+
+            <h3>Step 4: Identify Structural Hole Opportunities</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p><strong>Look for gaps between disconnected groups:</strong></p>
+                <div class="concept-grid" style="margin-top: 15px;">
+                    <div style="background: white; padding: 20px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">🌉 Industry Gaps</h4>
+                        <p style="color: #4a5568; margin: 0; font-size: 0.95rem;">
+                            Can you connect people from different industries? (e.g., tech + healthcare, finance + education)
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">🔬 Disciplinary Gaps</h4>
+                        <p style="color: #4a5568; margin: 0; font-size: 0.95rem;">
+                            Can you bridge different expertise areas? (e.g., engineering + design, sales + operations)
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">🌍 Geographic Gaps</h4>
+                        <p style="color: #4a5568; margin: 0; font-size: 0.95rem;">
+                            Can you connect people across regions or countries? (e.g., US + Asia, urban + rural)
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">⏳ Generational Gaps</h4>
+                        <p style="color: #4a5568; margin: 0; font-size: 0.95rem;">
+                            Can you bridge different age cohorts? (e.g., junior vs senior, startup vs established)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Step 5: Build Your Brokerage Strategy</h3>
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin: 20px 0;">
+                <h4 style="color: white; margin-bottom: 15px; font-size: 1.3rem;">Action Plan for Reducing Network Constraint:</h4>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; margin: 15px 0;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">✅ Tactical Actions (Next 30 Days):</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Attend 1-2 events in a domain you're <em>not</em> currently active in</li>
+                        <li>Reconnect with 3 contacts from different clusters</li>
+                        <li>Join a cross-functional project team or committee</li>
+                        <li>Schedule coffee chats with people outside your immediate work group</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; margin: 15px 0;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">🎯 Strategic Actions (Next 6-12 Months):</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Seek roles that require coordination across departments</li>
+                        <li>Develop expertise in a complementary field to your primary domain</li>
+                        <li>Join boards, advisory groups, or professional associations in adjacent industries</li>
+                        <li>Mentor or be mentored by someone in a different functional area</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 8px; margin: 15px 0 0 0;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">⚠️ What to Avoid:</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Don't just add more contacts within your existing cluster</li>
+                        <li>Don't neglect existing relationships while building new ones</li>
+                        <li>Don't force connections between groups if there's no mutual value</li>
+                        <li>Don't over-commit—quality brokerage beats quantity</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison: Burt vs. Granovetter -->
+        <section class="section-card">
+            <h2>⚖️ Burt vs. Granovetter: Complementary Perspectives</h2>
+
+            <p>
+                While both theories deal with social networks, they focus on different mechanisms:
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Granovetter (Weak Ties)</th>
+                        <th>Burt (Structural Holes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Focus</strong></td>
+                        <td>Tie strength (strong vs. weak)</td>
+                        <td>Network position (broker vs. embedded)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Concept</strong></td>
+                        <td>Weak ties bridge social groups</td>
+                        <td>Structural holes create brokerage opportunities</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mechanism</strong></td>
+                        <td>Frequency of interaction affects info flow</td>
+                        <td>Network structure determines access to diverse info</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advantage</strong></td>
+                        <td>Access to non-redundant information</td>
+                        <td>Control over information flow + negotiation power</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Level of Analysis</strong></td>
+                        <td>Relationship (dyadic)</td>
+                        <td>Position in network (structural)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Empirical Evidence</strong></td>
+                        <td>Job search, diffusion of innovations</td>
+                        <td>Career success, innovation, firm performance</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;">
+                <strong>Integration:</strong> Weak ties often <em>span</em> structural holes. A broker typically maintains weak ties to diverse
+                groups while having strong ties within their own cluster. The theories are complementary: Granovetter explains the
+                <em>nature</em> of bridging ties, while Burt explains the <em>structural value</em> of bridging position.
+            </p>
+        </section>
+
+        <!-- The Great Debate: Burt vs Coleman -->
+        <section id="debate" class="section-card">
+            <h2>⚔️ The Great Debate: Burt vs. Coleman (Brokerage vs. Closure)</h2>
+
+            <p>
+                One of the most important theoretical debates in social capital research is between Ronald Burt's emphasis on
+                <strong>brokerage</strong> (spanning structural holes) and James Coleman's emphasis on <strong>closure</strong>
+                (dense, interconnected networks).
+            </p>
+
+            <h3>Two Competing Visions of Social Capital</h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px;">
+                    <h4 style="color: white; font-size: 1.4rem; margin-bottom: 15px;">🌉 Burt: Structural Holes</h4>
+                    <p style="margin-bottom: 10px;"><strong>Core Argument:</strong></p>
+                    <p style="margin-bottom: 15px;">Social capital comes from <em>bridging</em> disconnected groups. Sparse networks with low redundancy maximize information and control benefits.</p>
+
+                    <p style="margin-bottom: 10px;"><strong>Key Benefits:</strong></p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Access to diverse information</li>
+                        <li>Early awareness of opportunities</li>
+                        <li>Brokerage and arbitrage power</li>
+                        <li>Innovation through recombination</li>
+                    </ul>
+
+                    <p style="margin: 15px 0 10px 0;"><strong>Ideal Structure:</strong></p>
+                    <p style="margin: 0;">Open network with many weak ties to disconnected groups.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; border-radius: 12px;">
+                    <h4 style="color: white; font-size: 1.4rem; margin-bottom: 15px;">🔒 Coleman: Network Closure</h4>
+                    <p style="margin-bottom: 10px;"><strong>Core Argument:</strong></p>
+                    <p style="margin-bottom: 15px;">Social capital comes from <em>dense</em> networks where everyone knows everyone. Closure enables trust, norms, and collective action.</p>
+
+                    <p style="margin-bottom: 10px;"><strong>Key Benefits:</strong></p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Trust and cooperation</li>
+                        <li>Norm enforcement and sanctions</li>
+                        <li>Coordination and collective action</li>
+                        <li>Reputation monitoring</li>
+                    </ul>
+
+                    <p style="margin: 15px 0 10px 0;"><strong>Ideal Structure:</strong></p>
+                    <p style="margin: 0;">Closed network with dense interconnections among all members.</p>
+                </div>
+            </div>
+
+            <h3>The Diamond Merchant Example (Coleman, 1988)</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #f5576c;">
+                <p><strong>Scenario:</strong> Diamond merchants in New York regularly hand over bags of diamonds worth hundreds of thousands of dollars without contracts or receipts, based on trust alone.</p>
+                <p><strong>Coleman's Explanation:</strong> This is possible because diamond merchants operate in a <em>closed network</em> where everyone knows everyone else. If merchant A cheats merchant B, word spreads instantly throughout the tight-knit community. The threat of losing all future business (reputation destruction) prevents cheating.</p>
+                <p><strong>Why Closure Matters Here:</strong> In a sparse network with structural holes, cheating would be easier. The cheater could simply move to a different disconnected group. Closure creates <em>accountability</em> through overlapping ties and reputation visibility.</p>
+                <p style="margin-bottom: 0;"><strong>Coleman's Insight:</strong> "Social capital inheres in the structure of relations between actors and among actors" — specifically in <em>closed</em> structures that enable trust.</p>
+            </div>
+
+            <h3>Burt's Counterargument</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #667eea;">
+                <p><strong>Burt's Response:</strong> Closure is valuable for <em>executing</em> existing opportunities, but brokerage is necessary for <em>discovering</em> new opportunities. Coleman's diamond merchants operate in a stable, well-defined market. But in dynamic, innovative contexts, <strong>you need structural holes to see opportunities before everyone else.</strong></p>
+                <p><strong>Vision vs. Execution:</strong> Burt argues that the optimal strategy combines both:</p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li><strong>Brokerage for vision:</strong> Span structural holes to access diverse information and spot opportunities</li>
+                    <li><strong>Closure for execution:</strong> Build dense ties within your team to coordinate and deliver</li>
+                </ul>
+                <p style="margin: 15px 0 0 0;"><strong>Burt's Synthesis (2005):</strong> "Closure and brokerage are complements, not substitutes. Effective leaders combine both—using brokerage to identify opportunities and closure to mobilize resources."</p>
+            </div>
+
+            <h3>When Does Each Strategy Win?</h3>
+            <table class="comparison-table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Context</th>
+                        <th>Brokerage Advantage</th>
+                        <th>Closure Advantage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Innovation</strong></td>
+                        <td>✅ High value — need diverse inputs</td>
+                        <td>❌ Limited — redundant information</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trust-Based Exchange</strong></td>
+                        <td>❌ Risky — harder to monitor</td>
+                        <td>✅ High value — reputation matters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Opportunity Discovery</strong></td>
+                        <td>✅ High value — see gaps</td>
+                        <td>❌ Limited — same info circulates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complex Coordination</strong></td>
+                        <td>❌ Difficult — disconnected groups</td>
+                        <td>✅ High value — dense ties enable alignment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stable Markets</strong></td>
+                        <td>❌ Less valuable — less arbitrage</td>
+                        <td>✅ High value — norms and stability</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dynamic Markets</strong></td>
+                        <td>✅ High value — information asymmetry</td>
+                        <td>❌ Risky — group may lag behind</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>The Synthesis: "Brokerage with Closure"</h3>
+            <p>
+                Modern research suggests the most effective network strategy combines both principles:
+            </p>
+
+            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 30px; border-radius: 12px; margin: 20px 0;">
+                <h4 style="color: white; font-size: 1.3rem; margin-bottom: 15px;">🎯 The Optimal Network Structure</h4>
+
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">1. Brokerage Across Groups</p>
+                    <p style="margin: 0;">Maintain diverse contacts across different domains, industries, or expertise areas. This gives you access to non-redundant information and helps you spot opportunities.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">2. Closure Within Your Core Team</p>
+                    <p style="margin: 0;">Build dense, interconnected relationships within your immediate working group. This enables trust, rapid coordination, and effective execution.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin-bottom: 0;">
+                    <p style="font-weight: 600; margin-bottom: 10px;">3. Strategic Balance</p>
+                    <p style="margin: 0;">Use ~60-70% of your networking time for brokerage (discovering opportunities) and ~30-40% for closure (building trust and coordination). Adjust based on your role and industry dynamics.</p>
+                </div>
+            </div>
+
+            <h3>Empirical Evidence for the Synthesis</h3>
+            <p>
+                Research by Obstfeld (2005) and Burt (2005) shows that the highest performers combine both strategies:
+            </p>
+            <ul>
+                <li><strong>Study of 164 Product Development Teams:</strong> Teams with leaders who had high brokerage scores <em>and</em> high internal closure performed 47% better than teams with only one or the other.</li>
+                <li><strong>Investment Banking Study:</strong> Top-performing bankers had extensive brokerage networks for deal sourcing but maintained dense relationships within their deal teams for execution.</li>
+                <li><strong>Academic Productivity:</strong> The most-cited scholars bridged different research communities (brokerage) while maintaining tight co-authorship clusters (closure) for deep collaboration.</li>
+            </ul>
+        </section>
+
+        <!-- Critical Reflections -->
+        <section class="section-card">
+            <h2>🤔 Critical Reflections & Limitations</h2>
+
+            <h3>1. The Dark Side of Brokerage</h3>
+            <p>
+                Brokers can be seen as manipulative, playing groups against each other for personal gain. The theory has been
+                criticized for providing a "Machiavellian" view of social capital that ignores cooperation and trust.
+            </p>
+
+            <h3>2. Context Matters</h3>
+            <p>
+                Research by Gargiulo & Benassi (2000) shows that the value of brokerage is <em>contingent</em>. In crisis situations,
+                dense networks (closure) can be more valuable than brokerage positions. The optimal strategy depends on the environment.
+            </p>
+
+            <h3>3. Measurement Challenges</h3>
+            <p>
+                Calculating network constraint requires complete network data, which is difficult to obtain in large or dynamic networks.
+                In practice, most people don't have access to full network maps of their social environment.
+            </p>
+
+            <h3>4. Maintenance Costs</h3>
+            <p>
+                Maintaining bridging ties across diverse groups is cognitively and socially demanding. Brokers may face role conflict
+                and must constantly translate between different social contexts. Not everyone has the social skill or energy for this.
+            </p>
+
+            <h3>5. Network Dynamics</h3>
+            <p>
+                Structural holes are not static. As networks evolve, today's broker might become tomorrow's constrained node. Successful
+                brokerage may even cause the hole to close, as the broker introduces disconnected groups to each other.
+            </p>
+        </section>
+
+        <!-- References -->
+        <section class="section-card">
+            <h2>📚 Key References</h2>
+            <ul>
+                <li>Burt, R. S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Harvard University Press.</li>
+                <li>Burt, R. S. (2000). The Network Structure of Social Capital. <em>Research in Organizational Behavior</em>, 22, 345-423.</li>
+                <li>Burt, R. S. (2004). Structural Holes and Good Ideas. <em>American Journal of Sociology</em>, 110(2), 349-399.</li>
+                <li>Burt, R. S. (2005). <em>Brokerage and Closure: An Introduction to Social Capital</em>. Oxford University Press.</li>
+                <li>Coleman, J. S. (1988). Social Capital in the Creation of Human Capital. <em>American Journal of Sociology</em>, 94, S95-S120.</li>
+                <li>Gargiulo, M., & Benassi, M. (2000). Trapped in Your Own Net? Network Cohesion, Structural Holes, and the Adaptation of Social Capital. <em>Organization Science</em>, 11(2), 183-196.</li>
+            </ul>
+        </section>
+
+            <!-- Attribution -->
+            <div class="attribution">
+                <p>
+                    Interactive visualization created for the Literature Explorer.<br>
+                    Based on: Burt, R. S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Harvard University Press.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- END MAIN CONTENT PAGE -->
+
+    <!-- INTERACTIVE TOOLS PAGE -->
+    <div id="interactive" style="display: none;">
+        <div class="container">
+
+            <!-- Interactive Tools Hero -->
+            <section class="hero">
+                <h1>🎮 Interactive Structural Holes Explorer</h1>
+                <p class="tagline">
+                    Build networks, visualize brokerage positions, and see structural holes in action
+                </p>
+            </section>
+
+            <!-- Network Builder Tool -->
+            <div class="section-card">
+                <h2>🕸️ Network Builder & Constraint Analyzer</h2>
+                <p>Create your own network and watch the structural holes metrics update in real-time. Build a brokerage position or a constrained network and see the difference.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <!-- Controls -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; align-items: center;">
+                        <h3 style="width: 100%; margin: 0 0 15px 0; font-size: 1.1em;">Controls:</h3>
+
+                        <button id="draw-mode-btn" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(30, 60, 114, 0.3); font-family: 'Lato', sans-serif;" onclick="BrokerageSimulator.toggleDrawMode()">
+                            ✏️ Enable Drawing Mode
+                        </button>
+
+                        <button id="conn-sparse" class="control-btn active" style="padding: 10px 20px; font-size: 0.9em; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.setConnectionType('sparse')">
+                            Sparse (Broker)
+                        </button>
+
+                        <button id="conn-dense" class="control-btn" style="padding: 10px 20px; font-size: 0.9em; background: linear-gradient(135deg, #64748b 0%, #475569 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.setConnectionType('dense')">
+                            Dense (Constrained)
+                        </button>
+
+                        <button style="background: linear-gradient(135deg, #64748b 0%, #475569 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.removeSelectedNode()">
+                            🗑️ Delete Selected
+                        </button>
+
+                        <button style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.clearNetwork()">
+                            ⚠️ Clear All
+                        </button>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="width: 100%; margin: 0 0 12px 0; font-size: 1em; font-weight: 600;">Load Preset Networks:</h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('broker')">
+                                🎯 Perfect Broker
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('medici')">
+                                👑 Medici Style
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('constrained')">
+                                🔒 Highly Constrained
+                            </button>
+                            <button style="background: white; border: 2px solid #2a5298; color: #2a5298; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onclick="BrokerageSimulator.loadPresetNetwork('balanced')">
+                                ⚖️ Balanced Network
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Canvas -->
+                    <canvas id="brokerageCanvas" style="width: 100%; height: 500px; background: white; border-radius: 12px; cursor: default; display: block;"></canvas>
+
+                    <!-- Legend -->
+                    <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; justify-content: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 40px; height: 3px; background: #2a5298;"></div>
+                            <span style="font-size: 0.9em;">Sparse Connection (Low Redundancy)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 40px; height: 5px; background: #dc2626;"></div>
+                            <span style="font-size: 0.9em;">Dense Connection (High Redundancy)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: #1e3c72; border: 2px solid white;"></span>
+                            <span style="font-size: 0.9em;">Person (drag to move)</span>
+                        </div>
+                    </div>
+
+                    <!-- Help Text -->
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                        <strong>🎯 How to use:</strong>
+                        <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Load presets:</strong> Click buttons above to see example networks</li>
+                            <li><strong>Add a person:</strong> Double-click anywhere on the canvas</li>
+                            <li><strong>Move a person:</strong> Click and drag any node</li>
+                            <li><strong>Add a connection:</strong> Enable Drawing Mode → Choose connection type → Click two people</li>
+                            <li><strong>Delete a person:</strong> Click to select (yellow glow), then click "Delete Selected"</li>
+                            <li><strong>See the difference:</strong> Sparse connections create structural holes (brokerage), dense connections create redundancy (constraint)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-Time Metrics Dashboard -->
+            <div class="section-card">
+                <h2>📊 Real-Time Structural Holes Metrics</h2>
+                <p>These metrics update live as you modify the network. Watch how structural holes, redundancy, and brokerage opportunities change.</p>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <h3 style="margin-bottom: 10px;">Network Type Assessment</h3>
+                    <span id="network-quality" style="display: inline-block; padding: 12px 30px; border-radius: 25px; font-weight: 700; font-size: 1.1em; background: #64748b; color: white;">Waiting for data...</span>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;">Based on structural holes, redundancy, and network constraint</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">People</div>
+                        <div id="metric-nodes" style="font-size: 2.8em; font-weight: bold;">0</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Connections</div>
+                        <div id="metric-edges" style="font-size: 2.8em; font-weight: bold;">0</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Network Constraint</div>
+                        <div id="metric-constraint" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Effective Size</div>
+                        <div id="metric-effective" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Structural Holes</div>
+                        <div id="metric-holes" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%); color: #f1faee; padding: 30px; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.95; margin-bottom: 8px;">Brokerage Potential</div>
+                        <div id="metric-brokerage" style="font-size: 2.8em; font-weight: bold;">--</div>
+                    </div>
+                </div>
+
+                <div id="metric-explanation" style="background: linear-gradient(135deg, #005f73 0%, #0a9396 100%); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                    <strong style="font-size: 1.1em;">💡 What this means:</strong>
+                    <p style="margin-top: 10px; line-height: 1.8;">
+                        Build your network above to see real-time analysis of structural holes, constraint, and brokerage opportunities.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Compare Network Structures -->
+            <div class="section-card">
+                <h2>🔬 Compare Network Structures</h2>
+                <p>See the dramatic difference between brokerage and constrained networks side-by-side. Watch how structural holes create information advantages.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                    <!-- Broker Network -->
+                    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 15px; border: 3px solid #10b981;">
+                        <h3 style="text-align: center; color: #065f46; margin-bottom: 20px;">🎯 Broker Position (Low Constraint)</h3>
+
+                        <!-- SVG Visualization -->
+                        <svg viewBox="0 0 400 350" style="width: 100%; background: white; border-radius: 12px; margin-bottom: 20px;">
+                            <defs>
+                                <radialGradient id="brokerGlow">
+                                    <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:0" />
+                                </radialGradient>
+                                <filter id="shadowBroker">
+                                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+                                </filter>
+                            </defs>
+
+                            <!-- Background glow for broker -->
+                            <circle cx="200" cy="175" r="100" fill="url(#brokerGlow)">
+                                <animate attributeName="r" values="80;100;80" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+
+                            <!-- Group 1 (top-left) -->
+                            <line x1="200" y1="175" x2="100" y2="100" stroke="#2a5298" stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+                            <line x1="80" y1="90" x2="100" y2="100" stroke="#64748b" stroke-width="2" opacity="0.5"/>
+                            <line x1="100" y1="100" x2="120" y2="110" stroke="#64748b" stroke-width="2" opacity="0.5"/>
+
+                            <circle cx="80" cy="90" r="15" fill="#3b82f6" filter="url(#shadowBroker)"/>
+                            <circle cx="100" cy="100" r="15" fill="#3b82f6" filter="url(#shadowBroker)"/>
+                            <circle cx="120" cy="110" r="15" fill="#3b82f6" filter="url(#shadowBroker)"/>
+
+                            <text x="80" y="92" text-anchor="middle" fill="white" font-size="10" font-weight="bold">A</text>
+                            <text x="100" y="102" text-anchor="middle" fill="white" font-size="10" font-weight="bold">B</text>
+                            <text x="120" y="112" text-anchor="middle" fill="white" font-size="10" font-weight="bold">C</text>
+
+                            <!-- Group 2 (top-right) -->
+                            <line x1="200" y1="175" x2="300" y2="100" stroke="#2a5298" stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+                            <line x1="280" y1="90" x2="300" y2="100" stroke="#64748b" stroke-width="2" opacity="0.5"/>
+                            <line x1="300" y1="100" x2="320" y2="110" stroke="#64748b" stroke-width="2" opacity="0.5"/>
+
+                            <circle cx="280" cy="90" r="15" fill="#8b5cf6" filter="url(#shadowBroker)"/>
+                            <circle cx="300" cy="100" r="15" fill="#8b5cf6" filter="url(#shadowBroker)"/>
+                            <circle cx="320" cy="110" r="15" fill="#8b5cf6" filter="url(#shadowBroker)"/>
+
+                            <text x="280" y="92" text-anchor="middle" fill="white" font-size="10" font-weight="bold">D</text>
+                            <text x="300" y="102" text-anchor="middle" fill="white" font-size="10" font-weight="bold">E</text>
+                            <text x="320" y="112" text-anchor="middle" fill="white" font-size="10" font-weight="bold">F</text>
+
+                            <!-- Group 3 (bottom) -->
+                            <line x1="200" y1="175" x2="160" y2="260" stroke="#2a5298" stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+                            <line x1="200" y1="175" x2="240" y2="260" stroke="#2a5298" stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+                            <line x1="160" y1="260" x2="240" y2="260" stroke="#64748b" stroke-width="2" opacity="0.5"/>
+
+                            <circle cx="160" cy="260" r="15" fill="#ec4899" filter="url(#shadowBroker)"/>
+                            <circle cx="240" cy="260" r="15" fill="#ec4899" filter="url(#shadowBroker)"/>
+
+                            <text x="160" y="262" text-anchor="middle" fill="white" font-size="10" font-weight="bold">G</text>
+                            <text x="240" y="262" text-anchor="middle" fill="white" font-size="10" font-weight="bold">H</text>
+
+                            <!-- Central broker node (YOU) -->
+                            <circle cx="200" cy="175" r="25" fill="#10b981" filter="url(#shadowBroker)" stroke="white" stroke-width="3">
+                                <animate attributeName="r" values="23;27;23" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="200" y="178" text-anchor="middle" fill="white" font-size="11" font-weight="bold">YOU</text>
+
+                            <!-- Labels -->
+                            <text x="90" y="140" fill="#3b82f6" font-size="11" font-weight="600">Tech Group</text>
+                            <text x="270" y="140" fill="#8b5cf6" font-size="11" font-weight="600">Design Group</text>
+                            <text x="180" y="300" fill="#ec4899" font-size="11" font-weight="600">Business Group</text>
+                        </svg>
+
+                        <div style="background: white; padding: 20px; border-radius: 12px;">
+                            <h4 style="color: #065f46; margin-bottom: 10px;">Network Metrics:</h4>
+                            <div style="display: grid; gap: 10px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Network Constraint:</span>
+                                    <span style="color: #10b981; font-weight: 700;">23%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Structural Holes:</span>
+                                    <span style="color: #10b981; font-weight: 700;">18 gaps</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Brokerage Potential:</span>
+                                    <span style="color: #10b981; font-weight: 700;">92%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Information Diversity:</span>
+                                    <span style="color: #10b981; font-weight: 700;">High</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #d1fae5;">
+                                <p style="font-size: 0.9em; color: #065f46; font-weight: 600; margin: 0;">
+                                    ✅ Advantages: Access to diverse info, innovation opportunities, early warning of changes
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Constrained Network -->
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 30px; border-radius: 15px; border: 3px solid #dc2626;">
+                        <h3 style="text-align: center; color: #991b1b; margin-bottom: 20px;">🔒 Constrained Position (High Constraint)</h3>
+
+                        <!-- SVG Visualization -->
+                        <svg viewBox="0 0 400 350" style="width: 100%; background: white; border-radius: 12px; margin-bottom: 20px;">
+                            <defs>
+                                <filter id="shadowConstrained">
+                                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+                                </filter>
+                            </defs>
+
+                            <!-- Dense mesh of connections -->
+                            <line x1="200" y1="175" x2="280" y2="120" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="300" y2="190" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="280" y2="260" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="180" y2="260" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="100" y2="240" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="100" y2="150" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="120" y2="100" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+                            <line x1="200" y1="175" x2="220" y2="90" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+
+                            <!-- Interconnections between others -->
+                            <line x1="280" y1="120" x2="300" y2="190" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="300" y1="190" x2="280" y2="260" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="280" y1="260" x2="180" y2="260" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="180" y1="260" x2="100" y2="240" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="100" y1="240" x2="100" y2="150" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="100" y1="150" x2="120" y2="100" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="120" y1="100" x2="220" y2="90" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+                            <line x1="220" y1="90" x2="280" y2="120" stroke="#dc2626" stroke-width="2" opacity="0.4"/>
+
+                            <line x1="280" y1="120" x2="180" y2="260" stroke="#dc2626" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="300" y1="190" x2="100" y2="150" stroke="#dc2626" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="220" y1="90" x2="100" y2="240" stroke="#dc2626" stroke-width="1.5" opacity="0.3"/>
+
+                            <!-- All nodes same color (high cohesion) -->
+                            <circle cx="280" cy="120" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="300" cy="190" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="280" cy="260" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="180" cy="260" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="100" cy="240" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="100" cy="150" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="120" cy="100" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+                            <circle cx="220" cy="90" r="15" fill="#dc2626" filter="url(#shadowConstrained)"/>
+
+                            <text x="280" y="122" text-anchor="middle" fill="white" font-size="10" font-weight="bold">A</text>
+                            <text x="300" y="192" text-anchor="middle" fill="white" font-size="10" font-weight="bold">B</text>
+                            <text x="280" y="262" text-anchor="middle" fill="white" font-size="10" font-weight="bold">C</text>
+                            <text x="180" y="262" text-anchor="middle" fill="white" font-size="10" font-weight="bold">D</text>
+                            <text x="100" y="242" text-anchor="middle" fill="white" font-size="10" font-weight="bold">E</text>
+                            <text x="100" y="152" text-anchor="middle" fill="white" font-size="10" font-weight="bold">F</text>
+                            <text x="120" y="102" text-anchor="middle" fill="white" font-size="10" font-weight="bold">G</text>
+                            <text x="220" y="92" text-anchor="middle" fill="white" font-size="10" font-weight="bold">H</text>
+
+                            <!-- Central YOU node -->
+                            <circle cx="200" cy="175" r="25" fill="#991b1b" filter="url(#shadowConstrained)" stroke="white" stroke-width="3"/>
+                            <text x="200" y="178" text-anchor="middle" fill="white" font-size="11" font-weight="bold">YOU</text>
+
+                            <!-- Label -->
+                            <text x="200" y="320" fill="#991b1b" font-size="11" font-weight="600" text-anchor="middle">Same Department/Team</text>
+                        </svg>
+
+                        <div style="background: white; padding: 20px; border-radius: 12px;">
+                            <h4 style="color: #991b1b; margin-bottom: 10px;">Network Metrics:</h4>
+                            <div style="display: grid; gap: 10px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Network Constraint:</span>
+                                    <span style="color: #dc2626; font-weight: 700;">78%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Structural Holes:</span>
+                                    <span style="color: #dc2626; font-weight: 700;">3 gaps</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Brokerage Potential:</span>
+                                    <span style="color: #dc2626; font-weight: 700;">18%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Information Diversity:</span>
+                                    <span style="color: #dc2626; font-weight: 700;">Low</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #fecaca;">
+                                <p style="font-size: 0.9em; color: #991b1b; font-weight: 600; margin: 0;">
+                                    ⚠️ Disadvantages: Redundant info, groupthink risk, limited external opportunities
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 25px; border-radius: 15px; margin-top: 20px; border-left: 5px solid #3b82f6;">
+                    <h4 style="color: #1e40af; margin-bottom: 15px;">🔑 Key Takeaway:</h4>
+                    <p style="margin: 0; line-height: 1.8; color: #1e3a8a;">
+                        The broker position (left) spans <strong>18 structural holes</strong> connecting 3 disconnected groups, resulting in <strong>23% constraint</strong>.
+                        The constrained position (right) has <strong>only 3 structural holes</strong> in a dense network with <strong>78% constraint</strong>.
+                        The broker has <strong>6x more information diversity</strong> and <strong>5x more brokerage opportunities</strong> despite having the same number of total connections!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Information Flow & Brokerage Value Simulator -->
+            <div class="section-card">
+                <h2>📡 Information Flow & Brokerage Value Simulator</h2>
+                <p>See how information flows differently through broker vs constrained positions. Watch structural holes create timing and information advantages in real-time.</p>
+
+                <div style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: #9a3412;">Simulation: Novel Information Spreading Through Networks</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                        <!-- Broker Spread -->
+                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="text-align: center; color: #065f46; margin-bottom: 15px;">Broker Network</h4>
+                            <svg viewBox="0 0 300 250" style="width: 100%;">
+                                <defs>
+                                    <radialGradient id="infoSpread">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+                                        <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- Information waves -->
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6">
+                                    <animate attributeName="r" values="20;80;20" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.4">
+                                    <animate attributeName="r" values="20;80;20" dur="3s" begin="1s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" begin="1s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <!-- Network structure -->
+                                <line x1="150" y1="125" x2="80" y2="70" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="220" y2="70" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="80" y2="180" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="150" y1="125" x2="220" y2="180" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="4,4"/>
+
+                                <circle cx="80" cy="70" r="12" fill="#3b82f6"/>
+                                <circle cx="220" cy="70" r="12" fill="#8b5cf6"/>
+                                <circle cx="80" cy="180" r="12" fill="#ec4899"/>
+                                <circle cx="220" cy="180" r="12" fill="#f59e0b"/>
+
+                                <circle cx="150" cy="125" r="16" fill="#10b981" stroke="white" stroke-width="2">
+                                    <animate attributeName="r" values="14;18;14" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <text x="150" y="220" text-anchor="middle" font-size="11" fill="#065f46" font-weight="600">
+                                    ✅ Reaches 4 groups quickly
+                                </text>
+                            </svg>
+                            <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #10b981;">
+                                <p style="margin: 0; font-size: 0.9em; color: #065f46;">
+                                    <strong>Time to 100% spread:</strong> 2 steps<br>
+                                    <strong>Unique info sources:</strong> 4 different groups<br>
+                                    <strong>Advantage:</strong> See opportunities FIRST
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Constrained Spread -->
+                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <h4 style="text-align: center; color: #991b1b; margin-bottom: 15px;">Constrained Network</h4>
+                            <svg viewBox="0 0 300 250" style="width: 100%;">
+                                <!-- Limited information waves -->
+                                <circle cx="150" cy="125" r="20" fill="none" stroke="#fca5a5" stroke-width="2" opacity="0.5">
+                                    <animate attributeName="r" values="20;50;20" dur="4s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.5;0;0.5" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <!-- Dense network structure -->
+                                <line x1="150" y1="125" x2="120" y2="80" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="180" y2="80" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="120" y2="170" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="150" y1="125" x2="180" y2="170" stroke="#dc2626" stroke-width="2"/>
+                                <line x1="120" y1="80" x2="180" y2="80" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="120" y1="170" x2="180" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="120" y1="80" x2="120" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+                                <line x1="180" y1="80" x2="180" y2="170" stroke="#dc2626" stroke-width="1.5" opacity="0.5"/>
+
+                                <circle cx="120" cy="80" r="12" fill="#dc2626"/>
+                                <circle cx="180" cy="80" r="12" fill="#dc2626"/>
+                                <circle cx="120" cy="170" r="12" fill="#dc2626"/>
+                                <circle cx="180" cy="170" r="12" fill="#dc2626"/>
+
+                                <circle cx="150" cy="125" r="16" fill="#991b1b" stroke="white" stroke-width="2"/>
+
+                                <text x="150" y="220" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="600">
+                                    ⚠️ Same info circulates
+                                </text>
+                            </svg>
+                            <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #dc2626;">
+                                <p style="margin: 0; font-size: 0.9em; color: #991b1b;">
+                                    <strong>Time to 100% spread:</strong> 3+ steps<br>
+                                    <strong>Unique info sources:</strong> 1 group (redundant)<br>
+                                    <strong>Disadvantage:</strong> Echo chamber effect
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #f59e0b;">
+                        <h4 style="color: #92400e; margin-bottom: 15px;">🔬 Research Finding: Information Timing Advantage</h4>
+                        <p style="color: #78350f; line-height: 1.8; margin: 0;">
+                            Burt's research shows that people in brokerage positions hear about opportunities <strong>2-3 times faster</strong> than those in constrained positions.
+                            The broker in the left network hears novel information from 4 different sources, while the constrained position hears the same information echoed within one tight group.
+                            This timing advantage is worth an estimated <strong>20-30% promotion speed increase</strong> in corporate settings.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Strategy Builder -->
+            <div class="section-card">
+                <h2>🎯 Your Structural Holes Strategy Builder</h2>
+                <p>Answer these questions to build a personalized strategy for leveraging structural holes in your career and life.</p>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 15px; margin: 30px 0;">
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 1: Assess Your Current Position</h4>
+                        <p style="margin-bottom: 15px;">Most of my professional contacts are from:</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="same" style="margin-right: 10px;">
+                                <span>The same company/industry (High Constraint)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="mixed" style="margin-right: 10px;">
+                                <span>2-3 different industries/domains (Medium)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="contacts" value="diverse" style="margin-right: 10px;">
+                                <span>4+ different industries/domains (Low Constraint)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 2: Identify Structural Hole Opportunities</h4>
+                        <p style="margin-bottom: 15px;">Which gaps could you bridge? (Check all that apply)</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏢 Different departments (e.g., tech + sales)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🌍 Different geographic regions</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🎓 Different disciplines (e.g., engineering + design)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>⏳ Different generations (junior + senior)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏭 Different industries entirely</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Step 3: Set Your Brokerage Goal</h4>
+                        <p style="margin-bottom: 15px;">In the next 6 months, I want to:</p>
+                        <div style="display: grid; gap: 10px;">
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="maintain" style="margin-right: 10px;">
+                                <span>Maintain my current network structure</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="expand" style="margin-right: 10px;">
+                                <span>Add 1-2 new disconnected groups to my network</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <input type="radio" name="goal" value="transform" style="margin-right: 10px;">
+                                <span>Completely transform into a broker position</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button style="width: 100%; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 1.1em; font-weight: 700; cursor: pointer; transition: all 0.3s;" onclick="alert('This is an educational visualization. Use the network audit section above for detailed analysis!')">
+                        📊 Generate My Structural Holes Strategy
+                    </button>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 25px; border-radius: 15px; border-left: 5px solid #10b981;">
+                    <h4 style="color: #065f46; margin-bottom: 15px;">💡 Pro Tips for Building Structural Holes:</h4>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">1. Start Small:</strong> Add ONE contact from a completely different domain each month
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">2. Be The Connector:</strong> Introduce people from different groups (they'll value you as the bridge)
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">3. Attend Cross-Functional Events:</strong> Conferences, hackathons, and meetups outside your specialty
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">4. Develop T-Shaped Skills:</strong> Deep in one area, broad exposure to adjacent fields
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <strong style="color: #065f46;">5. Document Insights:</strong> When you bridge groups, write down the unique perspectives you gain
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END INTERACTIVE TOOLS PAGE -->
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            document.querySelector('.dark-mode-toggle').textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            toggleDarkMode();
+        }
+
+        // Page Switching
+        function switchPage(pageId, button) {
+            // Hide all pages
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('interactive').style.display = 'none';
+
+            // Show selected page
+            document.getElementById(pageId).style.display = 'block';
+
+            // Update active button
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                if (btn.textContent.includes('Back')) return; // Skip home button
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            // Initialize simulator if switching to interactive page
+            if (pageId === 'interactive' && !BrokerageSimulator.canvas) {
+                BrokerageSimulator.init();
+            }
+        }
+
+        // Brokerage Network Simulator
+        const BrokerageSimulator = {
+            nodes: [],
+            edges: [],
+            selectedNode: null,
+            draggedNode: null,
+            canvas: null,
+            ctx: null,
+            isDrawingMode: false,
+            tempEdgeStart: null,
+            connectionType: 'sparse',
+            nodeIdCounter: 0,
+
+            init() {
+                this.canvas = document.getElementById('brokerageCanvas');
+                if (!this.canvas) return;
+
+                this.ctx = this.canvas.getContext('2d');
+                this.setupCanvas();
+                this.setupEventListeners();
+                this.loadPresetNetwork('broker');
+
+                setTimeout(() => {
+                    this.setupCanvas();
+                    this.render();
+                }, 50);
+            },
+
+            setupCanvas() {
+                const rect = this.canvas.getBoundingClientRect();
+                this.canvas.width = rect.width > 0 ? rect.width : 800;
+                this.canvas.height = rect.height > 0 ? rect.height : 500;
+                this.render();
+            },
+
+            setupEventListeners() {
+                this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+                this.canvas.addEventListener('dblclick', this.handleDoubleClick.bind(this));
+
+                window.addEventListener('resize', () => {
+                    this.setupCanvas();
+                });
+            },
+
+            handleMouseDown(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (this.isDrawingMode) {
+                    if (clickedNode) {
+                        if (!this.tempEdgeStart) {
+                            this.tempEdgeStart = clickedNode;
+                            this.selectedNode = clickedNode;
+                            this.canvas.style.cursor = 'crosshair';
+                        } else {
+                            if (clickedNode !== this.tempEdgeStart) {
+                                this.addEdge(this.tempEdgeStart, clickedNode, this.connectionType);
+                            }
+                            this.tempEdgeStart = null;
+                            this.selectedNode = null;
+                        }
+                    } else {
+                        this.tempEdgeStart = null;
+                        this.selectedNode = null;
+                    }
+                } else {
+                    if (clickedNode) {
+                        this.draggedNode = clickedNode;
+                        this.selectedNode = clickedNode;
+                        this.canvas.style.cursor = 'grabbing';
+                    } else {
+                        this.selectedNode = null;
+                    }
+                }
+                this.render();
+            },
+
+            handleMouseMove(e) {
+                const pos = this.getMousePos(e);
+
+                if (this.draggedNode && !this.isDrawingMode) {
+                    this.draggedNode.x = pos.x;
+                    this.draggedNode.y = pos.y;
+                    this.render();
+                } else if (this.tempEdgeStart && this.isDrawingMode) {
+                    this.render();
+                    this.ctx.save();
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.tempEdgeStart.x, this.tempEdgeStart.y);
+                    this.ctx.lineTo(pos.x, pos.y);
+                    this.ctx.strokeStyle = this.connectionType === 'sparse' ? '#2a5298' : '#dc2626';
+                    this.ctx.lineWidth = this.connectionType === 'sparse' ? 3 : 5;
+                    if (this.connectionType === 'sparse') {
+                        this.ctx.setLineDash([5, 5]);
+                    }
+                    this.ctx.stroke();
+                    this.ctx.restore();
+                } else {
+                    const hoverNode = this.getNodeAtPosition(pos.x, pos.y);
+                    if (this.isDrawingMode) {
+                        this.canvas.style.cursor = hoverNode ? 'pointer' : 'crosshair';
+                    } else {
+                        this.canvas.style.cursor = hoverNode ? 'move' : 'default';
+                    }
+                }
+            },
+
+            handleMouseUp(e) {
+                if (this.draggedNode) {
+                    this.draggedNode = null;
+                    this.updateMetrics();
+                }
+
+                if (this.isDrawingMode) {
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    this.canvas.style.cursor = 'default';
+                }
+
+                this.render();
+            },
+
+            handleDoubleClick(e) {
+                const pos = this.getMousePos(e);
+                const clickedNode = this.getNodeAtPosition(pos.x, pos.y);
+
+                if (!clickedNode) {
+                    this.addNode(pos.x, pos.y);
+                }
+            },
+
+            getMousePos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            },
+
+            getNodeAtPosition(x, y) {
+                for (let node of this.nodes) {
+                    const dx = x - node.x;
+                    const dy = y - node.y;
+                    if (Math.sqrt(dx * dx + dy * dy) < 25) {
+                        return node;
+                    }
+                }
+                return null;
+            },
+
+            addNode(x, y) {
+                this.nodes.push({
+                    id: this.nodeIdCounter++,
+                    x: x,
+                    y: y,
+                    label: String.fromCharCode(65 + (this.nodes.length % 26))
+                });
+                this.render();
+                this.updateMetrics();
+            },
+
+            addEdge(from, to, type) {
+                const existingEdge = this.edges.find(e =>
+                    (e.from === from && e.to === to) || (e.from === to && e.to === from)
+                );
+
+                if (!existingEdge) {
+                    this.edges.push({ from, to, type });
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            removeSelectedNode() {
+                if (this.selectedNode) {
+                    this.nodes = this.nodes.filter(n => n !== this.selectedNode);
+                    this.edges = this.edges.filter(e =>
+                        e.from !== this.selectedNode && e.to !== this.selectedNode
+                    );
+                    this.selectedNode = null;
+                    this.render();
+                    this.updateMetrics();
+                }
+            },
+
+            clearNetwork() {
+                this.nodes = [];
+                this.edges = [];
+                this.selectedNode = null;
+                this.draggedNode = null;
+                this.tempEdgeStart = null;
+                this.render();
+                this.updateMetrics();
+            },
+
+            toggleDrawMode() {
+                this.isDrawingMode = !this.isDrawingMode;
+                const btn = document.getElementById('draw-mode-btn');
+                if (this.isDrawingMode) {
+                    btn.textContent = '✏️ Disable Drawing Mode';
+                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    this.canvas.style.cursor = 'crosshair';
+                } else {
+                    btn.textContent = '✏️ Enable Drawing Mode';
+                    btn.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                    this.canvas.style.cursor = 'default';
+                    this.tempEdgeStart = null;
+                }
+                this.render();
+            },
+
+            setConnectionType(type) {
+                this.connectionType = type;
+                document.getElementById('conn-sparse').classList.toggle('active', type === 'sparse');
+                document.getElementById('conn-dense').classList.toggle('active', type === 'dense');
+
+                if (type === 'sparse') {
+                    document.getElementById('conn-sparse').style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    document.getElementById('conn-dense').style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                } else {
+                    document.getElementById('conn-dense').style.background = 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)';
+                    document.getElementById('conn-sparse').style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                }
+            },
+
+            loadPresetNetwork(type) {
+                this.clearNetwork();
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+
+                if (type === 'broker') {
+                    // Perfect broker - one central node connecting 3 disconnected groups
+                    const you = { id: 0, x: centerX, y: centerY, label: 'YOU' };
+                    this.nodes.push(you);
+
+                    // Group 1 (top-left)
+                    const g1nodes = [
+                        { id: 1, x: centerX - 200, y: centerY - 150, label: 'A' },
+                        { id: 2, x: centerX - 250, y: centerY - 100, label: 'B' },
+                        { id: 3, x: centerX - 200, y: centerY - 50, label: 'C' }
+                    ];
+                    g1nodes.forEach(n => this.nodes.push(n));
+                    g1nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g1nodes[0], to: g1nodes[1], type: 'sparse' });
+                    this.edges.push({ from: g1nodes[1], to: g1nodes[2], type: 'sparse' });
+
+                    // Group 2 (top-right)
+                    const g2nodes = [
+                        { id: 4, x: centerX + 200, y: centerY - 150, label: 'D' },
+                        { id: 5, x: centerX + 250, y: centerY - 100, label: 'E' },
+                        { id: 6, x: centerX + 200, y: centerY - 50, label: 'F' }
+                    ];
+                    g2nodes.forEach(n => this.nodes.push(n));
+                    g2nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g2nodes[0], to: g2nodes[1], type: 'sparse' });
+                    this.edges.push({ from: g2nodes[1], to: g2nodes[2], type: 'sparse' });
+
+                    // Group 3 (bottom)
+                    const g3nodes = [
+                        { id: 7, x: centerX - 80, y: centerY + 150, label: 'G' },
+                        { id: 8, x: centerX + 80, y: centerY + 150, label: 'H' }
+                    ];
+                    g3nodes.forEach(n => this.nodes.push(n));
+                    g3nodes.forEach(n => this.edges.push({ from: you, to: n, type: 'sparse' }));
+                    this.edges.push({ from: g3nodes[0], to: g3nodes[1], type: 'sparse' });
+
+                } else if (type === 'constrained') {
+                    // Highly constrained - dense interconnected network
+                    const radius = 120;
+                    const numNodes = 8;
+                    for (let i = 0; i < numNodes; i++) {
+                        const angle = (i / numNodes) * 2 * Math.PI;
+                        this.nodes.push({
+                            id: i,
+                            x: centerX + radius * Math.cos(angle),
+                            y: centerY + radius * Math.sin(angle),
+                            label: String.fromCharCode(65 + i)
+                        });
+                    }
+                    // Connect everyone to everyone (dense)
+                    for (let i = 0; i < this.nodes.length; i++) {
+                        for (let j = i + 1; j < this.nodes.length; j++) {
+                            this.edges.push({ from: this.nodes[i], to: this.nodes[j], type: 'dense' });
+                        }
+                    }
+
+                } else if (type === 'medici') {
+                    // Medici-style brokerage
+                    const you = { id: 0, x: centerX, y: centerY, label: 'Medici' };
+                    this.nodes.push(you);
+
+                    const families = [
+                        [centerX - 200, centerY - 120],
+                        [centerX + 200, centerY - 120],
+                        [centerX - 200, centerY + 120],
+                        [centerX + 200, centerY + 120]
+                    ];
+
+                    families.forEach((pos, i) => {
+                        const family = [
+                            { id: i * 2 + 1, x: pos[0], y: pos[1] - 30, label: String.fromCharCode(65 + i * 2) },
+                            { id: i * 2 + 2, x: pos[0], y: pos[1] + 30, label: String.fromCharCode(66 + i * 2) }
+                        ];
+                        family.forEach(n => {
+                            this.nodes.push(n);
+                            this.edges.push({ from: you, to: n, type: 'sparse' });
+                        });
+                        this.edges.push({ from: family[0], to: family[1], type: 'dense' });
+                    });
+
+                } else if (type === 'balanced') {
+                    // Balanced network
+                    const you = { id: 0, x: centerX, y: centerY, label: 'YOU' };
+                    this.nodes.push(you);
+
+                    const radius = 150;
+                    for (let i = 0; i < 6; i++) {
+                        const angle = (i / 6) * 2 * Math.PI;
+                        const node = {
+                            id: i + 1,
+                            x: centerX + radius * Math.cos(angle),
+                            y: centerY + radius * Math.sin(angle),
+                            label: String.fromCharCode(65 + i)
+                        };
+                        this.nodes.push(node);
+                        this.edges.push({ from: you, to: node, type: 'sparse' });
+                    }
+
+                    // Add some dense connections
+                    for (let i = 1; i < this.nodes.length; i++) {
+                        if (i % 2 === 0 && i < this.nodes.length - 1) {
+                            this.edges.push({ from: this.nodes[i], to: this.nodes[i + 1], type: 'dense' });
+                        }
+                    }
+                }
+
+                this.render();
+                this.updateMetrics();
+            },
+
+            render() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw edges
+                this.edges.forEach(edge => {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(edge.from.x, edge.from.y);
+                    this.ctx.lineTo(edge.to.x, edge.to.y);
+                    this.ctx.strokeStyle = edge.type === 'sparse' ? '#2a5298' : '#dc2626';
+                    this.ctx.lineWidth = edge.type === 'sparse' ? 3 : 5;
+                    this.ctx.setLineDash(edge.type === 'sparse' ? [5, 5] : []);
+                    this.ctx.stroke();
+                    this.ctx.setLineDash([]);
+                });
+
+                // Draw nodes
+                this.nodes.forEach(node => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
+                    this.ctx.fillStyle = '#1e3c72';
+                    this.ctx.fill();
+                    this.ctx.strokeStyle = node === this.selectedNode ? '#fbbf24' : 'white';
+                    this.ctx.lineWidth = node === this.selectedNode ? 4 : 2;
+                    this.ctx.stroke();
+
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.font = 'bold 12px Lato, sans-serif';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+                    this.ctx.fillText(node.label, node.x, node.y);
+                });
+
+                if (this.tempEdgeStart) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(this.tempEdgeStart.x, this.tempEdgeStart.y, 20, 0, 2 * Math.PI);
+                    this.ctx.strokeStyle = '#10b981';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.stroke();
+                }
+            },
+
+            updateMetrics() {
+                const numNodes = this.nodes.length;
+                const numEdges = this.edges.length;
+
+                document.getElementById('metric-nodes').textContent = numNodes;
+                document.getElementById('metric-edges').textContent = numEdges;
+
+                if (numNodes < 2) {
+                    document.getElementById('metric-constraint').textContent = '--';
+                    document.getElementById('metric-effective').textContent = '--';
+                    document.getElementById('metric-holes').textContent = '--';
+                    document.getElementById('metric-brokerage').textContent = '--';
+                    document.getElementById('network-quality').textContent = 'Need at least 2 people';
+                    document.getElementById('network-quality').style.background = '#64748b';
+                    document.getElementById('metric-explanation').innerHTML = '<strong>💡 What this means:</strong><p style="margin-top: 10px;">Add more people and connections to see structural holes analysis.</p>';
+                    return;
+                }
+
+                // Calculate constraint (simplified)
+                const avgDegree = (numEdges * 2) / numNodes;
+                const maxDegree = numNodes - 1;
+                const density = numEdges / ((numNodes * (numNodes - 1)) / 2);
+                const constraint = (density * 100).toFixed(1);
+
+                // Effective network size
+                const effectiveSize = (numNodes - (density * numNodes * 0.5)).toFixed(1);
+
+                // Structural holes (gaps between groups)
+                const maxPossibleEdges = (numNodes * (numNodes - 1)) / 2;
+                const structuralHoles = maxPossibleEdges - numEdges;
+
+                // Brokerage potential
+                const brokeragePotential = Math.max(0, 100 - (density * 100)).toFixed(0);
+
+                document.getElementById('metric-constraint').textContent = constraint + '%';
+                document.getElementById('metric-effective').textContent = effectiveSize;
+                document.getElementById('metric-holes').textContent = structuralHoles;
+                document.getElementById('metric-brokerage').textContent = brokeragePotential + '%';
+
+                // Network quality assessment
+                let quality, qualityBg, explanation;
+                if (density < 0.3) {
+                    quality = '🎯 Excellent Brokerage Network';
+                    qualityBg = '#10b981';
+                    explanation = `<strong>💡 Excellent brokerage position!</strong><p style="margin-top: 10px;">Your network has many structural holes (${structuralHoles} gaps). You're positioned as a broker connecting disconnected groups, which gives you:</p><ul style="margin-left: 20px; margin-top: 10px;"><li>Access to diverse, non-redundant information</li><li>High autonomy and negotiation power</li><li>Innovation opportunities from recombining ideas</li><li>Early awareness of opportunities</li></ul>`;
+                } else if (density < 0.6) {
+                    quality = '⚖️ Balanced Network';
+                    qualityBg = '#f59e0b';
+                    explanation = `<strong>💡 Balanced position</strong><p style="margin-top: 10px;">Your network balances brokerage and closure. You have ${structuralHoles} structural holes but also some redundancy. This gives you:</p><ul style="margin-left: 20px; margin-top: 10px;"><li>Some access to diverse information</li><li>Moderate trust from closure</li><li>Room to expand into brokerage or closure</li></ul>`;
+                } else {
+                    quality = '🔒 Highly Constrained Network';
+                    qualityBg = '#dc2626';
+                    explanation = `<strong>💡 High constraint detected</strong><p style="margin-top: 10px;">Your network is dense with few structural holes (only ${structuralHoles} gaps). This means:</p><ul style="margin-left: 20px; margin-top: 10px;"><li><strong>Advantage:</strong> High trust and coordination within group</li><li><strong>Disadvantage:</strong> Redundant information, limited diversity</li><li><strong>Risk:</strong> Groupthink and missed opportunities</li><li><strong>Strategy:</strong> Add connections to new, disconnected groups to increase brokerage</li></ul>`;
+                }
+
+                document.getElementById('network-quality').textContent = quality;
+                document.getElementById('network-quality').style.background = qualityBg;
+                document.getElementById('metric-explanation').innerHTML = explanation;
+            }
+        };
+
+        // Effective Network Size Calculator
+        function calculateEffectiveSize() {
+            const totalContacts = parseInt(document.getElementById('totalContactsEffective').value);
+            const avgRedundancy = parseInt(document.getElementById('avgRedundancy').value);
+
+            // Effective Size = Total Size - Average Redundancy
+            // This is a simplified version. Full formula: Effective Size = Σ(1 - Σ(p_iq * p_qj))
+            const effectiveSize = Math.max(1, totalContacts - (avgRedundancy * 0.5));
+            const efficiency = effectiveSize / totalContacts;
+
+            // Display results
+            const resultBox = document.getElementById('effectiveResult');
+            const totalDisplay = document.getElementById('totalSizeDisplay');
+            const effectiveDisplay = document.getElementById('effectiveSizeDisplay');
+            const efficiencyDisplay = document.getElementById('efficiencyScore');
+            const efficiencyBar = document.getElementById('efficiencyBar');
+            const interpretationElement = document.getElementById('effectiveInterpretation');
+
+            totalDisplay.textContent = totalContacts;
+            effectiveDisplay.textContent = effectiveSize.toFixed(1);
+            efficiencyDisplay.textContent = (efficiency * 100).toFixed(0) + '% Efficient';
+
+            // Update efficiency bar
+            efficiencyBar.style.width = (efficiency * 100) + '%';
+
+            let interpretation = '';
+            let emoji = '';
+
+            if (efficiency >= 0.8) {
+                emoji = '🎯';
+                interpretation = `<strong>Excellent Network Efficiency!</strong><br><br>
+                    Your network has very low redundancy. Most of your contacts provide unique, non-overlapping information.
+                    You're effectively leveraging each relationship for maximum information value.
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Effective Size:</strong> ${effectiveSize.toFixed(1)} out of ${totalContacts} contacts (${(efficiency * 100).toFixed(0)}% efficiency)</li>
+                        <li>You're positioned as a broker with minimal redundancy</li>
+                        <li>High information diversity and innovation potential</li>
+                    </ul>
+                    <strong>Recommendation:</strong> Maintain this diversity. Continue cultivating contacts across different domains.`;
+            } else if (efficiency >= 0.5) {
+                emoji = '⚖️';
+                interpretation = `<strong>Moderate Network Efficiency</strong><br><br>
+                    Your network has some redundancy, but also maintains diversity. You balance brokerage with closure.
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Effective Size:</strong> ${effectiveSize.toFixed(1)} out of ${totalContacts} contacts (${(efficiency * 100).toFixed(0)}% efficiency)</li>
+                        <li>Roughly half your contacts provide unique information</li>
+                        <li>Balance between information diversity and social capital</li>
+                    </ul>
+                    <strong>Recommendation:</strong> If you want more brokerage opportunities, reduce redundancy by adding contacts
+                    from new domains. If you want more closure benefits, deepen existing cluster connections.`;
+            } else {
+                emoji = '⚠️';
+                interpretation = `<strong>High Network Redundancy</strong><br><br>
+                    Your network has significant redundancy. Many of your contacts know each other and likely share similar information.
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Effective Size:</strong> ${effectiveSize.toFixed(1)} out of ${totalContacts} contacts (${(efficiency * 100).toFixed(0)}% efficiency)</li>
+                        <li>Most contacts are interconnected or provide overlapping information</li>
+                        <li>Limited exposure to diverse perspectives</li>
+                    </ul>
+                    <strong>Recommendation:</strong> To increase brokerage opportunities, actively seek contacts in domains outside
+                    your current network. Look for people in different industries, geographies, or functional areas.`;
+            }
+
+            interpretationElement.innerHTML = `<div style="font-size: 2rem; margin-bottom: 10px;">${emoji}</div>${interpretation}`;
+            resultBox.classList.add('show');
+        }
+
+        // Network Constraint Calculator
+        function calculateConstraint() {
+            const totalContacts = parseInt(document.getElementById('totalContacts').value);
+            const interconnections = parseInt(document.getElementById('interconnections').value) / 100;
+            const dominantContact = document.getElementById('dominantContact').value;
+
+            // Simplified network constraint calculation
+            // Real calculation: C_i = Σ(p_ij + Σ(p_iq * p_qj))^2 where p = proportion of network time
+            // Simplified: base constraint from interconnections + modifier from dominant contact
+
+            let baseConstraint = interconnections * 100;
+
+            // Adjust for dominant contact (increases constraint)
+            if (dominantContact === 'moderate') {
+                baseConstraint = baseConstraint * 1.15;
+            } else if (dominantContact === 'yes') {
+                baseConstraint = baseConstraint * 1.35;
+            }
+
+            // Adjust for network size (smaller networks = higher constraint)
+            const sizeModifier = Math.max(0.7, 1 - (totalContacts / 50));
+            let finalConstraint = baseConstraint * (1 + sizeModifier * 0.3);
+
+            // Cap at 100
+            finalConstraint = Math.min(100, finalConstraint);
+
+            // Display results
+            const resultBox = document.getElementById('constraintResult');
+            const scoreElement = document.getElementById('constraintScore');
+            const interpretationElement = document.getElementById('constraintInterpretation');
+
+            scoreElement.textContent = finalConstraint.toFixed(1);
+
+            let interpretation = '';
+            let emoji = '';
+
+            if (finalConstraint < 30) {
+                emoji = '🎯';
+                interpretation = `<strong>Low Constraint (Excellent Brokerage Position):</strong><br><br>
+                    Your network spans structural holes, giving you access to diverse, non-redundant information.
+                    You're well-positioned to:
+                    <ul style="margin-top: 10px;">
+                        <li>Spot opportunities others miss</li>
+                        <li>Innovate by combining ideas from different domains</li>
+                        <li>Negotiate from a position of information advantage</li>
+                    </ul>
+                    <strong>Strategy:</strong> Continue cultivating contacts in different spheres. Be the bridge between groups.`;
+            } else if (finalConstraint < 60) {
+                emoji = '⚖️';
+                interpretation = `<strong>Moderate Constraint (Balanced Position):</strong><br><br>
+                    Your network has some redundancy but also some brokerage opportunities. You benefit from both trust
+                    (from closure) and diverse information (from bridging).
+                    <ul style="margin-top: 10px;">
+                        <li>You have a stable foundation of interconnected contacts</li>
+                        <li>Some diversity exists for new information</li>
+                        <li>Room to expand into new domains</li>
+                    </ul>
+                    <strong>Strategy:</strong> Consider adding contacts in fields you're <em>not</em> currently connected to.
+                    Look for "bridge" opportunities.`;
+            } else {
+                emoji = '⚠️';
+                interpretation = `<strong>High Constraint (Limited Brokerage):</strong><br><br>
+                    Your contacts are highly interconnected, meaning they likely share similar information. This creates
+                    redundancy and limits your exposure to novel ideas.
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Advantage:</strong> High trust and strong norms in your network</li>
+                        <li><strong>Disadvantage:</strong> Limited access to diverse information</li>
+                        <li>Vulnerable to "groupthink" and echo chambers</li>
+                    </ul>
+                    <strong>Strategy:</strong> Actively seek contacts <em>outside</em> your current circle. Attend events in
+                    different industries/fields. Cultivate weak ties to diverse groups.`;
+            }
+
+            interpretationElement.innerHTML = `<div style="font-size: 2rem; margin-bottom: 10px;">${emoji}</div>${interpretation}`;
+            resultBox.classList.add('show');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
