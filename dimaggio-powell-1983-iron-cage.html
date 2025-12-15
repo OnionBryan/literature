@@ -1904,21 +1904,41 @@
                 </div>
             </section>
 
-            <!-- Tool 4: Scenario Quiz -->
+            <!-- Tool 4: Organizational Field Topology -->
             <section class="section-card">
-                <h2>🎯 Tool 4: Isomorphism Quiz</h2>
-                <p>Test your understanding of the three mechanisms with real-world scenarios.</p>
+                <h2>🔗 Tool 4: Organizational Field Topology Explorer</h2>
+                <p>Explore how organizations are structurally positioned within a field and how different isomorphic pressures flow through network connections.</p>
 
-                <div id="quizContainer" style="background: #f8f9fa; padding: 30px; border-radius: 15px;">
-                    <div id="quizQuestion">
-                        <h4 id="questionText" style="color: #4f46e5; margin-bottom: 20px;"></h4>
-                        <div id="quizOptions"></div>
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: 600; margin-right: 15px;">Select topology view:</label>
+                        <button class="control-btn" onclick="showTopology('coercive')" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">Coercive Structure</button>
+                        <button class="control-btn" onclick="showTopology('mimetic')" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); margin-left: 10px;">Mimetic Structure</button>
+                        <button class="control-btn" onclick="showTopology('normative')" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%); margin-left: 10px;">Normative Structure</button>
                     </div>
-                    <div id="quizFeedback" style="display: none; margin-top: 20px;"></div>
-                    <div style="margin-top: 20px;">
-                        <button class="control-btn" id="nextQuestionBtn" onclick="nextQuestion()" style="display: none;">Next Question →</button>
-                        <span id="quizScore" style="margin-left: 20px; font-weight: 600;"></span>
+
+                    <div id="topologyDiagram" style="height: 380px; position: relative; border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+                        <svg id="topologySvg" viewBox="0 0 700 350" style="width: 100%; height: 100%;">
+                            <!-- Default state - instructions -->
+                            <text x="350" y="175" text-anchor="middle" fill="#94a3b8" font-size="16">Select a topology view above to explore organizational field structures</text>
+                        </svg>
                     </div>
+
+                    <div id="topologyExplanation" style="margin-top: 20px; padding: 25px; background: #f8f9fa; border-radius: 10px;">
+                        <h4 style="color: #4f46e5; margin-bottom: 15px;">Understanding Organizational Field Topology</h4>
+                        <p style="margin-bottom: 15px;">DiMaggio & Powell argue that organizations exist within <strong>organizational fields</strong>—sets of organizations that "constitute a recognized area of institutional life." The structure of these fields determines how isomorphic pressures flow.</p>
+                        <p><strong>Key structural elements:</strong></p>
+                        <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Central organizations</strong> — high visibility, more likely to be imitated</li>
+                            <li><strong>Peripheral organizations</strong> — receive pressures but rarely transmit them</li>
+                            <li><strong>Resource dependencies</strong> — create pathways for coercive pressure</li>
+                            <li><strong>Professional networks</strong> — enable normative diffusion across organizational boundaries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    <strong>How it works:</strong> Each topology view shows a different structural arrangement of organizations within a field. Coercive structures are hierarchical (regulators at top). Mimetic structures show star patterns around successful exemplars. Normative structures show professional network overlays connecting organizations through shared personnel training.
                 </div>
             </section>
 
@@ -1996,7 +2016,6 @@
             if (pageId === 'interactive') {
                 setTimeout(() => {
                     initFieldCanvas();
-                    initQuiz();
                 }, 100);
             }
         }
@@ -2369,109 +2388,253 @@
             });
         }
 
-        // ========== TOOL 4: QUIZ ==========
-        const quizQuestions = [
-            {
-                q: "A new law requires all public companies to have an independent audit committee. Within 2 years, 100% of public companies have identical audit committee structures. What mechanism is this?",
-                options: ["Coercive", "Mimetic", "Normative"],
-                correct: 0,
-                explanation: "This is coercive isomorphism. Legal mandates force compliance—companies adopt the structure because they must, not because they chose to."
-            },
-            {
-                q: "After Apple's success with minimal product design, competitors start copying the aesthetic across the industry. Mechanism?",
-                options: ["Coercive", "Mimetic", "Normative"],
-                correct: 1,
-                explanation: "This is mimetic isomorphism. Competitors copy a successful peer's visible practices, hoping to replicate success."
-            },
-            {
-                q: "Hospitals across the country adopt similar infection control protocols because the Joint Commission requires them for accreditation. Mechanism?",
-                options: ["Coercive", "Mimetic", "Normative"],
-                correct: 0,
-                explanation: "This is coercive isomorphism. Accreditation requirements function as mandates—hospitals must comply to maintain legitimacy and funding."
-            },
-            {
-                q: "MBA graduates bring identical strategy frameworks (Porter's Five Forces, SWOT analysis) to diverse companies. Mechanism?",
-                options: ["Coercive", "Mimetic", "Normative"],
-                correct: 2,
-                explanation: "This is normative isomorphism. Professional education creates shared cognitive frameworks that professionals carry into their organizations."
-            },
-            {
-                q: "A venture capital firm requires all portfolio companies to adopt OKRs because Google uses them. Mechanism?",
-                options: ["Coercive", "Mimetic", "Mixed: Coercive + Mimetic"],
-                correct: 2,
-                explanation: "This is mixed—coercive (the VC mandate) combined with mimetic (the belief that copying Google leads to success)."
-            }
-        ];
+        // ========== TOOL 4: ORGANIZATIONAL FIELD TOPOLOGY ==========
+        function showTopology(type) {
+            const svg = document.getElementById('topologySvg');
+            const explanation = document.getElementById('topologyExplanation');
 
-        let currentQuestion = 0;
-        let score = 0;
+            const topologies = {
+                coercive: {
+                    svg: `
+                        <!-- Hierarchical Coercive Structure -->
+                        <!-- Top tier: Regulatory bodies -->
+                        <text x="350" y="25" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="12">REGULATORY AUTHORITY</text>
 
-        function initQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            showQuestion();
-        }
+                        <!-- Central regulator -->
+                        <rect x="300" y="35" width="100" height="40" rx="5" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+                        <text x="350" y="60" text-anchor="middle" fill="white" font-size="11" font-weight="bold">State/Federal</text>
 
-        function showQuestion() {
-            if (currentQuestion >= quizQuestions.length) {
-                document.getElementById('quizQuestion').innerHTML = `
-                    <h4 style="color: #4f46e5;">Quiz Complete!</h4>
-                    <p>You scored ${score} out of ${quizQuestions.length}.</p>
-                    <button class="control-btn" onclick="initQuiz()" style="margin-top: 15px;">Try Again</button>
-                `;
-                document.getElementById('quizFeedback').style.display = 'none';
-                document.getElementById('nextQuestionBtn').style.display = 'none';
-                return;
-            }
+                        <!-- Dependency arrows from regulator down -->
+                        <defs>
+                            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+                            </marker>
+                        </defs>
 
-            const q = quizQuestions[currentQuestion];
-            document.getElementById('questionText').textContent = `Q${currentQuestion + 1}: ${q.q}`;
-            document.getElementById('quizOptions').innerHTML = q.options.map((opt, i) => `
-                <button onclick="checkAnswer(${i})" style="display: block; width: 100%; text-align: left; padding: 15px; margin: 10px 0; background: white; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.2s;"
-                    onmouseover="this.style.borderColor='#6366f1'"
-                    onmouseout="this.style.borderColor='#e5e7eb'">
-                    ${opt}
-                </button>
-            `).join('');
-            document.getElementById('quizFeedback').style.display = 'none';
-            document.getElementById('nextQuestionBtn').style.display = 'none';
-            document.getElementById('quizScore').textContent = `Score: ${score}/${quizQuestions.length}`;
-        }
+                        <!-- Resource providers tier -->
+                        <text x="150" y="110" text-anchor="middle" fill="#64748b" font-size="10">RESOURCE PROVIDERS</text>
+                        <text x="550" y="110" text-anchor="middle" fill="#64748b" font-size="10">ACCREDITORS</text>
 
-        function checkAnswer(selected) {
-            const q = quizQuestions[currentQuestion];
-            const isCorrect = selected === q.correct;
+                        <rect x="100" y="120" width="100" height="35" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="150" y="142" text-anchor="middle" fill="#991b1b" font-size="10">Funders/Banks</text>
 
-            if (isCorrect) score++;
+                        <rect x="500" y="120" width="100" height="35" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="550" y="142" text-anchor="middle" fill="#991b1b" font-size="10">Industry Body</text>
 
-            document.getElementById('quizFeedback').style.display = 'block';
-            document.getElementById('quizFeedback').innerHTML = `
-                <div style="padding: 20px; border-radius: 10px; background: ${isCorrect ? '#dcfce7' : '#fef2f2'}; border-left: 5px solid ${isCorrect ? '#10b981' : '#dc2626'};">
-                    <h4 style="color: ${isCorrect ? '#059669' : '#dc2626'}; margin-bottom: 10px;">${isCorrect ? '✓ Correct!' : '✗ Not quite'}</h4>
-                    <p>${q.explanation}</p>
-                </div>
-            `;
+                        <!-- Arrows from top -->
+                        <line x1="320" y1="75" x2="180" y2="118" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+                        <line x1="380" y1="75" x2="520" y2="118" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
 
-            document.getElementById('nextQuestionBtn').style.display = 'inline-block';
-            document.getElementById('quizScore').textContent = `Score: ${score}/${quizQuestions.length}`;
+                        <!-- Dependent organizations tier -->
+                        <text x="350" y="195" text-anchor="middle" fill="#64748b" font-size="10">DEPENDENT ORGANIZATIONS</text>
 
-            // Disable option buttons
-            document.querySelectorAll('#quizOptions button').forEach((btn, i) => {
-                btn.disabled = true;
-                btn.style.opacity = '0.7';
-                if (i === q.correct) {
-                    btn.style.borderColor = '#10b981';
-                    btn.style.background = '#dcfce7';
-                } else if (i === selected && !isCorrect) {
-                    btn.style.borderColor = '#dc2626';
-                    btn.style.background = '#fef2f2';
+                        <circle cx="120" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="120" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org A</text>
+
+                        <circle cx="230" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="230" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org B</text>
+
+                        <circle cx="350" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="350" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org C</text>
+
+                        <circle cx="470" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="470" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org D</text>
+
+                        <circle cx="580" cy="250" r="28" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="580" y="254" text-anchor="middle" fill="#991b1b" font-size="9">Org E</text>
+
+                        <!-- Arrows to dependent orgs -->
+                        <line x1="130" y1="155" x2="120" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="160" y1="155" x2="230" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="350" y1="75" x2="350" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" stroke-dasharray="5,3"/>
+                        <line x1="540" y1="155" x2="470" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+                        <line x1="570" y1="155" x2="580" y2="218" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+                        <!-- Legend -->
+                        <rect x="20" y="305" width="180" height="40" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <line x1="30" y1="320" x2="60" y2="320" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+                        <text x="70" y="324" fill="#64748b" font-size="10">Coercive pressure flow</text>
+                        <text x="30" y="338" fill="#64748b" font-size="9">Power asymmetry → Compliance</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #dc2626; margin-bottom: 15px;">⚖️ Coercive Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Coercive isomorphism flows through <strong>hierarchical dependency relationships</strong>. Organizations at the top (regulators, funders, accreditors) have power over those below them. Pressure travels <em>downward</em> through these dependency chains.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Vertical hierarchy</strong> — Authority flows from top to bottom</li>
+                            <li><strong>Centralized power</strong> — Few actors at top, many at bottom</li>
+                            <li><strong>Unidirectional pressure</strong> — Mandates flow down, compliance flows up</li>
+                            <li><strong>Resource dependency</strong> — Links represent funding, licensing, or legal authority</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar because they must all conform to the same external requirements—there's no choice involved.</p>
+                    `
+                },
+                mimetic: {
+                    svg: `
+                        <!-- Star/Network Mimetic Structure -->
+                        <defs>
+                            <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+                            </marker>
+                            <radialGradient id="successGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1"/>
+                                <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:0"/>
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Success glow around central org -->
+                        <circle cx="350" cy="175" r="80" fill="url(#successGlow)"/>
+
+                        <!-- Central successful organization -->
+                        <circle cx="350" cy="175" r="45" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+                        <text x="350" y="170" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SUCCESS</text>
+                        <text x="350" y="185" text-anchor="middle" fill="white" font-size="9">EXEMPLAR</text>
+
+                        <!-- Watching/imitating organizations -->
+                        <circle cx="150" cy="80" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="150" y="84" text-anchor="middle" fill="#92400e" font-size="10">Imitator A</text>
+
+                        <circle cx="550" cy="80" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="550" y="84" text-anchor="middle" fill="#92400e" font-size="10">Imitator B</text>
+
+                        <circle cx="100" cy="200" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="100" y="204" text-anchor="middle" fill="#92400e" font-size="10">Imitator C</text>
+
+                        <circle cx="600" cy="200" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="600" y="204" text-anchor="middle" fill="#92400e" font-size="10">Imitator D</text>
+
+                        <circle cx="180" cy="300" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="180" y="304" text-anchor="middle" fill="#92400e" font-size="10">Imitator E</text>
+
+                        <circle cx="520" cy="300" r="30" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="520" y="304" text-anchor="middle" fill="#92400e" font-size="10">Imitator F</text>
+
+                        <!-- Observation/imitation arrows (dashed - representing watching) -->
+                        <line x1="175" y1="100" x2="310" y2="150" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="525" y1="100" x2="390" y2="150" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="130" y1="195" x2="305" y2="175" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="570" y1="195" x2="395" y2="175" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="205" y1="280" x2="320" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="495" y1="280" x2="380" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+
+                        <!-- Eyes/observation symbols -->
+                        <text x="240" y="120" fill="#d97706" font-size="16">👁</text>
+                        <text x="440" y="120" fill="#d97706" font-size="16">👁</text>
+                        <text x="200" y="190" fill="#d97706" font-size="16">👁</text>
+                        <text x="480" y="190" fill="#d97706" font-size="16">👁</text>
+
+                        <!-- Legend -->
+                        <rect x="20" y="305" width="140" height="40" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <line x1="30" y1="320" x2="60" y2="320" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+                        <text x="70" y="324" fill="#64748b" font-size="10">Observation</text>
+                        <text x="30" y="338" fill="#64748b" font-size="9">Uncertainty → Imitation</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #d97706; margin-bottom: 15px;">🔄 Mimetic Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Mimetic isomorphism creates <strong>star-shaped observation networks</strong>. Successful or prestigious organizations become focal points that others watch and copy. Influence radiates <em>outward</em> from exemplars.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Star topology</strong> — Central exemplar(s) surrounded by imitators</li>
+                            <li><strong>Visibility-based</strong> — Most visible organizations become models</li>
+                            <li><strong>Voluntary imitation</strong> — No mandate, just observation and copying</li>
+                            <li><strong>Uncertainty-driven</strong> — Copying intensifies when outcomes are unclear</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar by <em>choosing</em> to copy what appears successful—even if they don't understand why it works.</p>
+                    `
+                },
+                normative: {
+                    svg: `
+                        <!-- Normative Professional Network Structure -->
+                        <defs>
+                            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#10b981"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Professional institution at top -->
+                        <rect x="275" y="20" width="150" height="45" rx="8" fill="#10b981" stroke="#059669" stroke-width="2"/>
+                        <text x="350" y="38" text-anchor="middle" fill="white" font-size="10" font-weight="bold">PROFESSIONAL</text>
+                        <text x="350" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="bold">SCHOOL / ASSOCIATION</text>
+
+                        <!-- Graduates/professionals (small nodes) -->
+                        <circle cx="280" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="320" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="380" cy="110" r="12" fill="#10b981"/>
+                        <circle cx="420" cy="110" r="12" fill="#10b981"/>
+                        <text x="350" y="95" text-anchor="middle" fill="#064e3b" font-size="9">Graduates</text>
+
+                        <!-- Lines from school to graduates -->
+                        <line x1="310" y1="65" x2="280" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="330" y1="65" x2="320" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="370" y1="65" x2="380" y2="98" stroke="#10b981" stroke-width="1.5"/>
+                        <line x1="390" y1="65" x2="420" y2="98" stroke="#10b981" stroke-width="1.5"/>
+
+                        <!-- Organizations in field -->
+                        <rect x="80" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="130" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org A</text>
+                        <circle cx="110" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="150" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="230" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="280" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org B</text>
+                        <circle cx="260" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="300" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="380" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="430" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org C</text>
+                        <circle cx="410" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="450" cy="225" r="8" fill="#10b981"/>
+
+                        <rect x="530" y="180" width="100" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                        <text x="580" y="205" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="bold">Org D</text>
+                        <circle cx="560" cy="225" r="8" fill="#10b981"/>
+                        <circle cx="600" cy="225" r="8" fill="#10b981"/>
+
+                        <!-- Professional network connections (dotted lines between professionals) -->
+                        <line x1="150" y1="225" x2="260" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="300" y1="225" x2="410" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="450" y1="225" x2="560" y2="225" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+
+                        <!-- Lines from graduates to orgs -->
+                        <line x1="280" y1="122" x2="130" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="320" y1="122" x2="280" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="380" y1="122" x2="430" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+                        <line x1="420" y1="122" x2="580" y2="178" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+                        <!-- Professional association connection -->
+                        <rect x="250" y="280" width="200" height="35" rx="5" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2"/>
+                        <text x="350" y="302" text-anchor="middle" fill="#064e3b" font-size="10">Professional Association Network</text>
+
+                        <line x1="130" y1="240" x2="270" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="280" y1="240" x2="300" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="430" y1="240" x2="400" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="580" y1="240" x2="430" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+
+                        <!-- Legend -->
+                        <rect x="20" y="295" width="190" height="50" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+                        <circle cx="35" cy="310" r="6" fill="#10b981"/>
+                        <text x="50" y="314" fill="#64748b" font-size="9">Professional with shared training</text>
+                        <line x1="30" y1="330" x2="60" y2="330" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                        <text x="70" y="334" fill="#64748b" font-size="9">Professional network ties</text>
+                    `,
+                    explanation: `
+                        <h4 style="color: #059669; margin-bottom: 15px;">🎓 Normative Field Structure</h4>
+                        <p style="margin-bottom: 15px;">Normative isomorphism flows through <strong>professional network overlays</strong>. Educational institutions produce professionals with shared cognitive frameworks. These professionals then carry identical assumptions into diverse organizations, creating similarity from within.</p>
+                        <p style="margin-bottom: 15px;"><strong>Key structural features:</strong></p>
+                        <ul style="margin: 0 0 15px 20px; line-height: 1.8;">
+                            <li><strong>Dual-layer network</strong> — Organizations + professional ties that span them</li>
+                            <li><strong>Education as origin</strong> — Common training creates shared mental models</li>
+                            <li><strong>Association ties</strong> — Professional bodies reinforce and update norms</li>
+                            <li><strong>Personnel as carriers</strong> — Norms move with people between organizations</li>
+                        </ul>
+                        <p><strong>Implication:</strong> Organizations become similar because their professional staff all learned the same "right way" to do things—similarity emerges from shared assumptions, not copying or coercion.</p>
+                    `
                 }
-            });
-        }
+            };
 
-        function nextQuestion() {
-            currentQuestion++;
-            showQuestion();
+            const t = topologies[type];
+            svg.innerHTML = t.svg;
+            explanation.innerHTML = t.explanation;
         }
 
         // ========== TOOL 5: ADOPTION VISUALIZER ==========
@@ -2524,7 +2687,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('interactive').style.display !== 'none') {
                 initFieldCanvas();
-                initQuiz();
             }
         });
 
