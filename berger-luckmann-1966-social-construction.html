@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berger & Luckmann (1966) - The Social Construction of Reality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #44403c 0%, #57534e 50%, #78716c 100%);
+            min-height: 100vh;
+            color: #e7e5e4;
+            line-height: 1.6;
+        }
+
+        .nav-container {
+            background: rgba(68, 64, 60, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(214, 211, 209, 0.3);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: #d6d3d1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fbbf24;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-pages {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: rgba(214, 211, 209, 0.2);
+            border: 1px solid rgba(214, 211, 209, 0.3);
+            color: #d6d3d1;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #a16207 0%, #ca8a04 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.2) 0%, rgba(202, 138, 4, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(214, 211, 209, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(161, 98, 7, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .hero .meta {
+            color: #d6d3d1;
+            font-size: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(214, 211, 209, 0.2);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 {
+            color: #fcd34d;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .card p {
+            color: #d6d3d1;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            color: #d6d3d1;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.15) 0%, rgba(202, 138, 4, 0.1) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .concept-box h4 {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-box p {
+            color: #d6d3d1;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.2) 0%, rgba(202, 138, 4, 0.15) 100%);
+            border-left: 4px solid #fbbf24;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #e7e5e4;
+            font-size: 1.05rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Dialectic Visualization */
+        .dialectic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+            margin: 30px 0;
+        }
+
+        .dialectic-step {
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.3) 0%, rgba(202, 138, 4, 0.2) 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s;
+        }
+
+        .dialectic-step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.2);
+        }
+
+        .dialectic-step .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .dialectic-step h4 {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .dialectic-step p {
+            color: #d6d3d1;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .dialectic-arrow {
+            color: #fbbf24;
+            font-size: 2rem;
+        }
+
+        /* Interactive Tools */
+        .tool-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(214, 211, 209, 0.2);
+        }
+
+        .tool-container h3 {
+            color: #fbbf24;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-group label {
+            display: block;
+            color: #d6d3d1;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(214, 211, 209, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24 0%, #ca8a04 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(251, 191, 36, 0.4);
+        }
+
+        .slider-value {
+            text-align: right;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.2) 0%, rgba(202, 138, 4, 0.15) 100%);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-box h4 {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .result-label {
+            color: #d6d3d1;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .selection-btn {
+            background: rgba(161, 98, 7, 0.1);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .selection-btn:hover {
+            border-color: #fbbf24;
+            background: rgba(161, 98, 7, 0.2);
+        }
+
+        .selection-btn.active {
+            border-color: #fbbf24;
+            background: linear-gradient(135deg, rgba(161, 98, 7, 0.3) 0%, rgba(202, 138, 4, 0.2) 100%);
+        }
+
+        .selection-btn h5 {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .selection-btn p {
+            color: #d6d3d1;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #fbbf24 0%, #ca8a04 100%);
+            color: #44403c;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: #d6d3d1;
+            margin: 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(214, 211, 209, 0.2);
+        }
+
+        .comparison-table th {
+            background: rgba(161, 98, 7, 0.2);
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: #d6d3d1;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(161, 98, 7, 0.1);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            background: linear-gradient(135deg, #292524 0%, #44403c 100%);
+            padding: 40px 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-nav a {
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.2);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .footer-nav a:hover {
+            background: rgba(251, 191, 36, 0.3);
+            border-color: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .dialectic-container {
+                flex-direction: column;
+            }
+
+            .dialectic-arrow {
+                transform: rotate(90deg);
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="back-link">← Literature Explorer</a>
+                <span class="nav-title">Berger & Luckmann (1966)</span>
+            </div>
+            <div class="nav-pages">
+                <button class="page-btn active" onclick="switchPage('main', this)">Overview</button>
+                <button class="page-btn" onclick="switchPage('dialectic', this)">The Dialectic</button>
+                <button class="page-btn" onclick="switchPage('institutions', this)">Institutionalization</button>
+                <button class="page-btn" onclick="switchPage('interactive', this)">Interactive Tools</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Page 1: Overview -->
+        <div id="main" class="page-content active">
+            <div class="hero">
+                <h1>The Social Construction of Reality</h1>
+                <div class="subtitle">Peter L. Berger & Thomas Luckmann</div>
+                <div class="meta">1966 • Book • Foundational Sociology of Knowledge</div>
+            </div>
+
+            <div class="card">
+                <h2>📚 Core Argument</h2>
+                <p>Berger and Luckmann's groundbreaking work argues that what we experience as "reality" is not given but <strong>socially constructed</strong> through human interaction. The social world, though created by humans, comes to be experienced as objective, external, and constraining—as if it existed independently of human activity.</p>
+
+                <div class="highlight-box">
+                    <p>"Society is a human product. Society is an objective reality. Man is a social product."</p>
+                </div>
+
+                <p>This paradoxical formulation captures the central dialectic: humans create society through their actions (externalization), that society takes on an objective character (objectivation), and then shapes individuals who are born into it (internalization). Power structures, though humanly created, come to seem natural and inevitable.</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>🏗️ Externalization</h4>
+                        <p>Humans continuously pour meaning into the world through activity. We create language, tools, institutions—projecting ourselves outward.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🗿 Objectivation</h4>
+                        <p>Human products take on an objective character, appearing as "things" external to and independent of those who created them.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>🧠 Internalization</h4>
+                        <p>Individuals absorb the objectified social world as reality through socialization, making it their own subjective consciousness.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Key Contributions</h2>
+
+                <h3>1. Reality as Social Product</h3>
+                <p>What counts as "real" is not given by nature but established through social processes. Different societies construct different realities—what is taken-for-granted in one society may be unthinkable in another. This includes power arrangements: hierarchies, roles, and authority structures are human creations, not natural facts.</p>
+
+                <h3>2. Institutionalization</h3>
+                <p>When habitualized actions become typified (categorized) and shared across individuals, they become institutions. Institutions carry the weight of "how things are done" and develop mechanisms of social control. Once institutionalized, arrangements appear inevitable rather than contingent.</p>
+
+                <h3>3. Legitimation</h3>
+                <p>Institutions require explanation and justification—legitimation. This ranges from simple statements ("this is how it's done") to elaborate symbolic universes (religion, philosophy, science) that explain why the institutional order is as it should be.</p>
+
+                <h3>4. Reification</h3>
+                <p>The extreme form of objectivation where humans forget they created social reality and experience it as non-human—as nature, divine will, or cosmic law. Reification is the ultimate triumph of the socially constructed over its creators.</p>
+            </div>
+
+            <div class="card">
+                <h2>💡 Implications for Power</h2>
+                <p>The social construction perspective has profound implications for understanding power:</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Power as Constructed</h4>
+                        <p>Authority, hierarchy, and legitimate power are not natural but socially constructed. What makes someone "powerful" is collective belief and institutionalized expectations.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Taken-for-Grantedness</h4>
+                        <p>The most effective power is invisible—embedded in what everyone takes for granted. Questioning it seems absurd because alternatives aren't imaginable.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Role of Language</h4>
+                        <p>Language objectifies experience and transmits social reality. Whoever controls language and meaning has tremendous power over how reality is constructed.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Possibility of Change</h4>
+                        <p>If reality is constructed, it can be reconstructed. This opens the possibility of challenging and changing power structures by revealing their constructed nature.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: The Dialectic -->
+        <div id="dialectic" class="page-content">
+            <div class="card">
+                <h2>🔄 The Dialectic of Society</h2>
+                <p>Berger and Luckmann describe a continuous dialectical process through which social reality is created and maintained. This process has three moments that occur simultaneously and continuously:</p>
+
+                <div class="dialectic-container">
+                    <div class="dialectic-step">
+                        <div class="icon">🏗️</div>
+                        <h4>Externalization</h4>
+                        <p>Humans project meaning into the world</p>
+                    </div>
+                    <div class="dialectic-arrow">→</div>
+                    <div class="dialectic-step">
+                        <div class="icon">🗿</div>
+                        <h4>Objectivation</h4>
+                        <p>Products become objective reality</p>
+                    </div>
+                    <div class="dialectic-arrow">→</div>
+                    <div class="dialectic-step">
+                        <div class="icon">🧠</div>
+                        <h4>Internalization</h4>
+                        <p>Reality is absorbed by individuals</p>
+                    </div>
+                    <div class="dialectic-arrow">↩️</div>
+                </div>
+
+                <p style="text-align: center; color: #fcd34d;">The cycle continues as socialized individuals externalize through their own activity...</p>
+            </div>
+
+            <div class="card">
+                <h2>🏗️ Externalization</h2>
+                <p>Humans, unlike other animals, must construct their world. We are not born with instincts that provide a stable environment; we must create one through ongoing activity.</p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Human Activity</h4>
+                            <p>Humans act upon the world—physically and mentally. We create tools, build structures, establish routines, and develop languages.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Habitualization</h4>
+                            <p>Repeated actions become habits, requiring less attention and decision-making. "This is how I do this task."</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Typification</h4>
+                            <p>Habits are categorized into types: "This is how we do things" or "This is what that kind of person does."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Externalization is an anthropological necessity. Humans must continually externalize themselves in activity because human existence is inherently unstable without self-produced world-building.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🗿 Objectivation</h2>
+                <p>The products of human externalization take on a life of their own. They become "objects"—external, factual, resistant to individual will.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Language</h4>
+                        <p>The primary vehicle of objectivation. Language exists "out there" as a system of signs, independent of any individual speaker. It structures how we perceive and think about reality.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Institutions</h4>
+                        <p>Typified actions that become shared realities. "The economy," "the government," "the family" appear as external facts, not human products.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Roles</h4>
+                        <p>Institutionalized typifications of actors. "Manager," "employee," "professor" carry expectations that exist beyond any particular person.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Knowledge</h4>
+                        <p>Accumulated meanings that appear as objective truth. "Everyone knows" certain things—this knowledge has an objectified quality.</p>
+                    </div>
+                </div>
+
+                <h3>Reification: The Extreme Case</h3>
+                <p>Reification occurs when humans completely forget that they created the social world and experience it as:</p>
+                <ul>
+                    <li><strong>Nature:</strong> "It's just human nature to be competitive"</li>
+                    <li><strong>Divine order:</strong> "God intended it this way"</li>
+                    <li><strong>Cosmic necessity:</strong> "The market has its own laws"</li>
+                    <li><strong>Inevitable:</strong> "There is no alternative"</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🧠 Internalization</h2>
+                <p>Through socialization, individuals take the objectified social world into their consciousness. What was external becomes internal—part of who they are.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Primary Socialization</h4>
+                        <p>Childhood socialization through significant others (parents, family). Highly emotional, establishes basic reality. The world internalized here is the world, experienced as inevitable and natural.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Secondary Socialization</h4>
+                        <p>Acquisition of role-specific knowledge and skills. Less emotional, more anonymous. Professional training, organizational onboarding. Can be challenged more easily than primary socialization.</p>
+                    </div>
+                </div>
+
+                <h3>The Generalized Other</h3>
+                <p>Through socialization, individuals internalize not just specific attitudes but a "generalized other"—society's perspective. "One does not do that" becomes equivalent to "I do not do that." External social control becomes internal self-control.</p>
+
+                <div class="highlight-box">
+                    <p>Identity itself is socially bestowed, socially sustained, and socially transformed. Who you "are" is a product of social processes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Institutionalization -->
+        <div id="institutions" class="page-content">
+            <div class="card">
+                <h2>🏛️ The Process of Institutionalization</h2>
+                <p>Institutionalization is the process by which human activities become patterned, expected, and taken-for-granted. Once institutionalized, they acquire a facticity that confronts individuals as external and coercive.</p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Habitualization</h4>
+                            <p>Actions are repeated until they become habitual, requiring less effort and attention. "This is how I do it."</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Reciprocal Typification</h4>
+                            <p>Habitual actions become typified (categorized) by type of actor and type of action. "Type X people do Y." This is shared between actors.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Historicity</h4>
+                            <p>Institutions develop history. They existed before the current participants and will continue after. "This is how it's always been done."</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Social Control</h4>
+                            <p>Institutions develop mechanisms to ensure conformity. Deviation from institutionalized patterns becomes subject to sanctions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📜 Legitimation</h2>
+                <p>Institutions require legitimation—explanations and justifications that make them appear valid and worthy of compliance. Legitimation operates at four levels:</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Level 1: Incipient</h4>
+                        <p>Simple statements that something "is" or "is not" done. "That's just how it is." Pre-theoretical knowledge transmitted in vocabulary.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Level 2: Rudimentary Theory</h4>
+                        <p>Explanatory propositions, proverbs, moral maxims. "A stitch in time saves nine." Pragmatic wisdom that explains institutional order.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Level 3: Explicit Theory</h4>
+                        <p>Differentiated bodies of knowledge administered by specialists. Science, theology, law. Requires specialized transmission (training).</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Level 4: Symbolic Universe</h4>
+                        <p>All-encompassing frame of reference that integrates all institutional processes. Mythology, religion, philosophy, science as worldview.</p>
+                    </div>
+                </div>
+
+                <h3>Universe-Maintenance</h3>
+                <p>When symbolic universes are challenged, mechanisms of universe-maintenance are deployed:</p>
+                <ul>
+                    <li><strong>Therapy:</strong> Bringing deviants back into line through treatment</li>
+                    <li><strong>Nihilation:</strong> Explaining away deviant views as ignorance, madness, or evil</li>
+                    <li><strong>Mythology:</strong> Integrating anomalies into cosmic narrative</li>
+                    <li><strong>Theology/Philosophy:</strong> Systematic legitimation through conceptual machinery</li>
+                    <li><strong>Science:</strong> Modern form of universe-maintenance</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>👥 Roles and Institutions</h2>
+                <p>Roles are institutionalized typifications of actors. They represent the institutional order and make it "present" in individual experience.</p>
+
+                <div class="grid-2">
+                    <div class="concept-box">
+                        <h4>Role as Representation</h4>
+                        <p>When someone performs a role, they represent the institution. The manager "is" management. The judge "is" the law. The role makes the institution tangible.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Role Distance</h4>
+                        <p>Individuals can maintain some distance from their roles—"I'm just doing my job." But the role still constrains behavior and shapes identity over time.</p>
+                    </div>
+                </div>
+
+                <h3>Implications for Power</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Institutional Feature</th>
+                        <th>Power Implication</th>
+                    </tr>
+                    <tr>
+                        <td>Objectivity of institutions</td>
+                        <td>Power arrangements seem natural, not constructed</td>
+                    </tr>
+                    <tr>
+                        <td>Historicity</td>
+                        <td>"It's always been this way" legitimates current arrangements</td>
+                    </tr>
+                    <tr>
+                        <td>Social control mechanisms</td>
+                        <td>Deviation from power structure is sanctioned</td>
+                    </tr>
+                    <tr>
+                        <td>Legitimation</td>
+                        <td>Elaborate justifications explain why hierarchy is right</td>
+                    </tr>
+                    <tr>
+                        <td>Roles</td>
+                        <td>Power becomes attached to positions, not persons</td>
+                    </tr>
+                    <tr>
+                        <td>Internalization</td>
+                        <td>Subordinates accept their place as natural</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>🔓 Deinstitutionalization and Change</h2>
+                <p>If reality is constructed, it can be deconstructed and reconstructed. Change becomes possible through:</p>
+
+                <div class="grid-3">
+                    <div class="concept-box">
+                        <h4>Consciousness Raising</h4>
+                        <p>Making visible the constructed nature of what appears natural. "This doesn't have to be this way."</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Counter-Definition</h4>
+                        <p>Proposing alternative constructions of reality. New language, new typifications, new legitimations.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Alternative Socialization</h4>
+                        <p>Creating new contexts where different realities are internalized. Counter-communities, social movements.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>The sociology of knowledge must concern itself with whatever passes for "knowledge" in a society, regardless of the ultimate validity of such "knowledge." What is real is what people treat as real.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Interactive Tools -->
+        <div id="interactive" class="page-content">
+            <div class="card">
+                <h2>🛠️ Interactive Analysis Tools</h2>
+                <p>Use these tools to explore social construction concepts through hands-on analysis.</p>
+            </div>
+
+            <!-- Tool 1: Institutionalization Level Analyzer -->
+            <div class="tool-container">
+                <h3>🏛️ Institutionalization Level Analyzer</h3>
+                <p style="color: #d6d3d1; margin-bottom: 20px;">Assess how institutionalized a practice or arrangement is based on key indicators.</p>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="slider-group">
+                            <label>Historicity (How long has it existed?)</label>
+                            <input type="range" id="historicity" min="0" max="100" value="70" oninput="calculateInstitutionalization()">
+                            <div class="slider-value"><span id="historicity-display">70</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Taken-for-Grantedness (How natural does it seem?)</label>
+                            <input type="range" id="taken-for-granted" min="0" max="100" value="60" oninput="calculateInstitutionalization()">
+                            <div class="slider-value"><span id="taken-for-granted-display">60</span>/100</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="slider-group">
+                            <label>Social Control (Sanctions for deviation?)</label>
+                            <input type="range" id="social-control" min="0" max="100" value="50" oninput="calculateInstitutionalization()">
+                            <div class="slider-value"><span id="social-control-display">50</span>/100</div>
+                        </div>
+                        <div class="slider-group">
+                            <label>Legitimation Elaboration (How justified?)</label>
+                            <input type="range" id="legitimation" min="0" max="100" value="55" oninput="calculateInstitutionalization()">
+                            <div class="slider-value"><span id="legitimation-display">55</span>/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h4>Institutionalization Level</h4>
+                    <div class="result-value" id="institution-level">Moderately Institutionalized</div>
+                    <div class="result-label" id="institution-interpretation">Analyzing level of institutionalization...</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Reality Construction Scenario -->
+            <div class="tool-container">
+                <h3>🌍 Reality Construction Examples</h3>
+                <p style="color: #d6d3d1; margin-bottom: 20px;">Explore how different domains of social life are socially constructed.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectDomain('gender')">
+                        <h5>👤 Gender</h5>
+                        <p>Roles & expectations</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectDomain('money')">
+                        <h5>💰 Money</h5>
+                        <p>Value & exchange</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectDomain('hierarchy')">
+                        <h5>📊 Hierarchy</h5>
+                        <p>Authority & rank</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectDomain('time')">
+                        <h5>⏰ Time</h5>
+                        <p>Schedules & deadlines</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectDomain('professions')">
+                        <h5>👔 Professions</h5>
+                        <p>Expertise & credentials</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectDomain('childhood')">
+                        <h5>🧒 Childhood</h5>
+                        <p>Life stages</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="domain-analysis" style="display: none;">
+                    <h4 id="domain-title">Domain Analysis</h4>
+                    <div id="domain-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Legitimation Level Identifier -->
+            <div class="tool-container">
+                <h3>📜 Legitimation Level Identifier</h3>
+                <p style="color: #d6d3d1; margin-bottom: 20px;">Identify what level of legitimation is being used to justify an institutional arrangement.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="selectLegitimation('incipient')">
+                        <h5>Level 1</h5>
+                        <p>"That's just how it is"</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectLegitimation('rudimentary')">
+                        <h5>Level 2</h5>
+                        <p>Proverbs & maxims</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectLegitimation('explicit')">
+                        <h5>Level 3</h5>
+                        <p>Expert theories</p>
+                    </div>
+                    <div class="selection-btn" onclick="selectLegitimation('symbolic')">
+                        <h5>Level 4</h5>
+                        <p>Symbolic universe</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="legitimation-analysis" style="display: none;">
+                    <h4 id="legitimation-title">Legitimation Analysis</h4>
+                    <div id="legitimation-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Reification Detector -->
+            <div class="tool-container">
+                <h3>🔍 Reification Detector</h3>
+                <p style="color: #d6d3d1; margin-bottom: 20px;">Test whether a statement treats socially constructed reality as if it were natural or inevitable.</p>
+
+                <div class="selection-grid">
+                    <div class="selection-btn" onclick="testReification('natural')">
+                        <h5>🌿 Natural</h5>
+                        <p>"It's human nature"</p>
+                    </div>
+                    <div class="selection-btn" onclick="testReification('divine')">
+                        <h5>✨ Divine</h5>
+                        <p>"God/fate intended it"</p>
+                    </div>
+                    <div class="selection-btn" onclick="testReification('inevitable')">
+                        <h5>⚡ Inevitable</h5>
+                        <p>"There's no alternative"</p>
+                    </div>
+                    <div class="selection-btn" onclick="testReification('scientific')">
+                        <h5>🔬 Scientific</h5>
+                        <p>"Research shows"</p>
+                    </div>
+                    <div class="selection-btn" onclick="testReification('traditional')">
+                        <h5>📜 Traditional</h5>
+                        <p>"It's always been"</p>
+                    </div>
+                    <div class="selection-btn" onclick="testReification('constructed')">
+                        <h5>🏗️ Constructed</h5>
+                        <p>"We created this"</p>
+                    </div>
+                </div>
+
+                <div class="result-box" id="reification-analysis" style="display: none;">
+                    <h4 id="reification-title">Reification Analysis</h4>
+                    <div id="reification-content" style="text-align: left; padding: 20px;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <section class="footer-nav">
+        <a href="index.html">← Back to Literature Explorer</a>
+    </section>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-pages .page-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tool 1: Institutionalization Calculator
+        function calculateInstitutionalization() {
+            const historicity = parseInt(document.getElementById('historicity').value);
+            const takenForGranted = parseInt(document.getElementById('taken-for-granted').value);
+            const socialControl = parseInt(document.getElementById('social-control').value);
+            const legitimation = parseInt(document.getElementById('legitimation').value);
+
+            document.getElementById('historicity-display').textContent = historicity;
+            document.getElementById('taken-for-granted-display').textContent = takenForGranted;
+            document.getElementById('social-control-display').textContent = socialControl;
+            document.getElementById('legitimation-display').textContent = legitimation;
+
+            const score = (historicity + takenForGranted + socialControl + legitimation) / 4;
+
+            const resultEl = document.getElementById('institution-level');
+            const interpEl = document.getElementById('institution-interpretation');
+
+            if (score > 80) {
+                resultEl.textContent = 'Highly Institutionalized';
+                resultEl.style.color = '#22c55e';
+                interpEl.textContent = 'This arrangement appears completely natural and inevitable. Questioning it seems absurd. Change would require major disruption to taken-for-granted reality.';
+            } else if (score > 60) {
+                resultEl.textContent = 'Moderately Institutionalized';
+                resultEl.style.color = '#fbbf24';
+                interpEl.textContent = 'Well-established but not completely taken-for-granted. Some people question it, but it has strong legitimation and sanctions. Change is difficult but conceivable.';
+            } else if (score > 40) {
+                resultEl.textContent = 'Weakly Institutionalized';
+                resultEl.style.color = '#f59e0b';
+                interpEl.textContent = 'Still being established or losing legitimacy. Visible as a human arrangement. Subject to debate and alternative interpretations. More amenable to change.';
+            } else {
+                resultEl.textContent = 'Not Institutionalized';
+                resultEl.style.color = '#ef4444';
+                interpEl.textContent = 'Recognized as a human creation, not natural order. May be new, contested, or losing acceptance. High potential for change or replacement.';
+            }
+        }
+
+        // Tool 2: Reality Construction Examples
+        const domains = {
+            gender: {
+                title: 'Gender as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> Gender roles, expectations, and identities are not determined by biology alone but are socially constructed through language, socialization, and institutions.</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Gender expectations vary dramatically across cultures and history</li>
+                        <li>Children learn gender through explicit teaching and implicit modeling</li>
+                        <li>Language enforces gender categories (pronouns, titles)</li>
+                        <li>Institutions (schools, media, workplaces) reproduce gender norms</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> Gender hierarchy appears natural ("men are natural leaders") rather than constructed. Challenging gender arrangements meets resistance because they're taken-for-granted.</p>
+                `
+            },
+            money: {
+                title: 'Money as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> Money has value only because we collectively believe it does. A $100 bill is physically worthless paper—its value is entirely socially constructed through shared belief and institutional backing.</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Different societies have used completely different things as money</li>
+                        <li>Money's value can collapse overnight if belief collapses (hyperinflation)</li>
+                        <li>Complex institutions (banks, governments) maintain the construction</li>
+                        <li>Digital money is literally just shared belief recorded in databases</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> Control over money creation (central banks, financial institutions) is enormous power—yet appears technical rather than political. "The market" is reified as if it were a natural force.</p>
+                `
+            },
+            hierarchy: {
+                title: 'Hierarchy as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> Organizational hierarchies—who reports to whom, who has authority—are human inventions that become taken-for-granted as "the way organizations work."</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Different cultures organize authority very differently</li>
+                        <li>Hierarchy varies by era—modern bureaucracy is recent invention</li>
+                        <li>Alternative forms (cooperatives, flat organizations) exist</li>
+                        <li>Authority requires legitimation to be accepted</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> "Natural" hierarchy makes subordination seem inevitable. "Of course there must be a boss." The legitimation machinery (management theory, leadership discourse) maintains this construction.</p>
+                `
+            },
+            time: {
+                title: 'Time as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> While time as physical phenomenon exists, how we organize, experience, and give meaning to time is socially constructed. Schedules, deadlines, and time discipline are human inventions.</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Different cultures have radically different time orientations</li>
+                        <li>Industrial capitalism required new time discipline (clock time)</li>
+                        <li>The work week, business hours, deadlines are human creations</li>
+                        <li>"Being late" only makes sense within a constructed time system</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> Control over time (who sets schedules, deadlines) is significant power. "Time is money" reifies time as a natural commodity rather than constructed framework.</p>
+                `
+            },
+            professions: {
+                title: 'Professions as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> What counts as a "profession" and who counts as an "expert" is socially constructed through credentialing, boundary work, and legitimation.</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Professions actively construct their own boundaries and status</li>
+                        <li>Credentials (degrees, licenses) are socially created gatekeeping mechanisms</li>
+                        <li>What counts as "expertise" changes over time</li>
+                        <li>Professional language creates barriers and mystification</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> Professional power appears based on "objective" expertise rather than social construction. The authority of doctors, lawyers, and consultants is legitimated through elaborate credentialing systems.</p>
+                `
+            },
+            childhood: {
+                title: 'Childhood as Social Construction',
+                content: `
+                    <p><strong>The Construction:</strong> The modern concept of "childhood" as a distinct life stage with special characteristics is a relatively recent social construction, not a natural category.</p>
+                    <p style="margin-top: 15px;"><strong>Evidence of Construction:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Medieval Europe didn't have our concept of childhood (Ariès)</li>
+                        <li>Different cultures define childhood very differently</li>
+                        <li>The "innocent child" is a modern Western construction</li>
+                        <li>Legal age boundaries (voting, drinking, consent) are arbitrary</li>
+                    </ul>
+                    <p><strong>Power Implications:</strong> The construction of childhood justifies adult authority over children as "natural" protection rather than power relation. Children's views are systematically devalued as "not understanding."</p>
+                `
+            }
+        };
+
+        function selectDomain(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const domain = domains[key];
+            document.getElementById('domain-title').textContent = domain.title;
+            document.getElementById('domain-content').innerHTML = domain.content;
+            document.getElementById('domain-analysis').style.display = 'block';
+        }
+
+        // Tool 3: Legitimation Level Identifier
+        const legitimationLevels = {
+            incipient: {
+                title: 'Level 1: Incipient Legitimation',
+                content: `
+                    <p><strong>Characteristics:</strong> Simple assertions that something "is" or "is not" done. No explanation offered—just factual statement.</p>
+                    <p style="margin-top: 15px;"><strong>Examples:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"That's just how it is"</li>
+                        <li>"We don't do that here"</li>
+                        <li>"It's the rule"</li>
+                        <li>"Everyone knows that"</li>
+                    </ul>
+                    <p><strong>Power Implication:</strong> The most effective form of legitimation because it doesn't even require justification. The arrangement is so taken-for-granted that questioning it doesn't make sense.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Vulnerability:</strong> If someone asks "why?", this level has no answer. Must escalate to higher levels of legitimation.</p>
+                `
+            },
+            rudimentary: {
+                title: 'Level 2: Rudimentary Theory',
+                content: `
+                    <p><strong>Characteristics:</strong> Explanatory propositions, proverbs, moral maxims, folk wisdom. Simple theoretical schemes.</p>
+                    <p style="margin-top: 15px;"><strong>Examples:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"Many hands make light work" (justifies teamwork)</li>
+                        <li>"The cream rises to the top" (justifies meritocracy)</li>
+                        <li>"Boys will be boys" (justifies gender behavior)</li>
+                        <li>"Business is business" (justifies harsh practices)</li>
+                    </ul>
+                    <p><strong>Power Implication:</strong> Provides simple justification that short-circuits deeper questioning. Appeals to common sense rather than elaborate theory.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Vulnerability:</strong> Can be countered with alternative proverbs. "Too many cooks spoil the broth" vs. "Many hands make light work."</p>
+                `
+            },
+            explicit: {
+                title: 'Level 3: Explicit Theory',
+                content: `
+                    <p><strong>Characteristics:</strong> Differentiated bodies of knowledge administered by specialists. Explicit theoretical frameworks requiring expert transmission.</p>
+                    <p style="margin-top: 15px;"><strong>Examples:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Management theory (legitimates organizational hierarchy)</li>
+                        <li>Economic theory (legitimates market arrangements)</li>
+                        <li>Legal theory (legitimates legal institutions)</li>
+                        <li>Medical knowledge (legitimates medical authority)</li>
+                    </ul>
+                    <p><strong>Power Implication:</strong> Creates expert class who administer legitimation. Requires specialized training to access. Non-experts cannot easily challenge.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Vulnerability:</strong> Experts can disagree. Alternative theories can emerge. Requires ongoing boundary work to maintain.</p>
+                `
+            },
+            symbolic: {
+                title: 'Level 4: Symbolic Universe',
+                content: `
+                    <p><strong>Characteristics:</strong> All-encompassing frame of reference that integrates all institutional processes. Comprehensive worldview that locates all phenomena.</p>
+                    <p style="margin-top: 15px;"><strong>Examples:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>Religious cosmologies (divine order justifies social order)</li>
+                        <li>Nationalism (nation as transcendent entity)</li>
+                        <li>Scientific materialism (everything reducible to physics)</li>
+                        <li>Progress narrative (history moving toward better future)</li>
+                    </ul>
+                    <p><strong>Power Implication:</strong> Most powerful legitimation because it places institutional order within cosmic context. Challenging arrangements means challenging entire worldview.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Vulnerability:</strong> When symbolic universes clash, universe-maintenance mechanisms are deployed. Crisis can occur when universe fails to explain anomalies.</p>
+                `
+            }
+        };
+
+        function selectLegitimation(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const level = legitimationLevels[key];
+            document.getElementById('legitimation-title').textContent = level.title;
+            document.getElementById('legitimation-content').innerHTML = level.content;
+            document.getElementById('legitimation-analysis').style.display = 'block';
+        }
+
+        // Tool 4: Reification Detector
+        const reificationTypes = {
+            natural: {
+                title: 'Naturalization',
+                content: `
+                    <p><strong>Reification Type:</strong> Appeals to "human nature" or "natural law" to justify social arrangements.</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"It's just human nature to be..."</li>
+                        <li>"Men are naturally..."</li>
+                        <li>"Competition is natural"</li>
+                        <li>"Survival of the fittest"</li>
+                    </ul>
+                    <p style="color: #ef4444;"><strong>Reification Level: HIGH</strong></p>
+                    <p>This is strong reification. By claiming something is "natural," the speaker forgets that social arrangements are human creations. The constructed becomes the inevitable.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Counter:</strong> Show variation across cultures and history. If it varies, it's constructed, not natural.</p>
+                `
+            },
+            divine: {
+                title: 'Divine/Cosmic Order',
+                content: `
+                    <p><strong>Reification Type:</strong> Appeals to divine will, cosmic order, fate, or destiny to justify social arrangements.</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"It's God's will"</li>
+                        <li>"It was meant to be"</li>
+                        <li>"Everything happens for a reason"</li>
+                        <li>"The universe has a plan"</li>
+                    </ul>
+                    <p style="color: #ef4444;"><strong>Reification Level: VERY HIGH</strong></p>
+                    <p>Extreme reification. Human arrangements are attributed to non-human (divine) agency. Challenging them becomes sacrilege or cosmic rebellion.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Counter:</strong> Note that people in power often claim divine sanction. Question whose interests are served by this interpretation.</p>
+                `
+            },
+            inevitable: {
+                title: 'Inevitability',
+                content: `
+                    <p><strong>Reification Type:</strong> Claims that current arrangements are the only possible option—"there is no alternative."</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"There is no alternative" (TINA)</li>
+                        <li>"This is the only realistic option"</li>
+                        <li>"We have no choice"</li>
+                        <li>"That's just the way the world works"</li>
+                    </ul>
+                    <p style="color: #ef4444;"><strong>Reification Level: HIGH</strong></p>
+                    <p>Strong reification through closure of imagination. Alternatives are rendered literally unthinkable. The constructed appears as the only possible reality.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Counter:</strong> Point to existing alternatives elsewhere. History of change. Imagination of different futures.</p>
+                `
+            },
+            scientific: {
+                title: 'Scientific Legitimation',
+                content: `
+                    <p><strong>Reification Type:</strong> Appeals to scientific authority to justify social arrangements as objective fact.</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"Research shows..."</li>
+                        <li>"Studies have proven..."</li>
+                        <li>"Science tells us..."</li>
+                        <li>"The data is clear..."</li>
+                    </ul>
+                    <p style="color: #f59e0b;"><strong>Reification Level: MODERATE</strong></p>
+                    <p>Modern form of reification. Science is genuinely valuable but can be used to give social arrangements an air of objective necessity. "Scientific management," economic "laws."</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Counter:</strong> Distinguish descriptive findings from normative claims. Science describes what is, not what should be. Social science is often contested.</p>
+                `
+            },
+            traditional: {
+                title: 'Traditionalization',
+                content: `
+                    <p><strong>Reification Type:</strong> Appeals to tradition, history, or "the way it's always been" to justify current arrangements.</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"It's always been this way"</li>
+                        <li>"This is our tradition"</li>
+                        <li>"We've always done it like this"</li>
+                        <li>"It's part of our heritage"</li>
+                    </ul>
+                    <p style="color: #f59e0b;"><strong>Reification Level: MODERATE</strong></p>
+                    <p>Reification through historicity. The past is invoked as if it determines the present. Often, "traditions" are quite recent inventions.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Counter:</strong> Show that traditions change. Many "ancient" traditions are recent inventions. The past was also different from what came before.</p>
+                `
+            },
+            constructed: {
+                title: 'Acknowledging Construction',
+                content: `
+                    <p><strong>NOT Reification:</strong> Explicitly acknowledges that social arrangements are human creations that could be otherwise.</p>
+                    <p style="margin-top: 15px;"><strong>Common Phrases:</strong></p>
+                    <ul style="margin: 10px 0 15px 20px; color: #d6d3d1;">
+                        <li>"We created this system"</li>
+                        <li>"This is one way of doing things"</li>
+                        <li>"We could organize differently"</li>
+                        <li>"This is a human choice"</li>
+                    </ul>
+                    <p style="color: #22c55e;"><strong>Reification Level: NONE</strong></p>
+                    <p>This is the de-reified, sociologically aware stance. It recognizes social reality as human product while still taking it seriously.</p>
+                    <p style="color: #fbbf24; margin-top: 15px;"><strong>Note:</strong> Acknowledging construction doesn't mean dismissing—constructed realities have real consequences. It opens possibility of deliberate reconstruction.</p>
+                `
+            }
+        };
+
+        function testReification(key) {
+            document.querySelectorAll('.selection-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const type = reificationTypes[key];
+            document.getElementById('reification-title').textContent = type.title;
+            document.getElementById('reification-content').innerHTML = type.content;
+            document.getElementById('reification-analysis').style.display = 'block';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateInstitutionalization();
+        });
+    </script>
+</body>
+</html>
