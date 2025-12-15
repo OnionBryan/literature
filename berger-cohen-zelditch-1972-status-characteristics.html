@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Characteristics and Social Interaction - Berger, Cohen & Zelditch (1972)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1510 0%, #2d2520 100%);
+            min-height: 100vh;
+            color: #e8e0d8;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(139, 90, 43, 0.2));
+            border-radius: 20px;
+            border: 1px solid rgba(205, 127, 50, 0.3);
+        }
+
+        .paper-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #d4a574;
+            font-weight: 600;
+        }
+
+        .authors {
+            font-size: 1.2rem;
+            color: #b8956b;
+            margin-bottom: 10px;
+        }
+
+        .journal {
+            color: #9a7b5b;
+            font-style: italic;
+        }
+
+        .abstract {
+            background: rgba(139, 90, 43, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 4px solid #cd7f32;
+        }
+
+        .abstract h2 {
+            color: #d4a574;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .abstract p {
+            color: #d0c8c0;
+            text-align: justify;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: rgba(80, 50, 30, 0.5);
+            border: 1px solid rgba(205, 127, 50, 0.3);
+            border-radius: 10px;
+            color: #d0c8c0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(139, 90, 43, 0.5);
+            color: #d4a574;
+            border-color: #cd7f32;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(30, 20, 15, 0.6);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(205, 127, 50, 0.2);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: #d4a574;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid rgba(205, 127, 50, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #b8956b;
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: #d0c8c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 90, 43, 0.3), rgba(100, 65, 30, 0.3));
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(205, 127, 50, 0.3);
+        }
+
+        .status-tier {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background: rgba(50, 35, 25, 0.4);
+        }
+
+        .tier-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .tier-high {
+            border-left: 4px solid #ffd700;
+        }
+
+        .tier-equal {
+            border-left: 4px solid #c0c0c0;
+        }
+
+        .tier-low {
+            border-left: 4px solid #8b4513;
+        }
+
+        .tool-section {
+            background: rgba(50, 35, 25, 0.4);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid rgba(205, 127, 50, 0.2);
+        }
+
+        .tool-section h3 {
+            color: #d4a574;
+            margin-bottom: 20px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b8956b;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(80, 50, 30, 0.5);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #cd7f32;
+            cursor: pointer;
+        }
+
+        .result-display {
+            background: rgba(139, 90, 43, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid rgba(205, 127, 50, 0.3);
+        }
+
+        .result-display h4 {
+            color: #d4a574;
+            margin-bottom: 10px;
+        }
+
+        .scenario-btn {
+            padding: 12px 20px;
+            background: rgba(80, 50, 30, 0.5);
+            border: 1px solid rgba(205, 127, 50, 0.3);
+            border-radius: 8px;
+            color: #d0c8c0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            margin: 5px;
+        }
+
+        .scenario-btn:hover, .scenario-btn.active {
+            background: rgba(139, 90, 43, 0.5);
+            color: #d4a574;
+            border-color: #cd7f32;
+        }
+
+        .expectation-bar {
+            height: 30px;
+            background: rgba(50, 35, 25, 0.5);
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expectation-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1510;
+            font-weight: bold;
+        }
+
+        .expectation-fill.high {
+            background: linear-gradient(90deg, #ffd700, #daa520);
+        }
+
+        .expectation-fill.low {
+            background: linear-gradient(90deg, #8b4513, #654321);
+            color: #d0c8c0;
+        }
+
+        .behavior-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .behavior-card {
+            padding: 15px;
+            background: rgba(60, 40, 25, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(205, 127, 50, 0.2);
+        }
+
+        .behavior-card h5 {
+            color: #d4a574;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #d0c8c0;
+        }
+
+        .characteristic-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 3px;
+        }
+
+        .tag-diffuse {
+            background: rgba(205, 127, 50, 0.3);
+            border: 1px solid #cd7f32;
+            color: #d4a574;
+        }
+
+        .tag-specific {
+            background: rgba(100, 100, 100, 0.3);
+            border: 1px solid #888;
+            color: #aaa;
+        }
+
+        .prophecy-box {
+            background: linear-gradient(135deg, rgba(100, 65, 30, 0.4), rgba(80, 50, 25, 0.4));
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #cd7f32;
+            text-align: center;
+        }
+
+        .prophecy-box h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(30, 20, 15, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(205, 127, 50, 0.2);
+            text-align: center;
+        }
+
+        .footer-nav a {
+            color: #b8956b;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #d4a574;
+        }
+
+        @media (max-width: 768px) {
+            .behavior-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="paper-icon">🏛️</div>
+            <h1>Status Characteristics and Social Interaction</h1>
+            <p class="authors">Joseph Berger, Bernard P. Cohen, & Morris Zelditch Jr.</p>
+            <p class="journal">American Sociological Review, 1972</p>
+        </header>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>Berger, Cohen, and Zelditch present the foundational theory of how informal status hierarchies emerge in task-oriented groups. Expectation States Theory explains how people unconsciously use "status characteristics"—attributes like education, occupation, gender, or race—to form performance expectations of each other. Those with high-status characteristics are given more opportunities to contribute, their contributions are evaluated more favorably, and they gain more influence over group decisions. This creates a self-fulfilling prophecy where initial status differences become performance differences, legitimizing the hierarchy.</p>
+        </section>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchPage('theory')">The Theory</button>
+            <button class="nav-tab" onclick="switchPage('implications')">Power Dynamics</button>
+            <button class="nav-tab" onclick="switchPage('tools')">Interactive Tools</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2>Overview: How Status Creates Power</h2>
+
+            <p>Expectation States Theory emerged from experimental research at Stanford showing that even in newly formed groups with no history, status hierarchies form almost immediately. These hierarchies are not based on demonstrated competence—they form before anyone has done anything. Instead, they're based on status characteristics that members bring with them from the broader society.</p>
+
+            <h3>The Core Insight</h3>
+            <p>When people come together in a task group, they don't start as blank slates. They carry markers of social status—their education, occupation, age, gender, race, appearance, accent, and more. These characteristics activate expectations about competence. Without anyone deciding to be biased, the group organizes itself into a hierarchy based on these external cues.</p>
+
+            <div class="status-tier tier-high">
+                <span class="tier-icon">👑</span>
+                <div>
+                    <strong>High-Status Characteristics:</strong> Lead to higher performance expectations, more opportunities to participate, greater influence over decisions
+                </div>
+            </div>
+
+            <div class="status-tier tier-equal">
+                <span class="tier-icon">⚖️</span>
+                <div>
+                    <strong>Equal Status:</strong> When no clear status differential exists, groups must negotiate influence through interaction—a more equal but often slower process
+                </div>
+            </div>
+
+            <div class="status-tier tier-low">
+                <span class="tier-icon">🔽</span>
+                <div>
+                    <strong>Low-Status Characteristics:</strong> Lead to lower performance expectations, fewer opportunities, and less influence—even when competence is equal
+                </div>
+            </div>
+
+            <h3>Types of Status Characteristics</h3>
+
+            <div class="highlight-box">
+                <h4>Diffuse Status Characteristics</h4>
+                <p>Broad characteristics that carry general expectations about competence across many domains:</p>
+                <div style="margin-top: 10px;">
+                    <span class="characteristic-tag tag-diffuse">Education Level</span>
+                    <span class="characteristic-tag tag-diffuse">Occupation</span>
+                    <span class="characteristic-tag tag-diffuse">Gender</span>
+                    <span class="characteristic-tag tag-diffuse">Race/Ethnicity</span>
+                    <span class="characteristic-tag tag-diffuse">Age</span>
+                    <span class="characteristic-tag tag-diffuse">Physical Attractiveness</span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Specific Status Characteristics</h4>
+                <p>Narrow characteristics relevant only to particular tasks:</p>
+                <div style="margin-top: 10px;">
+                    <span class="characteristic-tag tag-specific">Relevant Expertise</span>
+                    <span class="characteristic-tag tag-specific">Past Performance</span>
+                    <span class="characteristic-tag tag-specific">Formal Training</span>
+                    <span class="characteristic-tag tag-specific">Certifications</span>
+                </div>
+            </div>
+
+            <h3>Why This Matters</h3>
+            <p>This theory reveals a mechanism for the reproduction of inequality. Status characteristics derived from societal hierarchies get imported into every new group interaction, recreating power imbalances even in supposedly meritocratic settings. The person who gets to speak first, whose ideas get taken seriously, and who emerges as the leader is often determined before the group even begins working.</p>
+        </section>
+
+        <section id="theory" class="content-section">
+            <h2>Expectation States Theory in Detail</h2>
+
+            <h3>The Formation of Performance Expectations</h3>
+            <p>The theory posits that when people interact in task-oriented groups, they form expectations about each other's likely competence. These expectations have four sources:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Status Characteristics:</strong> External markers of social position (the focus of this theory)</li>
+                    <li><strong>Prior Beliefs:</strong> Existing beliefs about what types of people are competent at what tasks</li>
+                    <li><strong>Interaction History:</strong> Past experience with specific individuals</li>
+                    <li><strong>Reward Expectations:</strong> Beliefs about who deserves rewards and recognition</li>
+                </ul>
+            </div>
+
+            <h3>The Burden of Proof Process</h3>
+            <p>A key concept: status characteristics become relevant to a task unless they are explicitly dissociated from it. The "burden of proof" lies with demonstrating irrelevance, not relevance. This means:</p>
+
+            <div class="prophecy-box">
+                <h4>The Burden of Proof Principle</h4>
+                <p>If a status characteristic <em>could possibly</em> be relevant to a task, people will assume it is relevant—unless actively told otherwise.</p>
+            </div>
+
+            <p>This explains why diffuse status characteristics like gender or race affect expectations even in tasks with no logical connection. Being a lawyer (high-status occupation) may influence how your opinion is weighted in a group discussion about restaurant recommendations, even though legal expertise is irrelevant.</p>
+
+            <h3>Behavioral Consequences</h3>
+            <p>Once expectations form, they systematically shape group interaction:</p>
+
+            <div class="behavior-grid">
+                <div class="behavior-card">
+                    <h5>For High-Status Members</h5>
+                    <ul>
+                        <li>Given more opportunities to participate</li>
+                        <li>Contributions receive more attention</li>
+                        <li>Errors overlooked or excused</li>
+                        <li>Opinions more likely to be adopted</li>
+                        <li>More likely to emerge as leader</li>
+                    </ul>
+                </div>
+                <div class="behavior-card">
+                    <h5>For Low-Status Members</h5>
+                    <ul>
+                        <li>Fewer opportunities to contribute</li>
+                        <li>Contributions discounted or ignored</li>
+                        <li>Errors noticed and remembered</li>
+                        <li>Must work harder to be heard</li>
+                        <li>Leadership attempts resisted</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Self-Fulfilling Prophecy</h3>
+            <p>The theory's most powerful insight: these expectations create their own confirmation. When high-status members are given more opportunities and encouragement, they perform better. When low-status members are ignored and discounted, they disengage or perform worse. The initial expectation becomes reality.</p>
+
+            <div class="prophecy-box">
+                <h4>The Status-Performance Cycle</h4>
+                <p>High Status → High Expectations → More Opportunities → Better Performance → "Proof" of Competence → Reinforced Status</p>
+            </div>
+
+            <h3>Combining Multiple Characteristics</h3>
+            <p>In real groups, people possess multiple status characteristics—some high, some low. The theory predicts that people combine these into an overall expectation state, with consistent characteristics reinforcing each other and inconsistent characteristics attenuating effects. A Black female doctor, for instance, has mixed status characteristics that may produce complex, context-dependent expectations.</p>
+        </section>
+
+        <section id="implications" class="content-section">
+            <h2>Power Dynamics and Implications</h2>
+
+            <h3>Status as a Source of Power</h3>
+            <p>Expectation States Theory reveals status as a distinct source of power—not power derived from formal authority, resource control, or coercion, but from others' beliefs about your competence. This form of power is particularly insidious because it operates through others' voluntary deference rather than explicit domination.</p>
+
+            <div class="highlight-box">
+                <h3>How Status Creates Power</h3>
+                <ul>
+                    <li><strong>Agenda Setting:</strong> High-status members' concerns become group priorities</li>
+                    <li><strong>Framing:</strong> Their interpretations of situations become dominant</li>
+                    <li><strong>Legitimate Influence:</strong> Their suggestions are adopted without resistance</li>
+                    <li><strong>Reduced Scrutiny:</strong> Their decisions face less questioning</li>
+                    <li><strong>Benefit of Doubt:</strong> Their failures are attributed to circumstances, not ability</li>
+                </ul>
+            </div>
+
+            <h3>Implications for Workplace Inequality</h3>
+            <p>This theory explains persistent patterns of workplace inequality that formal policies don't address:</p>
+
+            <ul>
+                <li><strong>Meeting Dynamics:</strong> Who speaks, who gets interrupted, whose ideas get credit</li>
+                <li><strong>Performance Evaluation:</strong> Identical work evaluated differently based on who did it</li>
+                <li><strong>Promotion Decisions:</strong> "Leadership potential" seen more readily in high-status groups</li>
+                <li><strong>Networking:</strong> High-status individuals attract more attention and connections</li>
+                <li><strong>Mentorship:</strong> Mentors more likely to invest in high-status protégés</li>
+            </ul>
+
+            <h3>Interrupting the Cycle</h3>
+            <p>Research has identified several strategies for disrupting status-based expectations:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Demonstrate Specific Competence Early:</strong> Show task-relevant expertise before diffuse status characteristics dominate</li>
+                    <li><strong>Use Structural Interventions:</strong> Assign roles, rotate leadership, use round-robin contributions</li>
+                    <li><strong>Make Status Irrelevant:</strong> Explicitly state that background characteristics don't predict performance on this task</li>
+                    <li><strong>Assign Competence to Low-Status Members:</strong> Public recognition of their expertise creates counter-expectations</li>
+                    <li><strong>Awareness Training:</strong> Making the process visible reduces (but doesn't eliminate) its effects</li>
+                </ul>
+            </div>
+
+            <h3>The Legitimacy Trap</h3>
+            <p>A troubling finding: low-status members often accept the hierarchy as legitimate. They internalize lower expectations for themselves and resist when other low-status members attempt to assert influence. This means the hierarchy is maintained not just by those at the top, but by everyone—including those it disadvantages.</p>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>Interactive Tools</h2>
+
+            <div class="tool-section">
+                <h3>📊 Expectation Formation Calculator</h3>
+                <p>See how different status characteristics combine to form performance expectations.</p>
+
+                <div class="slider-container">
+                    <label>Educational Prestige: <span id="eduValue">Medium</span></label>
+                    <input type="range" id="eduSlider" min="1" max="5" value="3" oninput="updateExpectations()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Occupational Status: <span id="occValue">Medium</span></label>
+                    <input type="range" id="occSlider" min="1" max="5" value="3" oninput="updateExpectations()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Majority/Minority Group Status: <span id="groupValue">Neither Advantage</span></label>
+                    <input type="range" id="groupSlider" min="1" max="5" value="3" oninput="updateExpectations()">
+                </div>
+
+                <div class="slider-container">
+                    <label>Task-Specific Expertise: <span id="expertValue">Medium</span></label>
+                    <input type="range" id="expertSlider" min="1" max="5" value="3" oninput="updateExpectations()">
+                </div>
+
+                <div class="result-display" id="expectationResult">
+                    <h4>Overall Performance Expectation</h4>
+                    <div id="expectationBars"></div>
+                    <div id="expectationAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>👥 Group Interaction Simulator</h3>
+                <p>See how status differences play out in group dynamics.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: #b8956b; display: block; margin-bottom: 10px;">Select Group Composition:</label>
+                    <button class="scenario-btn active" onclick="selectGroup('homogeneous')">Homogeneous (similar status)</button>
+                    <button class="scenario-btn" onclick="selectGroup('one-different')">One Different Member</button>
+                    <button class="scenario-btn" onclick="selectGroup('mixed')">Mixed Status Group</button>
+                    <button class="scenario-btn" onclick="selectGroup('reversed')">Status Reversal</button>
+                </div>
+
+                <div class="result-display" id="groupResult">
+                    <h4 id="groupTitle">Homogeneous Group Dynamics</h4>
+                    <div id="groupAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🎯 Intervention Strategy Selector</h3>
+                <p>Choose the best approach for disrupting status-based expectations.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: #b8956b; display: block; margin-bottom: 10px;">Select Your Situation:</label>
+                    <button class="scenario-btn active" onclick="selectSituation('new-team')">New Team Forming</button>
+                    <button class="scenario-btn" onclick="selectSituation('established')">Established Hierarchy</button>
+                    <button class="scenario-btn" onclick="selectSituation('low-status')">You're Lower Status</button>
+                    <button class="scenario-btn" onclick="selectSituation('leader')">You're the Leader</button>
+                </div>
+
+                <div class="result-display" id="interventionResult">
+                    <h4 id="interventionTitle">Strategies for New Team Forming</h4>
+                    <div id="interventionAnalysis"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>🔍 Workplace Scenario Analyzer</h3>
+                <p>Analyze common workplace situations through the lens of expectation states.</p>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="scenario-btn active" onclick="selectScenario('meeting')">Meeting Discussion</button>
+                    <button class="scenario-btn" onclick="selectScenario('hiring')">Hiring Decision</button>
+                    <button class="scenario-btn" onclick="selectScenario('performance')">Performance Review</button>
+                    <button class="scenario-btn" onclick="selectScenario('promotion')">Promotion Consideration</button>
+                </div>
+
+                <div class="result-display" id="scenarioResult">
+                    <h4 id="scenarioTitle">Meeting Discussion Dynamics</h4>
+                    <div id="scenarioAnalysis"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-nav">
+            <a href="index.html">← Back to Literature Explorer</a>
+        </section>
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function updateExpectations() {
+            const edu = parseInt(document.getElementById('eduSlider').value);
+            const occ = parseInt(document.getElementById('occSlider').value);
+            const group = parseInt(document.getElementById('groupSlider').value);
+            const expert = parseInt(document.getElementById('expertSlider').value);
+
+            const labels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            const groupLabels = ['Strong Disadvantage', 'Slight Disadvantage', 'Neither Advantage', 'Slight Advantage', 'Strong Advantage'];
+
+            document.getElementById('eduValue').textContent = labels[edu - 1];
+            document.getElementById('occValue').textContent = labels[occ - 1];
+            document.getElementById('groupValue').textContent = groupLabels[group - 1];
+            document.getElementById('expertValue').textContent = labels[expert - 1];
+
+            // Calculate overall expectation (diffuse characteristics weighted less than specific)
+            const diffuseScore = (edu + occ + group) / 3 * 0.6;
+            const specificScore = expert * 0.4;
+            const totalScore = diffuseScore + specificScore;
+            const normalizedScore = (totalScore / 5 * 100);
+
+            const highExpectation = Math.min(100, Math.max(0, normalizedScore));
+            const lowExpectation = 100 - highExpectation;
+
+            document.getElementById('expectationBars').innerHTML = `
+                <div style="margin: 15px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>High Expectation Formation</span>
+                        <span>${Math.round(highExpectation)}%</span>
+                    </div>
+                    <div class="expectation-bar">
+                        <div class="expectation-fill high" style="width: ${highExpectation}%">${Math.round(highExpectation)}%</div>
+                    </div>
+                </div>
+            `;
+
+            let analysis;
+            if (highExpectation >= 70) {
+                analysis = "Strong positive expectations. You'll likely receive more speaking opportunities, have ideas adopted more readily, and be seen as a natural leader. Be aware this creates advantage you didn't earn through performance.";
+            } else if (highExpectation >= 50) {
+                analysis = "Moderate expectations. You're in a neutral zone where actual performance will matter more. Early demonstrations of competence can tip the balance in your favor.";
+            } else {
+                analysis = "Lower initial expectations. You'll need to work harder to be heard, and may face more scrutiny. Strategies: demonstrate specific competence early, find allies who can vouch for you, and don't internalize others' low expectations.";
+            }
+
+            document.getElementById('expectationAnalysis').innerHTML = `<p style="margin-top: 15px;">${analysis}</p>`;
+        }
+
+        function selectGroup(type) {
+            document.querySelectorAll('.tool-section:nth-child(2) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const groups = {
+                'homogeneous': {
+                    title: 'Homogeneous Group Dynamics',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Characteristics:</strong> All members have similar status characteristics</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>No initial hierarchy based on external status</li>
+                                <li>Influence must be negotiated through interaction</li>
+                                <li>More equal participation in early stages</li>
+                                <li>Leadership emergence based more on behavior than background</li>
+                            </ul>
+                            <p><strong>Dynamics:</strong> Without clear status differentials, groups often take longer to organize but may produce more creative outcomes since diverse viewpoints get heard.</p>
+                            <p style="color: #d4a574;"><strong>Watch For:</strong> Subtle distinctions (who spoke first, who's more assertive) may become exaggerated to create hierarchy where none naturally exists.</p>
+                        </div>
+                    `
+                },
+                'one-different': {
+                    title: 'One Different Member (Token Status)',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Characteristics:</strong> One member differs from others on salient status characteristic</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>The different member becomes highly visible ("solo" or "token")</li>
+                                <li>Their behavior is seen as representative of their category</li>
+                                <li>Performance under heightened scrutiny</li>
+                                <li>Mistakes more memorable, successes attributed to luck</li>
+                            </ul>
+                            <p><strong>If Token Has High Status:</strong> May be seen as spokesperson or expert for their category. Heavy burden of representation.</p>
+                            <p><strong>If Token Has Low Status:</strong> May be marginalized, contributions discounted. Double disadvantage of status plus tokenism.</p>
+                            <p style="color: #d4a574;"><strong>Watch For:</strong> Stereotyping, isolation, and the burden of disproving negative expectations.</p>
+                        </div>
+                    `
+                },
+                'mixed': {
+                    title: 'Mixed Status Group',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Characteristics:</strong> Members have varied status profiles</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Complex expectation states form</li>
+                                <li>People combine multiple cues to rank each other</li>
+                                <li>Potential for status inconsistency effects</li>
+                                <li>Coalitions may form around shared characteristics</li>
+                            </ul>
+                            <p><strong>Dynamics:</strong> The most common real-world scenario. Status hierarchies still form, but are more complex and potentially contested.</p>
+                            <p style="color: #d4a574;"><strong>Opportunity:</strong> Task-relevant expertise can override diffuse status if made visible early. Mixed groups can be more egalitarian if properly facilitated.</p>
+                        </div>
+                    `
+                },
+                'reversed': {
+                    title: 'Status Reversal Situation',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Characteristics:</strong> Someone with low diffuse status has high task-specific expertise</p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li>Creates cognitive dissonance for group members</li>
+                                <li>Initial resistance to accepting the reversal</li>
+                                <li>Expert must repeatedly prove themselves</li>
+                                <li>High-diffuse-status members may resist losing influence</li>
+                            </ul>
+                            <p><strong>Example:</strong> A young female engineer leading a team of older male executives on a technical project.</p>
+                            <p style="color: #d4a574;"><strong>Strategy:</strong> Make expertise undeniably visible early. Get public endorsement from authority figures. Maintain assertive but not aggressive communication style.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('groupTitle').textContent = groups[type].title;
+            document.getElementById('groupAnalysis').innerHTML = groups[type].analysis;
+        }
+
+        function selectSituation(situation) {
+            document.querySelectorAll('.tool-section:nth-child(3) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const situations = {
+                'new-team': {
+                    title: 'Strategies for New Team Forming',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Window of Opportunity:</strong> Expectations are malleable in the first interactions</p>
+                            <div class="behavior-grid">
+                                <div class="behavior-card">
+                                    <h5>Structural Interventions</h5>
+                                    <ul>
+                                        <li>Assign rotating roles from the start</li>
+                                        <li>Use round-robin contributions</li>
+                                        <li>Set explicit norms about equal airtime</li>
+                                        <li>Make task competence visible before diffuse status</li>
+                                    </ul>
+                                </div>
+                                <div class="behavior-card">
+                                    <h5>Individual Strategies</h5>
+                                    <ul>
+                                        <li>Demonstrate expertise early</li>
+                                        <li>Build alliances with multiple members</li>
+                                        <li>Don't defer automatically to high-status members</li>
+                                        <li>Ask questions that show your expertise</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'established': {
+                    title: 'Strategies for Established Hierarchy',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Challenge:</strong> Expectations are now crystallized and self-reinforcing</p>
+                            <div class="behavior-grid">
+                                <div class="behavior-card">
+                                    <h5>Change the Context</h5>
+                                    <ul>
+                                        <li>Introduce new tasks where status order doesn't apply</li>
+                                        <li>Bring in new members who shift dynamics</li>
+                                        <li>Change meeting formats or locations</li>
+                                        <li>Rotate leadership on specific projects</li>
+                                    </ul>
+                                </div>
+                                <div class="behavior-card">
+                                    <h5>Build Counter-Evidence</h5>
+                                    <ul>
+                                        <li>Publicly recognize low-status members' contributions</li>
+                                        <li>Create visible wins for them</li>
+                                        <li>Have high-status members explicitly defer to them</li>
+                                        <li>Use data to challenge assumptions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'low-status': {
+                    title: 'Strategies If You Have Lower Status',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Reality Check:</strong> You'll need to work harder, but don't internalize others' expectations</p>
+                            <div class="behavior-grid">
+                                <div class="behavior-card">
+                                    <h5>Build Your Position</h5>
+                                    <ul>
+                                        <li>Develop undeniable task expertise</li>
+                                        <li>Get external validation (credentials, recognition)</li>
+                                        <li>Find a high-status sponsor/ally</li>
+                                        <li>Document your contributions</li>
+                                    </ul>
+                                </div>
+                                <div class="behavior-card">
+                                    <h5>Navigate Interactions</h5>
+                                    <ul>
+                                        <li>Speak early in meetings (first speakers gain influence)</li>
+                                        <li>Use confident, assertive communication</li>
+                                        <li>Build one-on-one relationships before group meetings</li>
+                                        <li>Don't apologize for taking up space</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #d4a574;"><strong>Warning:</strong> These strategies require extra effort that high-status members don't need to expend—a real but navigable inequality.</p>
+                        </div>
+                    `
+                },
+                'leader': {
+                    title: 'Strategies If You Are the Leader',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Your Power:</strong> Leaders can shape group norms and create counter-expectations</p>
+                            <div class="behavior-grid">
+                                <div class="behavior-card">
+                                    <h5>Model Equality</h5>
+                                    <ul>
+                                        <li>Explicitly solicit input from low-status members</li>
+                                        <li>Credit their ideas publicly and specifically</li>
+                                        <li>Ask high-status members to wait their turn</li>
+                                        <li>Show genuine interest in all contributions</li>
+                                    </ul>
+                                </div>
+                                <div class="behavior-card">
+                                    <h5>Structural Changes</h5>
+                                    <ul>
+                                        <li>Assign low-status members to visible, important roles</li>
+                                        <li>Rotate meeting facilitation</li>
+                                        <li>Use anonymous input methods for sensitive topics</li>
+                                        <li>Create small group discussions before plenary</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; color: #d4a574;"><strong>Key:</strong> Your deference to low-status members is a powerful signal that reshapes others' expectations.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('interventionTitle').textContent = situations[situation].title;
+            document.getElementById('interventionAnalysis').innerHTML = situations[situation].analysis;
+        }
+
+        function selectScenario(scenario) {
+            document.querySelectorAll('.tool-section:nth-child(4) .scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const scenarios = {
+                'meeting': {
+                    title: 'Meeting Discussion Dynamics',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Status Effects in Meetings:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Speaking Order:</strong> High-status members speak first and more often</li>
+                                <li><strong>Interruptions:</strong> Low-status members interrupted more; high-status interruptions tolerated</li>
+                                <li><strong>Idea Attribution:</strong> Same idea credited differently based on who says it</li>
+                                <li><strong>Body Language:</strong> Others orient toward high-status members</li>
+                                <li><strong>Challenge Resistance:</strong> Disagreeing with high-status members is seen as inappropriate</li>
+                            </ul>
+                            <p style="color: #d4a574;"><strong>Countermeasure:</strong> Use structured formats (timed contributions, written input before discussion) to reduce status effects.</p>
+                        </div>
+                    `
+                },
+                'hiring': {
+                    title: 'Hiring Decision Bias',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Status Effects in Hiring:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Resume Screening:</strong> High-status credentials (elite schools, prestigious employers) create halo effects</li>
+                                <li><strong>Interview Performance:</strong> Confident demeanor (often status-correlated) interpreted as competence</li>
+                                <li><strong>"Culture Fit":</strong> Often code for matching interviewers' own status characteristics</li>
+                                <li><strong>Reference Checks:</strong> References from high-status people carry more weight</li>
+                            </ul>
+                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Structured interviews, work sample tests, blind resume screening, diverse hiring panels.</p>
+                        </div>
+                    `
+                },
+                'performance': {
+                    title: 'Performance Review Bias',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Status Effects in Performance Reviews:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>Attribution Differences:</strong> High-status success = ability; low-status success = luck or effort</li>
+                                <li><strong>Failure Attribution:</strong> High-status failure = circumstances; low-status failure = incompetence</li>
+                                <li><strong>Subjective Criteria:</strong> "Leadership," "presence," "potential" favor high-status employees</li>
+                                <li><strong>Comparison Standards:</strong> High-status employees compared to others like them (lower bar)</li>
+                            </ul>
+                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Objective metrics, calibration sessions, require specific behavioral examples, audit for patterns.</p>
+                        </div>
+                    `
+                },
+                'promotion': {
+                    title: 'Promotion Decision Bias',
+                    analysis: `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Status Effects in Promotions:</strong></p>
+                            <ul style="margin: 10px 0 15px 20px;">
+                                <li><strong>"Leadership Potential":</strong> Seen more readily in high-status individuals</li>
+                                <li><strong>Visibility:</strong> High-status employees' work more noticed by decision-makers</li>
+                                <li><strong>Sponsorship:</strong> Senior leaders more likely to sponsor high-status proteges</li>
+                                <li><strong>Self-Promotion:</strong> Expected from high-status; penalized for low-status (especially women)</li>
+                                <li><strong>Risk Assessment:</strong> Promoting high-status seems "safer"—less career risk for decision-maker</li>
+                            </ul>
+                            <p style="color: #d4a574;"><strong>Countermeasures:</strong> Transparent criteria, formal sponsorship programs, promotion panels with diverse members, track outcomes by demographics.</p>
+                        </div>
+                    `
+                }
+            };
+
+            document.getElementById('scenarioTitle').textContent = scenarios[scenario].title;
+            document.getElementById('scenarioAnalysis').innerHTML = scenarios[scenario].analysis;
+        }
+
+        // Initialize tools
+        document.addEventListener('DOMContentLoaded', function() {
+            updateExpectations();
+            selectGroup('homogeneous');
+            selectSituation('new-team');
+            selectScenario('meeting');
+        });
+    </script>
+</body>
+</html>
