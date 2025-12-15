@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Approach-Inhibition Model of Employee Silence - Morrison, See, & Pan (2015)</title>
+    <!--
+      Review of:
+      Morrison, E. W., See, K. E., & Pan, C. (2015).
+      An Approach-Inhibition Model of Employee Silence: The Joint Effects of Personal Sense of Power and Target Openness.
+      Personnel Psychology, 68(3), 547-580.
+
+      Applies Keltner's approach-inhibition theory of power to explain how employees'
+      personal sense of power interacts with perceived leader openness to determine voice.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #78350f 50%, #451a03 100%);
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .page-btn.active { background: white; color: #d97706; border-color: white; }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.6em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #fef3c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .citation { font-size: 1.15em; opacity: 0.95; margin-bottom: 10px; }
+        .hero .tagline { font-size: 1.1em; opacity: 0.9; max-width: 800px; margin: 15px auto 0; font-style: italic; }
+
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .section-card { background: #1e293b; color: #e2e8f0; }
+
+        .section-card h2 {
+            color: #d97706;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #d97706;
+            font-size: 2em;
+        }
+
+        body.dark-mode .section-card h2 { color: #fbbf24; border-bottom-color: #fbbf24; }
+
+        .section-card h3 { color: #b45309; margin: 25px 0 15px; font-size: 1.5em; }
+        body.dark-mode .section-card h3 { color: #fcd34d; }
+
+        .section-card p, .section-card li { font-size: 1.05rem; margin-bottom: 15px; }
+        body.dark-mode .section-card p, body.dark-mode .section-card li { color: #e2e8f0; }
+
+        .section-card ul, .section-card ol { margin-left: 25px; margin-bottom: 20px; }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .concept-box:hover { transform: translateY(-5px); }
+        .concept-box h4 { font-size: 1.2rem; margin-bottom: 12px; color: white; }
+        .concept-box p { font-size: 0.95rem; color: rgba(255,255,255,0.95); margin: 0; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .comparison-table { background: #0f172a; }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        body.dark-mode .comparison-table td { border-bottom-color: #4a5568; color: #cbd5e0; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .highlight-box { background: #78350f; color: #fef3c7; }
+
+        .theory-box {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .theory-box h4 { color: white; font-size: 1.3rem; margin-bottom: 15px; }
+        .theory-box p { color: rgba(255,255,255,0.95); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+
+        .model-visual {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        body.dark-mode .model-visual { background: #451a03; border-color: #fbbf24; }
+
+        .power-spectrum {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #dc2626 0%, #f59e0b 50%, #16a34a 100%);
+            border-radius: 10px;
+            color: white;
+            margin: 20px 0;
+        }
+
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a { color: #fcd34d; text-decoration: none; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.9rem; }
+            .section-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn">Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
+            <button class="page-btn" onclick="switchPage('theory', this)">The Theory</button>
+            <button class="page-btn" onclick="switchPage('implications', this)">Implications</button>
+        </div>
+    </nav>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <div id="main">
+        <div class="container">
+
+            <section class="hero">
+                <h1>An Approach-Inhibition Model of Employee Silence</h1>
+                <p class="citation">Morrison, E. W., See, K. E., & Pan, C. (2015)<br>Personnel Psychology, 68(3), 547-580</p>
+                <p class="tagline">
+                    How personal sense of power and perceived leader openness jointly determine whether employees speak up or stay silent
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Executive Summary</h2>
+
+                <p>
+                    This research applies Dacher Keltner's influential <strong>approach-inhibition theory of power</strong> to explain employee silence. The key insight: employees' <em>personal sense of power</em>—their subjective feeling of having influence—interacts with their perceptions of leader openness to determine whether they speak up or remain silent.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Central Finding:</strong> Employees with a low personal sense of power are especially likely to remain silent, but this effect is buffered when they perceive their leader as open to input. The combination of low power + perceived leader openness can enable voice that would otherwise be inhibited.
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Studies Conducted</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">BAS/BIS</div>
+                        <div class="stat-label">Theoretical Foundation</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Key Moderators</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">High</div>
+                        <div class="stat-label">Practical Relevance</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Approach-Inhibition Theory of Power</h2>
+
+                <p>
+                    Keltner, Gruenfeld, and Anderson's (2003) approach-inhibition theory provides the theoretical foundation. The theory is grounded in neuroscience research on the <strong>Behavioral Approach System (BAS)</strong> and <strong>Behavioral Inhibition System (BIS)</strong>:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);">
+                        <h4>Behavioral Approach System (BAS)</h4>
+                        <p>Activated by reward cues and opportunities. Produces positive affect, attention to rewards, automatic/confident processing, and approach behaviors. <strong>High power activates BAS.</strong></p>
+                    </div>
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                        <h4>Behavioral Inhibition System (BIS)</h4>
+                        <p>Activated by threat cues and punishment. Produces negative affect, attention to threats, controlled/cautious processing, and inhibition behaviors. <strong>Low power activates BIS.</strong></p>
+                    </div>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>High Power (BAS Activated)</th>
+                            <th>Low Power (BIS Activated)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Affect</strong></td>
+                            <td>Positive emotions, confidence, optimism</td>
+                            <td>Negative emotions, anxiety, vigilance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Attention</strong></td>
+                            <td>Focus on rewards and opportunities</td>
+                            <td>Focus on threats and punishments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cognition</strong></td>
+                            <td>Automatic, heuristic processing</td>
+                            <td>Controlled, systematic processing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavior</strong></td>
+                            <td>Disinhibited, assertive, risk-taking</td>
+                            <td>Inhibited, cautious, risk-averse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Voice Likelihood</strong></td>
+                            <td>Higher—approach orientation</td>
+                            <td>Lower—avoidance orientation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>Personal Sense of Power: The Key Variable</h2>
+
+                <h3>What Is Personal Sense of Power?</h3>
+                <p>
+                    Personal sense of power is a <strong>psychological state</strong>—the individual's subjective perception of their ability to influence others and control resources. It is distinct from:
+                </p>
+
+                <ul>
+                    <li><strong>Objective power:</strong> Actual position in hierarchy or control over resources</li>
+                    <li><strong>Power motivation:</strong> Desire to have power over others</li>
+                    <li><strong>Self-efficacy:</strong> General confidence in one's abilities</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>Why Personal Sense of Power Matters:</strong> Two employees with the same objective position can have very different personal sense of power. The subjective experience—not the objective reality—is what activates BAS or BIS and determines behavioral tendencies.
+                </div>
+
+                <h3>Sources of Personal Sense of Power</h3>
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Structural Sources</h4>
+                        <p>Formal position, job level, control over resources, decision-making authority</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Relational Sources</h4>
+                        <p>Quality of relationships, social support, network position, trusted advisor status</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Psychological Sources</h4>
+                        <p>Past experiences, personality, self-perceptions, priming effects</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Interaction: Power × Leader Openness</h2>
+
+                <p>The paper's central contribution is demonstrating the <strong>interaction</strong> between personal sense of power and perceived leader openness:</p>
+
+                <div class="model-visual">
+                    <h3 style="color: #b45309; margin-bottom: 20px;">The Interaction Model</h3>
+                    <table style="width: 100%; text-align: center; border-collapse: collapse;">
+                        <tr>
+                            <td></td>
+                            <td style="padding: 15px; font-weight: bold; color: #b45309;">Leader Perceived as CLOSED</td>
+                            <td style="padding: 15px; font-weight: bold; color: #16a34a;">Leader Perceived as OPEN</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; font-weight: bold; color: #16a34a;">HIGH Sense of Power</td>
+                            <td style="padding: 20px; background: #fef3c7; border-radius: 8px;">Moderate Voice<br><small>(Power enables voice despite closed leader)</small></td>
+                            <td style="padding: 20px; background: #bbf7d0; border-radius: 8px;"><strong>HIGH Voice</strong><br><small>(Both factors promote voice)</small></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; font-weight: bold; color: #dc2626;">LOW Sense of Power</td>
+                            <td style="padding: 20px; background: #fecaca; border-radius: 8px;"><strong>SILENCE</strong><br><small>(Both factors inhibit voice)</small></td>
+                            <td style="padding: 20px; background: #fef3c7; border-radius: 8px;">Moderate Voice<br><small>(Openness compensates for low power)</small></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Key Insights from the Interaction</h3>
+                <ul>
+                    <li><strong>High-power employees speak up regardless:</strong> Their activated BAS promotes voice even with closed leaders</li>
+                    <li><strong>Low-power employees are especially sensitive to leader cues:</strong> Their activated BIS makes them vigilant to signals of openness or closure</li>
+                    <li><strong>Leader openness matters most for those who need it most:</strong> The buffering effect is strongest for low-power employees</li>
+                    <li><strong>Double jeopardy:</strong> Low power + closed leader creates silence that is especially hard to break</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2>Research Design</h2>
+
+                <h3>Study 1: Survey of Employees</h3>
+                <p>
+                    Cross-sectional survey examining the relationship between personal sense of power, perceived supervisor openness, and self-reported voice behavior. Confirmed the predicted interaction: low-power employees showed more voice when supervisor was perceived as open.
+                </p>
+
+                <h3>Study 2: Experimental Manipulation</h3>
+                <p>
+                    Laboratory experiment manipulating both sense of power (through recall task) and target openness (through vignette). Demonstrated causal effects: manipulated power and openness interacted to predict voice intentions.
+                </p>
+
+                <h3>Study 3: Replication with Different Context</h3>
+                <p>
+                    Replicated findings in different organizational context with additional controls, ruling out alternative explanations and strengthening confidence in the approach-inhibition mechanism.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>References</h2>
+                <ul>
+                    <li>Morrison, E. W., See, K. E., & Pan, C. (2015). An approach-inhibition model of employee silence: The joint effects of personal sense of power and target openness. <em>Personnel Psychology</em>, 68(3), 547-580.</li>
+                    <li>Keltner, D., Gruenfeld, D. H., & Anderson, C. (2003). Power, approach, and inhibition. <em>Psychological Review</em>, 110(2), 265-284.</li>
+                    <li>Anderson, C., John, O. P., & Keltner, D. (2012). The personal sense of power. <em>Journal of Personality</em>, 80(2), 313-344.</li>
+                    <li>Gray, J. A. (1987). <em>The psychology of fear and stress</em> (2nd ed.). Cambridge University Press.</li>
+                    <li>Morrison, E. W. (2014). Employee voice and silence. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 1, 173-197.</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p>Analysis created for the Literature Explorer.<br>
+                Based on: Morrison, See, & Pan (2015). An Approach-Inhibition Model of Employee Silence.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="theory" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>The Theoretical Foundation</h1>
+                <p class="tagline">Understanding the neuroscience of power and behavior</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Keltner's Approach-Inhibition Theory</h2>
+
+                <p>
+                    Dacher Keltner and colleagues (2003) proposed that power fundamentally transforms psychological states through its effects on two evolutionarily ancient neural systems:
+                </p>
+
+                <div class="theory-box">
+                    <h4>The Evolutionary Logic</h4>
+                    <p>
+                        In ancestral environments, individuals with power (control over resources, physical dominance) could afford to approach opportunities and take risks—they had the resources to absorb losses. Those without power needed to be vigilant to threats from the powerful and cautious in their behavior. Natural selection shaped brains to automatically shift between approach and inhibition modes based on power cues.
+                    </p>
+                </div>
+
+                <h3>The BAS: Behavioral Approach System</h3>
+                <p>The BAS is activated by cues signaling reward, opportunity, and safety. When activated:</p>
+                <ul>
+                    <li>Positive emotions increase (joy, enthusiasm, desire)</li>
+                    <li>Attention narrows to reward-relevant stimuli</li>
+                    <li>Processing becomes automatic and heuristic</li>
+                    <li>Behavior becomes disinhibited and assertive</li>
+                    <li>Risk tolerance increases</li>
+                </ul>
+
+                <h3>The BIS: Behavioral Inhibition System</h3>
+                <p>The BIS is activated by cues signaling threat, punishment, or uncertainty. When activated:</p>
+                <ul>
+                    <li>Negative emotions increase (anxiety, fear, vigilance)</li>
+                    <li>Attention broadens to threat-relevant stimuli</li>
+                    <li>Processing becomes controlled and systematic</li>
+                    <li>Behavior becomes inhibited and cautious</li>
+                    <li>Risk tolerance decreases</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>The Power-Behavior Connection:</strong> Having power (or feeling powerful) activates the BAS, producing approach behaviors including voice. Lacking power (or feeling powerless) activates the BIS, producing inhibition behaviors including silence. This is not a conscious choice—it's an automatic psychological response.
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>EEG Evidence: Power in the Brain</h2>
+
+                <p>
+                    Neuroimaging studies support the approach-inhibition theory. Research by Boksem et al. (2012) found:
+                </p>
+
+                <ul>
+                    <li><strong>Power priming increases left-frontal activity:</strong> The left frontal cortex is associated with approach motivation. Individuals primed with high power show increased left-frontal EEG activity.</li>
+                    <li><strong>Low power increases right-frontal activity:</strong> The right frontal cortex is associated with inhibition/avoidance. Low-power priming increases right-frontal activity.</li>
+                    <li><strong>These effects are automatic:</strong> Brain activation changes occur without conscious awareness of the power manipulation.</li>
+                </ul>
+
+                <div class="theory-box" style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);">
+                    <h4>The Neural Mechanism</h4>
+                    <p>Power doesn't just change what people think—it changes how their brains process information at a fundamental level. The approach-inhibition shift happens below conscious awareness, which is why employees may feel inexplicably hesitant to speak up even when they consciously believe it would be safe.</p>
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="implications" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Practical Implications</h1>
+                <p class="tagline">What leaders and organizations can do</p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Leaders</h2>
+
+                <h3>Signal Openness Especially to Low-Power Employees</h3>
+                <p>
+                    The research shows that your openness matters most for those with low personal sense of power. These employees are in "inhibition mode" by default and need clear signals that speaking up is safe. Generic "open door" policies are insufficient—active, targeted outreach is needed.
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Actively Solicit Input</h4>
+                        <p>Don't wait for low-power employees to volunteer opinions. Directly ask for their perspectives in ways that feel safe and genuine.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Respond Positively to Early Voice</h4>
+                        <p>First impressions matter. If a low-power employee's initial attempt at voice is met negatively, their BIS activation will intensify.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Reduce Power Distance Cues</h4>
+                        <p>Physical setup, language, and behavior that emphasize hierarchy activate BIS. Reduce these cues to enable approach behavior.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Create Safe Channels</h4>
+                        <p>Anonymous feedback systems and intermediaries can provide voice opportunities that bypass the power-inhibition dynamic.</p>
+                    </div>
+                </div>
+
+                <h3>Recognize That Your Power Affects Others Automatically</h3>
+                <p>
+                    Even if you're genuinely open and supportive, your formal power automatically activates BIS in subordinates. Your good intentions don't override their neural response to power cues. You must actively counteract this effect.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Organizations</h2>
+
+                <h3>Address Both Sides of the Equation</h3>
+
+                <div class="highlight-box">
+                    <strong>Two Intervention Targets:</strong>
+                    <ol style="margin-top: 10px;">
+                        <li><strong>Increase employees' sense of power:</strong> Empowerment initiatives, participative decision-making, development opportunities</li>
+                        <li><strong>Increase leader openness (and perceptions of it):</strong> Leader training, accountability for response to voice, feedback systems</li>
+                    </ol>
+                </div>
+
+                <h3>Pay Special Attention to Power Asymmetries</h3>
+                <p>
+                    The approach-inhibition framework suggests that voice will be systematically lower among:
+                </p>
+                <ul>
+                    <li>New employees (who haven't built relational power)</li>
+                    <li>Lower-level employees (less structural power)</li>
+                    <li>Minority group members (may have lower sense of power due to stereotypes)</li>
+                    <li>Contingent workers (less job security = less power)</li>
+                </ul>
+                <p>
+                    Organizations should design voice mechanisms that specifically counteract these power disadvantages.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Individuals</h2>
+
+                <h3>Understand Your Own Power Psychology</h3>
+                <p>
+                    When you feel hesitant to speak up, ask: "Is this a rational assessment of risk, or is my BIS activated?" Recognizing the automatic nature of power-related inhibition can help you override it consciously.
+                </p>
+
+                <h3>Build Your Personal Sense of Power</h3>
+                <ul>
+                    <li><strong>Recall past successes:</strong> Research shows that recalling times you had power increases current sense of power</li>
+                    <li><strong>Build expertise and relationships:</strong> These provide alternative power bases beyond formal position</li>
+                    <li><strong>Adopt powerful body language:</strong> Expansive postures can increase subjective power feelings</li>
+                    <li><strong>Practice voice in low-stakes situations:</strong> Success experiences build sense of power</li>
+                </ul>
+
+                <h3>Assess Leader Openness Accurately</h3>
+                <p>
+                    Your BIS may cause you to perceive leaders as less open than they actually are. Look for objective signals of openness rather than relying on your (potentially biased) feelings.
+                </p>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('#main, #theory, #implications').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+        }
+    </script>
+
+</body>
+</html>

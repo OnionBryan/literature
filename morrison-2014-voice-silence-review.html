@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Voice and Silence: Taking Stock a Decade Later - Morrison (2014)</title>
+    <!--
+      Review of:
+      Morrison, E. W. (2014).
+      Employee Voice and Silence.
+      Annual Review of Organizational Psychology and Organizational Behavior, 1, 173-197.
+
+      A comprehensive review synthesizing over a decade of research on when and why
+      employees choose to speak up or remain silent at work.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #164e63 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #164e63 50%, #083344 100%);
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .page-btn.active { background: white; color: #0891b2; border-color: white; }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #a5f3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .citation { font-size: 1.2em; opacity: 0.95; margin-bottom: 10px; }
+        .hero .tagline { font-size: 1.15em; opacity: 0.9; max-width: 800px; margin: 15px auto 0; font-style: italic; }
+
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .section-card { background: #1e293b; color: #e2e8f0; }
+
+        .section-card h2 {
+            color: #0891b2;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #0891b2;
+            font-size: 2em;
+        }
+
+        body.dark-mode .section-card h2 { color: #22d3ee; border-bottom-color: #22d3ee; }
+
+        .section-card h3 { color: #0e7490; margin: 25px 0 15px; font-size: 1.5em; }
+        body.dark-mode .section-card h3 { color: #67e8f9; }
+
+        .section-card p, .section-card li { font-size: 1.05rem; margin-bottom: 15px; }
+        body.dark-mode .section-card p, body.dark-mode .section-card li { color: #e2e8f0; }
+
+        .section-card ul, .section-card ol { margin-left: 25px; margin-bottom: 20px; }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .concept-box:hover { transform: translateY(-5px); }
+        .concept-box h4 { font-size: 1.2rem; margin-bottom: 12px; color: white; }
+        .concept-box p { font-size: 0.95rem; color: rgba(255,255,255,0.95); margin: 0; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .comparison-table { background: #0f172a; }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        body.dark-mode .comparison-table td { border-bottom-color: #4a5568; color: #cbd5e0; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-left: 5px solid #0891b2;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .highlight-box { background: #164e63; color: #cffafe; }
+
+        .framework-box {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .framework-box h4 { color: white; font-size: 1.3rem; margin-bottom: 15px; }
+        .framework-box p { color: rgba(255,255,255,0.95); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 2.2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+
+        .antecedent-category {
+            background: #f0fdfa;
+            border: 2px solid #14b8a6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .antecedent-category { background: #134e4a; border-color: #2dd4bf; }
+
+        .antecedent-category h4 {
+            color: #0d9488;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        body.dark-mode .antecedent-category h4 { color: #5eead4; }
+
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a { color: #67e8f9; text-decoration: none; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn">Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
+            <button class="page-btn" onclick="switchPage('antecedents', this)">Antecedents</button>
+            <button class="page-btn" onclick="switchPage('consequences', this)">Consequences</button>
+        </div>
+    </nav>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <div id="main">
+        <div class="container">
+
+            <section class="hero">
+                <h1>Employee Voice and Silence:<br>Taking Stock a Decade Later</h1>
+                <p class="citation">Morrison, E. W. (2014)<br>Annual Review of Organizational Psychology and Organizational Behavior, 1, 173-197</p>
+                <p class="tagline">
+                    A comprehensive synthesis of research on when and why employees choose to speak up or remain silent
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Executive Summary</h2>
+
+                <p>
+                    Elizabeth Morrison's authoritative review synthesizes over a decade of research on employee voice and silence, providing the field's most comprehensive framework for understanding these critical workplace behaviors. The review organizes hundreds of studies around key antecedents and consequences, identifying what we know and—importantly—what we still don't understand.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Defining Voice and Silence:</strong>
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li><strong>Voice:</strong> Discretionary communication of ideas, suggestions, concerns, or opinions about work-related issues with the intent to improve organizational or unit functioning</li>
+                        <li><strong>Silence:</strong> The intentional withholding of such communication</li>
+                    </ul>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">Years of Research Reviewed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Antecedent Categories</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Voice Types Distinguished</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Consequence Levels</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Key Distinctions: Types of Voice</h2>
+
+                <p>Morrison distinguishes between different types of voice, which have different antecedents and consequences:</p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Promotive Voice</h4>
+                        <p>Expressing new ideas, suggestions for improvement, or recommendations for positive changes. Forward-looking and focused on opportunities. Generally perceived more positively by recipients.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Prohibitive Voice</h4>
+                        <p>Speaking up about problems, concerns, or potential threats. Warning about things that are going wrong. More risky because it implies criticism and may challenge the status quo.</p>
+                    </div>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Promotive Voice</th>
+                            <th>Prohibitive Voice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Ideas and opportunities</td>
+                            <td>Problems and concerns</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orientation</strong></td>
+                            <td>Future improvement</td>
+                            <td>Current/past issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perceived Risk</strong></td>
+                            <td>Lower</td>
+                            <td>Higher</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reception by Leaders</strong></td>
+                            <td>Generally positive</td>
+                            <td>Mixed or defensive</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Antecedents</strong></td>
+                            <td>Proactive personality, positive affect</td>
+                            <td>Felt obligation, duty orientation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>The Voice Decision Process</h2>
+
+                <p>Morrison conceptualizes voice as a decision process involving several psychological states:</p>
+
+                <div class="framework-box">
+                    <h4>Three Critical Psychological States</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px;">
+                            <strong style="font-size: 1.1em;">1. Perceived Efficacy</strong><br>
+                            "Will speaking up make a difference?"<br>
+                            <em>If no → Silence</em>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px;">
+                            <strong style="font-size: 1.1em;">2. Perceived Safety</strong><br>
+                            "Will speaking up be risky for me?"<br>
+                            <em>If yes → Silence</em>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px;">
+                            <strong style="font-size: 1.1em;">3. Felt Obligation</strong><br>
+                            "Is it my responsibility to speak up?"<br>
+                            <em>If no → Silence</em>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>The Calculation</h3>
+                <p>
+                    Employees weigh the potential benefits of voice (efficacy × value of change) against the potential costs (risk × likelihood of negative outcomes). This calculation is influenced by individual factors, contextual factors, and the characteristics of the issue itself.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Contextual Antecedents: The Role of Leadership</h2>
+
+                <p>The review highlights leadership as perhaps the most important contextual factor affecting voice:</p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Psychological Safety</h4>
+                        <p>Edmondson's (1999) construct remains central. Teams with high psychological safety see more voice. Leaders create safety through inclusive behavior and positive responses to voice.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Leader Openness</h4>
+                        <p>Employees assess whether their specific leader is open to input. This is distinct from general psychological safety and has independent effects on voice.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Transformational Leadership</h4>
+                        <p>Transformational leaders encourage voice by intellectually stimulating followers, expressing confidence in them, and articulating a compelling vision that makes employees want to contribute.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Leader-Member Exchange (LMX)</h4>
+                        <p>High-quality exchange relationships provide the trust and obligation that facilitate voice. Employees in high LMX relationships feel safer speaking up and more obligated to do so.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Key Finding:</strong> Leadership factors consistently emerge as among the strongest predictors of employee voice. The immediate supervisor has disproportionate influence on whether employees feel safe and motivated to speak up.
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Individual Antecedents</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Effect on Voice</th>
+                            <th>Mechanism</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Proactive Personality</strong></td>
+                            <td>Positive</td>
+                            <td>Disposition to take initiative and challenge status quo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extraversion</strong></td>
+                            <td>Positive</td>
+                            <td>Comfort with social interaction and assertiveness</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conscientiousness</strong></td>
+                            <td>Positive</td>
+                            <td>Felt responsibility and duty orientation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Self-Efficacy</strong></td>
+                            <td>Positive</td>
+                            <td>Confidence in ability to communicate effectively</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Job Satisfaction</strong></td>
+                            <td>Mixed</td>
+                            <td>May increase promotive voice; dissatisfaction may drive prohibitive voice</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Organizational Commitment</strong></td>
+                            <td>Positive</td>
+                            <td>Felt obligation to contribute to organizational improvement</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>Critical Gaps Identified</h2>
+
+                <p>Morrison highlights several important gaps in the research that require future attention:</p>
+
+                <div class="antecedent-category">
+                    <h4>1. Consequences of Voice (and Silence)</h4>
+                    <p>Most research focuses on antecedents. We know less about what happens after voice: When does it lead to change? When does it backfire? What are the long-term career consequences? How does silence accumulate into organizational problems?</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>2. The Target's Perspective</h4>
+                    <p>Research is heavily speaker-focused. We need more understanding of how recipients process and respond to voice, what makes them receptive vs. defensive, and how they decide whether to act on input.</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>3. Collective Silence</h4>
+                    <p>Most research examines individual voice decisions. Yet silence is often collective—whole teams or organizations where "nobody talks about" certain issues. The dynamics of collective silence are understudied.</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>4. The Content of Voice</h4>
+                    <p>Research typically treats voice as a single behavior. But the specific content (what is said, how it's framed) likely matters greatly for outcomes. More attention needed to message characteristics.</p>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Theoretical Integration</h2>
+
+                <p>Morrison integrates multiple theoretical perspectives on voice:</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Theory</th>
+                            <th>Contribution to Understanding Voice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Exit-Voice-Loyalty-Neglect</strong></td>
+                            <td>Voice as one response to dissatisfaction (vs. leaving, staying loyal, or disengaging)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Social Exchange Theory</strong></td>
+                            <td>Voice as discretionary behavior driven by reciprocity and obligation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expectancy Theory</strong></td>
+                            <td>Voice as motivated by expected outcomes and perceived efficacy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Planned Behavior Theory</strong></td>
+                            <td>Voice as intentional behavior shaped by attitudes, norms, and perceived control</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Psychological Safety</strong></td>
+                            <td>Voice as enabled by perceived interpersonal risk-taking safety</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>References</h2>
+                <ul>
+                    <li>Morrison, E. W. (2014). Employee voice and silence. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 1, 173-197.</li>
+                    <li>Edmondson, A. C. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly</em>, 44(2), 350-383.</li>
+                    <li>Hirschman, A. O. (1970). <em>Exit, voice, and loyalty: Responses to decline in firms, organizations, and states</em>. Harvard University Press.</li>
+                    <li>Morrison, E. W., & Milliken, F. J. (2000). Organizational silence: A barrier to change and development in a pluralistic world. <em>Academy of Management Review</em>, 25(4), 706-725.</li>
+                    <li>Van Dyne, L., & LePine, J. A. (1998). Helping and voice extra-role behaviors: Evidence of construct and predictive validity. <em>Academy of Management Journal</em>, 41(1), 108-119.</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p>Review synthesis created for the Literature Explorer.<br>
+                Based on: Morrison, E. W. (2014). Employee Voice and Silence.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="antecedents" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Antecedents of Voice and Silence</h1>
+                <p class="tagline">What determines whether employees speak up or stay silent?</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Complete Antecedent Framework</h2>
+
+                <p>Morrison organizes antecedents into four major categories:</p>
+
+                <div class="antecedent-category">
+                    <h4>1. Individual Dispositions</h4>
+                    <ul>
+                        <li><strong>Proactive personality:</strong> General tendency to take initiative</li>
+                        <li><strong>Extraversion:</strong> Comfort with social interaction</li>
+                        <li><strong>Conscientiousness:</strong> Sense of duty and responsibility</li>
+                        <li><strong>Self-efficacy:</strong> Confidence in one's communication abilities</li>
+                        <li><strong>Locus of control:</strong> Belief in ability to influence outcomes</li>
+                        <li><strong>Implicit voice theories:</strong> Deep beliefs about appropriateness of speaking up</li>
+                    </ul>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>2. Job Attitudes</h4>
+                    <ul>
+                        <li><strong>Job satisfaction:</strong> Mixed effects—may increase promotive voice but dissatisfaction may drive prohibitive voice</li>
+                        <li><strong>Organizational commitment:</strong> Creates felt obligation to improve the organization</li>
+                        <li><strong>Organizational identification:</strong> "We" orientation increases willingness to contribute</li>
+                        <li><strong>Psychological ownership:</strong> Feeling of investment increases voice</li>
+                    </ul>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>3. Leadership and Supervision</h4>
+                    <ul>
+                        <li><strong>Leader openness:</strong> Perceived receptivity to input</li>
+                        <li><strong>Transformational leadership:</strong> Inspirational, supportive leader behavior</li>
+                        <li><strong>Leader-member exchange (LMX):</strong> Quality of dyadic relationship</li>
+                        <li><strong>Abusive supervision:</strong> Strong negative effect on voice</li>
+                        <li><strong>Ethical leadership:</strong> Creates climate supportive of voice</li>
+                    </ul>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>4. Organizational Context</h4>
+                    <ul>
+                        <li><strong>Psychological safety:</strong> Team-level perception that voice is safe</li>
+                        <li><strong>Voice climate:</strong> Shared perception that voice is encouraged</li>
+                        <li><strong>Formal voice mechanisms:</strong> Suggestion systems, forums, etc.</li>
+                        <li><strong>Organizational structure:</strong> Hierarchy, formalization, centralization</li>
+                        <li><strong>Group norms:</strong> Shared expectations about appropriate behavior</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Mediating Psychological States</h2>
+
+                <p>Antecedents affect voice through three mediating psychological states:</p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Perceived Efficacy of Voice</h4>
+                        <p>"Will my input make a difference?" Employees must believe that speaking up will lead to meaningful change. Without efficacy beliefs, even safe environments won't generate voice.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Perceived Safety of Voice</h4>
+                        <p>"Is it safe for me to speak up?" Employees assess potential negative consequences—embarrassment, damaged relationships, career penalties. Safety concerns can override efficacy beliefs.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Felt Obligation for Voice</h4>
+                        <p>"Is it my responsibility to speak up?" Some employees feel duty-bound to voice concerns; others see it as optional. Obligation can motivate voice even when efficacy or safety is uncertain.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="consequences" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Consequences of Voice and Silence</h1>
+                <p class="tagline">What happens when employees speak up—or stay silent?</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Consequences at Three Levels</h2>
+
+                <div class="framework-box">
+                    <h4>Individual Consequences</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                            <strong>Potential Positive Outcomes</strong>
+                            <ul style="margin: 10px 0 0 20px;">
+                                <li>Recognition and appreciation</li>
+                                <li>Enhanced reputation as contributor</li>
+                                <li>Career advancement</li>
+                                <li>Sense of meaning and engagement</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                            <strong>Potential Negative Outcomes</strong>
+                            <ul style="margin: 10px 0 0 20px;">
+                                <li>Being labeled as troublemaker</li>
+                                <li>Damaged relationships</li>
+                                <li>Retaliation or career penalties</li>
+                                <li>Social exclusion</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="framework-box" style="background: linear-gradient(135deg, #0e7490 0%, #164e63 100%);">
+                    <h4>Team-Level Consequences</h4>
+                    <p style="margin-bottom: 15px;"><strong>Of Voice:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Improved decision-making through diverse input</li>
+                        <li>Earlier detection of problems and errors</li>
+                        <li>Enhanced team learning and adaptation</li>
+                        <li>Stronger collective problem-solving</li>
+                    </ul>
+                    <p style="margin: 15px 0;"><strong>Of Silence:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Undetected errors and problems</li>
+                        <li>Reduced learning from mistakes</li>
+                        <li>Groupthink and premature consensus</li>
+                        <li>Erosion of trust and psychological safety</li>
+                    </ul>
+                </div>
+
+                <div class="framework-box" style="background: linear-gradient(135deg, #164e63 0%, #083344 100%);">
+                    <h4>Organizational Consequences</h4>
+                    <p style="margin-bottom: 15px;"><strong>Of Voice:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Innovation through bottom-up ideas</li>
+                        <li>Improved operational efficiency</li>
+                        <li>Better strategic decisions</li>
+                        <li>Organizational learning and adaptation</li>
+                    </ul>
+                    <p style="margin: 15px 0;"><strong>Of Silence:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Strategic blind spots</li>
+                        <li>Failure to detect and correct problems</li>
+                        <li>Reduced innovation</li>
+                        <li>Organizational disasters from unvoiced concerns</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Paradox of Voice Consequences</h2>
+
+                <div class="highlight-box">
+                    <strong>The Fundamental Tension:</strong> Voice can have both positive and negative consequences for the individual speaker—and the outcome is uncertain. This uncertainty is itself a barrier to voice, as risk-averse employees choose the certain outcome of silence over the uncertain outcome of speaking up.
+                </div>
+
+                <p>
+                    Research suggests that consequences depend heavily on:
+                </p>
+                <ul>
+                    <li><strong>How voice is delivered:</strong> Constructive framing, appropriate timing, and respectful delivery improve outcomes</li>
+                    <li><strong>Who delivers it:</strong> High performers and well-liked employees experience better outcomes</li>
+                    <li><strong>Who receives it:</strong> Leader characteristics determine response</li>
+                    <li><strong>Organizational context:</strong> Voice-supportive cultures buffer negative consequences</li>
+                    <li><strong>Content of voice:</strong> Promotive voice typically received better than prohibitive voice</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('#main, #antecedents, #consequences').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+        }
+    </script>
+
+</body>
+</html>
