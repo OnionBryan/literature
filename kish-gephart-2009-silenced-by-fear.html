@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silenced by Fear: The Nature, Sources, and Consequences of Fear at Work - Kish-Gephart et al. (2009)</title>
+    <!--
+      Review of:
+      Kish-Gephart, J. J., Detert, J. R., Treviño, L. K., & Edmondson, A. C. (2009).
+      Silenced by Fear: The Nature, Sources, and Consequences of Fear at Work.
+      Research in Organizational Behavior, 29, 163-193.
+
+      A comprehensive integrative model examining fear as a fundamental barrier to voice,
+      drawing on evolutionary psychology, neuroscience, sociology, and organizational behavior.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 50%, #450a0a 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #450a0a 50%, #1c1917 100%);
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .page-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .page-btn.active { background: white; color: #dc2626; border-color: white; }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover { background: rgba(255, 255, 255, 0.3); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #fecaca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .citation { font-size: 1.2em; opacity: 0.95; margin-bottom: 10px; }
+        .hero .tagline { font-size: 1.15em; opacity: 0.9; max-width: 800px; margin: 15px auto 0; font-style: italic; }
+
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .section-card { background: #1e293b; color: #e2e8f0; }
+
+        .section-card h2 {
+            color: #dc2626;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #dc2626;
+            font-size: 2em;
+        }
+
+        body.dark-mode .section-card h2 { color: #f87171; border-bottom-color: #f87171; }
+
+        .section-card h3 { color: #b91c1c; margin: 25px 0 15px; font-size: 1.5em; }
+        body.dark-mode .section-card h3 { color: #fca5a5; }
+
+        .section-card p, .section-card li { font-size: 1.05rem; margin-bottom: 15px; }
+        body.dark-mode .section-card p, body.dark-mode .section-card li { color: #e2e8f0; }
+
+        .section-card ul, .section-card ol { margin-left: 25px; margin-bottom: 20px; }
+
+        .fear-source-box {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .fear-source-box h4 { font-size: 1.25rem; margin-bottom: 12px; color: white; }
+        .fear-source-box p { color: rgba(255,255,255,0.95); margin: 0; }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .concept-box:hover { transform: translateY(-5px); }
+        .concept-box h4 { font-size: 1.2rem; margin-bottom: 12px; color: white; }
+        .concept-box p { font-size: 0.95rem; color: rgba(255,255,255,0.95); margin: 0; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .comparison-table { background: #0f172a; }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        body.dark-mode .comparison-table td { border-bottom-color: #4a5568; color: #cbd5e0; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 5px solid #dc2626;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .highlight-box { background: #450a0a; color: #fecaca; }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 2.2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+
+        /* SVG Visualization Styles */
+        .svg-container {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            border: 2px solid #dc2626;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        body.dark-mode .svg-container {
+            background: linear-gradient(135deg, #1c1917 0%, #0f172a 100%);
+            border-color: #f87171;
+        }
+
+        .svg-container svg { display: block; margin: 0 auto; }
+
+        /* Interactive Assessment Styles */
+        .assessment-container {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            border: 3px solid #dc2626;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .assessment-container {
+            background: linear-gradient(135deg, #1c1917 0%, #0f172a 100%);
+            border-color: #f87171;
+        }
+
+        .assessment-section {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #fecaca;
+        }
+
+        body.dark-mode .assessment-section { border-bottom-color: #7f1d1d; }
+
+        .assessment-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .assessment-section h4 {
+            color: #dc2626;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark-mode .assessment-section h4 { color: #fca5a5; }
+
+        .question-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .question-item { background: #334155; }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        body.dark-mode .question-text { color: #f1f5f9; }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .likert-option {
+            flex: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .likert-option input[type="radio"] { display: none; }
+
+        .likert-option label {
+            display: block;
+            padding: 12px 8px;
+            background: #fee2e2;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        body.dark-mode .likert-option label { background: #450a0a; color: #fecaca; }
+
+        .likert-option label:hover { background: #fecaca; transform: translateY(-2px); }
+        body.dark-mode .likert-option label:hover { background: #7f1d1d; }
+
+        .likert-option input[type="radio"]:checked + label {
+            background: #dc2626;
+            color: white;
+            border-color: #991b1b;
+            transform: scale(1.05);
+        }
+
+        .results-panel {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .results-panel h3 { color: white; margin-bottom: 20px; }
+
+        .result-category {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .result-category h4 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-badge {
+            background: white;
+            color: #dc2626;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .fear-bar {
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .fear-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fecaca, #f87171, #ef4444);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .result-interpretation {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .result-interpretation h4 { margin-bottom: 15px; }
+        .result-interpretation p { margin: 0; opacity: 0.95; }
+
+        .calculate-btn {
+            background: white;
+            color: #dc2626;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .calculate-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+
+        .reset-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .reset-btn:hover { background: rgba(255,255,255,0.1); }
+
+        /* Fear Cycle Animation */
+        @keyframes pulse-fear {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .fear-pulse { animation: pulse-fear 2s ease-in-out infinite; }
+
+        @keyframes flow-arrow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .flow-arrow {
+            stroke-dasharray: 10, 10;
+            animation: flow-arrow 1s linear infinite;
+        }
+
+        /* Neuroscience diagram styles */
+        .brain-region {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .brain-region:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        .tooltip-text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .brain-region:hover + .tooltip-text,
+        .brain-region:hover ~ .tooltip-text {
+            opacity: 1;
+        }
+
+        .attribution {
+            background: rgba(0,0,0,0.4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a { color: #fca5a5; text-decoration: none; font-weight: 700; }
+
+        /* Fear Type Cards */
+        .fear-type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #dc2626;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .fear-type-card { background: #334155; }
+
+        .fear-type-card:hover { transform: translateX(10px); }
+
+        .fear-type-card h4 {
+            color: #dc2626;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        body.dark-mode .fear-type-card h4 { color: #f87171; }
+
+        .fear-type-card .internal-thought {
+            font-style: italic;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .fear-type-card .internal-thought {
+            background: #1e293b;
+            color: #9ca3af;
+        }
+
+        /* Intervention Strategy Cards */
+        .intervention-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            border: 2px solid #fecaca;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .intervention-card {
+            background: linear-gradient(135deg, #450a0a 0%, #1c1917 100%);
+            border-color: #7f1d1d;
+        }
+
+        .intervention-card h4 {
+            color: #dc2626;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark-mode .intervention-card h4 { color: #fca5a5; }
+
+        .intervention-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .intervention-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #fecaca;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        body.dark-mode .intervention-list li { border-bottom-color: #7f1d1d; }
+
+        .intervention-list li:last-child { border-bottom: none; }
+
+        .check-icon {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-card { padding: 25px; }
+            .likert-scale { flex-direction: column; }
+            .likert-option { min-width: 100%; }
+            .page-btn { padding: 8px 12px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn">Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
+            <button class="page-btn" onclick="switchPage('model', this)">The Model</button>
+            <button class="page-btn" onclick="switchPage('assessment', this)">Fear Assessment</button>
+            <button class="page-btn" onclick="switchPage('implications', this)">Implications</button>
+        </div>
+    </nav>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <!-- PAGE 1: MAIN CONTENT -->
+    <div id="main">
+        <div class="container">
+
+            <section class="hero">
+                <h1>Silenced by Fear:<br>The Nature, Sources, and Consequences of Fear at Work</h1>
+                <p class="citation">Kish-Gephart, J. J., Detert, J. R., Treviño, L. K., & Edmondson, A. C. (2009)<br>Research in Organizational Behavior, 29, 163-193</p>
+                <p class="tagline">
+                    "Even in a work environment of psychological safety, where one generally feels safe speaking up, the deep-rooted fear of challenging authority is not erased."
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Executive Summary</h2>
+
+                <p>
+                    In every organization, employees have the potential to speak up about important issues—yet they often remain silent out of fear. This comprehensive review develops an integrative model of workplace fear, drawing on evolutionary psychology, neuroscience, sociology, and organizational behavior to explain why fear is such a powerful and persistent barrier to voice.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Central Argument:</strong> Fear is a discrete emotion with evolutionary roots that continues to shape workplace behavior. Even in psychologically safe environments, deeply ingrained fear responses can override rational assessments of risk, causing employees to remain silent when they should speak up.
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">489+</div>
+                        <div class="stat-label">Citations</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Sources of Fear</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Types of Silence</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Disciplines Integrated</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Nature of Fear: An Evolutionary Perspective</h2>
+
+                <h3>Fear as Adaptive Response</h3>
+                <p>
+                    The predisposition to learn to fear particular stimuli is central to human survival. Fear evolved as a mechanism to protect us from threats—and the brain's fear circuits don't distinguish between physical dangers and social threats like criticism from authority figures.
+                </p>
+
+                <!-- SVG: Brain Fear Response -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 800 400" style="max-width: 800px;">
+                        <!-- Title -->
+                        <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#dc2626">The Brain's Fear Response System</text>
+
+                        <!-- Threat Stimulus -->
+                        <rect x="50" y="150" width="120" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="110" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">THREAT</text>
+                        <text x="110" y="205" text-anchor="middle" font-size="11" fill="#991b1b">Boss frowning</text>
+                        <text x="110" y="220" text-anchor="middle" font-size="11" fill="#991b1b">Critical tone</text>
+
+                        <!-- Low Road Arrow -->
+                        <path d="M 170 170 Q 280 100 390 150" fill="none" stroke="#dc2626" stroke-width="3" class="flow-arrow"/>
+                        <text x="280" y="100" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">LOW ROAD (Fast)</text>
+                        <text x="280" y="115" text-anchor="middle" font-size="10" fill="#991b1b">12ms - Automatic</text>
+
+                        <!-- High Road Arrow -->
+                        <path d="M 170 210 Q 280 280 390 230" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="280" y="290" text-anchor="middle" font-size="12" fill="#6b7280" font-weight="bold">HIGH ROAD (Slow)</text>
+                        <text x="280" y="305" text-anchor="middle" font-size="10" fill="#6b7280">300ms - Conscious</text>
+
+                        <!-- Amygdala -->
+                        <ellipse cx="430" cy="190" rx="60" ry="50" fill="#dc2626" class="brain-region fear-pulse"/>
+                        <text x="430" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="white">AMYGDALA</text>
+                        <text x="430" y="202" text-anchor="middle" font-size="10" fill="white">Fear Center</text>
+
+                        <!-- Cortex -->
+                        <rect x="380" y="280" width="100" height="50" rx="10" fill="#9ca3af" stroke="#6b7280" stroke-width="2"/>
+                        <text x="430" y="305" text-anchor="middle" font-size="12" font-weight="bold" fill="white">CORTEX</text>
+                        <text x="430" y="320" text-anchor="middle" font-size="9" fill="white">Rational Analysis</text>
+
+                        <!-- Cortex to Amygdala (override attempt) -->
+                        <path d="M 430 280 L 430 245" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-gray)"/>
+                        <text x="460" y="265" font-size="9" fill="#6b7280">Override?</text>
+
+                        <!-- Response Arrow -->
+                        <path d="M 490 190 L 550 190" fill="none" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+                        <!-- Fear Response -->
+                        <rect x="560" y="120" width="180" height="140" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="650" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">FEAR RESPONSE</text>
+                        <text x="650" y="170" text-anchor="middle" font-size="11" fill="#991b1b">Heart rate increases</text>
+                        <text x="650" y="188" text-anchor="middle" font-size="11" fill="#991b1b">Cortisol releases</text>
+                        <text x="650" y="206" text-anchor="middle" font-size="11" fill="#991b1b">Muscles tense</text>
+                        <text x="650" y="224" text-anchor="middle" font-size="11" fill="#991b1b">Freeze response</text>
+                        <text x="650" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">= SILENCE</text>
+
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+                            </marker>
+                            <marker id="arrowhead-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Annotation -->
+                        <rect x="50" y="340" width="700" height="45" rx="5" fill="#fee2e2" opacity="0.8"/>
+                        <text x="400" y="360" text-anchor="middle" font-size="12" fill="#991b1b">
+                            <tspan font-weight="bold">Key Insight:</tspan> The amygdala processes threat 25x faster than the cortex can analyze it.
+                        </text>
+                        <text x="400" y="378" text-anchor="middle" font-size="11" fill="#991b1b">You feel afraid BEFORE you can rationally evaluate whether the threat is real.</text>
+                    </svg>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Automatic Fear Response</h4>
+                        <p>Fear triggers automatic physiological responses (increased heart rate, cortisol release) before conscious thought occurs. This means employees can feel afraid before they consciously evaluate whether fear is warranted.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Learned Fear</h4>
+                        <p>Learning provides the opportunity for individuals to respond automatically to perceived danger without needing to continuously re-learn which stimuli are dangerous. One bad experience with authority can create lasting fear.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Fear Generalization</h4>
+                        <p>Fear learned in one context (childhood, school, previous jobs) generalizes to new contexts. Employees bring their accumulated fear experiences to every new workplace.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Resistance to Extinction</h4>
+                        <p>Unlike positive emotions, fear is remarkably resistant to change. A single bad experience can re-trigger fear responses that had been dormant for years.</p>
+                    </div>
+                </div>
+
+                <h3>The Neuroscience of Fear</h3>
+                <p>
+                    The amygdala, the brain's fear center, processes threat information faster than the cortex can engage in conscious reasoning. This means:
+                </p>
+                <ul>
+                    <li><strong>Speed over accuracy:</strong> The brain prioritizes fast threat detection over careful analysis</li>
+                    <li><strong>False positives are costly but survivable:</strong> Being afraid of something harmless wastes energy but keeps you alive</li>
+                    <li><strong>False negatives can be fatal:</strong> Failing to fear a real threat can kill you—so the brain errs on the side of fear</li>
+                    <li><strong>Social threats activate same circuits:</strong> Criticism from a boss activates the same fear circuits as physical danger</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2>Three Sources of Workplace Fear</h2>
+
+                <div class="fear-source-box">
+                    <h4>1. Dispositional Sources (Individual Differences)</h4>
+                    <p>Some individuals are more prone to fear due to personality traits, prior experiences, or neurobiological factors. High trait anxiety, low self-esteem, and histories of punishment for speaking up create a predisposition toward workplace fear. These factors travel with the employee across jobs and contexts.</p>
+                </div>
+
+                <div class="fear-source-box">
+                    <h4>2. Contextual Sources (Work Environment)</h4>
+                    <p>Organizational hierarchy creates inherent power asymmetries. Bosses control rewards, punishments, and career outcomes. Even well-intentioned leaders create fear simply by occupying positions of power. Organizational cultures that punish messengers amplify this effect. Observing colleagues being punished for speaking up creates vicarious fear.</p>
+                </div>
+
+                <div class="fear-source-box">
+                    <h4>3. Evolutionary Sources (Human Nature)</h4>
+                    <p>Humans evolved in hierarchical groups where challenging dominant individuals carried real risks. Deference to authority was adaptive—and those instincts remain. We are biologically primed to be cautious around those with power over us, regardless of their actual intentions or behavior.</p>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Origin</th>
+                            <th>Malleability</th>
+                            <th>Intervention Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dispositional</strong></td>
+                            <td>Individual psychology & history</td>
+                            <td>Low (but can be managed)</td>
+                            <td>Selection, coaching, therapy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contextual</strong></td>
+                            <td>Organization & leadership</td>
+                            <td>Moderate</td>
+                            <td>Culture change, leader behavior</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evolutionary</strong></td>
+                            <td>Human evolution</td>
+                            <td>Very low</td>
+                            <td>Awareness, compensation strategies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>Types of Fear-Based Silence</h2>
+
+                <p>The authors identify different forms of silence that result from workplace fear:</p>
+
+                <div class="fear-type-card">
+                    <h4>Acquiescent Silence</h4>
+                    <p>Passive withholding based on resignation and feeling unable to make a difference.</p>
+                    <div class="internal-thought">"Why bother? Nothing will change anyway."</div>
+                </div>
+
+                <div class="fear-type-card">
+                    <h4>Defensive Silence</h4>
+                    <p>Active withholding to protect oneself from punishment or negative consequences.</p>
+                    <div class="internal-thought">"Speaking up will hurt my career."</div>
+                </div>
+
+                <div class="fear-type-card">
+                    <h4>ProSocial Silence</h4>
+                    <p>Withholding information to protect others or the organization.</p>
+                    <div class="internal-thought">"Raising this will embarrass my colleague."</div>
+                </div>
+
+                <div class="fear-type-card">
+                    <h4>Diffident Silence</h4>
+                    <p>Withholding due to lack of confidence in one's ideas.</p>
+                    <div class="internal-thought">"My opinion probably isn't valuable enough to share."</div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Key Insights</h2>
+
+                <h3>Psychological Safety Is Necessary But Not Sufficient</h3>
+                <div class="highlight-box">
+                    <p>"Even in a work environment of psychological safety, where one generally feels safe speaking up, the deep-rooted fear of challenging authority is not erased. A single bad experience with authority—direct or indirect—will likely re-trigger the automatic fear response."</p>
+                </div>
+
+                <h3>The Pervasiveness of Fear-Based Silence</h3>
+                <p>
+                    Despite being identified as a pervasive emotion in the modern workplace, fear has not received corresponding attention from management researchers. This paper argues that fear deserves central attention in theories of organizational behavior because:
+                </p>
+                <ul>
+                    <li>It operates at multiple levels (individual, group, organization)</li>
+                    <li>It has deep evolutionary and neurobiological roots</li>
+                    <li>It is remarkably resistant to change</li>
+                    <li>It affects behavior even when consciously overridden</li>
+                    <li>It compounds over time through learned associations</li>
+                </ul>
+
+                <h3>The Context of Organizational Hierarchy</h3>
+                <p>
+                    Individuals make voice decisions within the context of organizational hierarchy, where "bosses who do not wish to hear about problems can punish people for speaking up" and within "a social system that has implicit norms about the desirability of speaking up." This dual context—formal hierarchy plus informal norms—creates a powerful silencing force.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>References</h2>
+                <ul>
+                    <li>Kish-Gephart, J. J., Detert, J. R., Treviño, L. K., & Edmondson, A. C. (2009). Silenced by fear: The nature, sources, and consequences of fear at work. <em>Research in Organizational Behavior</em>, 29, 163-193.</li>
+                    <li>Gray, J. A. (1987). <em>The psychology of fear and stress</em> (2nd ed.). Cambridge University Press.</li>
+                    <li>LeDoux, J. E. (1996). <em>The emotional brain</em>. Simon & Schuster.</li>
+                    <li>Edmondson, A. C. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly</em>, 44(2), 350-383.</li>
+                    <li>Morrison, E. W., & Milliken, F. J. (2000). Organizational silence: A barrier to change and development in a pluralistic world. <em>Academy of Management Review</em>, 25(4), 706-725.</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p>Analysis created for the Literature Explorer.<br>
+                Based on: Kish-Gephart et al. (2009). Silenced by Fear.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAGE 2: THE MODEL -->
+    <div id="model" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>The Integrative Model of Fear and Silence</h1>
+                <p class="tagline">Understanding how fear sources interact to produce workplace silence</p>
+            </section>
+
+            <section class="section-card">
+                <h2>The Multi-Level Model</h2>
+
+                <!-- SVG: Complete Model Diagram -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 900 500" style="max-width: 900px;">
+                        <defs>
+                            <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+                            </marker>
+                            <marker id="arrow-white" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#fff"/>
+                            </marker>
+                            <linearGradient id="fearGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#fee2e2"/>
+                                <stop offset="50%" style="stop-color:#fecaca"/>
+                                <stop offset="100%" style="stop-color:#dc2626"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Title -->
+                        <text x="450" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#dc2626">Fear → Silence Integrative Model</text>
+
+                        <!-- SOURCES COLUMN -->
+                        <text x="100" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#991b1b">SOURCES</text>
+
+                        <!-- Dispositional -->
+                        <rect x="20" y="90" width="160" height="100" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="100" y="115" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">DISPOSITIONAL</text>
+                        <text x="100" y="135" text-anchor="middle" font-size="10" fill="#666">Trait anxiety</text>
+                        <text x="100" y="150" text-anchor="middle" font-size="10" fill="#666">Low self-esteem</text>
+                        <text x="100" y="165" text-anchor="middle" font-size="10" fill="#666">Past experiences</text>
+                        <text x="100" y="180" text-anchor="middle" font-size="10" fill="#666">Neuroticism</text>
+
+                        <!-- Contextual -->
+                        <rect x="20" y="210" width="160" height="100" rx="10" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="100" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">CONTEXTUAL</text>
+                        <text x="100" y="255" text-anchor="middle" font-size="10" fill="#666">Leader behavior</text>
+                        <text x="100" y="270" text-anchor="middle" font-size="10" fill="#666">Org culture</text>
+                        <text x="100" y="285" text-anchor="middle" font-size="10" fill="#666">Power distance</text>
+                        <text x="100" y="300" text-anchor="middle" font-size="10" fill="#666">Vicarious punishment</text>
+
+                        <!-- Evolutionary -->
+                        <rect x="20" y="330" width="160" height="100" rx="10" fill="#f87171" stroke="#991b1b" stroke-width="2"/>
+                        <text x="100" y="355" text-anchor="middle" font-size="13" font-weight="bold" fill="white">EVOLUTIONARY</text>
+                        <text x="100" y="375" text-anchor="middle" font-size="10" fill="white">Hierarchy instincts</text>
+                        <text x="100" y="390" text-anchor="middle" font-size="10" fill="white">Status protection</text>
+                        <text x="100" y="405" text-anchor="middle" font-size="10" fill="white">Group belonging</text>
+                        <text x="100" y="420" text-anchor="middle" font-size="10" fill="white">Survival circuits</text>
+
+                        <!-- Interaction arrows between sources -->
+                        <path d="M 100 190 C 100 200, 100 200, 100 210" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="3,3"/>
+                        <path d="M 100 310 C 100 320, 100 320, 100 330" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="3,3"/>
+
+                        <!-- Arrow to Fear Experience -->
+                        <path d="M 180 240 L 250 240" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+                        <!-- FEAR EXPERIENCE -->
+                        <text x="350" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#991b1b">FEAR EXPERIENCE</text>
+
+                        <rect x="260" y="90" width="180" height="340" rx="15" fill="#dc2626"/>
+
+                        <!-- Physiological -->
+                        <rect x="275" y="105" width="150" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="350" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PHYSIOLOGICAL</text>
+                        <text x="350" y="145" text-anchor="middle" font-size="10" fill="white">Heart rate ↑</text>
+                        <text x="350" y="160" text-anchor="middle" font-size="10" fill="white">Cortisol release</text>
+                        <text x="350" y="175" text-anchor="middle" font-size="10" fill="white">Muscle tension</text>
+
+                        <!-- Cognitive -->
+                        <rect x="275" y="195" width="150" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="350" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="white">COGNITIVE</text>
+                        <text x="350" y="235" text-anchor="middle" font-size="10" fill="white">Threat focus</text>
+                        <text x="350" y="250" text-anchor="middle" font-size="10" fill="white">Risk amplification</text>
+                        <text x="350" y="265" text-anchor="middle" font-size="10" fill="white">Memory of past harm</text>
+
+                        <!-- Behavioral -->
+                        <rect x="275" y="285" width="150" height="80" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="350" y="305" text-anchor="middle" font-size="12" font-weight="bold" fill="white">BEHAVIORAL</text>
+                        <text x="350" y="325" text-anchor="middle" font-size="10" fill="white">Fight/Flight/Freeze</text>
+                        <text x="350" y="340" text-anchor="middle" font-size="10" fill="white">Avoidance</text>
+                        <text x="350" y="355" text-anchor="middle" font-size="10" fill="white">Withdrawal</text>
+
+                        <!-- Motivational -->
+                        <rect x="275" y="375" width="150" height="45" rx="8" fill="rgba(255,255,255,0.3)"/>
+                        <text x="350" y="395" text-anchor="middle" font-size="12" font-weight="bold" fill="white">MOTIVATIONAL</text>
+                        <text x="350" y="412" text-anchor="middle" font-size="10" fill="white">Self-protection drive</text>
+
+                        <!-- Arrow to Silence -->
+                        <path d="M 440 240 L 510 240" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+                        <!-- SILENCE TYPES -->
+                        <text x="600" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#991b1b">SILENCE TYPES</text>
+
+                        <rect x="520" y="90" width="160" height="75" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="600" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">ACQUIESCENT</text>
+                        <text x="600" y="135" text-anchor="middle" font-size="10" fill="#666">"Why bother?"</text>
+                        <text x="600" y="150" text-anchor="middle" font-size="9" fill="#666">Resignation, hopelessness</text>
+
+                        <rect x="520" y="175" width="160" height="75" rx="10" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="600" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">DEFENSIVE</text>
+                        <text x="600" y="220" text-anchor="middle" font-size="10" fill="#666">"Too risky"</text>
+                        <text x="600" y="235" text-anchor="middle" font-size="9" fill="#666">Self-protection focus</text>
+
+                        <rect x="520" y="260" width="160" height="75" rx="10" fill="#f87171" stroke="#991b1b" stroke-width="2"/>
+                        <text x="600" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PROSOCIAL</text>
+                        <text x="600" y="305" text-anchor="middle" font-size="10" fill="white">"Protect others"</text>
+                        <text x="600" y="320" text-anchor="middle" font-size="9" fill="white">Altruistic withholding</text>
+
+                        <rect x="520" y="345" width="160" height="75" rx="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+                        <text x="600" y="370" text-anchor="middle" font-size="12" font-weight="bold" fill="white">DIFFIDENT</text>
+                        <text x="600" y="390" text-anchor="middle" font-size="10" fill="white">"Not worthy"</text>
+                        <text x="600" y="405" text-anchor="middle" font-size="9" fill="white">Self-doubt driven</text>
+
+                        <!-- Arrow to Consequences -->
+                        <path d="M 680 240 L 750 240" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+                        <!-- CONSEQUENCES -->
+                        <text x="820" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#991b1b">CONSEQUENCES</text>
+
+                        <rect x="760" y="90" width="120" height="340" rx="10" fill="#450a0a"/>
+
+                        <text x="820" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#fca5a5">INDIVIDUAL</text>
+                        <text x="820" y="145" text-anchor="middle" font-size="9" fill="#fecaca">Stress & burnout</text>
+                        <text x="820" y="160" text-anchor="middle" font-size="9" fill="#fecaca">Disengagement</text>
+                        <text x="820" y="175" text-anchor="middle" font-size="9" fill="#fecaca">Career stagnation</text>
+
+                        <line x1="775" y1="195" x2="865" y2="195" stroke="#7f1d1d" stroke-width="1"/>
+
+                        <text x="820" y="220" text-anchor="middle" font-size="11" font-weight="bold" fill="#fca5a5">TEAM</text>
+                        <text x="820" y="240" text-anchor="middle" font-size="9" fill="#fecaca">Poor decisions</text>
+                        <text x="820" y="255" text-anchor="middle" font-size="9" fill="#fecaca">Hidden problems</text>
+                        <text x="820" y="270" text-anchor="middle" font-size="9" fill="#fecaca">Lost innovation</text>
+
+                        <line x1="775" y1="290" x2="865" y2="290" stroke="#7f1d1d" stroke-width="1"/>
+
+                        <text x="820" y="315" text-anchor="middle" font-size="11" font-weight="bold" fill="#fca5a5">ORGANIZATION</text>
+                        <text x="820" y="335" text-anchor="middle" font-size="9" fill="#fecaca">Failed change</text>
+                        <text x="820" y="350" text-anchor="middle" font-size="9" fill="#fecaca">Ethical failures</text>
+                        <text x="820" y="365" text-anchor="middle" font-size="9" fill="#fecaca">Accidents</text>
+                        <text x="820" y="380" text-anchor="middle" font-size="9" fill="#fecaca">Scandals</text>
+
+                        <!-- Feedback loop -->
+                        <path d="M 820 430 C 820 470, 100 470, 100 430" stroke="#991b1b" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrow-red)"/>
+                        <text x="450" y="480" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Reinforcing Feedback Loop: Consequences strengthen fear sources</text>
+                    </svg>
+                </div>
+
+                <h3>How the Sources Interact</h3>
+                <p>The three sources of fear don't operate independently—they interact and amplify each other:</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Interaction</th>
+                            <th>Mechanism</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dispositional × Contextual</strong></td>
+                            <td>Individual differences determine sensitivity to context</td>
+                            <td>High-anxiety individuals are more affected by punitive cultures</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contextual × Evolutionary</strong></td>
+                            <td>Organizational hierarchy activates evolved deference instincts</td>
+                            <td>Formal authority triggers automatic submission responses</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dispositional × Evolutionary</strong></td>
+                            <td>Individual learning history shapes evolutionary fear expression</td>
+                            <td>Past punishment for challenging authority strengthens deference</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>The Fear Re-Triggering Cycle</h2>
+                <p>One of the paper's key insights is how easily fear can be re-triggered:</p>
+
+                <!-- SVG: Re-triggering Cycle -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 700 400" style="max-width: 700px;">
+                        <defs>
+                            <marker id="cycle-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+                            </marker>
+                        </defs>
+
+                        <text x="350" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#dc2626">The Fear Re-Triggering Cycle</text>
+
+                        <!-- Center circle - Fear -->
+                        <circle cx="350" cy="200" r="60" fill="#dc2626" class="fear-pulse"/>
+                        <text x="350" y="195" text-anchor="middle" font-size="16" font-weight="bold" fill="white">FEAR</text>
+                        <text x="350" y="215" text-anchor="middle" font-size="11" fill="white">Response</text>
+
+                        <!-- Stage 1: Initial Experience -->
+                        <circle cx="150" cy="100" r="50" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="150" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">1. INITIAL</text>
+                        <text x="150" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">EXPERIENCE</text>
+                        <text x="150" y="125" text-anchor="middle" font-size="9" fill="#666">Punishment for</text>
+                        <text x="150" y="138" text-anchor="middle" font-size="9" fill="#666">speaking up</text>
+
+                        <!-- Stage 2: Conditioning -->
+                        <circle cx="550" cy="100" r="50" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="550" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">2. FEAR</text>
+                        <text x="550" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">CONDITIONING</text>
+                        <text x="550" y="125" text-anchor="middle" font-size="9" fill="#666">Brain links voice</text>
+                        <text x="550" y="138" text-anchor="middle" font-size="9" fill="#666">with threat</text>
+
+                        <!-- Stage 3: Apparent Extinction -->
+                        <circle cx="550" cy="300" r="50" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+                        <text x="550" y="290" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">3. APPARENT</text>
+                        <text x="550" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">EXTINCTION</text>
+                        <text x="550" y="325" text-anchor="middle" font-size="9" fill="#666">Safe environment</text>
+                        <text x="550" y="338" text-anchor="middle" font-size="9" fill="#666">Fear seems gone</text>
+
+                        <!-- Stage 4: Re-trigger Event -->
+                        <circle cx="150" cy="300" r="50" fill="#f87171" stroke="#dc2626" stroke-width="2"/>
+                        <text x="150" y="290" text-anchor="middle" font-size="11" font-weight="bold" fill="white">4. RE-TRIGGER</text>
+                        <text x="150" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="white">EVENT</text>
+                        <text x="150" y="325" text-anchor="middle" font-size="9" fill="white">Single negative</text>
+                        <text x="150" y="338" text-anchor="middle" font-size="9" fill="white">experience</text>
+
+                        <!-- Arrows connecting stages -->
+                        <path d="M 200 100 Q 350 50 500 100" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#cycle-arrow)"/>
+                        <path d="M 550 150 L 550 250" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#cycle-arrow)"/>
+                        <path d="M 500 300 Q 350 350 200 300" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#cycle-arrow)"/>
+                        <path d="M 150 250 L 150 150" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#cycle-arrow)"/>
+
+                        <!-- Arrows to center -->
+                        <path d="M 200 130 L 295 175" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+                        <path d="M 500 130 L 405 175" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+                        <path d="M 200 270 L 295 225" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+
+                        <!-- Key insight box -->
+                        <rect x="100" y="365" width="500" height="30" rx="5" fill="#fee2e2"/>
+                        <text x="350" y="385" text-anchor="middle" font-size="11" fill="#991b1b">
+                            <tspan font-weight="bold">Key:</tspan> Fear is never truly "gone" — it's only suppressed and waiting to be re-triggered
+                        </text>
+                    </svg>
+                </div>
+
+                <div class="highlight-box">
+                    <ol>
+                        <li><strong>Initial learning:</strong> Employee experiences punishment for speaking up (directly or vicariously)</li>
+                        <li><strong>Fear conditioning:</strong> Brain associates speaking up with threat</li>
+                        <li><strong>Apparent extinction:</strong> In safe environment, fear seems to fade</li>
+                        <li><strong>Re-triggering:</strong> Single negative experience reactivates full fear response</li>
+                        <li><strong>Generalization:</strong> Fear spreads to new contexts and authority figures</li>
+                    </ol>
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: INTERACTIVE FEAR ASSESSMENT -->
+    <div id="assessment" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Workplace Fear Self-Assessment</h1>
+                <p class="tagline">Evaluate your personal fear profile across dispositional, contextual, and evolutionary sources</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Your Fear Profile Assessment</h2>
+                <p>Rate each statement based on how true it is for you. This assessment helps you understand which sources of fear most affect your workplace voice behavior.</p>
+
+                <div class="assessment-container">
+                    <!-- Dispositional Sources -->
+                    <div class="assessment-section">
+                        <h4>Section A: Dispositional Sources (Personal History & Traits)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">1. I generally consider myself an anxious person.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_1" name="q1" value="1">
+                                    <label for="q1_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_2" name="q1" value="2">
+                                    <label for="q1_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_3" name="q1" value="3">
+                                    <label for="q1_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_4" name="q1" value="4">
+                                    <label for="q1_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_5" name="q1" value="5">
+                                    <label for="q1_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">2. I have been punished or criticized in the past for speaking up at work or school.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_1" name="q2" value="1">
+                                    <label for="q2_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_2" name="q2" value="2">
+                                    <label for="q2_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_3" name="q2" value="3">
+                                    <label for="q2_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_4" name="q2" value="4">
+                                    <label for="q2_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_5" name="q2" value="5">
+                                    <label for="q2_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">3. I often doubt whether my ideas are good enough to share.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_1" name="q3" value="1">
+                                    <label for="q3_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_2" name="q3" value="2">
+                                    <label for="q3_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_3" name="q3" value="3">
+                                    <label for="q3_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_4" name="q3" value="4">
+                                    <label for="q3_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_5" name="q3" value="5">
+                                    <label for="q3_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">4. Growing up, I learned it was safer to stay quiet than to challenge authority.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_1" name="q4" value="1">
+                                    <label for="q4_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_2" name="q4" value="2">
+                                    <label for="q4_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_3" name="q4" value="3">
+                                    <label for="q4_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_4" name="q4" value="4">
+                                    <label for="q4_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_5" name="q4" value="5">
+                                    <label for="q4_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contextual Sources -->
+                    <div class="assessment-section">
+                        <h4>Section B: Contextual Sources (Current Work Environment)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">5. In my current workplace, people who speak up about problems often face negative consequences.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_1" name="q5" value="1">
+                                    <label for="q5_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_2" name="q5" value="2">
+                                    <label for="q5_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_3" name="q5" value="3">
+                                    <label for="q5_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_4" name="q5" value="4">
+                                    <label for="q5_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_5" name="q5" value="5">
+                                    <label for="q5_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">6. My direct supervisor reacts defensively or negatively when receiving criticism or concerns.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_1" name="q6" value="1">
+                                    <label for="q6_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_2" name="q6" value="2">
+                                    <label for="q6_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_3" name="q6" value="3">
+                                    <label for="q6_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_4" name="q6" value="4">
+                                    <label for="q6_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_5" name="q6" value="5">
+                                    <label for="q6_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">7. I have witnessed colleagues being punished, marginalized, or fired after raising concerns.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_1" name="q7" value="1">
+                                    <label for="q7_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_2" name="q7" value="2">
+                                    <label for="q7_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_3" name="q7" value="3">
+                                    <label for="q7_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_4" name="q7" value="4">
+                                    <label for="q7_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_5" name="q7" value="5">
+                                    <label for="q7_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">8. There is a strong hierarchy in my organization where status differences are emphasized.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_1" name="q8" value="1">
+                                    <label for="q8_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_2" name="q8" value="2">
+                                    <label for="q8_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_3" name="q8" value="3">
+                                    <label for="q8_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_4" name="q8" value="4">
+                                    <label for="q8_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_5" name="q8" value="5">
+                                    <label for="q8_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evolutionary Sources -->
+                    <div class="assessment-section">
+                        <h4>Section C: Evolutionary Sources (Instinctive Responses)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">9. I feel physically uncomfortable (tense, heart racing) when I consider disagreeing with a superior.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_1" name="q9" value="1">
+                                    <label for="q9_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_2" name="q9" value="2">
+                                    <label for="q9_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_3" name="q9" value="3">
+                                    <label for="q9_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_4" name="q9" value="4">
+                                    <label for="q9_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_5" name="q9" value="5">
+                                    <label for="q9_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">10. I instinctively defer to people in positions of authority, even when I disagree.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q10_1" name="q10" value="1">
+                                    <label for="q10_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q10_2" name="q10" value="2">
+                                    <label for="q10_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q10_3" name="q10" value="3">
+                                    <label for="q10_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q10_4" name="q10" value="4">
+                                    <label for="q10_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q10_5" name="q10" value="5">
+                                    <label for="q10_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">11. I worry about being seen as "not a team player" if I raise concerns.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q11_1" name="q11" value="1">
+                                    <label for="q11_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q11_2" name="q11" value="2">
+                                    <label for="q11_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q11_3" name="q11" value="3">
+                                    <label for="q11_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q11_4" name="q11" value="4">
+                                    <label for="q11_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q11_5" name="q11" value="5">
+                                    <label for="q11_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">12. Deep down, I believe that challenging those with more power is inherently risky.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q12_1" name="q12" value="1">
+                                    <label for="q12_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q12_2" name="q12" value="2">
+                                    <label for="q12_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q12_3" name="q12" value="3">
+                                    <label for="q12_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q12_4" name="q12" value="4">
+                                    <label for="q12_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q12_5" name="q12" value="5">
+                                    <label for="q12_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateFearProfile()">Calculate My Fear Profile</button>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel" id="resultsPanel" style="display: none;">
+                    <h3>Your Workplace Fear Profile</h3>
+
+                    <div class="result-category">
+                        <h4>Dispositional Fear <span class="score-badge" id="dispositionalScore">--</span></h4>
+                        <p id="dispositionalDesc">Your personal history and traits contribution to workplace fear.</p>
+                        <div class="fear-bar">
+                            <div class="fear-bar-fill" id="dispositionalBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-category">
+                        <h4>Contextual Fear <span class="score-badge" id="contextualScore">--</span></h4>
+                        <p id="contextualDesc">How your current work environment contributes to your fear.</p>
+                        <div class="fear-bar">
+                            <div class="fear-bar-fill" id="contextualBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-category">
+                        <h4>Evolutionary Fear <span class="score-badge" id="evolutionaryScore">--</span></h4>
+                        <p id="evolutionaryDesc">Your instinctive, hard-wired fear responses to hierarchy.</p>
+                        <div class="fear-bar">
+                            <div class="fear-bar-fill" id="evolutionaryBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-category">
+                        <h4>Overall Fear Level <span class="score-badge" id="overallScore">--</span></h4>
+                        <p>Your combined workplace fear profile.</p>
+                        <div class="fear-bar">
+                            <div class="fear-bar-fill" id="overallBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-interpretation" id="interpretation">
+                        <h4>What This Means For You</h4>
+                        <p id="interpretationText">Complete the assessment to see your personalized interpretation.</p>
+                    </div>
+
+                    <button class="reset-btn" onclick="resetAssessment()">Reset Assessment</button>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Understanding Your Results</h2>
+
+                <h3>Score Interpretation Guide</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Score Range</th>
+                            <th>Level</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>4-8</strong></td>
+                            <td>Low</td>
+                            <td>This fear source has minimal impact on your voice behavior</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9-12</strong></td>
+                            <td>Moderate</td>
+                            <td>This source contributes to some hesitation around speaking up</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13-16</strong></td>
+                            <td>High</td>
+                            <td>This source significantly inhibits your willingness to speak up</td>
+                        </tr>
+                        <tr>
+                            <td><strong>17-20</strong></td>
+                            <td>Very High</td>
+                            <td>This source is a major barrier to voice and needs attention</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>What To Do With Your Results</h3>
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>High Dispositional Score?</h4>
+                        <p>Consider personal development work: therapy, coaching, or self-reflection on past experiences. Build self-esteem through small voice wins.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>High Contextual Score?</h4>
+                        <p>Your environment may genuinely be unsafe. Consider whether this organization deserves your voice, or focus on finding safer channels.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>High Evolutionary Score?</h4>
+                        <p>Your fear is human and normal. Use conscious strategies to override instincts: prepare thoroughly, practice, and start with low-stakes voice.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: IMPLICATIONS -->
+    <div id="implications" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Practical Implications</h1>
+                <p class="tagline">What organizations, leaders, and individuals can do about fear-based silence</p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Organizations</h2>
+
+                <h3>Accept That Fear Cannot Be Eliminated</h3>
+                <p>
+                    Because fear has evolutionary roots and is remarkably resistant to change, organizations should not aim to eliminate fear entirely. Instead, they should:
+                </p>
+
+                <div class="intervention-card">
+                    <h4>Realistic Fear Management Strategies</h4>
+                    <ul class="intervention-list">
+                        <li><span class="check-icon">+</span> Create conditions where fear is minimized (though never eliminated)</li>
+                        <li><span class="check-icon">+</span> Provide alternative channels for voice that feel safer (anonymous systems, ombudspersons)</li>
+                        <li><span class="check-icon">+</span> Acknowledge that even supportive environments trigger fear responses</li>
+                        <li><span class="check-icon">+</span> Design systems that compensate for fear-based silence (proactive inquiry, structured input)</li>
+                        <li><span class="check-icon">+</span> Train managers to actively solicit input rather than waiting for it</li>
+                    </ul>
+                </div>
+
+                <h3>Address All Three Sources</h3>
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Dispositional Interventions</h4>
+                        <p>Consider fear-proneness in selection. Provide coaching and support for anxious employees. Create psychological safety training that addresses individual fears.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Contextual Interventions</h4>
+                        <p>Train leaders to respond positively to voice. Publicly reward those who speak up. Protect messengers. Remove punitive elements from culture.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Evolutionary Interventions</h4>
+                        <p>Educate employees about evolutionary fear responses. Normalize fear as natural, not shameful. Create structures that reduce hierarchy salience.</p>
+                    </div>
+                </div>
+
+                <!-- SVG: Intervention Matrix -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 800 350" style="max-width: 800px;">
+                        <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#dc2626">Organizational Intervention Matrix</text>
+
+                        <!-- Column Headers -->
+                        <text x="200" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Selection</text>
+                        <text x="400" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Development</text>
+                        <text x="600" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Systems</text>
+
+                        <!-- Row Headers -->
+                        <text x="50" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626" transform="rotate(-90, 50, 130)">Dispositional</text>
+                        <text x="50" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626" transform="rotate(-90, 50, 210)">Contextual</text>
+                        <text x="50" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626" transform="rotate(-90, 50, 290)">Evolutionary</text>
+
+                        <!-- Grid Cells -->
+                        <!-- Row 1: Dispositional -->
+                        <rect x="100" y="90" width="180" height="60" rx="5" fill="#fee2e2" stroke="#dc2626"/>
+                        <text x="190" y="115" text-anchor="middle" font-size="10" fill="#666">Assess trait anxiety</text>
+                        <text x="190" y="130" text-anchor="middle" font-size="10" fill="#666">Voice history screening</text>
+
+                        <rect x="300" y="90" width="180" height="60" rx="5" fill="#fecaca" stroke="#dc2626"/>
+                        <text x="390" y="115" text-anchor="middle" font-size="10" fill="#666">Coaching programs</text>
+                        <text x="390" y="130" text-anchor="middle" font-size="10" fill="#666">Confidence building</text>
+
+                        <rect x="500" y="90" width="180" height="60" rx="5" fill="#f87171" stroke="#dc2626"/>
+                        <text x="590" y="115" text-anchor="middle" font-size="10" fill="white">EAP resources</text>
+                        <text x="590" y="130" text-anchor="middle" font-size="10" fill="white">Mentoring programs</text>
+
+                        <!-- Row 2: Contextual -->
+                        <rect x="100" y="170" width="180" height="60" rx="5" fill="#fee2e2" stroke="#dc2626"/>
+                        <text x="190" y="195" text-anchor="middle" font-size="10" fill="#666">Leader assessment</text>
+                        <text x="190" y="210" text-anchor="middle" font-size="10" fill="#666">Culture fit evaluation</text>
+
+                        <rect x="300" y="170" width="180" height="60" rx="5" fill="#fecaca" stroke="#dc2626"/>
+                        <text x="390" y="195" text-anchor="middle" font-size="10" fill="#666">Leadership training</text>
+                        <text x="390" y="210" text-anchor="middle" font-size="10" fill="#666">Response coaching</text>
+
+                        <rect x="500" y="170" width="180" height="60" rx="5" fill="#f87171" stroke="#dc2626"/>
+                        <text x="590" y="195" text-anchor="middle" font-size="10" fill="white">Anonymous channels</text>
+                        <text x="590" y="210" text-anchor="middle" font-size="10" fill="white">Reward for voice</text>
+
+                        <!-- Row 3: Evolutionary -->
+                        <rect x="100" y="250" width="180" height="60" rx="5" fill="#fee2e2" stroke="#dc2626"/>
+                        <text x="190" y="275" text-anchor="middle" font-size="10" fill="#666">Limited impact</text>
+                        <text x="190" y="290" text-anchor="middle" font-size="10" fill="#666">(universal trait)</text>
+
+                        <rect x="300" y="250" width="180" height="60" rx="5" fill="#fecaca" stroke="#dc2626"/>
+                        <text x="390" y="275" text-anchor="middle" font-size="10" fill="#666">Fear awareness training</text>
+                        <text x="390" y="290" text-anchor="middle" font-size="10" fill="#666">Override strategies</text>
+
+                        <rect x="500" y="250" width="180" height="60" rx="5" fill="#f87171" stroke="#dc2626"/>
+                        <text x="590" y="275" text-anchor="middle" font-size="10" fill="white">Flat structures</text>
+                        <text x="590" y="290" text-anchor="middle" font-size="10" fill="white">Proactive inquiry</text>
+
+                        <!-- Impact indicators -->
+                        <text x="700" y="120" font-size="20" fill="#16a34a">★</text>
+                        <text x="700" y="200" font-size="20" fill="#16a34a">★★★</text>
+                        <text x="700" y="280" font-size="20" fill="#16a34a">★★</text>
+
+                        <text x="750" y="130" font-size="9" fill="#666">Low</text>
+                        <text x="750" y="200" font-size="9" fill="#666">High</text>
+                        <text x="750" y="280" font-size="9" fill="#666">Med</text>
+
+                        <text x="730" y="330" text-anchor="middle" font-size="10" fill="#666">Malleability</text>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>For Leaders</h2>
+
+                <h3>Recognize Your Inherent Fear-Inducing Power</h3>
+                <p>
+                    Even well-intentioned, supportive leaders create fear simply by occupying positions of authority. The evolutionary response to hierarchy is automatic—employees will feel some fear of you regardless of your behavior.
+                </p>
+
+                <div class="intervention-card">
+                    <h4>Leader Action Checklist</h4>
+                    <ul class="intervention-list">
+                        <li><span class="check-icon">+</span> <strong>Assume fear exists:</strong> Don't wait for employees to come to you—proactively ask for concerns</li>
+                        <li><span class="check-icon">+</span> <strong>Respond positively consistently:</strong> One negative reaction can undo months of positive ones</li>
+                        <li><span class="check-icon">+</span> <strong>Thank messengers publicly:</strong> Make it visibly safe to bring bad news</li>
+                        <li><span class="check-icon">+</span> <strong>Model vulnerability:</strong> Admit your own mistakes and uncertainties</li>
+                        <li><span class="check-icon">+</span> <strong>Watch for re-triggering:</strong> After any negative event, actively rebuild safety</li>
+                        <li><span class="check-icon">+</span> <strong>Create structural safety:</strong> Use skip-levels, anonymous surveys, and ombudspersons</li>
+                    </ul>
+                </div>
+
+                <h3>The 10:1 Recovery Ratio</h3>
+                <div class="highlight-box">
+                    <p><strong>Research suggests it takes approximately 10 positive experiences to overcome 1 negative experience when it comes to fear conditioning.</strong> This means that a single punitive response to employee voice can require months of consistent positive behavior to repair. Leaders must be vigilant about every interaction.</p>
+                </div>
+
+                <h3>Watch for Re-Triggering Events</h3>
+                <p>
+                    Be especially vigilant after any event that might re-trigger fear: organizational changes, layoffs, public criticism of an employee, or any punishment that might be seen as connected to speaking up.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Individuals</h2>
+
+                <h3>Understand Your Fear Is Normal</h3>
+                <p>
+                    Fear of authority is not a personal weakness—it's a product of human evolution and your accumulated experiences. Understanding this can reduce shame and enable more conscious decision-making about when to speak up.
+                </p>
+
+                <div class="intervention-card">
+                    <h4>Personal Strategies for Managing Fear</h4>
+                    <ul class="intervention-list">
+                        <li><span class="check-icon">+</span> <strong>Name the fear:</strong> Acknowledge "I'm feeling afraid" rather than avoiding the emotion</li>
+                        <li><span class="check-icon">+</span> <strong>Distinguish sources:</strong> Is this dispositional, contextual, or evolutionary fear?</li>
+                        <li><span class="check-icon">+</span> <strong>Reality-test:</strong> What's the actual probability of negative consequences?</li>
+                        <li><span class="check-icon">+</span> <strong>Start small:</strong> Build voice confidence with low-stakes issues first</li>
+                        <li><span class="check-icon">+</span> <strong>Find allies:</strong> Speak up with supporters present when possible</li>
+                        <li><span class="check-icon">+</span> <strong>Prepare thoroughly:</strong> Reduce anxiety through preparation and practice</li>
+                        <li><span class="check-icon">+</span> <strong>Track outcomes:</strong> Keep a record of voice attempts and results to build evidence</li>
+                    </ul>
+                </div>
+
+                <h3>Distinguish Automatic Fear from Rational Risk Assessment</h3>
+                <p>
+                    When you feel afraid to speak up, ask: "Is this fear based on real current threats, or is it an automatic response triggered by past experiences or evolutionary instincts?" This conscious questioning can help override inappropriate fear responses.
+                </p>
+
+                <h3>Build Evidence Against Your Fears</h3>
+                <p>
+                    Systematically test your fears by speaking up in low-stakes situations. Track the outcomes. Over time, you may build evidence that your fear is overstated in your current context—though be prepared for occasional setbacks that may re-trigger fear.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>The Voice Experiment:</strong> Choose one low-stakes issue this week where you would normally stay silent. Speak up. Note the outcome. Repeat. Over time, you'll build a personal database of evidence about what actually happens when you use your voice—evidence that can compete with your fear-based predictions.
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Key Takeaways</h2>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Sources of Fear</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">10:1</div>
+                        <div class="stat-label">Recovery Ratio</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">12ms</div>
+                        <div class="stat-label">Amygdala Speed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">Never</div>
+                        <div class="stat-label">Fear Eliminated</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>The Bottom Line:</strong> Fear is an inevitable part of organizational life, rooted in human evolution and reinforced by experience. Rather than trying to eliminate it—which is impossible—organizations, leaders, and individuals should acknowledge fear, understand its sources, and develop strategies to manage it. The goal is not fearlessness but the capacity to speak up despite fear.</p>
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page navigation
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('#main, #model, #assessment, #implications').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.dark-mode-toggle').textContent = 'Light Mode';
+        }
+
+        // Fear Assessment Calculator
+        function calculateFearProfile() {
+            // Get all responses
+            const responses = {};
+            for (let i = 1; i <= 12; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    alert(`Please answer question ${i} before calculating.`);
+                    return;
+                }
+                responses[`q${i}`] = parseInt(selected.value);
+            }
+
+            // Calculate category scores
+            const dispositional = responses.q1 + responses.q2 + responses.q3 + responses.q4;
+            const contextual = responses.q5 + responses.q6 + responses.q7 + responses.q8;
+            const evolutionary = responses.q9 + responses.q10 + responses.q11 + responses.q12;
+            const overall = dispositional + contextual + evolutionary;
+
+            // Update displays
+            document.getElementById('dispositionalScore').textContent = dispositional + '/20';
+            document.getElementById('contextualScore').textContent = contextual + '/20';
+            document.getElementById('evolutionaryScore').textContent = evolutionary + '/20';
+            document.getElementById('overallScore').textContent = overall + '/60';
+
+            // Update bars
+            document.getElementById('dispositionalBar').style.width = (dispositional / 20 * 100) + '%';
+            document.getElementById('contextualBar').style.width = (contextual / 20 * 100) + '%';
+            document.getElementById('evolutionaryBar').style.width = (evolutionary / 20 * 100) + '%';
+            document.getElementById('overallBar').style.width = (overall / 60 * 100) + '%';
+
+            // Generate interpretation
+            let interpretation = '';
+
+            // Find the dominant source
+            const sources = [
+                { name: 'Dispositional', score: dispositional },
+                { name: 'Contextual', score: contextual },
+                { name: 'Evolutionary', score: evolutionary }
+            ];
+            sources.sort((a, b) => b.score - a.score);
+
+            if (overall <= 24) {
+                interpretation = '<strong>Low Overall Fear:</strong> You have relatively low workplace fear across all sources. You likely feel comfortable speaking up in most situations. Continue to maintain awareness of your fear triggers and use your voice to advocate for important issues.';
+            } else if (overall <= 40) {
+                interpretation = '<strong>Moderate Fear Profile:</strong> You experience moderate levels of workplace fear that likely cause you to hesitate before speaking up. Your primary fear source is <strong>' + sources[0].name + '</strong>. Focus your development efforts on this area while building confidence through small voice wins.';
+            } else if (overall <= 50) {
+                interpretation = '<strong>High Fear Profile:</strong> Workplace fear significantly impacts your voice behavior. Your strongest fear source is <strong>' + sources[0].name + '</strong>, followed by <strong>' + sources[1].name + '</strong>. Consider seeking support (coaching, therapy, or mentoring) and focus on building safety in your environment or finding a more supportive context.';
+            } else {
+                interpretation = '<strong>Very High Fear Profile:</strong> Fear is a major barrier to your workplace voice. You may be in an environment that is genuinely unsafe for speaking up, or carrying significant fear from past experiences. Consider whether your current context deserves your voice, and prioritize your psychological safety. Professional support may be valuable.';
+            }
+
+            // Add source-specific advice
+            if (sources[0].score >= 13) {
+                interpretation += '<br><br><strong>' + sources[0].name + ' Focus:</strong> ';
+                if (sources[0].name === 'Dispositional') {
+                    interpretation += 'Your personal history and traits are a significant source of fear. Consider working with a coach or therapist to process past experiences and build self-confidence.';
+                } else if (sources[0].name === 'Contextual') {
+                    interpretation += 'Your current work environment is driving much of your fear. Evaluate whether this organization is truly safe for voice, or focus on finding alternative channels and building alliances.';
+                } else {
+                    interpretation += 'Your instinctive fear of hierarchy is strong. Remember this is evolutionarily normal. Use conscious strategies: prepare thoroughly, practice, and build evidence that your specific leaders respond positively to voice.';
+                }
+            }
+
+            document.getElementById('interpretationText').innerHTML = interpretation;
+
+            // Show results
+            document.getElementById('resultsPanel').style.display = 'block';
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetAssessment() {
+            // Clear all radio buttons
+            for (let i = 1; i <= 12; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                radios.forEach(radio => radio.checked = false);
+            }
+            // Hide results
+            document.getElementById('resultsPanel').style.display = 'none';
+            // Scroll to top of assessment
+            document.querySelector('.assessment-container').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Approach-Inhibition Model of Employee Silence - Morrison, See, & Pan (2015)</title>
+    <!--
+      Review of:
+      Morrison, E. W., See, K. E., & Pan, C. (2015).
+      An Approach-Inhibition Model of Employee Silence: The Joint Effects of Personal Sense of Power and Target Openness.
+      Personnel Psychology, 68(3), 547-580.
+
+      Applies Keltner's approach-inhibition theory of power to explain how employees'
+      personal sense of power interacts with perceived leader openness to determine voice.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #78350f 50%, #451a03 100%);
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .page-btn.active { background: white; color: #d97706; border-color: white; }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover { background: rgba(255, 255, 255, 0.3); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.6em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #fef3c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .citation { font-size: 1.15em; opacity: 0.95; margin-bottom: 10px; }
+        .hero .tagline { font-size: 1.1em; opacity: 0.9; max-width: 800px; margin: 15px auto 0; font-style: italic; }
+
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .section-card { background: #1e293b; color: #e2e8f0; }
+
+        .section-card h2 {
+            color: #d97706;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #d97706;
+            font-size: 2em;
+        }
+
+        body.dark-mode .section-card h2 { color: #fbbf24; border-bottom-color: #fbbf24; }
+
+        .section-card h3 { color: #b45309; margin: 25px 0 15px; font-size: 1.5em; }
+        body.dark-mode .section-card h3 { color: #fcd34d; }
+
+        .section-card p, .section-card li { font-size: 1.05rem; margin-bottom: 15px; }
+        body.dark-mode .section-card p, body.dark-mode .section-card li { color: #e2e8f0; }
+
+        .section-card ul, .section-card ol { margin-left: 25px; margin-bottom: 20px; }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .concept-box:hover { transform: translateY(-5px); }
+        .concept-box h4 { font-size: 1.2rem; margin-bottom: 12px; color: white; }
+        .concept-box p { font-size: 0.95rem; color: rgba(255,255,255,0.95); margin: 0; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .comparison-table { background: #0f172a; }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        body.dark-mode .comparison-table td { border-bottom-color: #4a5568; color: #cbd5e0; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .highlight-box { background: #78350f; color: #fef3c7; }
+
+        .theory-box {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .theory-box h4 { color: white; font-size: 1.3rem; margin-bottom: 15px; }
+        .theory-box p { color: rgba(255,255,255,0.95); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+
+        /* SVG Visualization Styles */
+        .svg-container {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        body.dark-mode .svg-container {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+        }
+
+        .svg-container h3 {
+            color: #b45309;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .svg-container h3 { color: #fcd34d; }
+
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Assessment Tool Styles */
+        .assessment-tool {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .assessment-tool {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+        }
+
+        .assessment-tool h3 {
+            color: #b45309;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+
+        body.dark-mode .assessment-tool h3 { color: #fcd34d; }
+
+        .question-group {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .question-group {
+            background: #1e293b;
+        }
+
+        .question-group h4 {
+            color: #d97706;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fcd34d;
+        }
+
+        body.dark-mode .question-group h4 { color: #fbbf24; }
+
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        body.dark-mode .question { border-bottom-color: #4a5568; }
+
+        .question:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+        body.dark-mode .question p { color: #e2e8f0; }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .likert-option {
+            flex: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .likert-option input[type="radio"] {
+            display: none;
+        }
+
+        .likert-option label {
+            display: block;
+            padding: 12px 8px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            border: 2px solid transparent;
+        }
+
+        body.dark-mode .likert-option label {
+            background: #374151;
+            color: #e2e8f0;
+        }
+
+        .likert-option input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border-color: #b45309;
+        }
+
+        .likert-option label:hover {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+
+        body.dark-mode .likert-option label:hover {
+            background: #78350f;
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.4);
+        }
+
+        .results-panel {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        body.dark-mode .results-panel {
+            background: #1e293b;
+        }
+
+        .results-panel h3 {
+            color: #d97706;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        body.dark-mode .results-panel h3 { color: #fbbf24; }
+
+        .score-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .score-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .score-card.power { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .score-card.openness { background: linear-gradient(135deg, #0891b2, #0e7490); }
+        .score-card.prediction { background: linear-gradient(135deg, #d97706, #b45309); }
+
+        .score-card .score-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .score-card .score-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .quadrant-result {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        body.dark-mode .quadrant-result {
+            background: #78350f;
+        }
+
+        .quadrant-result h4 {
+            color: #b45309;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        body.dark-mode .quadrant-result h4 { color: #fcd34d; }
+
+        .quadrant-result p {
+            color: #78350f;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .quadrant-result p { color: #fef3c7; }
+
+        .interpretation-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        body.dark-mode .interpretation-box {
+            background: #0f172a;
+        }
+
+        .interpretation-box h4 {
+            color: #d97706;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .interpretation-box h4 { color: #fbbf24; }
+
+        .interpretation-box ul {
+            margin-left: 20px;
+        }
+
+        .interpretation-box li {
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        body.dark-mode .interpretation-box li { color: #e2e8f0; }
+
+        /* Animation keyframes */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes flow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .pulse-animation { animation: pulse 2s ease-in-out infinite; }
+        .flow-animation {
+            stroke-dasharray: 10, 10;
+            animation: flow 1s linear infinite;
+        }
+
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a { color: #fcd34d; text-decoration: none; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.9rem; }
+            .section-card { padding: 25px; }
+            .likert-scale { flex-direction: column; }
+            .likert-option { min-width: 100%; }
+            .dark-mode-toggle { top: auto; bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn">Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
+            <button class="page-btn" onclick="switchPage('theory', this)">The Theory</button>
+            <button class="page-btn" onclick="switchPage('assessment', this)">Power Assessment</button>
+            <button class="page-btn" onclick="switchPage('implications', this)">Implications</button>
+        </div>
+    </nav>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <!-- PAGE 1: MAIN CONTENT -->
+    <div id="main">
+        <div class="container">
+
+            <section class="hero">
+                <h1>An Approach-Inhibition Model of Employee Silence</h1>
+                <p class="citation">Morrison, E. W., See, K. E., & Pan, C. (2015)<br>Personnel Psychology, 68(3), 547-580</p>
+                <p class="tagline">
+                    How personal sense of power and perceived leader openness jointly determine whether employees speak up or stay silent
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Executive Summary</h2>
+
+                <p>
+                    This research applies Dacher Keltner's influential <strong>approach-inhibition theory of power</strong> to explain employee silence. The key insight: employees' <em>personal sense of power</em>—their subjective feeling of having influence—interacts with their perceptions of leader openness to determine whether they speak up or remain silent.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Central Finding:</strong> Employees with a low personal sense of power are especially likely to remain silent, but this effect is buffered when they perceive their leader as open to input. The combination of low power + perceived leader openness can enable voice that would otherwise be inhibited.
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Studies Conducted</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">BAS/BIS</div>
+                        <div class="stat-label">Theoretical Foundation</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">2×2</div>
+                        <div class="stat-label">Interaction Model</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">High</div>
+                        <div class="stat-label">Practical Relevance</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SVG: BAS/BIS Neural Systems -->
+            <section class="section-card">
+                <h2>The Neural Systems Behind Voice and Silence</h2>
+
+                <div class="svg-container">
+                    <h3>Behavioral Approach System (BAS) vs. Behavioral Inhibition System (BIS)</h3>
+                    <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background -->
+                        <defs>
+                            <linearGradient id="basGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#16a34a"/>
+                                <stop offset="100%" style="stop-color:#15803d"/>
+                            </linearGradient>
+                            <linearGradient id="bisGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#dc2626"/>
+                                <stop offset="100%" style="stop-color:#b91c1c"/>
+                            </linearGradient>
+                            <linearGradient id="powerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f59e0b"/>
+                                <stop offset="100%" style="stop-color:#d97706"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Central Brain Icon -->
+                        <ellipse cx="400" cy="200" rx="60" ry="50" fill="url(#powerGradient)" opacity="0.9"/>
+                        <text x="400" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="12">POWER</text>
+                        <text x="400" y="212" text-anchor="middle" fill="white" font-size="10">PERCEPTION</text>
+
+                        <!-- BAS Side (Left) -->
+                        <rect x="50" y="80" width="200" height="240" rx="20" fill="url(#basGradient)" opacity="0.9"/>
+                        <text x="150" y="115" text-anchor="middle" fill="white" font-weight="bold" font-size="16">BAS ACTIVATED</text>
+                        <text x="150" y="140" text-anchor="middle" fill="white" font-size="11">High Power State</text>
+
+                        <text x="70" y="175" fill="white" font-size="12">✓ Positive emotions</text>
+                        <text x="70" y="200" fill="white" font-size="12">✓ Focus on rewards</text>
+                        <text x="70" y="225" fill="white" font-size="12">✓ Automatic processing</text>
+                        <text x="70" y="250" fill="white" font-size="12">✓ Approach behavior</text>
+                        <text x="70" y="275" fill="white" font-size="12">✓ Risk tolerance ↑</text>
+
+                        <rect x="70" y="290" width="160" height="25" rx="5" fill="white" opacity="0.3"/>
+                        <text x="150" y="307" text-anchor="middle" fill="white" font-weight="bold" font-size="12">→ VOICE</text>
+
+                        <!-- BIS Side (Right) -->
+                        <rect x="550" y="80" width="200" height="240" rx="20" fill="url(#bisGradient)" opacity="0.9"/>
+                        <text x="650" y="115" text-anchor="middle" fill="white" font-weight="bold" font-size="16">BIS ACTIVATED</text>
+                        <text x="650" y="140" text-anchor="middle" fill="white" font-size="11">Low Power State</text>
+
+                        <text x="570" y="175" fill="white" font-size="12">✗ Negative emotions</text>
+                        <text x="570" y="200" fill="white" font-size="12">✗ Focus on threats</text>
+                        <text x="570" y="225" fill="white" font-size="12">✗ Controlled processing</text>
+                        <text x="570" y="250" fill="white" font-size="12">✗ Inhibition behavior</text>
+                        <text x="570" y="275" fill="white" font-size="12">✗ Risk aversion ↑</text>
+
+                        <rect x="570" y="290" width="160" height="25" rx="5" fill="white" opacity="0.3"/>
+                        <text x="650" y="307" text-anchor="middle" fill="white" font-weight="bold" font-size="12">→ SILENCE</text>
+
+                        <!-- Arrows from center -->
+                        <path d="M340 200 L260 200" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrowGreen)" class="flow-animation"/>
+                        <path d="M460 200 L540 200" stroke="#dc2626" stroke-width="4" fill="none" marker-end="url(#arrowRed)" class="flow-animation"/>
+
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+                            </marker>
+                            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Labels -->
+                        <text x="300" y="180" text-anchor="middle" fill="#16a34a" font-weight="bold" font-size="11">HIGH</text>
+                        <text x="300" y="195" text-anchor="middle" fill="#16a34a" font-size="10">POWER</text>
+                        <text x="500" y="180" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="11">LOW</text>
+                        <text x="500" y="195" text-anchor="middle" fill="#dc2626" font-size="10">POWER</text>
+
+                        <!-- Bottom annotation -->
+                        <text x="400" y="370" text-anchor="middle" fill="#78350f" font-size="12" font-style="italic">
+                            Power perception automatically activates approach or inhibition neural circuits
+                        </text>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Approach-Inhibition Theory of Power</h2>
+
+                <p>
+                    Keltner, Gruenfeld, and Anderson's (2003) approach-inhibition theory provides the theoretical foundation. The theory is grounded in neuroscience research on the <strong>Behavioral Approach System (BAS)</strong> and <strong>Behavioral Inhibition System (BIS)</strong>:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);">
+                        <h4>Behavioral Approach System (BAS)</h4>
+                        <p>Activated by reward cues and opportunities. Produces positive affect, attention to rewards, automatic/confident processing, and approach behaviors. <strong>High power activates BAS.</strong></p>
+                    </div>
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                        <h4>Behavioral Inhibition System (BIS)</h4>
+                        <p>Activated by threat cues and punishment. Produces negative affect, attention to threats, controlled/cautious processing, and inhibition behaviors. <strong>Low power activates BIS.</strong></p>
+                    </div>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>High Power (BAS Activated)</th>
+                            <th>Low Power (BIS Activated)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Affect</strong></td>
+                            <td>Positive emotions, confidence, optimism</td>
+                            <td>Negative emotions, anxiety, vigilance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Attention</strong></td>
+                            <td>Focus on rewards and opportunities</td>
+                            <td>Focus on threats and punishments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cognition</strong></td>
+                            <td>Automatic, heuristic processing</td>
+                            <td>Controlled, systematic processing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavior</strong></td>
+                            <td>Disinhibited, assertive, risk-taking</td>
+                            <td>Inhibited, cautious, risk-averse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Voice Likelihood</strong></td>
+                            <td>Higher—approach orientation</td>
+                            <td>Lower—avoidance orientation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>Personal Sense of Power: The Key Variable</h2>
+
+                <h3>What Is Personal Sense of Power?</h3>
+                <p>
+                    Personal sense of power is a <strong>psychological state</strong>—the individual's subjective perception of their ability to influence others and control resources. It is distinct from:
+                </p>
+
+                <ul>
+                    <li><strong>Objective power:</strong> Actual position in hierarchy or control over resources</li>
+                    <li><strong>Power motivation:</strong> Desire to have power over others</li>
+                    <li><strong>Self-efficacy:</strong> General confidence in one's abilities</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>Why Personal Sense of Power Matters:</strong> Two employees with the same objective position can have very different personal sense of power. The subjective experience—not the objective reality—is what activates BAS or BIS and determines behavioral tendencies.
+                </div>
+
+                <h3>Sources of Personal Sense of Power</h3>
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Structural Sources</h4>
+                        <p>Formal position, job level, control over resources, decision-making authority</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Relational Sources</h4>
+                        <p>Quality of relationships, social support, network position, trusted advisor status</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Psychological Sources</h4>
+                        <p>Past experiences, personality, self-perceptions, priming effects</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SVG: The 2x2 Interaction Model -->
+            <section class="section-card">
+                <h2>The Interaction: Power × Leader Openness</h2>
+
+                <p>The paper's central contribution is demonstrating the <strong>interaction</strong> between personal sense of power and perceived leader openness:</p>
+
+                <div class="svg-container">
+                    <h3>The Power × Openness Interaction Matrix</h3>
+                    <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grid lines -->
+                        <line x1="200" y1="100" x2="200" y2="400" stroke="#d97706" stroke-width="3"/>
+                        <line x1="200" y1="250" x2="600" y2="250" stroke="#d97706" stroke-width="3"/>
+
+                        <!-- Axis labels -->
+                        <text x="400" y="70" text-anchor="middle" fill="#78350f" font-weight="bold" font-size="16">PERCEIVED LEADER OPENNESS</text>
+                        <text x="280" y="90" text-anchor="middle" fill="#dc2626" font-size="13">CLOSED</text>
+                        <text x="520" y="90" text-anchor="middle" fill="#16a34a" font-size="13">OPEN</text>
+
+                        <text x="100" y="260" text-anchor="middle" fill="#78350f" font-weight="bold" font-size="14" transform="rotate(-90 100 260)">PERSONAL SENSE OF POWER</text>
+                        <text x="170" y="170" text-anchor="middle" fill="#16a34a" font-size="13">HIGH</text>
+                        <text x="170" y="330" text-anchor="middle" fill="#dc2626" font-size="13">LOW</text>
+
+                        <!-- Quadrant 1: High Power + Closed Leader -->
+                        <rect x="210" y="110" width="180" height="130" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="300" y="150" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="14">MODERATE</text>
+                        <text x="300" y="170" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="14">VOICE</text>
+                        <text x="300" y="200" text-anchor="middle" fill="#78350f" font-size="11">Power enables voice</text>
+                        <text x="300" y="218" text-anchor="middle" fill="#78350f" font-size="11">despite closed leader</text>
+
+                        <!-- Quadrant 2: High Power + Open Leader -->
+                        <rect x="410" y="110" width="180" height="130" rx="10" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+                        <text x="500" y="150" text-anchor="middle" fill="#15803d" font-weight="bold" font-size="14">HIGH</text>
+                        <text x="500" y="170" text-anchor="middle" fill="#15803d" font-weight="bold" font-size="14">VOICE</text>
+                        <text x="500" y="200" text-anchor="middle" fill="#166534" font-size="11">Both factors</text>
+                        <text x="500" y="218" text-anchor="middle" fill="#166534" font-size="11">promote voice</text>
+                        <circle cx="500" cy="175" r="50" fill="none" stroke="#16a34a" stroke-width="2" opacity="0.3" class="pulse-animation"/>
+
+                        <!-- Quadrant 3: Low Power + Closed Leader -->
+                        <rect x="210" y="260" width="180" height="130" rx="10" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+                        <text x="300" y="310" text-anchor="middle" fill="#b91c1c" font-weight="bold" font-size="14">SILENCE</text>
+                        <text x="300" y="350" text-anchor="middle" fill="#991b1b" font-size="11">Both factors</text>
+                        <text x="300" y="368" text-anchor="middle" fill="#991b1b" font-size="11">inhibit voice</text>
+                        <text x="300" y="330" text-anchor="middle" fill="#dc2626" font-size="20">⚠</text>
+
+                        <!-- Quadrant 4: Low Power + Open Leader -->
+                        <rect x="410" y="260" width="180" height="130" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="500" y="300" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="14">MODERATE</text>
+                        <text x="500" y="320" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="14">VOICE</text>
+                        <text x="500" y="350" text-anchor="middle" fill="#78350f" font-size="11">Openness compensates</text>
+                        <text x="500" y="368" text-anchor="middle" fill="#78350f" font-size="11">for low power</text>
+
+                        <!-- Key insight arrow -->
+                        <path d="M300 390 Q400 430 500 390" stroke="#d97706" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+                        <text x="400" y="460" text-anchor="middle" fill="#78350f" font-size="12" font-weight="bold">
+                            Leader openness matters MOST for low-power employees
+                        </text>
+
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#d97706"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <h3>Key Insights from the Interaction</h3>
+                <ul>
+                    <li><strong>High-power employees speak up regardless:</strong> Their activated BAS promotes voice even with closed leaders</li>
+                    <li><strong>Low-power employees are especially sensitive to leader cues:</strong> Their activated BIS makes them vigilant to signals of openness or closure</li>
+                    <li><strong>Leader openness matters most for those who need it most:</strong> The buffering effect is strongest for low-power employees</li>
+                    <li><strong>Double jeopardy:</strong> Low power + closed leader creates silence that is especially hard to break</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2>Research Design</h2>
+
+                <h3>Study 1: Survey of Employees</h3>
+                <p>
+                    Cross-sectional survey examining the relationship between personal sense of power, perceived supervisor openness, and self-reported voice behavior. Confirmed the predicted interaction: low-power employees showed more voice when supervisor was perceived as open.
+                </p>
+
+                <h3>Study 2: Experimental Manipulation</h3>
+                <p>
+                    Laboratory experiment manipulating both sense of power (through recall task) and target openness (through vignette). Demonstrated causal effects: manipulated power and openness interacted to predict voice intentions.
+                </p>
+
+                <h3>Study 3: Replication with Different Context</h3>
+                <p>
+                    Replicated findings in different organizational context with additional controls, ruling out alternative explanations and strengthening confidence in the approach-inhibition mechanism.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>References</h2>
+                <ul>
+                    <li>Morrison, E. W., See, K. E., & Pan, C. (2015). An approach-inhibition model of employee silence: The joint effects of personal sense of power and target openness. <em>Personnel Psychology</em>, 68(3), 547-580.</li>
+                    <li>Keltner, D., Gruenfeld, D. H., & Anderson, C. (2003). Power, approach, and inhibition. <em>Psychological Review</em>, 110(2), 265-284.</li>
+                    <li>Anderson, C., John, O. P., & Keltner, D. (2012). The personal sense of power. <em>Journal of Personality</em>, 80(2), 313-344.</li>
+                    <li>Gray, J. A. (1987). <em>The psychology of fear and stress</em> (2nd ed.). Cambridge University Press.</li>
+                    <li>Morrison, E. W. (2014). Employee voice and silence. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 1, 173-197.</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p>Analysis created for the Literature Explorer.<br>
+                Based on: Morrison, See, & Pan (2015). An Approach-Inhibition Model of Employee Silence.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAGE 2: THE THEORY -->
+    <div id="theory" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>The Theoretical Foundation</h1>
+                <p class="tagline">Understanding the neuroscience of power and behavior</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Keltner's Approach-Inhibition Theory</h2>
+
+                <p>
+                    Dacher Keltner and colleagues (2003) proposed that power fundamentally transforms psychological states through its effects on two evolutionarily ancient neural systems:
+                </p>
+
+                <div class="theory-box">
+                    <h4>The Evolutionary Logic</h4>
+                    <p>
+                        In ancestral environments, individuals with power (control over resources, physical dominance) could afford to approach opportunities and take risks—they had the resources to absorb losses. Those without power needed to be vigilant to threats from the powerful and cautious in their behavior. Natural selection shaped brains to automatically shift between approach and inhibition modes based on power cues.
+                    </p>
+                </div>
+
+                <h3>The BAS: Behavioral Approach System</h3>
+                <p>The BAS is activated by cues signaling reward, opportunity, and safety. When activated:</p>
+                <ul>
+                    <li>Positive emotions increase (joy, enthusiasm, desire)</li>
+                    <li>Attention narrows to reward-relevant stimuli</li>
+                    <li>Processing becomes automatic and heuristic</li>
+                    <li>Behavior becomes disinhibited and assertive</li>
+                    <li>Risk tolerance increases</li>
+                </ul>
+
+                <h3>The BIS: Behavioral Inhibition System</h3>
+                <p>The BIS is activated by cues signaling threat, punishment, or uncertainty. When activated:</p>
+                <ul>
+                    <li>Negative emotions increase (anxiety, fear, vigilance)</li>
+                    <li>Attention broadens to threat-relevant stimuli</li>
+                    <li>Processing becomes controlled and systematic</li>
+                    <li>Behavior becomes inhibited and cautious</li>
+                    <li>Risk tolerance decreases</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>The Power-Behavior Connection:</strong> Having power (or feeling powerful) activates the BAS, producing approach behaviors including voice. Lacking power (or feeling powerless) activates the BIS, producing inhibition behaviors including silence. This is not a conscious choice—it's an automatic psychological response.
+                </div>
+            </section>
+
+            <!-- SVG: Neural Pathway Diagram -->
+            <section class="section-card">
+                <h2>The Neural Pathway</h2>
+
+                <div class="svg-container">
+                    <h3>From Power Perception to Behavior</h3>
+                    <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Stage 1: Power Cue -->
+                        <rect x="30" y="130" width="120" height="90" rx="15" fill="url(#powerGradient)"/>
+                        <text x="90" y="165" text-anchor="middle" fill="white" font-weight="bold" font-size="12">POWER CUE</text>
+                        <text x="90" y="185" text-anchor="middle" fill="white" font-size="10">Position, Resources</text>
+                        <text x="90" y="200" text-anchor="middle" fill="white" font-size="10">Relationships</text>
+
+                        <!-- Stage 2: Neural Processing -->
+                        <rect x="200" y="100" width="140" height="150" rx="15" fill="#6366f1"/>
+                        <text x="270" y="130" text-anchor="middle" fill="white" font-weight="bold" font-size="12">NEURAL</text>
+                        <text x="270" y="148" text-anchor="middle" fill="white" font-weight="bold" font-size="12">PROCESSING</text>
+                        <text x="270" y="175" text-anchor="middle" fill="white" font-size="10">Prefrontal Cortex</text>
+                        <text x="270" y="195" text-anchor="middle" fill="white" font-size="10">Amygdala</text>
+                        <text x="270" y="215" text-anchor="middle" fill="white" font-size="10">Automatic</text>
+                        <text x="270" y="230" text-anchor="middle" fill="white" font-size="10">Assessment</text>
+
+                        <!-- Stage 3: System Activation -->
+                        <rect x="390" y="50" width="130" height="80" rx="15" fill="#16a34a"/>
+                        <text x="455" y="80" text-anchor="middle" fill="white" font-weight="bold" font-size="12">BAS</text>
+                        <text x="455" y="100" text-anchor="middle" fill="white" font-size="10">Approach System</text>
+                        <text x="455" y="115" text-anchor="middle" fill="white" font-size="9">Left Frontal Activity</text>
+
+                        <rect x="390" y="220" width="130" height="80" rx="15" fill="#dc2626"/>
+                        <text x="455" y="250" text-anchor="middle" fill="white" font-weight="bold" font-size="12">BIS</text>
+                        <text x="455" y="270" text-anchor="middle" fill="white" font-size="10">Inhibition System</text>
+                        <text x="455" y="285" text-anchor="middle" fill="white" font-size="9">Right Frontal Activity</text>
+
+                        <!-- Stage 4: Behavioral Outcome -->
+                        <rect x="570" y="50" width="120" height="80" rx="15" fill="#22c55e"/>
+                        <text x="630" y="85" text-anchor="middle" fill="white" font-weight="bold" font-size="14">VOICE</text>
+                        <text x="630" y="105" text-anchor="middle" fill="white" font-size="10">Speaking Up</text>
+
+                        <rect x="570" y="220" width="120" height="80" rx="15" fill="#ef4444"/>
+                        <text x="630" y="255" text-anchor="middle" fill="white" font-weight="bold" font-size="14">SILENCE</text>
+                        <text x="630" y="275" text-anchor="middle" fill="white" font-size="10">Withholding</text>
+
+                        <!-- Arrows -->
+                        <path d="M150 175 L195 175" stroke="#d97706" stroke-width="3" fill="none" marker-end="url(#arrowOrange)"/>
+                        <path d="M340 140 L385 100" stroke="#16a34a" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+                        <path d="M340 210 L385 250" stroke="#dc2626" stroke-width="3" fill="none" marker-end="url(#arrowRed)"/>
+                        <path d="M520 90 L565 90" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen2)"/>
+                        <path d="M520 260 L565 260" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowRed2)"/>
+
+                        <!-- Labels on arrows -->
+                        <text x="310" y="120" fill="#16a34a" font-size="10" font-weight="bold">High Power</text>
+                        <text x="310" y="245" fill="#dc2626" font-size="10" font-weight="bold">Low Power</text>
+
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowGreen2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+                            </marker>
+                            <marker id="arrowRed2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Timeline label -->
+                        <text x="400" y="340" text-anchor="middle" fill="#78350f" font-size="11" font-style="italic">
+                            This process occurs automatically within milliseconds of power cue detection
+                        </text>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>EEG Evidence: Power in the Brain</h2>
+
+                <p>
+                    Neuroimaging studies support the approach-inhibition theory. Research by Boksem et al. (2012) found:
+                </p>
+
+                <ul>
+                    <li><strong>Power priming increases left-frontal activity:</strong> The left frontal cortex is associated with approach motivation. Individuals primed with high power show increased left-frontal EEG activity.</li>
+                    <li><strong>Low power increases right-frontal activity:</strong> The right frontal cortex is associated with inhibition/avoidance. Low-power priming increases right-frontal activity.</li>
+                    <li><strong>These effects are automatic:</strong> Brain activation changes occur without conscious awareness of the power manipulation.</li>
+                </ul>
+
+                <div class="theory-box" style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);">
+                    <h4>The Neural Mechanism</h4>
+                    <p>Power doesn't just change what people think—it changes how their brains process information at a fundamental level. The approach-inhibition shift happens below conscious awareness, which is why employees may feel inexplicably hesitant to speak up even when they consciously believe it would be safe.</p>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Moderating Role of Target Openness</h2>
+
+                <p>
+                    The critical insight of Morrison et al. (2015) is that the power→behavior relationship is <strong>moderated</strong> by perceived target openness. Here's why:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+                        <h4>For High-Power Individuals</h4>
+                        <p>BAS is already activated. They're in approach mode regardless of environmental cues. Leader openness matters less because internal power feelings drive behavior.</p>
+                    </div>
+                    <div class="concept-box" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                        <h4>For Low-Power Individuals</h4>
+                        <p>BIS is activated, making them hypervigilant to environmental threats AND opportunities. Leader openness signals become highly salient and can shift behavior from inhibition to approach.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>The Interaction Explained:</strong> Low-power individuals are in "surveillance mode"—their activated BIS causes them to carefully scan the environment for signals. When they detect leader openness, this can counteract BIS activation and enable voice. High-power individuals aren't scanning because their BAS makes them confident regardless of external signals.
+                </div>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: POWER ASSESSMENT -->
+    <div id="assessment" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Power & Openness Assessment</h1>
+                <p class="tagline">Discover your voice likelihood based on the approach-inhibition model</p>
+            </section>
+
+            <section class="section-card">
+                <h2>About This Assessment</h2>
+                <p>
+                    This assessment helps you understand your current position in the Power × Openness matrix from Morrison et al. (2015). By measuring both your <strong>personal sense of power</strong> and your <strong>perception of leader openness</strong>, you can predict your likelihood of speaking up and identify strategies for increasing voice.
+                </p>
+                <p>
+                    Answer honestly based on your current work situation. There are no right or wrong answers—this is a diagnostic tool for self-understanding.
+                </p>
+            </section>
+
+            <div class="assessment-tool">
+                <h3>Power & Voice Readiness Assessment</h3>
+
+                <!-- Personal Sense of Power Questions -->
+                <div class="question-group">
+                    <h4>Part 1: Personal Sense of Power</h4>
+
+                    <div class="question">
+                        <p>1. In my relationships with others at work, I can get them to listen to what I say.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q1_1" name="q1" value="1">
+                                <label for="q1_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_2" name="q1" value="2">
+                                <label for="q1_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_3" name="q1" value="3">
+                                <label for="q1_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_4" name="q1" value="4">
+                                <label for="q1_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_5" name="q1" value="5">
+                                <label for="q1_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>2. My ideas and opinions are often ignored by others at work.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q2_1" name="q2" value="5">
+                                <label for="q2_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_2" name="q2" value="4">
+                                <label for="q2_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_3" name="q2" value="3">
+                                <label for="q2_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_4" name="q2" value="2">
+                                <label for="q2_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_5" name="q2" value="1">
+                                <label for="q2_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>3. I can get others to do what I want.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q3_1" name="q3" value="1">
+                                <label for="q3_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_2" name="q3" value="2">
+                                <label for="q3_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_3" name="q3" value="3">
+                                <label for="q3_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_4" name="q3" value="4">
+                                <label for="q3_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_5" name="q3" value="5">
+                                <label for="q3_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>4. Even if I voice my views, I won't have much sway over what happens.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q4_1" name="q4" value="5">
+                                <label for="q4_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_2" name="q4" value="4">
+                                <label for="q4_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_3" name="q4" value="3">
+                                <label for="q4_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_4" name="q4" value="2">
+                                <label for="q4_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_5" name="q4" value="1">
+                                <label for="q4_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perceived Leader Openness Questions -->
+                <div class="question-group">
+                    <h4>Part 2: Perceived Leader Openness</h4>
+
+                    <div class="question">
+                        <p>5. My supervisor is open to hearing new ideas from employees.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q5_1" name="q5" value="1">
+                                <label for="q5_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_2" name="q5" value="2">
+                                <label for="q5_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_3" name="q5" value="3">
+                                <label for="q5_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_4" name="q5" value="4">
+                                <label for="q5_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_5" name="q5" value="5">
+                                <label for="q5_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>6. My supervisor actively encourages employees to speak up about problems.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q6_1" name="q6" value="1">
+                                <label for="q6_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_2" name="q6" value="2">
+                                <label for="q6_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_3" name="q6" value="3">
+                                <label for="q6_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_4" name="q6" value="4">
+                                <label for="q6_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_5" name="q6" value="5">
+                                <label for="q6_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>7. When I share concerns, my supervisor responds defensively.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q7_1" name="q7" value="5">
+                                <label for="q7_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_2" name="q7" value="4">
+                                <label for="q7_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_3" name="q7" value="3">
+                                <label for="q7_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_4" name="q7" value="2">
+                                <label for="q7_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_5" name="q7" value="1">
+                                <label for="q7_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>8. My supervisor genuinely considers employee input when making decisions.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q8_1" name="q8" value="1">
+                                <label for="q8_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_2" name="q8" value="2">
+                                <label for="q8_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_3" name="q8" value="3">
+                                <label for="q8_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_4" name="q8" value="4">
+                                <label for="q8_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_5" name="q8" value="5">
+                                <label for="q8_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculatePowerProfile()">Analyze My Profile</button>
+
+                <div class="results-panel" id="resultsPanel">
+                    <h3>Your Power × Openness Profile</h3>
+
+                    <div class="score-display">
+                        <div class="score-card power">
+                            <span class="score-value" id="powerScore">--</span>
+                            <span class="score-label">Personal Sense of Power</span>
+                        </div>
+                        <div class="score-card openness">
+                            <span class="score-value" id="opennessScore">--</span>
+                            <span class="score-label">Perceived Leader Openness</span>
+                        </div>
+                        <div class="score-card prediction">
+                            <span class="score-value" id="voicePrediction">--</span>
+                            <span class="score-label">Voice Likelihood</span>
+                        </div>
+                    </div>
+
+                    <div class="quadrant-result" id="quadrantResult">
+                        <h4 id="quadrantTitle">Your Quadrant</h4>
+                        <p id="quadrantDescription">Description will appear here.</p>
+                    </div>
+
+                    <div class="interpretation-box" id="interpretationBox">
+                        <h4>Personalized Recommendations</h4>
+                        <ul id="recommendationsList">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: IMPLICATIONS -->
+    <div id="implications" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Practical Implications</h1>
+                <p class="tagline">What leaders and organizations can do</p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Leaders</h2>
+
+                <h3>Signal Openness Especially to Low-Power Employees</h3>
+                <p>
+                    The research shows that your openness matters most for those with low personal sense of power. These employees are in "inhibition mode" by default and need clear signals that speaking up is safe. Generic "open door" policies are insufficient—active, targeted outreach is needed.
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Actively Solicit Input</h4>
+                        <p>Don't wait for low-power employees to volunteer opinions. Directly ask for their perspectives in ways that feel safe and genuine.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Respond Positively to Early Voice</h4>
+                        <p>First impressions matter. If a low-power employee's initial attempt at voice is met negatively, their BIS activation will intensify.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Reduce Power Distance Cues</h4>
+                        <p>Physical setup, language, and behavior that emphasize hierarchy activate BIS. Reduce these cues to enable approach behavior.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Create Safe Channels</h4>
+                        <p>Anonymous feedback systems and intermediaries can provide voice opportunities that bypass the power-inhibition dynamic.</p>
+                    </div>
+                </div>
+
+                <h3>Recognize That Your Power Affects Others Automatically</h3>
+                <p>
+                    Even if you're genuinely open and supportive, your formal power automatically activates BIS in subordinates. Your good intentions don't override their neural response to power cues. You must actively counteract this effect.
+                </p>
+            </section>
+
+            <!-- SVG: Leader Strategies -->
+            <section class="section-card">
+                <h2>Strategic Framework for Leaders</h2>
+
+                <div class="svg-container">
+                    <h3>Intervention Points in the Approach-Inhibition Cycle</h3>
+                    <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Central cycle -->
+                        <circle cx="400" cy="200" r="120" fill="none" stroke="#d97706" stroke-width="3" stroke-dasharray="10,5"/>
+
+                        <!-- Four intervention points -->
+                        <circle cx="400" cy="80" r="50" fill="#16a34a"/>
+                        <text x="400" y="75" text-anchor="middle" fill="white" font-weight="bold" font-size="11">SIGNAL</text>
+                        <text x="400" y="92" text-anchor="middle" fill="white" font-size="10">OPENNESS</text>
+
+                        <circle cx="520" cy="200" r="50" fill="#0891b2"/>
+                        <text x="520" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="11">BUILD</text>
+                        <text x="520" y="212" text-anchor="middle" fill="white" font-size="10">TRUST</text>
+
+                        <circle cx="400" cy="320" r="50" fill="#8b5cf6"/>
+                        <text x="400" y="315" text-anchor="middle" fill="white" font-weight="bold" font-size="11">RESPOND</text>
+                        <text x="400" y="332" text-anchor="middle" fill="white" font-size="10">POSITIVELY</text>
+
+                        <circle cx="280" cy="200" r="50" fill="#f59e0b"/>
+                        <text x="280" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="11">REDUCE</text>
+                        <text x="280" y="212" text-anchor="middle" fill="white" font-size="10">POWER CUES</text>
+
+                        <!-- Center label -->
+                        <circle cx="400" cy="200" r="45" fill="white" stroke="#d97706" stroke-width="2"/>
+                        <text x="400" y="195" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="12">EMPLOYEE</text>
+                        <text x="400" y="212" text-anchor="middle" fill="#b45309" font-size="11">VOICE</text>
+
+                        <!-- Strategy boxes -->
+                        <rect x="50" y="30" width="150" height="70" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+                        <text x="125" y="55" text-anchor="middle" fill="#166534" font-size="10">• Ask directly for input</text>
+                        <text x="125" y="70" text-anchor="middle" fill="#166534" font-size="10">• Show genuine interest</text>
+                        <text x="125" y="85" text-anchor="middle" fill="#166534" font-size="10">• Invite disagreement</text>
+
+                        <rect x="600" y="100" width="150" height="70" rx="8" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+                        <text x="675" y="125" text-anchor="middle" fill="#0e7490" font-size="10">• Consistent behavior</text>
+                        <text x="675" y="140" text-anchor="middle" fill="#0e7490" font-size="10">• Follow through</text>
+                        <text x="675" y="155" text-anchor="middle" fill="#0e7490" font-size="10">• Admit mistakes</text>
+
+                        <rect x="600" y="270" width="150" height="70" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+                        <text x="675" y="295" text-anchor="middle" fill="#6d28d9" font-size="10">• Thank for input</text>
+                        <text x="675" y="310" text-anchor="middle" fill="#6d28d9" font-size="10">• Explain decisions</text>
+                        <text x="675" y="325" text-anchor="middle" fill="#6d28d9" font-size="10">• Implement ideas</text>
+
+                        <rect x="50" y="270" width="150" height="70" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="125" y="295" text-anchor="middle" fill="#b45309" font-size="10">• Informal settings</text>
+                        <text x="125" y="310" text-anchor="middle" fill="#b45309" font-size="10">• Accessible language</text>
+                        <text x="125" y="325" text-anchor="middle" fill="#b45309" font-size="10">• Level the space</text>
+
+                        <!-- Connecting lines -->
+                        <line x1="200" y1="65" x2="355" y2="85" stroke="#16a34a" stroke-width="2"/>
+                        <line x1="600" y1="135" x2="565" y2="175" stroke="#0891b2" stroke-width="2"/>
+                        <line x1="600" y1="305" x2="445" y2="315" stroke="#8b5cf6" stroke-width="2"/>
+                        <line x1="200" y1="305" x2="235" y2="225" stroke="#f59e0b" stroke-width="2"/>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>For Organizations</h2>
+
+                <h3>Address Both Sides of the Equation</h3>
+
+                <div class="highlight-box">
+                    <strong>Two Intervention Targets:</strong>
+                    <ol style="margin-top: 10px;">
+                        <li><strong>Increase employees' sense of power:</strong> Empowerment initiatives, participative decision-making, development opportunities</li>
+                        <li><strong>Increase leader openness (and perceptions of it):</strong> Leader training, accountability for response to voice, feedback systems</li>
+                    </ol>
+                </div>
+
+                <h3>Pay Special Attention to Power Asymmetries</h3>
+                <p>
+                    The approach-inhibition framework suggests that voice will be systematically lower among:
+                </p>
+                <ul>
+                    <li>New employees (who haven't built relational power)</li>
+                    <li>Lower-level employees (less structural power)</li>
+                    <li>Minority group members (may have lower sense of power due to stereotypes)</li>
+                    <li>Contingent workers (less job security = less power)</li>
+                </ul>
+                <p>
+                    Organizations should design voice mechanisms that specifically counteract these power disadvantages.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Individuals</h2>
+
+                <h3>Understand Your Own Power Psychology</h3>
+                <p>
+                    When you feel hesitant to speak up, ask: "Is this a rational assessment of risk, or is my BIS activated?" Recognizing the automatic nature of power-related inhibition can help you override it consciously.
+                </p>
+
+                <h3>Build Your Personal Sense of Power</h3>
+                <ul>
+                    <li><strong>Recall past successes:</strong> Research shows that recalling times you had power increases current sense of power</li>
+                    <li><strong>Build expertise and relationships:</strong> These provide alternative power bases beyond formal position</li>
+                    <li><strong>Adopt powerful body language:</strong> Expansive postures can increase subjective power feelings</li>
+                    <li><strong>Practice voice in low-stakes situations:</strong> Success experiences build sense of power</li>
+                </ul>
+
+                <h3>Assess Leader Openness Accurately</h3>
+                <p>
+                    Your BIS may cause you to perceive leaders as less open than they actually are. Look for objective signals of openness rather than relying on your (potentially biased) feelings.
+                </p>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page switching
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('#main, #theory, #assessment, #implications').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Dark mode with persistence
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('morrisonPowerDarkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // Load dark mode preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedDarkMode = localStorage.getItem('morrisonPowerDarkMode');
+            if (savedDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-mode-toggle').textContent = 'Light Mode';
+            }
+        });
+
+        // Assessment calculation
+        function calculatePowerProfile() {
+            // Check all questions answered
+            const allQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+            const responses = {};
+
+            for (const q of allQuestions) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (!selected) {
+                    alert('Please answer all questions before calculating your profile.');
+                    return;
+                }
+                responses[q] = parseInt(selected.value);
+            }
+
+            // Calculate scores
+            const powerScore = responses.q1 + responses.q2 + responses.q3 + responses.q4;
+            const opennessScore = responses.q5 + responses.q6 + responses.q7 + responses.q8;
+
+            // Determine quadrant
+            const highPower = powerScore >= 12;
+            const highOpenness = opennessScore >= 12;
+
+            let quadrantTitle, quadrantDescription, voicePrediction, recommendations;
+
+            if (highPower && highOpenness) {
+                quadrantTitle = "High Power + Open Leader: MAXIMUM VOICE";
+                quadrantDescription = "You're in the optimal position for voice. Both your personal sense of power and your leader's openness support speaking up. Your BAS is activated and the environment welcomes input.";
+                voicePrediction = "HIGH";
+                recommendations = [
+                    "Use your voice advantage to help others speak up too",
+                    "Model effective voice behavior for colleagues with less power",
+                    "Continue building trust with your leader to maintain openness",
+                    "Don't take your voice capability for granted—stay engaged"
+                ];
+            } else if (highPower && !highOpenness) {
+                quadrantTitle = "High Power + Closed Leader: MODERATE VOICE";
+                quadrantDescription = "Your personal sense of power enables you to speak up despite your leader's lower openness. Your BAS activation helps you approach even when signals aren't encouraging.";
+                voicePrediction = "MODERATE";
+                recommendations = [
+                    "Your power gives you more latitude—use it strategically",
+                    "Consider building relationship with leader to increase openness",
+                    "Help create safe channels for colleagues who lack your power",
+                    "Choose your battles wisely given leader constraints"
+                ];
+            } else if (!highPower && highOpenness) {
+                quadrantTitle = "Low Power + Open Leader: MODERATE VOICE";
+                quadrantDescription = "Your leader's openness compensates for your lower sense of power. The environmental signals can help counteract your BIS activation and enable voice.";
+                voicePrediction = "MODERATE";
+                recommendations = [
+                    "Take advantage of your leader's openness to practice voice",
+                    "Success experiences will build your personal sense of power",
+                    "Focus on building expertise and relationships as power bases",
+                    "Recognize that your inhibition may be automatic, not rational"
+                ];
+            } else {
+                quadrantTitle = "Low Power + Closed Leader: SILENCE RISK";
+                quadrantDescription = "Both factors work against voice. Your BIS is activated AND environmental signals discourage speaking up. This is the most challenging position for voice.";
+                voicePrediction = "LOW";
+                recommendations = [
+                    "Recognize that your silence may be driven by automatic BIS activation",
+                    "Look for alternative channels (anonymous systems, intermediaries)",
+                    "Build your sense of power through expertise and relationships",
+                    "Consider whether your perception of leader closedness is accurate",
+                    "Start with low-stakes voice opportunities to build confidence"
+                ];
+            }
+
+            // Display results
+            document.getElementById('powerScore').textContent = powerScore + '/20';
+            document.getElementById('opennessScore').textContent = opennessScore + '/20';
+            document.getElementById('voicePrediction').textContent = voicePrediction;
+            document.getElementById('quadrantTitle').textContent = quadrantTitle;
+            document.getElementById('quadrantDescription').textContent = quadrantDescription;
+
+            const recList = document.getElementById('recommendationsList');
+            recList.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
+
+            document.getElementById('resultsPanel').style.display = 'block';
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

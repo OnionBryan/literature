@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implicit Voice Theories: Taken-for-Granted Rules of Self-Censorship at Work - Detert & Edmondson (2011)</title>
+    <!--
+      Review of:
+      Detert, J. R., & Edmondson, A. C. (2011).
+      Implicit Voice Theories: Taken-for-Granted Rules of Self-Censorship at Work.
+      Academy of Management Journal, 54(3), 461-488.
+
+      This paper examines the deep-seated beliefs that cause employees to self-censor,
+      even in psychologically safe environments.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 50%, #1e1b4b 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        }
+
+        h1, h2, h3, .definition-term {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .page-nav-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .page-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: white;
+            color: #7c3aed;
+            border-color: white;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffffff, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .citation {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .hero .tagline {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 15px auto 0;
+            font-style: italic;
+        }
+
+        .section-card {
+            background: #fdfdff;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .section-card {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        .section-card h2 {
+            color: #7c3aed;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #7c3aed;
+            font-size: 2em;
+        }
+
+        body.dark-mode .section-card h2 {
+            color: #a78bfa;
+            border-bottom-color: #a78bfa;
+        }
+
+        .section-card h3 {
+            color: #6d28d9;
+            margin: 25px 0 15px;
+            font-size: 1.5em;
+        }
+
+        body.dark-mode .section-card h3 {
+            color: #c4b5fd;
+        }
+
+        .section-card p, .section-card li {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .section-card p,
+        body.dark-mode .section-card li {
+            color: #e2e8f0;
+        }
+
+        .section-card ul, .section-card ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .theory-box {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .theory-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .theory-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .concept-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .concept-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .concept-box p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .comparison-table {
+            background: #0f172a;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        body.dark-mode .comparison-table td {
+            border-bottom-color: #4a5568;
+            color: #cbd5e0;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        body.dark-mode .comparison-table tr:hover {
+            background: #1e293b;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .highlight-box {
+            background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+            color: #fef3c7;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-left: 5px solid #7c3aed;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        body.dark-mode .quote-box {
+            background: linear-gradient(135deg, #3730a3 0%, #4c1d95 100%);
+            color: #e0e7ff;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .attribution {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .attribution a {
+            color: #c4b5fd;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-card {
+                padding: 25px;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="page-nav-container">
+        <div class="page-nav">
+            <a href="index.html" class="page-btn">Back to Literature Explorer</a>
+            <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
+            <button class="page-btn" onclick="switchPage('implications', this)">Practical Implications</button>
+        </div>
+    </nav>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <div id="main">
+        <div class="container">
+
+            <section class="hero">
+                <h1>Implicit Voice Theories:<br>Taken-for-Granted Rules of Self-Censorship at Work</h1>
+                <p class="citation">Detert, J. R., & Edmondson, A. C. (2011). Academy of Management Journal, 54(3), 461-488</p>
+                <p class="tagline">
+                    "The choice of silence is partially due to self-protective implicit voice theories that employees have internalized from interactions with authority over time."
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Executive Summary</h2>
+
+                <p>
+                    Why do employees remain silent even when they have valuable ideas, concerns, or information to share? This landmark study reveals that workplace silence isn't primarily caused by bad bosses or toxic cultures—it's driven by <strong>implicit voice theories</strong>: deeply ingrained, taken-for-granted beliefs about when speaking up is risky or inappropriate.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Key Insight:</strong> Employees self-censor not primarily because of actual leader behavior, but because of internalized beliefs about hierarchy and authority developed over a lifetime of experiences with authority figures—starting in childhood.
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">190</div>
+                        <div class="stat-label">Interviews Conducted</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Implicit Theories Identified</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">300+</div>
+                        <div class="stat-label">Survey Participants</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">763</div>
+                        <div class="stat-label">Citations (Highly Influential)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>The Five Implicit Voice Theories</h2>
+
+                <p>
+                    Through four rigorous studies, Detert and Edmondson identified five distinct implicit theories that predict workplace silence beyond all previously known factors:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>1. Presumed Target Identification</h4>
+                        <p>"Don't embarrass the boss in public." The belief that speaking up will be seen as a personal attack on superiors, damaging the relationship regardless of intent.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>2. Need Solid Data/Solutions</h4>
+                        <p>"Don't speak up unless you have a solution." The belief that raising issues without fully developed alternatives is inappropriate or will be dismissed.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>3. Don't Bypass the Boss</h4>
+                        <p>"Always go through proper channels." The belief that speaking to anyone above your direct supervisor is a violation of hierarchy that will be punished.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>4. Don't Embarrass the Boss in Public</h4>
+                        <p>"Save difficult conversations for private." The belief that raising concerns in meetings or group settings threatens the boss's authority and will backfire.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>5. Negative Career Consequences</h4>
+                        <p>"Speaking up hurts your career." The belief that voice behaviors, regardless of content, mark you as a troublemaker and limit advancement opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <p>"These implicit voice theories are the underlying assumptions and beliefs which prompt employees to consider speaking up as unsafe and remain silent in front of the management—even when they have ideas that could benefit the organization."</p>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Research Design: Four Complementary Studies</h2>
+
+                <h3>Study 1: Qualitative Discovery</h3>
+                <div class="theory-box">
+                    <h4>190 In-Depth Interviews</h4>
+                    <p>Conducted at a knowledge-intensive multinational corporation. Revealed that reluctance to speak up, even with pro-organizational suggestions, is driven by specific implicit theories about speaking up in hierarchies—not by immediate situational factors.</p>
+                </div>
+
+                <h3>Study 2: Generalizability Test</h3>
+                <div class="theory-box">
+                    <h4>185 Working Adults</h4>
+                    <p>Open-ended survey responses from diverse industries confirmed that the implicit voice theories identified in Study 1 generalize beyond a single organization.</p>
+                </div>
+
+                <h3>Studies 3 & 4: Scale Development and Validation</h3>
+                <div class="theory-box">
+                    <h4>300+ Survey Participants</h4>
+                    <p>Developed and validated survey measures for the five implicit voice theories, demonstrating discriminant validity and incremental predictive validity for workplace silence beyond established predictors.</p>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Why This Matters: The Power of Implicit Theories</h2>
+
+                <h3>Origins in Early Life</h3>
+                <p>
+                    These beliefs are not just products of current workplace experiences. They develop through a lifetime of interactions with authority figures—parents, teachers, coaches, early bosses. By the time employees enter the workforce, these theories are <strong>deeply internalized and operate automatically</strong>.
+                </p>
+
+                <h3>Operating Below Conscious Awareness</h3>
+                <p>
+                    Unlike conscious risk assessments, implicit voice theories operate as "taken-for-granted rules." Employees don't actively think "my boss will punish me"—they simply feel that speaking up is "not done" or "inappropriate" without examining why.
+                </p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Conscious Risk Assessment</th>
+                            <th>Implicit Voice Theory</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Will my boss punish me for this specific comment?"</td>
+                            <td>"Speaking up to bosses is generally risky."</td>
+                        </tr>
+                        <tr>
+                            <td>Deliberate cost-benefit analysis</td>
+                            <td>Automatic, taken-for-granted assumption</td>
+                        </tr>
+                        <tr>
+                            <td>Varies by situation and leader</td>
+                            <td>Stable across contexts and leaders</td>
+                        </tr>
+                        <tr>
+                            <td>Can be changed with information</td>
+                            <td>Resistant to disconfirming evidence</td>
+                        </tr>
+                        <tr>
+                            <td>Predicts some silence</td>
+                            <td>Predicts silence <em>beyond</em> conscious factors</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Incremental Prediction</h3>
+                <p>
+                    The most striking finding: implicit voice theories predict workplace silence <strong>above and beyond</strong> psychological safety, leader openness, and other established factors. Even employees who consciously believe their leader is open and supportive may still self-censor due to deeply held implicit theories.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>Connection to Power Dynamics</h2>
+
+                <p>
+                    This research provides crucial insight into how power asymmetries perpetuate themselves in organizations:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Self-Reinforcing Silence</h4>
+                        <p>When employees hold strong implicit voice theories, they remain silent even with supportive leaders. Leaders never hear concerns, assume all is well, and the theories are never challenged.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Invisible Barrier</h4>
+                        <p>Leaders may genuinely want input but unknowingly face an invisible wall of implicit theories. Training leaders to be "more open" misses the employee-side barriers.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Hierarchy Preservation</h4>
+                        <p>Implicit voice theories function to preserve hierarchical power structures by ensuring subordinates don't challenge those above them—even when challenge would be welcomed.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Cumulative Disadvantage</h4>
+                        <p>Employees who remain silent miss opportunities to demonstrate expertise, build relationships with leaders, and advance—compounding the power differential over time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Key Findings Summary</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Finding</th>
+                            <th>Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Implicit theories operate automatically</td>
+                            <td>Training interventions must address unconscious beliefs, not just conscious attitudes</td>
+                        </tr>
+                        <tr>
+                            <td>Theories develop over lifetime</td>
+                            <td>Changing them requires sustained effort and repeated disconfirming experiences</td>
+                        </tr>
+                        <tr>
+                            <td>Theories predict silence beyond known factors</td>
+                            <td>Psychological safety alone is insufficient; must address implicit beliefs</td>
+                        </tr>
+                        <tr>
+                            <td>Five distinct theories identified</td>
+                            <td>Interventions can target specific theories most prevalent in an organization</td>
+                        </tr>
+                        <tr>
+                            <td>Theories are measurable</td>
+                            <td>Organizations can assess and track implicit theories as a diagnostic tool</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2>Theoretical Contributions</h2>
+
+                <h3>1. Beyond Psychological Safety</h3>
+                <p>
+                    Amy Edmondson's earlier work established psychological safety as key to voice. This paper extends that work by showing that even in psychologically safe environments, implicit theories create additional barriers. The two constructs are distinct: psychological safety is a <em>team-level</em> perception, while implicit voice theories are <em>individual-level</em> beliefs that travel with employees across contexts.
+                </p>
+
+                <h3>2. Dispositional vs. Situational Silence</h3>
+                <p>
+                    Prior research emphasized situational factors (leader behavior, organizational climate). This study shifts attention to <em>dispositional</em> factors—stable beliefs employees carry with them. This explains why some employees remain silent even in supportive environments.
+                </p>
+
+                <h3>3. The "Imported" Nature of Silence</h3>
+                <p>
+                    A key insight is that employees "import" voice beliefs from outside the organization. Their implicit theories are shaped by family upbringing, education, culture, and prior work experiences—making them resistant to current workplace interventions.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>References & Related Work</h2>
+
+                <ul>
+                    <li>Detert, J. R., & Edmondson, A. C. (2011). Implicit Voice Theories: Taken-for-Granted Rules of Self-Censorship at Work. <em>Academy of Management Journal</em>, 54(3), 461-488.</li>
+                    <li>Edmondson, A. C. (1999). Psychological Safety and Learning Behavior in Work Teams. <em>Administrative Science Quarterly</em>, 44(2), 350-383.</li>
+                    <li>Morrison, E. W., & Milliken, F. J. (2000). Organizational Silence: A Barrier to Change and Development in a Pluralistic World. <em>Academy of Management Review</em>, 25(4), 706-725.</li>
+                    <li>Milliken, F. J., Morrison, E. W., & Hewlin, P. F. (2003). An Exploratory Study of Employee Silence: Issues That Employees Don't Communicate Upward and Why. <em>Journal of Management Studies</em>, 40(6), 1453-1476.</li>
+                    <li>Kish-Gephart, J. J., Detert, J. R., Trevino, L. K., & Edmondson, A. C. (2009). Silenced by Fear: The Nature, Sources, and Consequences of Fear at Work. <em>Research in Organizational Behavior</em>, 29, 163-193.</li>
+                </ul>
+            </section>
+
+            <div class="attribution">
+                <p>
+                    Interactive analysis created for the Literature Explorer.<br>
+                    Based on: Detert, J. R., & Edmondson, A. C. (2011). Implicit Voice Theories: Taken-for-Granted Rules of Self-Censorship at Work.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="implications" style="display: none;">
+        <div class="container">
+
+            <section class="hero">
+                <h1>Practical Implications</h1>
+                <p class="tagline">How to Surface and Challenge Implicit Voice Theories in Your Organization</p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Leaders: Creating Conditions for Voice</h2>
+
+                <h3>1. Recognize the Invisible Barrier</h3>
+                <p>
+                    Your employees may hold implicit theories that cause them to self-censor even when you're genuinely open. Don't assume that your open-door policy or friendly demeanor is sufficient. The barrier is inside employees' heads, not in your behavior.
+                </p>
+
+                <h3>2. Actively Disconfirm Implicit Theories</h3>
+                <div class="concept-grid">
+                    <div class="concept-box">
+                        <h4>Challenge "Need Solutions" Theory</h4>
+                        <p>Explicitly ask for half-baked ideas. Say: "I want to hear concerns even if you don't have solutions. Identifying problems is valuable on its own."</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Challenge "Don't Embarrass" Theory</h4>
+                        <p>Publicly thank people who raise difficult issues in meetings. Model receiving criticism gracefully: "Thank you for that pushback—it's exactly what I needed to hear."</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Challenge "Career Consequences" Theory</h4>
+                        <p>Promote people who speak up constructively. Make voice a valued behavior in performance reviews and advancement decisions.</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>Challenge "Bypass" Theory</h4>
+                        <p>Create legitimate skip-level communication channels. Make it clear that going around the hierarchy is acceptable in specific circumstances.</p>
+                    </div>
+                </div>
+
+                <h3>3. Sustained, Repeated Effort</h3>
+                <p>
+                    Because implicit theories developed over a lifetime, they won't change from a single positive experience. Leaders must <strong>consistently and repeatedly</strong> demonstrate that voice is welcomed—over months and years, not days and weeks.
+                </p>
+            </section>
+
+            <section class="section-card">
+                <h2>For Organizations: Systemic Interventions</h2>
+
+                <h3>Diagnose Your Organization's Implicit Theory Profile</h3>
+                <p>
+                    Use the validated scales from this research to assess which implicit theories are most prevalent. Different organizations may have different profiles requiring tailored interventions.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Assessment Approach:</strong> Survey employees on agreement with statements like "In most work situations, it is better to wait until you have a complete solution before voicing concerns" or "Speaking up about problems at work typically hurts your career more than it helps."
+                </div>
+
+                <h3>Socialization and Onboarding</h3>
+                <p>
+                    New employees arrive with implicit theories from prior experiences. Onboarding is a critical opportunity to begin disconfirming unhelpful theories before they become entrenched in the new context.
+                </p>
+
+                <h3>Training Design</h3>
+                <p>
+                    Traditional "speak up" training focuses on skills and confidence. This research suggests training should also:
+                </p>
+                <ul>
+                    <li>Make implicit theories explicit—help employees recognize their own taken-for-granted assumptions</li>
+                    <li>Provide cognitive reframing tools to challenge automatic beliefs</li>
+                    <li>Share stories of successful voice that disconfirm negative theories</li>
+                    <li>Address the developmental origins of implicit theories (family, school, prior work)</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2>For Individuals: Managing Your Own Implicit Theories</h2>
+
+                <h3>Self-Assessment Questions</h3>
+                <div class="theory-box">
+                    <h4>Reflect on Your Assumptions</h4>
+                    <p>Ask yourself: "When I choose not to speak up, what rule am I following? Where did I learn this rule? Is it actually true in my current situation, or am I applying an old assumption to a new context?"</p>
+                </div>
+
+                <h3>Testing Your Theories</h3>
+                <p>
+                    Treat your implicit theories as hypotheses to be tested, not facts. Design small experiments:
+                </p>
+                <ul>
+                    <li>Raise a minor concern without having a complete solution. What happens?</li>
+                    <li>Voice an idea in a meeting rather than waiting for private conversation. How does the leader respond?</li>
+                    <li>Share information with someone outside your direct chain. Are there really negative consequences?</li>
+                </ul>
+
+                <h3>Rewriting Your Internal Script</h3>
+                <p>
+                    When you notice an implicit theory operating, consciously articulate an alternative:
+                </p>
+                <ul>
+                    <li><strong>Old:</strong> "Don't speak up without a solution."<br><strong>New:</strong> "Identifying problems is valuable; I can contribute by naming issues even without solutions."</li>
+                    <li><strong>Old:</strong> "Don't embarrass the boss in public."<br><strong>New:</strong> "Respectful disagreement in meetings can improve decisions and demonstrate my engagement."</li>
+                    <li><strong>Old:</strong> "Speaking up hurts your career."<br><strong>New:</strong> "Strategic voice demonstrates leadership potential; silence may signal disengagement."</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2>Boundary Conditions & Cautions</h2>
+
+                <h3>When Implicit Theories Are Accurate</h3>
+                <p>
+                    This research focuses on situations where implicit theories are <em>overgeneralized</em>—applied to contexts where they don't fit. But sometimes the theories are accurate. In genuinely punitive environments with abusive leaders, self-censorship may be an appropriate survival strategy.
+                </p>
+
+                <h3>Cultural Considerations</h3>
+                <p>
+                    Implicit voice theories may be shaped by national and organizational culture. In high power-distance cultures, theories about hierarchy and deference may be more deeply ingrained and culturally reinforced. Interventions must be culturally sensitive.
+                </p>
+
+                <h3>Individual Differences</h3>
+                <p>
+                    Not all employees hold implicit theories equally strongly. Those with more hierarchical upbringings, more negative prior work experiences, or lower self-efficacy may have stronger theories. Tailored approaches may be needed.
+                </p>
+            </section>
+
+            <div class="attribution">
+                <p>
+                    Practical implications derived from research by Detert & Edmondson (2011).<br>
+                    <a href="index.html">Return to Literature Explorer</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.container > div[id]').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.querySelectorAll('#main, #implications').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            window.scrollTo(0, 0);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.dark-mode-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.textContent = 'Light Mode';
+            } else {
+                btn.textContent = 'Dark Mode';
+            }
+        }
+    </script>
+
+</body>
+</html>
