@@ -25,6 +25,7 @@
             background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #164e63 100%);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         body.dark-mode {
@@ -61,6 +62,7 @@
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .page-btn:hover { background: rgba(255, 255, 255, 0.2); }
@@ -77,7 +79,11 @@
             padding: 12px 20px;
             border-radius: 25px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
+
+        .dark-mode-toggle:hover { background: rgba(255, 255, 255, 0.3); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
@@ -97,6 +103,7 @@
             background: linear-gradient(45deg, #ffffff, #a5f3fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .citation { font-size: 1.2em; opacity: 0.95; margin-bottom: 10px; }
@@ -227,6 +234,248 @@
 
         body.dark-mode .antecedent-category h4 { color: #5eead4; }
 
+        /* SVG Container */
+        .svg-container {
+            background: linear-gradient(135deg, #ecfeff 0%, #fff 100%);
+            border: 2px solid #0891b2;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        body.dark-mode .svg-container {
+            background: linear-gradient(135deg, #083344 0%, #0f172a 100%);
+            border-color: #22d3ee;
+        }
+
+        .svg-container svg { display: block; margin: 0 auto; }
+
+        /* Interactive Assessment Styles */
+        .assessment-container {
+            background: linear-gradient(135deg, #ecfeff 0%, #fff 100%);
+            border: 3px solid #0891b2;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .assessment-container {
+            background: linear-gradient(135deg, #083344 0%, #0f172a 100%);
+            border-color: #22d3ee;
+        }
+
+        .assessment-section {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #cffafe;
+        }
+
+        body.dark-mode .assessment-section { border-bottom-color: #164e63; }
+
+        .assessment-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .assessment-section h4 {
+            color: #0891b2;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .assessment-section h4 { color: #67e8f9; }
+
+        .question-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .question-item { background: #334155; }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        body.dark-mode .question-text { color: #f1f5f9; }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .likert-option {
+            flex: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .likert-option input[type="radio"] { display: none; }
+
+        .likert-option label {
+            display: block;
+            padding: 12px 8px;
+            background: #cffafe;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0e7490;
+        }
+
+        body.dark-mode .likert-option label { background: #164e63; color: #a5f3fc; }
+
+        .likert-option label:hover { background: #a5f3fc; transform: translateY(-2px); }
+        body.dark-mode .likert-option label:hover { background: #0e7490; }
+
+        .likert-option input[type="radio"]:checked + label {
+            background: #0891b2;
+            color: white;
+            border-color: #0e7490;
+            transform: scale(1.05);
+        }
+
+        .results-panel {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .results-panel h3 { color: white; margin-bottom: 20px; }
+
+        .result-category {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .result-category h4 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-badge {
+            background: white;
+            color: #0891b2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .voice-bar {
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .voice-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a5f3fc, #67e8f9, #22d3ee);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .result-interpretation {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .calculate-btn {
+            background: white;
+            color: #0891b2;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .calculate-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+
+        .reset-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Voice Type Cards */
+        .voice-type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #0891b2;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .voice-type-card { background: #334155; }
+
+        .voice-type-card:hover { transform: translateX(10px); }
+
+        .voice-type-card h4 {
+            color: #0891b2;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        body.dark-mode .voice-type-card h4 { color: #22d3ee; }
+
+        .voice-type-card .example {
+            font-style: italic;
+            color: #6b7280;
+            background: #f0fdfa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .voice-type-card .example {
+            background: #164e63;
+            color: #a5f3fc;
+        }
+
+        /* Decision Tree Styles */
+        .decision-output {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .decision-output.voice { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+        .decision-output.silence { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); }
+
+        .decision-output h4 { color: white; margin-bottom: 10px; }
+
         .attribution {
             background: rgba(0,0,0,0.3);
             color: white;
@@ -238,9 +487,23 @@
 
         .attribution a { color: #67e8f9; text-decoration: none; font-weight: 700; }
 
+        /* Animation */
+        @keyframes flow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .flow-line {
+            stroke-dasharray: 10, 10;
+            animation: flow 1s linear infinite;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .section-card { padding: 25px; }
+            .likert-scale { flex-direction: column; }
+            .likert-option { min-width: 100%; }
+            .page-btn { padding: 8px 12px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -250,13 +513,15 @@
         <div class="page-nav">
             <a href="index.html" class="page-btn">Back to Literature Explorer</a>
             <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
-            <button class="page-btn" onclick="switchPage('antecedents', this)">Antecedents</button>
+            <button class="page-btn" onclick="switchPage('model', this)">The Model</button>
+            <button class="page-btn" onclick="switchPage('assessment', this)">Voice Assessment</button>
             <button class="page-btn" onclick="switchPage('consequences', this)">Consequences</button>
         </div>
     </nav>
 
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
 
+    <!-- PAGE 1: MAIN CONTENT -->
     <div id="main">
         <div class="container">
 
@@ -308,15 +573,60 @@
 
                 <p>Morrison distinguishes between different types of voice, which have different antecedents and consequences:</p>
 
-                <div class="concept-grid">
-                    <div class="concept-box">
-                        <h4>Promotive Voice</h4>
-                        <p>Expressing new ideas, suggestions for improvement, or recommendations for positive changes. Forward-looking and focused on opportunities. Generally perceived more positively by recipients.</p>
-                    </div>
-                    <div class="concept-box">
-                        <h4>Prohibitive Voice</h4>
-                        <p>Speaking up about problems, concerns, or potential threats. Warning about things that are going wrong. More risky because it implies criticism and may challenge the status quo.</p>
-                    </div>
+                <div class="voice-type-card">
+                    <h4>Promotive Voice</h4>
+                    <p>Expressing new ideas, suggestions for improvement, or recommendations for positive changes. Forward-looking and focused on opportunities. Generally perceived more positively by recipients.</p>
+                    <div class="example">"I have an idea that could help us improve customer response times by 20%."</div>
+                </div>
+
+                <div class="voice-type-card">
+                    <h4>Prohibitive Voice</h4>
+                    <p>Speaking up about problems, concerns, or potential threats. Warning about things that are going wrong. More risky because it implies criticism and may challenge the status quo.</p>
+                    <div class="example">"I'm concerned that this new policy could lead to compliance issues we need to address."</div>
+                </div>
+
+                <!-- SVG: Voice Types Comparison -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 800 300" style="max-width: 800px;">
+                        <defs>
+                            <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
+                            </marker>
+                        </defs>
+
+                        <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">Promotive vs. Prohibitive Voice</text>
+
+                        <!-- Promotive Voice Column -->
+                        <rect x="50" y="60" width="300" height="220" rx="15" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+                        <text x="200" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#0891b2">PROMOTIVE VOICE</text>
+
+                        <text x="70" y="120" font-size="12" fill="#0e7490">Focus: Ideas & Opportunities</text>
+                        <text x="70" y="145" font-size="12" fill="#0e7490">Orientation: Future improvement</text>
+                        <text x="70" y="170" font-size="12" fill="#0e7490">Risk Level: Lower</text>
+                        <text x="70" y="195" font-size="12" fill="#0e7490">Reception: Generally positive</text>
+
+                        <rect x="70" y="215" width="260" height="50" rx="8" fill="#06b6d4"/>
+                        <text x="200" y="237" text-anchor="middle" font-size="11" fill="white">Driven by: Proactive personality,</text>
+                        <text x="200" y="252" text-anchor="middle" font-size="11" fill="white">positive affect, opportunity focus</text>
+
+                        <!-- Prohibitive Voice Column -->
+                        <rect x="450" y="60" width="300" height="220" rx="15" fill="#fef2f2" stroke="#0891b2" stroke-width="2"/>
+                        <text x="600" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#0891b2">PROHIBITIVE VOICE</text>
+
+                        <text x="470" y="120" font-size="12" fill="#0e7490">Focus: Problems & Concerns</text>
+                        <text x="470" y="145" font-size="12" fill="#0e7490">Orientation: Current/past issues</text>
+                        <text x="470" y="170" font-size="12" fill="#0e7490">Risk Level: Higher</text>
+                        <text x="470" y="195" font-size="12" fill="#0e7490">Reception: Mixed or defensive</text>
+
+                        <rect x="470" y="215" width="260" height="50" rx="8" fill="#dc2626"/>
+                        <text x="600" y="237" text-anchor="middle" font-size="11" fill="white">Driven by: Felt obligation,</text>
+                        <text x="600" y="252" text-anchor="middle" font-size="11" fill="white">duty orientation, concern</text>
+
+                        <!-- Connecting Arrow -->
+                        <path d="M 350 170 L 450 170" stroke="#0891b2" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="400" y="165" text-anchor="middle" font-size="10" fill="#0e7490">Different</text>
+                        <text x="400" y="178" text-anchor="middle" font-size="10" fill="#0e7490">antecedents</text>
+                    </svg>
                 </div>
 
                 <table class="comparison-table">
@@ -387,6 +697,10 @@
                 <p>
                     Employees weigh the potential benefits of voice (efficacy × value of change) against the potential costs (risk × likelihood of negative outcomes). This calculation is influenced by individual factors, contextual factors, and the characteristics of the issue itself.
                 </p>
+
+                <div class="highlight-box">
+                    <strong>Key Insight:</strong> Voice is not simply about personality—it's a calculated decision. Even highly proactive employees will stay silent if they perceive low efficacy (nothing will change) or high risk (speaking up will hurt them).
+                </div>
             </section>
 
             <section class="section-card">
@@ -465,69 +779,6 @@
             </section>
 
             <section class="section-card">
-                <h2>Critical Gaps Identified</h2>
-
-                <p>Morrison highlights several important gaps in the research that require future attention:</p>
-
-                <div class="antecedent-category">
-                    <h4>1. Consequences of Voice (and Silence)</h4>
-                    <p>Most research focuses on antecedents. We know less about what happens after voice: When does it lead to change? When does it backfire? What are the long-term career consequences? How does silence accumulate into organizational problems?</p>
-                </div>
-
-                <div class="antecedent-category">
-                    <h4>2. The Target's Perspective</h4>
-                    <p>Research is heavily speaker-focused. We need more understanding of how recipients process and respond to voice, what makes them receptive vs. defensive, and how they decide whether to act on input.</p>
-                </div>
-
-                <div class="antecedent-category">
-                    <h4>3. Collective Silence</h4>
-                    <p>Most research examines individual voice decisions. Yet silence is often collective—whole teams or organizations where "nobody talks about" certain issues. The dynamics of collective silence are understudied.</p>
-                </div>
-
-                <div class="antecedent-category">
-                    <h4>4. The Content of Voice</h4>
-                    <p>Research typically treats voice as a single behavior. But the specific content (what is said, how it's framed) likely matters greatly for outcomes. More attention needed to message characteristics.</p>
-                </div>
-            </section>
-
-            <section class="section-card">
-                <h2>Theoretical Integration</h2>
-
-                <p>Morrison integrates multiple theoretical perspectives on voice:</p>
-
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Theory</th>
-                            <th>Contribution to Understanding Voice</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Exit-Voice-Loyalty-Neglect</strong></td>
-                            <td>Voice as one response to dissatisfaction (vs. leaving, staying loyal, or disengaging)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Social Exchange Theory</strong></td>
-                            <td>Voice as discretionary behavior driven by reciprocity and obligation</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Expectancy Theory</strong></td>
-                            <td>Voice as motivated by expected outcomes and perceived efficacy</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Planned Behavior Theory</strong></td>
-                            <td>Voice as intentional behavior shaped by attitudes, norms, and perceived control</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Psychological Safety</strong></td>
-                            <td>Voice as enabled by perceived interpersonal risk-taking safety</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="section-card">
                 <h2>References</h2>
                 <ul>
                     <li>Morrison, E. W. (2014). Employee voice and silence. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 1, 173-197.</li>
@@ -546,11 +797,156 @@
         </div>
     </div>
 
-    <div id="antecedents" style="display: none;">
+    <!-- PAGE 2: THE MODEL -->
+    <div id="model" style="display: none;">
         <div class="container">
             <section class="hero">
-                <h1>Antecedents of Voice and Silence</h1>
-                <p class="tagline">What determines whether employees speak up or stay silent?</p>
+                <h1>The Voice Decision Model</h1>
+                <p class="tagline">How antecedents shape psychological states to influence voice behavior</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Integrative Model of Employee Voice</h2>
+
+                <!-- SVG: Complete Voice Model -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 900 550" style="max-width: 900px;">
+                        <defs>
+                            <marker id="arrow-flow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
+                            </marker>
+                            <linearGradient id="voiceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ecfeff"/>
+                                <stop offset="100%" style="stop-color:#0891b2"/>
+                            </linearGradient>
+                        </defs>
+
+                        <text x="450" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Integrative Model of Employee Voice</text>
+
+                        <!-- ANTECEDENTS COLUMN -->
+                        <text x="100" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#0e7490">ANTECEDENTS</text>
+
+                        <!-- Individual Factors -->
+                        <rect x="20" y="85" width="160" height="95" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+                        <text x="100" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">INDIVIDUAL</text>
+                        <text x="100" y="125" text-anchor="middle" font-size="9" fill="#666">Proactive personality</text>
+                        <text x="100" y="140" text-anchor="middle" font-size="9" fill="#666">Extraversion</text>
+                        <text x="100" y="155" text-anchor="middle" font-size="9" fill="#666">Self-efficacy</text>
+                        <text x="100" y="170" text-anchor="middle" font-size="9" fill="#666">Conscientiousness</text>
+
+                        <!-- Job Attitudes -->
+                        <rect x="20" y="190" width="160" height="80" rx="10" fill="#cffafe" stroke="#0891b2" stroke-width="2"/>
+                        <text x="100" y="210" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">JOB ATTITUDES</text>
+                        <text x="100" y="230" text-anchor="middle" font-size="9" fill="#666">Satisfaction</text>
+                        <text x="100" y="245" text-anchor="middle" font-size="9" fill="#666">Commitment</text>
+                        <text x="100" y="260" text-anchor="middle" font-size="9" fill="#666">Identification</text>
+
+                        <!-- Leadership -->
+                        <rect x="20" y="280" width="160" height="95" rx="10" fill="#a5f3fc" stroke="#0891b2" stroke-width="2"/>
+                        <text x="100" y="300" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">LEADERSHIP</text>
+                        <text x="100" y="320" text-anchor="middle" font-size="9" fill="#666">Leader openness</text>
+                        <text x="100" y="335" text-anchor="middle" font-size="9" fill="#666">Transformational</text>
+                        <text x="100" y="350" text-anchor="middle" font-size="9" fill="#666">LMX quality</text>
+                        <text x="100" y="365" text-anchor="middle" font-size="9" fill="#666">Abusive supervision (-)</text>
+
+                        <!-- Organizational Context -->
+                        <rect x="20" y="385" width="160" height="80" rx="10" fill="#67e8f9" stroke="#0891b2" stroke-width="2"/>
+                        <text x="100" y="405" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">ORGANIZATION</text>
+                        <text x="100" y="425" text-anchor="middle" font-size="9" fill="#666">Psychological safety</text>
+                        <text x="100" y="440" text-anchor="middle" font-size="9" fill="#666">Voice climate</text>
+                        <text x="100" y="455" text-anchor="middle" font-size="9" fill="#666">Formal mechanisms</text>
+
+                        <!-- Arrows to Psychological States -->
+                        <path d="M 180 140 Q 230 140 280 190" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+                        <path d="M 180 230 L 280 260" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+                        <path d="M 180 330 L 280 300" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+                        <path d="M 180 425 Q 230 400 280 350" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+
+                        <!-- PSYCHOLOGICAL STATES COLUMN -->
+                        <text x="380" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#0e7490">PSYCHOLOGICAL STATES</text>
+
+                        <rect x="290" y="85" width="180" height="380" rx="15" fill="#0891b2"/>
+
+                        <!-- Perceived Efficacy -->
+                        <rect x="305" y="100" width="150" height="90" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="380" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PERCEIVED EFFICACY</text>
+                        <text x="380" y="145" text-anchor="middle" font-size="9" fill="white">"Will speaking up</text>
+                        <text x="380" y="158" text-anchor="middle" font-size="9" fill="white">make a difference?"</text>
+                        <text x="380" y="178" text-anchor="middle" font-size="10" fill="#a5f3fc">If NO → Silence</text>
+
+                        <!-- Perceived Safety -->
+                        <rect x="305" y="200" width="150" height="90" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="380" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PERCEIVED SAFETY</text>
+                        <text x="380" y="245" text-anchor="middle" font-size="9" fill="white">"Is it safe for me</text>
+                        <text x="380" y="258" text-anchor="middle" font-size="9" fill="white">to speak up?"</text>
+                        <text x="380" y="278" text-anchor="middle" font-size="10" fill="#fca5a5">If NO → Silence</text>
+
+                        <!-- Felt Obligation -->
+                        <rect x="305" y="300" width="150" height="90" rx="8" fill="rgba(255,255,255,0.2)"/>
+                        <text x="380" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="white">FELT OBLIGATION</text>
+                        <text x="380" y="345" text-anchor="middle" font-size="9" fill="white">"Is it my responsibility</text>
+                        <text x="380" y="358" text-anchor="middle" font-size="9" fill="white">to speak up?"</text>
+                        <text x="380" y="378" text-anchor="middle" font-size="10" fill="#a5f3fc">If NO → Silence</text>
+
+                        <!-- Cost-Benefit Analysis -->
+                        <rect x="305" y="400" width="150" height="55" rx="8" fill="rgba(255,255,255,0.3)"/>
+                        <text x="380" y="420" text-anchor="middle" font-size="11" font-weight="bold" fill="white">COST-BENEFIT</text>
+                        <text x="380" y="438" text-anchor="middle" font-size="11" font-weight="bold" fill="white">CALCULATION</text>
+                        <text x="380" y="450" text-anchor="middle" font-size="8" fill="white">Benefits vs. Risks</text>
+
+                        <!-- Arrow to Outcomes -->
+                        <path d="M 470 270 L 540 270" stroke="#0891b2" stroke-width="3" fill="none" marker-end="url(#arrow-flow)"/>
+
+                        <!-- BEHAVIOR COLUMN -->
+                        <text x="660" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#0e7490">BEHAVIOR</text>
+
+                        <!-- Voice -->
+                        <rect x="550" y="100" width="120" height="120" rx="10" fill="#059669"/>
+                        <text x="610" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="white">VOICE</text>
+                        <text x="610" y="165" text-anchor="middle" font-size="10" fill="white">Promotive</text>
+                        <text x="610" y="180" text-anchor="middle" font-size="10" fill="white">or</text>
+                        <text x="610" y="195" text-anchor="middle" font-size="10" fill="white">Prohibitive</text>
+
+                        <!-- Silence -->
+                        <rect x="550" y="240" width="120" height="120" rx="10" fill="#dc2626"/>
+                        <text x="610" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="white">SILENCE</text>
+                        <text x="610" y="305" text-anchor="middle" font-size="10" fill="white">Acquiescent</text>
+                        <text x="610" y="320" text-anchor="middle" font-size="10" fill="white">Defensive</text>
+                        <text x="610" y="335" text-anchor="middle" font-size="10" fill="white">ProSocial</text>
+
+                        <!-- Arrow to Consequences -->
+                        <path d="M 670 160 L 740 160" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+                        <path d="M 670 300 L 740 300" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrow-flow)"/>
+
+                        <!-- CONSEQUENCES COLUMN -->
+                        <text x="820" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#0e7490">CONSEQUENCES</text>
+
+                        <rect x="750" y="85" width="130" height="380" rx="10" fill="#f0fdfa" stroke="#0891b2" stroke-width="2"/>
+
+                        <text x="815" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">INDIVIDUAL</text>
+                        <text x="815" y="135" text-anchor="middle" font-size="8" fill="#666">Recognition (+/-)</text>
+                        <text x="815" y="150" text-anchor="middle" font-size="8" fill="#666">Career impact (+/-)</text>
+                        <text x="815" y="165" text-anchor="middle" font-size="8" fill="#666">Relationships (+/-)</text>
+
+                        <line x1="765" y1="180" x2="865" y2="180" stroke="#0891b2" stroke-width="1"/>
+
+                        <text x="815" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">TEAM</text>
+                        <text x="815" y="225" text-anchor="middle" font-size="8" fill="#666">Decision quality</text>
+                        <text x="815" y="240" text-anchor="middle" font-size="8" fill="#666">Error detection</text>
+                        <text x="815" y="255" text-anchor="middle" font-size="8" fill="#666">Learning</text>
+
+                        <line x1="765" y1="270" x2="865" y2="270" stroke="#0891b2" stroke-width="1"/>
+
+                        <text x="815" y="295" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">ORGANIZATION</text>
+                        <text x="815" y="315" text-anchor="middle" font-size="8" fill="#666">Innovation</text>
+                        <text x="815" y="330" text-anchor="middle" font-size="8" fill="#666">Efficiency</text>
+                        <text x="815" y="345" text-anchor="middle" font-size="8" fill="#666">Adaptation</text>
+
+                        <!-- Feedback Loop -->
+                        <path d="M 815 465 C 815 510, 100 510, 100 465" stroke="#0891b2" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrow-flow)"/>
+                        <text x="450" y="520" text-anchor="middle" font-size="10" fill="#0891b2" font-weight="bold">Feedback Loop: Consequences shape future antecedents</text>
+                    </svg>
+                </div>
             </section>
 
             <section class="section-card">
@@ -604,23 +1000,373 @@
             </section>
 
             <section class="section-card">
-                <h2>The Mediating Psychological States</h2>
+                <h2>Theoretical Integration</h2>
 
-                <p>Antecedents affect voice through three mediating psychological states:</p>
+                <p>Morrison integrates multiple theoretical perspectives on voice:</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Theory</th>
+                            <th>Contribution to Understanding Voice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Exit-Voice-Loyalty-Neglect</strong></td>
+                            <td>Voice as one response to dissatisfaction (vs. leaving, staying loyal, or disengaging)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Social Exchange Theory</strong></td>
+                            <td>Voice as discretionary behavior driven by reciprocity and obligation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expectancy Theory</strong></td>
+                            <td>Voice as motivated by expected outcomes and perceived efficacy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Planned Behavior Theory</strong></td>
+                            <td>Voice as intentional behavior shaped by attitudes, norms, and perceived control</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Psychological Safety</strong></td>
+                            <td>Voice as enabled by perceived interpersonal risk-taking safety</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: VOICE ASSESSMENT -->
+    <div id="assessment" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Voice Decision Self-Assessment</h1>
+                <p class="tagline">Evaluate your voice situation using Morrison's framework</p>
+            </section>
+
+            <section class="section-card">
+                <h2>Your Voice Readiness Assessment</h2>
+                <p>This assessment evaluates the three critical psychological states that determine whether you're likely to speak up. Think about a specific issue you're considering raising at work as you answer.</p>
+
+                <div class="assessment-container">
+                    <!-- Perceived Efficacy -->
+                    <div class="assessment-section">
+                        <h4>Section A: Perceived Efficacy (Will It Make a Difference?)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">1. If I speak up about this issue, my input will be seriously considered.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_1" name="q1" value="1">
+                                    <label for="q1_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_2" name="q1" value="2">
+                                    <label for="q1_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_3" name="q1" value="3">
+                                    <label for="q1_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_4" name="q1" value="4">
+                                    <label for="q1_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q1_5" name="q1" value="5">
+                                    <label for="q1_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">2. My organization has a track record of acting on employee input.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_1" name="q2" value="1">
+                                    <label for="q2_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_2" name="q2" value="2">
+                                    <label for="q2_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_3" name="q2" value="3">
+                                    <label for="q2_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_4" name="q2" value="4">
+                                    <label for="q2_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q2_5" name="q2" value="5">
+                                    <label for="q2_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">3. The person I would speak to has the power to make changes.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_1" name="q3" value="1">
+                                    <label for="q3_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_2" name="q3" value="2">
+                                    <label for="q3_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_3" name="q3" value="3">
+                                    <label for="q3_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_4" name="q3" value="4">
+                                    <label for="q3_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q3_5" name="q3" value="5">
+                                    <label for="q3_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perceived Safety -->
+                    <div class="assessment-section">
+                        <h4>Section B: Perceived Safety (Is It Safe to Speak Up?)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">4. I feel safe to express my honest opinions at work.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_1" name="q4" value="1">
+                                    <label for="q4_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_2" name="q4" value="2">
+                                    <label for="q4_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_3" name="q4" value="3">
+                                    <label for="q4_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_4" name="q4" value="4">
+                                    <label for="q4_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q4_5" name="q4" value="5">
+                                    <label for="q4_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">5. My supervisor responds well when people raise concerns or problems.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_1" name="q5" value="1">
+                                    <label for="q5_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_2" name="q5" value="2">
+                                    <label for="q5_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_3" name="q5" value="3">
+                                    <label for="q5_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_4" name="q5" value="4">
+                                    <label for="q5_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q5_5" name="q5" value="5">
+                                    <label for="q5_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">6. Speaking up about this issue would NOT put my reputation or career at risk.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_1" name="q6" value="1">
+                                    <label for="q6_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_2" name="q6" value="2">
+                                    <label for="q6_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_3" name="q6" value="3">
+                                    <label for="q6_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_4" name="q6" value="4">
+                                    <label for="q6_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q6_5" name="q6" value="5">
+                                    <label for="q6_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Felt Obligation -->
+                    <div class="assessment-section">
+                        <h4>Section C: Felt Obligation (Is It My Responsibility?)</h4>
+
+                        <div class="question-item">
+                            <div class="question-text">7. I feel responsible for bringing this issue to attention.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_1" name="q7" value="1">
+                                    <label for="q7_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_2" name="q7" value="2">
+                                    <label for="q7_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_3" name="q7" value="3">
+                                    <label for="q7_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_4" name="q7" value="4">
+                                    <label for="q7_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q7_5" name="q7" value="5">
+                                    <label for="q7_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">8. This issue directly relates to my work or expertise.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_1" name="q8" value="1">
+                                    <label for="q8_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_2" name="q8" value="2">
+                                    <label for="q8_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_3" name="q8" value="3">
+                                    <label for="q8_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_4" name="q8" value="4">
+                                    <label for="q8_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q8_5" name="q8" value="5">
+                                    <label for="q8_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-text">9. I care about the success of my organization and want to help improve it.</div>
+                            <div class="likert-scale">
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_1" name="q9" value="1">
+                                    <label for="q9_1">Strongly Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_2" name="q9" value="2">
+                                    <label for="q9_2">Disagree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_3" name="q9" value="3">
+                                    <label for="q9_3">Neutral</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_4" name="q9" value="4">
+                                    <label for="q9_4">Agree</label>
+                                </div>
+                                <div class="likert-option">
+                                    <input type="radio" id="q9_5" name="q9" value="5">
+                                    <label for="q9_5">Strongly Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateVoiceReadiness()">Assess My Voice Readiness</button>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel" id="resultsPanel" style="display: none;">
+                    <h3>Your Voice Readiness Profile</h3>
+
+                    <div class="result-category">
+                        <h4>Perceived Efficacy <span class="score-badge" id="efficacyScore">--</span></h4>
+                        <p>Your belief that speaking up will make a difference.</p>
+                        <div class="voice-bar">
+                            <div class="voice-bar-fill" id="efficacyBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-category">
+                        <h4>Perceived Safety <span class="score-badge" id="safetyScore">--</span></h4>
+                        <p>Your sense that it's safe to speak up.</p>
+                        <div class="voice-bar">
+                            <div class="voice-bar-fill" id="safetyBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-category">
+                        <h4>Felt Obligation <span class="score-badge" id="obligationScore">--</span></h4>
+                        <p>Your sense of responsibility to speak up.</p>
+                        <div class="voice-bar">
+                            <div class="voice-bar-fill" id="obligationBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-interpretation" id="interpretation">
+                        <h4>Voice Decision Recommendation</h4>
+                        <p id="interpretationText">Complete the assessment to see your recommendation.</p>
+                    </div>
+
+                    <button class="reset-btn" onclick="resetAssessment()">Reset Assessment</button>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Understanding Your Results</h2>
+
+                <h3>The Three Gates to Voice</h3>
+                <p>According to Morrison's framework, voice requires passing through three psychological "gates":</p>
 
                 <div class="concept-grid">
                     <div class="concept-box">
-                        <h4>Perceived Efficacy of Voice</h4>
-                        <p>"Will my input make a difference?" Employees must believe that speaking up will lead to meaningful change. Without efficacy beliefs, even safe environments won't generate voice.</p>
+                        <h4>Efficacy Gate</h4>
+                        <p>If you don't believe speaking up will make a difference, you're unlikely to voice—regardless of safety or obligation. Low efficacy leads to "acquiescent silence."</p>
                     </div>
                     <div class="concept-box">
-                        <h4>Perceived Safety of Voice</h4>
-                        <p>"Is it safe for me to speak up?" Employees assess potential negative consequences—embarrassment, damaged relationships, career penalties. Safety concerns can override efficacy beliefs.</p>
+                        <h4>Safety Gate</h4>
+                        <p>Even if you believe voice will be effective, perceived risk can stop you. Low safety leads to "defensive silence"—protecting yourself by staying quiet.</p>
                     </div>
                     <div class="concept-box">
-                        <h4>Felt Obligation for Voice</h4>
-                        <p>"Is it my responsibility to speak up?" Some employees feel duty-bound to voice concerns; others see it as optional. Obligation can motivate voice even when efficacy or safety is uncertain.</p>
+                        <h4>Obligation Gate</h4>
+                        <p>Even with efficacy and safety, you need motivation. Felt obligation—from commitment, identification, or role expectations—provides the push to actually speak up.</p>
                     </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Key Insight:</strong> All three psychological states matter, but they operate sequentially. Low efficacy can kill voice before safety even becomes relevant. Address the weakest link in your chain to improve your voice readiness.
                 </div>
             </section>
 
@@ -630,6 +1376,7 @@
         </div>
     </div>
 
+    <!-- PAGE 4: CONSEQUENCES -->
     <div id="consequences" style="display: none;">
         <div class="container">
             <section class="hero">
@@ -639,6 +1386,63 @@
 
             <section class="section-card">
                 <h2>Consequences at Three Levels</h2>
+
+                <!-- SVG: Consequences Model -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 800 400" style="max-width: 800px;">
+                        <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">Consequences of Voice and Silence</text>
+
+                        <!-- Voice Column -->
+                        <rect x="50" y="60" width="300" height="320" rx="15" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+                        <text x="200" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#059669">VOICE CONSEQUENCES</text>
+
+                        <!-- Individual -->
+                        <rect x="70" y="105" width="260" height="85" rx="8" fill="#dcfce7"/>
+                        <text x="200" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">Individual Level</text>
+                        <text x="90" y="145" font-size="10" fill="#166534">+ Recognition as contributor</text>
+                        <text x="90" y="160" font-size="10" fill="#166534">+ Career advancement</text>
+                        <text x="90" y="175" font-size="10" fill="#dc2626">- Risk of being labeled troublemaker</text>
+
+                        <!-- Team -->
+                        <rect x="70" y="200" width="260" height="75" rx="8" fill="#bbf7d0"/>
+                        <text x="200" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">Team Level</text>
+                        <text x="90" y="240" font-size="10" fill="#166534">+ Better decision quality</text>
+                        <text x="90" y="255" font-size="10" fill="#166534">+ Error detection and correction</text>
+                        <text x="90" y="270" font-size="10" fill="#166534">+ Enhanced team learning</text>
+
+                        <!-- Organization -->
+                        <rect x="70" y="285" width="260" height="85" rx="8" fill="#86efac"/>
+                        <text x="200" y="305" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">Organization Level</text>
+                        <text x="90" y="325" font-size="10" fill="#166534">+ Innovation from bottom-up ideas</text>
+                        <text x="90" y="340" font-size="10" fill="#166534">+ Improved efficiency</text>
+                        <text x="90" y="355" font-size="10" fill="#166534">+ Strategic adaptation</text>
+
+                        <!-- Silence Column -->
+                        <rect x="450" y="60" width="300" height="320" rx="15" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+                        <text x="600" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#dc2626">SILENCE CONSEQUENCES</text>
+
+                        <!-- Individual -->
+                        <rect x="470" y="105" width="260" height="85" rx="8" fill="#fee2e2"/>
+                        <text x="600" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Individual Level</text>
+                        <text x="490" y="145" font-size="10" fill="#991b1b">- Stress and frustration</text>
+                        <text x="490" y="160" font-size="10" fill="#991b1b">- Disengagement</text>
+                        <text x="490" y="175" font-size="10" fill="#166534">+ Short-term self-protection</text>
+
+                        <!-- Team -->
+                        <rect x="470" y="200" width="260" height="75" rx="8" fill="#fecaca"/>
+                        <text x="600" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Team Level</text>
+                        <text x="490" y="240" font-size="10" fill="#991b1b">- Undetected errors</text>
+                        <text x="490" y="255" font-size="10" fill="#991b1b">- Groupthink</text>
+                        <text x="490" y="270" font-size="10" fill="#991b1b">- Reduced learning</text>
+
+                        <!-- Organization -->
+                        <rect x="470" y="285" width="260" height="85" rx="8" fill="#f87171"/>
+                        <text x="600" y="305" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Organization Level</text>
+                        <text x="490" y="325" font-size="10" fill="white">- Strategic blind spots</text>
+                        <text x="490" y="340" font-size="10" fill="white">- Failure to detect problems</text>
+                        <text x="490" y="355" font-size="10" fill="white">- Disasters from unvoiced concerns</text>
+                    </svg>
+                </div>
 
                 <div class="framework-box">
                     <h4>Individual Consequences</h4>
@@ -663,42 +1467,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="framework-box" style="background: linear-gradient(135deg, #0e7490 0%, #164e63 100%);">
-                    <h4>Team-Level Consequences</h4>
-                    <p style="margin-bottom: 15px;"><strong>Of Voice:</strong></p>
-                    <ul style="margin-left: 20px;">
-                        <li>Improved decision-making through diverse input</li>
-                        <li>Earlier detection of problems and errors</li>
-                        <li>Enhanced team learning and adaptation</li>
-                        <li>Stronger collective problem-solving</li>
-                    </ul>
-                    <p style="margin: 15px 0;"><strong>Of Silence:</strong></p>
-                    <ul style="margin-left: 20px;">
-                        <li>Undetected errors and problems</li>
-                        <li>Reduced learning from mistakes</li>
-                        <li>Groupthink and premature consensus</li>
-                        <li>Erosion of trust and psychological safety</li>
-                    </ul>
-                </div>
-
-                <div class="framework-box" style="background: linear-gradient(135deg, #164e63 0%, #083344 100%);">
-                    <h4>Organizational Consequences</h4>
-                    <p style="margin-bottom: 15px;"><strong>Of Voice:</strong></p>
-                    <ul style="margin-left: 20px;">
-                        <li>Innovation through bottom-up ideas</li>
-                        <li>Improved operational efficiency</li>
-                        <li>Better strategic decisions</li>
-                        <li>Organizational learning and adaptation</li>
-                    </ul>
-                    <p style="margin: 15px 0;"><strong>Of Silence:</strong></p>
-                    <ul style="margin-left: 20px;">
-                        <li>Strategic blind spots</li>
-                        <li>Failure to detect and correct problems</li>
-                        <li>Reduced innovation</li>
-                        <li>Organizational disasters from unvoiced concerns</li>
-                    </ul>
-                </div>
             </section>
 
             <section class="section-card">
@@ -720,6 +1488,59 @@
                 </ul>
             </section>
 
+            <section class="section-card">
+                <h2>Critical Gaps Identified</h2>
+
+                <p>Morrison highlights several important gaps in the research that require future attention:</p>
+
+                <div class="antecedent-category">
+                    <h4>1. Consequences of Voice (and Silence)</h4>
+                    <p>Most research focuses on antecedents. We know less about what happens after voice: When does it lead to change? When does it backfire? What are the long-term career consequences? How does silence accumulate into organizational problems?</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>2. The Target's Perspective</h4>
+                    <p>Research is heavily speaker-focused. We need more understanding of how recipients process and respond to voice, what makes them receptive vs. defensive, and how they decide whether to act on input.</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>3. Collective Silence</h4>
+                    <p>Most research examines individual voice decisions. Yet silence is often collective—whole teams or organizations where "nobody talks about" certain issues. The dynamics of collective silence are understudied.</p>
+                </div>
+
+                <div class="antecedent-category">
+                    <h4>4. The Content of Voice</h4>
+                    <p>Research typically treats voice as a single behavior. But the specific content (what is said, how it's framed) likely matters greatly for outcomes. More attention needed to message characteristics.</p>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2>Key Takeaways</h2>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Psychological States</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Antecedent Categories</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Voice Types</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Consequence Levels</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>The Bottom Line:</strong> Voice is a calculated decision influenced by perceived efficacy, safety, and obligation. Leadership is the most important contextual factor. Both voice and silence have consequences at individual, team, and organizational levels—but the consequences of voice are uncertain, which itself creates a bias toward silence. Understanding these dynamics is essential for organizations that want to hear what employees have to say.</p>
+                </div>
+            </section>
+
             <div class="attribution">
                 <p><a href="index.html">Return to Literature Explorer</a></p>
             </div>
@@ -727,8 +1548,9 @@
     </div>
 
     <script>
+        // Page navigation
         function switchPage(pageId, btn) {
-            document.querySelectorAll('#main, #antecedents, #consequences').forEach(page => {
+            document.querySelectorAll('#main, #model, #assessment, #consequences').forEach(page => {
                 page.style.display = 'none';
             });
             document.getElementById(pageId).style.display = 'block';
@@ -737,10 +1559,97 @@
             window.scrollTo(0, 0);
         }
 
+        // Dark mode toggle
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const btn = document.querySelector('.dark-mode-toggle');
             btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.dark-mode-toggle').textContent = 'Light Mode';
+        }
+
+        // Voice Readiness Calculator
+        function calculateVoiceReadiness() {
+            // Get all responses
+            const responses = {};
+            for (let i = 1; i <= 9; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    alert(`Please answer question ${i} before calculating.`);
+                    return;
+                }
+                responses[`q${i}`] = parseInt(selected.value);
+            }
+
+            // Calculate category scores
+            const efficacy = responses.q1 + responses.q2 + responses.q3;
+            const safety = responses.q4 + responses.q5 + responses.q6;
+            const obligation = responses.q7 + responses.q8 + responses.q9;
+
+            // Update displays
+            document.getElementById('efficacyScore').textContent = efficacy + '/15';
+            document.getElementById('safetyScore').textContent = safety + '/15';
+            document.getElementById('obligationScore').textContent = obligation + '/15';
+
+            // Update bars
+            document.getElementById('efficacyBar').style.width = (efficacy / 15 * 100) + '%';
+            document.getElementById('safetyBar').style.width = (safety / 15 * 100) + '%';
+            document.getElementById('obligationBar').style.width = (obligation / 15 * 100) + '%';
+
+            // Generate interpretation
+            let interpretation = '';
+            const lowest = Math.min(efficacy, safety, obligation);
+            const lowestCategory = efficacy === lowest ? 'efficacy' : (safety === lowest ? 'safety' : 'obligation');
+
+            // Overall voice readiness
+            const overall = efficacy + safety + obligation;
+
+            if (overall >= 36) {
+                interpretation = '<strong style="color: #059669;">High Voice Readiness:</strong> All three psychological states support speaking up. You believe it will make a difference, feel safe to do so, and feel responsible. This is a strong position for voice—consider acting on it.';
+            } else if (overall >= 27) {
+                interpretation = '<strong style="color: #0891b2;">Moderate Voice Readiness:</strong> You have reasonable conditions for voice, but there\'s room for improvement. ';
+
+                if (lowestCategory === 'efficacy') {
+                    interpretation += 'Your <strong>efficacy</strong> score is lowest—you\'re uncertain whether speaking up will make a difference. Consider: Can you find a more receptive audience? Can you frame your input in a way that\'s more likely to be acted upon?';
+                } else if (lowestCategory === 'safety') {
+                    interpretation += 'Your <strong>safety</strong> score is lowest—you have concerns about the risks of speaking up. Consider: Can you build a stronger relationship with the target before raising the issue? Can you find allies to speak up with you?';
+                } else {
+                    interpretation += 'Your <strong>obligation</strong> score is lowest—you\'re not sure it\'s your responsibility to speak up. Consider: Who will raise this issue if not you? What are the consequences of silence?';
+                }
+            } else {
+                interpretation = '<strong style="color: #dc2626;">Low Voice Readiness:</strong> Current conditions don\'t strongly support voice. ';
+
+                if (lowestCategory === 'efficacy') {
+                    interpretation += 'Your biggest barrier is <strong>low efficacy</strong>—you don\'t believe speaking up will make a difference. This leads to "acquiescent silence." Before deciding to stay silent, test your assumption: Have others successfully raised concerns? Is there a different target who might be more receptive?';
+                } else if (lowestCategory === 'safety') {
+                    interpretation += 'Your biggest barrier is <strong>low safety</strong>—you perceive real risks to speaking up. This leads to "defensive silence." Your caution may be warranted. Consider: Are there anonymous channels? Can you document the issue for future reference? Is this a workplace where silence is genuinely the safer choice?';
+                } else {
+                    interpretation += 'Your biggest barrier is <strong>low obligation</strong>—you don\'t feel it\'s your responsibility. Consider: If this issue causes problems, will you regret staying silent? Even if it\'s not your formal responsibility, could you make a difference?';
+                }
+            }
+
+            document.getElementById('interpretationText').innerHTML = interpretation;
+
+            // Show results
+            document.getElementById('resultsPanel').style.display = 'block';
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetAssessment() {
+            // Clear all radio buttons
+            for (let i = 1; i <= 9; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                radios.forEach(radio => radio.checked = false);
+            }
+            // Hide results
+            document.getElementById('resultsPanel').style.display = 'none';
+            // Scroll to top of assessment
+            document.querySelector('.assessment-container').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 

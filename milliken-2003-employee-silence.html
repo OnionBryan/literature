@@ -25,6 +25,7 @@
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #3730a3 100%);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         body.dark-mode {
@@ -77,7 +78,11 @@
             padding: 12px 20px;
             border-radius: 25px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
+
+        .dark-mode-toggle:hover { background: rgba(255, 255, 255, 0.3); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
@@ -97,6 +102,7 @@
             background: linear-gradient(45deg, #ffffff, #c7d2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .citation { font-size: 1.15em; opacity: 0.95; margin-bottom: 10px; }
@@ -233,6 +239,285 @@
         .issue-category h4 { color: #6d28d9; margin-bottom: 15px; font-size: 1.2rem; }
         body.dark-mode .issue-category h4 { color: #c4b5fd; }
 
+        /* SVG Visualization Styles */
+        .svg-container {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        body.dark-mode .svg-container {
+            background: linear-gradient(135deg, #312e81 0%, #3730a3 100%);
+        }
+
+        .svg-container h3 {
+            color: #4338ca;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .svg-container h3 { color: #a5b4fc; }
+
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Assessment Tool Styles */
+        .assessment-tool {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        body.dark-mode .assessment-tool {
+            background: linear-gradient(135deg, #312e81 0%, #3730a3 100%);
+        }
+
+        .assessment-tool h3 {
+            color: #4338ca;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+
+        body.dark-mode .assessment-tool h3 { color: #a5b4fc; }
+
+        .question-group {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .question-group {
+            background: #1e293b;
+        }
+
+        .question-group h4 {
+            color: #4f46e5;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a5b4fc;
+        }
+
+        body.dark-mode .question-group h4 { color: #818cf8; }
+
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        body.dark-mode .question { border-bottom-color: #4a5568; }
+
+        .question:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+        body.dark-mode .question p { color: #e2e8f0; }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .likert-option {
+            flex: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .likert-option input[type="radio"] {
+            display: none;
+        }
+
+        .likert-option label {
+            display: block;
+            padding: 12px 8px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            border: 2px solid transparent;
+        }
+
+        body.dark-mode .likert-option label {
+            background: #374151;
+            color: #e2e8f0;
+        }
+
+        .likert-option input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border-color: #4338ca;
+        }
+
+        .likert-option label:hover {
+            background: #e0e7ff;
+            border-color: #6366f1;
+        }
+
+        body.dark-mode .likert-option label:hover {
+            background: #4c1d95;
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .results-panel {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        body.dark-mode .results-panel {
+            background: #1e293b;
+        }
+
+        .results-panel h3 {
+            color: #4f46e5;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        body.dark-mode .results-panel h3 { color: #818cf8; }
+
+        .score-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .score-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .score-card.labeling { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .score-card.relationships { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .score-card.retaliation { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .score-card.futility { background: linear-gradient(135deg, #6b7280, #4b5563); }
+
+        .score-card .score-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .score-card .score-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .profile-result {
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        body.dark-mode .profile-result {
+            background: #312e81;
+        }
+
+        .profile-result h4 {
+            color: #4338ca;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        body.dark-mode .profile-result h4 { color: #a5b4fc; }
+
+        .profile-result p {
+            color: #4338ca;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .profile-result p { color: #e0e7ff; }
+
+        .interpretation-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        body.dark-mode .interpretation-box {
+            background: #0f172a;
+        }
+
+        .interpretation-box h4 {
+            color: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .interpretation-box h4 { color: #818cf8; }
+
+        .interpretation-box ul {
+            margin-left: 20px;
+        }
+
+        .interpretation-box li {
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        body.dark-mode .interpretation-box li { color: #e2e8f0; }
+
+        /* Animation keyframes */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes flow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .pulse-animation { animation: pulse 2s ease-in-out infinite; }
+        .flow-animation {
+            stroke-dasharray: 10, 10;
+            animation: flow 1s linear infinite;
+        }
+
         .attribution {
             background: rgba(0,0,0,0.3);
             color: white;
@@ -247,6 +532,9 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.9rem; }
             .section-card { padding: 25px; }
+            .likert-scale { flex-direction: column; }
+            .likert-option { min-width: 100%; }
+            .dark-mode-toggle { top: auto; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
@@ -257,12 +545,14 @@
             <a href="index.html" class="page-btn">Back to Literature Explorer</a>
             <button class="page-btn active" onclick="switchPage('main', this)">Main Content</button>
             <button class="page-btn" onclick="switchPage('findings', this)">Key Findings</button>
+            <button class="page-btn" onclick="switchPage('assessment', this)">Silence Assessment</button>
             <button class="page-btn" onclick="switchPage('implications', this)">Implications</button>
         </div>
     </nav>
 
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
 
+    <!-- PAGE 1: MAIN CONTENT -->
     <div id="main">
         <div class="container">
 
@@ -305,6 +595,105 @@
                 </div>
             </section>
 
+            <!-- SVG: The Silence Decision Model -->
+            <section class="section-card">
+                <h2>The Decision to Stay Silent</h2>
+
+                <div class="svg-container">
+                    <h3>The Silence Decision Process</h3>
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="indigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1"/>
+                                <stop offset="100%" style="stop-color:#4f46e5"/>
+                            </linearGradient>
+                            <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ef4444"/>
+                                <stop offset="100%" style="stop-color:#dc2626"/>
+                            </linearGradient>
+                            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#22c55e"/>
+                                <stop offset="100%" style="stop-color:#16a34a"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Employee notices issue -->
+                        <rect x="50" y="180" width="140" height="90" rx="15" fill="url(#indigoGrad)"/>
+                        <text x="120" y="215" text-anchor="middle" fill="white" font-weight="bold" font-size="12">EMPLOYEE</text>
+                        <text x="120" y="235" text-anchor="middle" fill="white" font-size="11">Notices Issue</text>
+                        <text x="120" y="253" text-anchor="middle" fill="white" font-size="10">or Concern</text>
+
+                        <!-- Decision point -->
+                        <polygon points="300,225 350,180 400,225 350,270" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                        <text x="350" y="220" text-anchor="middle" fill="white" font-weight="bold" font-size="11">COST</text>
+                        <text x="350" y="238" text-anchor="middle" fill="white" font-size="10">BENEFIT</text>
+
+                        <!-- Arrow from employee to decision -->
+                        <path d="M190 225 L290 225" stroke="#4f46e5" stroke-width="3" fill="none" marker-end="url(#arrowIndigo)"/>
+
+                        <!-- Cost factors (top) -->
+                        <rect x="280" y="50" width="140" height="100" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+                        <text x="350" y="75" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="11">PERCEIVED COSTS</text>
+                        <text x="350" y="95" text-anchor="middle" fill="#991b1b" font-size="9">• Negative labeling</text>
+                        <text x="350" y="110" text-anchor="middle" fill="#991b1b" font-size="9">• Damaged relationships</text>
+                        <text x="350" y="125" text-anchor="middle" fill="#991b1b" font-size="9">• Retaliation</text>
+                        <text x="350" y="140" text-anchor="middle" fill="#991b1b" font-size="9">• Futility</text>
+
+                        <!-- Benefit factors (bottom) -->
+                        <rect x="280" y="300" width="140" height="80" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+                        <text x="350" y="325" text-anchor="middle" fill="#16a34a" font-weight="bold" font-size="11">PERCEIVED BENEFITS</text>
+                        <text x="350" y="345" text-anchor="middle" fill="#166534" font-size="9">• Problem gets fixed</text>
+                        <text x="350" y="360" text-anchor="middle" fill="#166534" font-size="9">• Recognition</text>
+                        <text x="350" y="375" text-anchor="middle" fill="#166534" font-size="9">• Duty fulfilled</text>
+
+                        <!-- Arrows to costs/benefits -->
+                        <path d="M350 180 L350 155" stroke="#ef4444" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+                        <path d="M350 270 L350 295" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+
+                        <!-- Outcomes -->
+                        <rect x="500" y="100" width="130" height="70" rx="10" fill="url(#redGrad)"/>
+                        <text x="565" y="130" text-anchor="middle" fill="white" font-weight="bold" font-size="14">SILENCE</text>
+                        <text x="565" y="150" text-anchor="middle" fill="white" font-size="10">Withhold information</text>
+
+                        <rect x="500" y="280" width="130" height="70" rx="10" fill="url(#greenGrad)"/>
+                        <text x="565" y="310" text-anchor="middle" fill="white" font-weight="bold" font-size="14">VOICE</text>
+                        <text x="565" y="330" text-anchor="middle" fill="white" font-size="10">Speak up</text>
+
+                        <!-- Arrows to outcomes -->
+                        <path d="M400 205 L495 145" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowRed)"/>
+                        <path d="M400 245 L495 305" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+
+                        <!-- Labels -->
+                        <text x="445" y="160" fill="#dc2626" font-size="10" font-weight="bold">Costs > Benefits</text>
+                        <text x="445" y="285" fill="#16a34a" font-size="10" font-weight="bold">Benefits > Costs</text>
+
+                        <!-- 85% statistic -->
+                        <rect x="650" y="100" width="100" height="70" rx="10" fill="#4f46e5" class="pulse-animation"/>
+                        <text x="700" y="130" text-anchor="middle" fill="white" font-weight="bold" font-size="20">85%</text>
+                        <text x="700" y="150" text-anchor="middle" fill="white" font-size="9">chose silence</text>
+                        <text x="700" y="162" text-anchor="middle" fill="white" font-size="9">at least once</text>
+
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowIndigo" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#4f46e5"/>
+                            </marker>
+                            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444"/>
+                            </marker>
+                            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Bottom annotation -->
+                        <text x="400" y="430" text-anchor="middle" fill="#4338ca" font-size="11" font-style="italic">
+                            When perceived costs outweigh benefits, employees choose silence
+                        </text>
+                    </svg>
+                </div>
+            </section>
+
             <section class="section-card">
                 <h2>Research Design</h2>
 
@@ -335,6 +724,53 @@
 
             <section class="section-card">
                 <h2>What Employees Don't Discuss: Five Categories</h2>
+
+                <div class="svg-container">
+                    <h3>Topics Employees Avoid</h3>
+                    <svg viewBox="0 0 700 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Central "UNDISCUSSABLES" -->
+                        <circle cx="350" cy="175" r="70" fill="url(#indigoGrad)" opacity="0.9"/>
+                        <text x="350" y="165" text-anchor="middle" fill="white" font-weight="bold" font-size="11">THE</text>
+                        <text x="350" y="182" text-anchor="middle" fill="white" font-weight="bold" font-size="11">UNDISCUSSABLES</text>
+                        <text x="350" y="197" text-anchor="middle" fill="white" font-size="9">Topics Avoided</text>
+
+                        <!-- Category 1: Competence -->
+                        <ellipse cx="150" cy="80" rx="100" ry="45" fill="#dc2626" opacity="0.9"/>
+                        <text x="150" y="75" text-anchor="middle" fill="white" font-weight="bold" font-size="10">COMPETENCE</text>
+                        <text x="150" y="92" text-anchor="middle" fill="white" font-size="8">Colleague/supervisor</text>
+                        <text x="150" y="105" text-anchor="middle" fill="white" font-size="8">performance issues</text>
+
+                        <!-- Category 2: Processes -->
+                        <ellipse cx="550" cy="80" rx="100" ry="45" fill="#f59e0b" opacity="0.9"/>
+                        <text x="550" y="75" text-anchor="middle" fill="white" font-weight="bold" font-size="10">PROCESSES</text>
+                        <text x="550" y="92" text-anchor="middle" fill="white" font-size="8">Inefficient procedures</text>
+                        <text x="550" y="105" text-anchor="middle" fill="white" font-size="8">& coordination</text>
+
+                        <!-- Category 3: Compensation -->
+                        <ellipse cx="150" cy="270" rx="100" ry="45" fill="#22c55e" opacity="0.9"/>
+                        <text x="150" y="265" text-anchor="middle" fill="white" font-weight="bold" font-size="10">COMPENSATION</text>
+                        <text x="150" y="282" text-anchor="middle" fill="white" font-size="8">Pay inequities</text>
+                        <text x="150" y="295" text-anchor="middle" fill="white" font-size="8">& benefits</text>
+
+                        <!-- Category 4: Disagreement -->
+                        <ellipse cx="550" cy="270" rx="100" ry="45" fill="#0891b2" opacity="0.9"/>
+                        <text x="550" y="265" text-anchor="middle" fill="white" font-weight="bold" font-size="10">DISAGREEMENT</text>
+                        <text x="550" y="282" text-anchor="middle" fill="white" font-size="8">Company policies</text>
+                        <text x="550" y="295" text-anchor="middle" fill="white" font-size="8">& decisions</text>
+
+                        <!-- Category 5: Ethical -->
+                        <ellipse cx="350" cy="320" rx="100" ry="35" fill="#7c3aed" opacity="0.9"/>
+                        <text x="350" y="317" text-anchor="middle" fill="white" font-weight="bold" font-size="10">ETHICAL/LEGAL</text>
+                        <text x="350" y="332" text-anchor="middle" fill="white" font-size="8">Concerns about wrongdoing</text>
+
+                        <!-- Connecting lines -->
+                        <line x1="250" y1="100" x2="290" y2="140" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+                        <line x1="450" y1="100" x2="410" y2="140" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+                        <line x1="250" y1="250" x2="290" y2="210" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+                        <line x1="450" y1="250" x2="410" y2="210" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+                        <line x1="350" y1="245" x2="350" y2="285" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
 
                 <div class="issue-category">
                     <h4>1. Concerns About Colleague or Supervisor Performance/Competence</h4>
@@ -396,19 +832,19 @@
                 <h2>Why Employees Stay Silent: Four Reasons</h2>
 
                 <div class="concept-grid">
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
                         <h4>1. Fear of Being Labeled Negatively</h4>
                         <p>The most common reason. Employees feared being seen as "troublemakers," "complainers," "not team players," or "negative." This labeling concern was pervasive across industries and levels.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
                         <h4>2. Fear of Damaged Relationships</h4>
                         <p>Employees worried that raising concerns would harm their relationships with supervisors or colleagues. The interpersonal costs of voice were seen as significant.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
                         <h4>3. Fear of Retaliation or Punishment</h4>
                         <p>Employees feared tangible negative consequences: being passed over for promotion, receiving poor performance reviews, losing their jobs, or being assigned undesirable work.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
                         <h4>4. Belief That Speaking Up Wouldn't Matter</h4>
                         <p>Many employees stayed silent because they believed their input wouldn't be heard or wouldn't lead to change. Why take the risk if nothing will come of it?</p>
                     </div>
@@ -448,29 +884,6 @@
             </section>
 
             <section class="section-card">
-                <h2>Theoretical Contributions</h2>
-
-                <h3>Establishing Silence as a Phenomenon</h3>
-                <p>
-                    Prior to this study, most research focused on "voice"—when employees speak up. This paper established "silence" as a distinct phenomenon worthy of study in its own right. Silence is not simply the absence of voice; it is an active, intentional choice to withhold information.
-                </p>
-
-                <div class="quote-box">
-                    <p>"Silence is not merely the absence of voice. It is a deliberate, conscious decision to withhold ideas, information, or concerns that could be valuable to the organization."</p>
-                </div>
-
-                <h3>The Social Construction of "Undiscussables"</h3>
-                <p>
-                    The research revealed that organizations develop implicit norms about what topics are "discussable" and which are not. These norms are rarely explicit but are learned through observation and experience. New employees quickly learn what can and cannot be raised.
-                </p>
-
-                <h3>The Individual Decision Calculus</h3>
-                <p>
-                    The study showed that silence results from an implicit cost-benefit calculation: employees weigh the potential benefits of speaking up against the potential costs. When costs are perceived to outweigh benefits—even if the perception is inaccurate—silence results.
-                </p>
-            </section>
-
-            <section class="section-card">
                 <h2>References</h2>
                 <ul>
                     <li>Milliken, F. J., Morrison, E. W., & Hewlin, P. F. (2003). An exploratory study of employee silence: Issues that employees don't communicate upward and why. <em>Journal of Management Studies</em>, 40(6), 1453-1476.</li>
@@ -489,6 +902,7 @@
         </div>
     </div>
 
+    <!-- PAGE 2: KEY FINDINGS -->
     <div id="findings" style="display: none;">
         <div class="container">
             <section class="hero">
@@ -512,6 +926,68 @@
                 <div class="finding-box">
                     <h4>Finding 3: Silence is Deliberate</h4>
                     <p>When asked about their silence, employees described a conscious decision process. They weighed options, considered consequences, and chose not to speak. This was not passive—it was active self-censorship.</p>
+                </div>
+            </section>
+
+            <!-- SVG: The Four Fears -->
+            <section class="section-card">
+                <h2>The Four Fears That Drive Silence</h2>
+
+                <div class="svg-container">
+                    <h3>The Fear-Silence Connection</h3>
+                    <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Central SILENCE -->
+                        <circle cx="350" cy="200" r="60" fill="url(#indigoGrad)"/>
+                        <text x="350" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="14">SILENCE</text>
+                        <text x="350" y="215" text-anchor="middle" fill="white" font-size="10">Self-Censorship</text>
+
+                        <!-- Fear 1: Labeling (Most powerful) -->
+                        <ellipse cx="150" cy="100" rx="110" ry="55" fill="#dc2626"/>
+                        <text x="150" y="90" text-anchor="middle" fill="white" font-weight="bold" font-size="12">FEAR OF LABELING</text>
+                        <text x="150" y="108" text-anchor="middle" fill="white" font-size="9">"Troublemaker"</text>
+                        <text x="150" y="122" text-anchor="middle" fill="white" font-size="9">"Not a team player"</text>
+                        <rect x="90" y="130" width="120" height="20" rx="3" fill="white" opacity="0.3"/>
+                        <text x="150" y="144" text-anchor="middle" fill="white" font-size="9" font-weight="bold">MOST COMMON</text>
+
+                        <!-- Fear 2: Relationships -->
+                        <ellipse cx="550" cy="100" rx="100" ry="50" fill="#f59e0b"/>
+                        <text x="550" y="90" text-anchor="middle" fill="white" font-weight="bold" font-size="11">FEAR OF DAMAGED</text>
+                        <text x="550" y="108" text-anchor="middle" fill="white" font-weight="bold" font-size="11">RELATIONSHIPS</text>
+                        <text x="550" y="125" text-anchor="middle" fill="white" font-size="9">Interpersonal tension</text>
+
+                        <!-- Fear 3: Retaliation -->
+                        <ellipse cx="150" cy="300" rx="100" ry="50" fill="#ef4444"/>
+                        <text x="150" y="290" text-anchor="middle" fill="white" font-weight="bold" font-size="11">FEAR OF</text>
+                        <text x="150" y="308" text-anchor="middle" fill="white" font-weight="bold" font-size="11">RETALIATION</text>
+                        <text x="150" y="325" text-anchor="middle" fill="white" font-size="9">Career consequences</text>
+
+                        <!-- Fear 4: Futility -->
+                        <ellipse cx="550" cy="300" rx="100" ry="50" fill="#6b7280"/>
+                        <text x="550" y="290" text-anchor="middle" fill="white" font-weight="bold" font-size="11">FUTILITY</text>
+                        <text x="550" y="308" text-anchor="middle" fill="white" font-weight="bold" font-size="11">BELIEFS</text>
+                        <text x="550" y="325" text-anchor="middle" fill="white" font-size="9">"Nothing will change"</text>
+
+                        <!-- Arrows to center -->
+                        <path d="M230 130 L300 170" stroke="#dc2626" stroke-width="4" fill="none" marker-end="url(#arrowRed)"/>
+                        <path d="M470 130 L400 170" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowOrange)"/>
+                        <path d="M230 270 L300 230" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowRed)"/>
+                        <path d="M470 270 L400 230" stroke="#6b7280" stroke-width="3" fill="none" marker-end="url(#arrowGray)"/>
+
+                        <!-- Additional markers -->
+                        <defs>
+                            <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+                            </marker>
+                            <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Bottom annotation -->
+                        <text x="350" y="385" text-anchor="middle" fill="#4338ca" font-size="11" font-style="italic">
+                            Arrow thickness represents relative frequency as reason for silence
+                        </text>
+                    </svg>
                 </div>
             </section>
 
@@ -563,6 +1039,403 @@
         </div>
     </div>
 
+    <!-- PAGE 3: SILENCE ASSESSMENT -->
+    <div id="assessment" style="display: none;">
+        <div class="container">
+            <section class="hero">
+                <h1>Silence Pattern Assessment</h1>
+                <p class="tagline">Understand your personal silence drivers based on Milliken et al.'s framework</p>
+            </section>
+
+            <section class="section-card">
+                <h2>About This Assessment</h2>
+                <p>
+                    This assessment helps you identify which of the four silence drivers—fear of labeling, fear of damaged relationships, fear of retaliation, or futility beliefs—most strongly influence your workplace behavior. Understanding your pattern can help you develop targeted strategies for speaking up.
+                </p>
+                <p>
+                    Answer based on your typical feelings and behaviors at work. There are no right or wrong answers.
+                </p>
+            </section>
+
+            <div class="assessment-tool">
+                <h3>Silence Driver Assessment</h3>
+
+                <!-- Labeling Fear Questions -->
+                <div class="question-group">
+                    <h4>Part 1: Labeling Concerns</h4>
+
+                    <div class="question">
+                        <p>1. I worry that speaking up about problems will make me look like a "troublemaker."</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q1_1" name="q1" value="1">
+                                <label for="q1_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_2" name="q1" value="2">
+                                <label for="q1_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_3" name="q1" value="3">
+                                <label for="q1_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_4" name="q1" value="4">
+                                <label for="q1_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q1_5" name="q1" value="5">
+                                <label for="q1_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>2. I'm concerned that raising concerns will make others see me as "not a team player."</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q2_1" name="q2" value="1">
+                                <label for="q2_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_2" name="q2" value="2">
+                                <label for="q2_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_3" name="q2" value="3">
+                                <label for="q2_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_4" name="q2" value="4">
+                                <label for="q2_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q2_5" name="q2" value="5">
+                                <label for="q2_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>3. I hold back from pointing out issues because I don't want to be seen as "negative."</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q3_1" name="q3" value="1">
+                                <label for="q3_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_2" name="q3" value="2">
+                                <label for="q3_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_3" name="q3" value="3">
+                                <label for="q3_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_4" name="q3" value="4">
+                                <label for="q3_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q3_5" name="q3" value="5">
+                                <label for="q3_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relationship Fear Questions -->
+                <div class="question-group">
+                    <h4>Part 2: Relationship Concerns</h4>
+
+                    <div class="question">
+                        <p>4. I avoid raising issues because I'm worried it will damage my relationship with my boss.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q4_1" name="q4" value="1">
+                                <label for="q4_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_2" name="q4" value="2">
+                                <label for="q4_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_3" name="q4" value="3">
+                                <label for="q4_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_4" name="q4" value="4">
+                                <label for="q4_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q4_5" name="q4" value="5">
+                                <label for="q4_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>5. I stay silent about colleagues' problems because I don't want to create tension.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q5_1" name="q5" value="1">
+                                <label for="q5_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_2" name="q5" value="2">
+                                <label for="q5_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_3" name="q5" value="3">
+                                <label for="q5_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_4" name="q5" value="4">
+                                <label for="q5_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q5_5" name="q5" value="5">
+                                <label for="q5_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>6. The potential interpersonal awkwardness of speaking up makes me hesitate.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q6_1" name="q6" value="1">
+                                <label for="q6_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_2" name="q6" value="2">
+                                <label for="q6_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_3" name="q6" value="3">
+                                <label for="q6_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_4" name="q6" value="4">
+                                <label for="q6_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q6_5" name="q6" value="5">
+                                <label for="q6_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retaliation Fear Questions -->
+                <div class="question-group">
+                    <h4>Part 3: Retaliation Concerns</h4>
+
+                    <div class="question">
+                        <p>7. I worry that speaking up could hurt my chances for promotion or good assignments.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q7_1" name="q7" value="1">
+                                <label for="q7_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_2" name="q7" value="2">
+                                <label for="q7_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_3" name="q7" value="3">
+                                <label for="q7_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_4" name="q7" value="4">
+                                <label for="q7_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q7_5" name="q7" value="5">
+                                <label for="q7_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>8. I fear that raising concerns could negatively affect my performance reviews.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q8_1" name="q8" value="1">
+                                <label for="q8_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_2" name="q8" value="2">
+                                <label for="q8_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_3" name="q8" value="3">
+                                <label for="q8_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_4" name="q8" value="4">
+                                <label for="q8_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q8_5" name="q8" value="5">
+                                <label for="q8_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>9. I've seen others face consequences for speaking up, which makes me cautious.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q9_1" name="q9" value="1">
+                                <label for="q9_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q9_2" name="q9" value="2">
+                                <label for="q9_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q9_3" name="q9" value="3">
+                                <label for="q9_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q9_4" name="q9" value="4">
+                                <label for="q9_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q9_5" name="q9" value="5">
+                                <label for="q9_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Futility Questions -->
+                <div class="question-group">
+                    <h4>Part 4: Futility Beliefs</h4>
+
+                    <div class="question">
+                        <p>10. I don't speak up because I believe nothing will change anyway.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q10_1" name="q10" value="1">
+                                <label for="q10_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q10_2" name="q10" value="2">
+                                <label for="q10_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q10_3" name="q10" value="3">
+                                <label for="q10_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q10_4" name="q10" value="4">
+                                <label for="q10_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q10_5" name="q10" value="5">
+                                <label for="q10_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>11. My past experience suggests that raising issues doesn't lead to action.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q11_1" name="q11" value="1">
+                                <label for="q11_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q11_2" name="q11" value="2">
+                                <label for="q11_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q11_3" name="q11" value="3">
+                                <label for="q11_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q11_4" name="q11" value="4">
+                                <label for="q11_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q11_5" name="q11" value="5">
+                                <label for="q11_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>12. Management isn't really interested in hearing about problems from people at my level.</p>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="q12_1" name="q12" value="1">
+                                <label for="q12_1">Strongly Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q12_2" name="q12" value="2">
+                                <label for="q12_2">Disagree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q12_3" name="q12" value="3">
+                                <label for="q12_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q12_4" name="q12" value="4">
+                                <label for="q12_4">Agree</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="q12_5" name="q12" value="5">
+                                <label for="q12_5">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateSilenceProfile()">Analyze My Silence Pattern</button>
+
+                <div class="results-panel" id="resultsPanel">
+                    <h3>Your Silence Driver Profile</h3>
+
+                    <div class="score-display">
+                        <div class="score-card labeling">
+                            <span class="score-value" id="labelingScore">--</span>
+                            <span class="score-label">Fear of Labeling</span>
+                        </div>
+                        <div class="score-card relationships">
+                            <span class="score-value" id="relationshipsScore">--</span>
+                            <span class="score-label">Relationship Concerns</span>
+                        </div>
+                        <div class="score-card retaliation">
+                            <span class="score-value" id="retaliationScore">--</span>
+                            <span class="score-label">Retaliation Fears</span>
+                        </div>
+                        <div class="score-card futility">
+                            <span class="score-value" id="futilityScore">--</span>
+                            <span class="score-label">Futility Beliefs</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-result" id="profileResult">
+                        <h4 id="profileTitle">Your Primary Driver</h4>
+                        <p id="profileDescription">Description will appear here.</p>
+                    </div>
+
+                    <div class="interpretation-box" id="interpretationBox">
+                        <h4>Strategies for Your Profile</h4>
+                        <ul id="strategiesList">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attribution">
+                <p><a href="index.html">Return to Literature Explorer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: IMPLICATIONS -->
     <div id="implications" style="display: none;">
         <div class="container">
             <section class="hero">
@@ -591,22 +1464,79 @@
 
                 <h3>Address the Root Causes</h3>
                 <div class="concept-grid">
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
                         <h4>Counter Labeling Fears</h4>
                         <p>Publicly celebrate and reward those who raise concerns constructively. Make "speaking up" a valued identity, not a stigmatized one.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
                         <h4>Protect Relationships</h4>
                         <p>Train employees and managers in how to raise and receive concerns in ways that preserve relationships. Normalize constructive disagreement.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
                         <h4>Prevent Retaliation</h4>
                         <p>Create clear protections for those who speak up. Investigate and punish any retaliation. Make consequences visible.</p>
                     </div>
-                    <div class="concept-box">
+                    <div class="concept-box" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
                         <h4>Demonstrate Responsiveness</h4>
                         <p>When employees do speak up, respond visibly. Show that voice leads to change. Break the cycle of learned futility.</p>
                     </div>
+                </div>
+            </section>
+
+            <!-- SVG: Breaking the Silence Cycle -->
+            <section class="section-card">
+                <h2>Breaking the Silence Cycle</h2>
+
+                <div class="svg-container">
+                    <h3>From Silence to Voice Culture</h3>
+                    <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Silence side -->
+                        <rect x="50" y="75" width="200" height="200" rx="20" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+                        <text x="150" y="105" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="14">SILENCE CULTURE</text>
+
+                        <text x="70" y="140" fill="#991b1b" font-size="11">Issues go unraised</text>
+                        <text x="70" y="160" fill="#991b1b" font-size="11">Problems fester</text>
+                        <text x="70" y="180" fill="#991b1b" font-size="11">Fear reinforced</text>
+                        <text x="70" y="200" fill="#991b1b" font-size="11">No learning</text>
+                        <text x="70" y="220" fill="#991b1b" font-size="11">Cynicism grows</text>
+
+                        <!-- Cycle arrow in silence -->
+                        <path d="M200 240 A30 30 0 1 1 220 200" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+
+                        <!-- Transformation arrow -->
+                        <rect x="300" y="150" width="200" height="50" rx="10" fill="url(#indigoGrad)"/>
+                        <text x="400" y="170" text-anchor="middle" fill="white" font-weight="bold" font-size="11">INTERVENTION</text>
+                        <text x="400" y="187" text-anchor="middle" fill="white" font-size="9">Leadership commitment + Systems</text>
+
+                        <path d="M250 175 L295 175" stroke="#4f46e5" stroke-width="3" fill="none" marker-end="url(#arrowIndigo)"/>
+                        <path d="M505 175 L545 175" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+
+                        <!-- Voice side -->
+                        <rect x="550" y="75" width="200" height="200" rx="20" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+                        <text x="650" y="105" text-anchor="middle" fill="#16a34a" font-weight="bold" font-size="14">VOICE CULTURE</text>
+
+                        <text x="570" y="140" fill="#166534" font-size="11">Issues raised early</text>
+                        <text x="570" y="160" fill="#166534" font-size="11">Problems solved</text>
+                        <text x="570" y="180" fill="#166534" font-size="11">Trust reinforced</text>
+                        <text x="570" y="200" fill="#166534" font-size="11">Continuous learning</text>
+                        <text x="570" y="220" fill="#166534" font-size="11">Engagement grows</text>
+
+                        <!-- Virtuous cycle in voice -->
+                        <path d="M700 240 A30 30 0 1 1 720 200" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+
+                        <!-- Bottom interventions -->
+                        <rect x="150" y="295" width="140" height="45" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1"/>
+                        <text x="220" y="315" text-anchor="middle" fill="#4338ca" font-size="9" font-weight="bold">Leader Modeling</text>
+                        <text x="220" y="330" text-anchor="middle" fill="#4338ca" font-size="8">Openly invite dissent</text>
+
+                        <rect x="330" y="295" width="140" height="45" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1"/>
+                        <text x="400" y="315" text-anchor="middle" fill="#4338ca" font-size="9" font-weight="bold">Safe Channels</text>
+                        <text x="400" y="330" text-anchor="middle" fill="#4338ca" font-size="8">Anonymous options</text>
+
+                        <rect x="510" y="295" width="140" height="45" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1"/>
+                        <text x="580" y="315" text-anchor="middle" fill="#4338ca" font-size="9" font-weight="bold">Visible Response</text>
+                        <text x="580" y="330" text-anchor="middle" fill="#4338ca" font-size="8">Act on input received</text>
+                    </svg>
                 </div>
             </section>
 
@@ -679,8 +1609,9 @@
     </div>
 
     <script>
+        // Page switching
         function switchPage(pageId, btn) {
-            document.querySelectorAll('#main, #findings, #implications').forEach(page => {
+            document.querySelectorAll('#main, #findings, #assessment, #implications').forEach(page => {
                 page.style.display = 'none';
             });
             document.getElementById(pageId).style.display = 'block';
@@ -689,10 +1620,117 @@
             window.scrollTo(0, 0);
         }
 
+        // Dark mode with persistence
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('millikenSilenceDarkMode', isDark);
             const btn = document.querySelector('.dark-mode-toggle');
-            btn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+            btn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // Load dark mode preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedDarkMode = localStorage.getItem('millikenSilenceDarkMode');
+            if (savedDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-mode-toggle').textContent = 'Light Mode';
+            }
+        });
+
+        // Assessment calculation
+        function calculateSilenceProfile() {
+            // Check all questions answered
+            const allQuestions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12'];
+            const responses = {};
+
+            for (const q of allQuestions) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (!selected) {
+                    alert('Please answer all questions before calculating your profile.');
+                    return;
+                }
+                responses[q] = parseInt(selected.value);
+            }
+
+            // Calculate category scores
+            const labelingScore = responses.q1 + responses.q2 + responses.q3;
+            const relationshipsScore = responses.q4 + responses.q5 + responses.q6;
+            const retaliationScore = responses.q7 + responses.q8 + responses.q9;
+            const futilityScore = responses.q10 + responses.q11 + responses.q12;
+
+            // Find highest score
+            const scores = {
+                labeling: labelingScore,
+                relationships: relationshipsScore,
+                retaliation: retaliationScore,
+                futility: futilityScore
+            };
+
+            const maxCategory = Object.entries(scores).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+
+            let profileTitle, profileDescription, strategies;
+
+            switch(maxCategory) {
+                case 'labeling':
+                    profileTitle = "Primary Driver: Fear of Negative Labeling";
+                    profileDescription = "Your silence is primarily driven by concerns about how others will perceive you. You worry about being seen as a 'troublemaker,' 'complainer,' or 'not a team player.' This is the most common driver of workplace silence.";
+                    strategies = [
+                        "Reframe voice as a positive identity—you're someone who cares enough to speak up",
+                        "Focus on framing concerns around organizational benefit, not personal complaints",
+                        "Build a reputation for constructive, solution-oriented input",
+                        "Start with smaller, less risky issues to build credibility as a thoughtful contributor",
+                        "Find allies who share your concerns—collective voice is seen more positively"
+                    ];
+                    break;
+                case 'relationships':
+                    profileTitle = "Primary Driver: Relationship Protection";
+                    profileDescription = "Your silence is primarily driven by desire to protect relationships with supervisors and colleagues. You fear that raising concerns will create interpersonal tension or awkwardness.";
+                    strategies = [
+                        "Practice raising concerns in ways that preserve relationships (e.g., 'I have a concern that I'm sharing because I care about our team')",
+                        "Separate the issue from the person—focus on behaviors and outcomes, not character",
+                        "Build strong relationships first—people receive feedback better from those they trust",
+                        "Consider indirect approaches when direct ones feel too risky",
+                        "Remember that unaddressed issues often damage relationships more than voiced concerns"
+                    ];
+                    break;
+                case 'retaliation':
+                    profileTitle = "Primary Driver: Fear of Retaliation";
+                    profileDescription = "Your silence is primarily driven by fear of tangible negative consequences—impacts on your performance reviews, promotions, assignments, or job security.";
+                    strategies = [
+                        "Document your concerns and contributions carefully",
+                        "Understand your organization's formal protections for those who speak up",
+                        "Use anonymous feedback channels when available for sensitive issues",
+                        "Build external career options to reduce dependence on any single manager",
+                        "Test the waters with lower-stakes concerns to gauge actual (vs. feared) consequences"
+                    ];
+                    break;
+                case 'futility':
+                    profileTitle = "Primary Driver: Futility Beliefs";
+                    profileDescription = "Your silence is primarily driven by the belief that speaking up won't lead to change. Past experience has taught you that voice doesn't matter.";
+                    strategies = [
+                        "Test your assumptions—has anything changed since your past experiences?",
+                        "Look for leaders or contexts where voice has led to action",
+                        "Focus on smaller, more achievable changes where you might see impact",
+                        "Consider whether you're speaking to the right people in the right ways",
+                        "Remember that silence guarantees nothing changes—voice at least creates a chance"
+                    ];
+                    break;
+            }
+
+            // Display results
+            document.getElementById('labelingScore').textContent = labelingScore + '/15';
+            document.getElementById('relationshipsScore').textContent = relationshipsScore + '/15';
+            document.getElementById('retaliationScore').textContent = retaliationScore + '/15';
+            document.getElementById('futilityScore').textContent = futilityScore + '/15';
+            document.getElementById('profileTitle').textContent = profileTitle;
+            document.getElementById('profileDescription').textContent = profileDescription;
+
+            const stratList = document.getElementById('strategiesList');
+            stratList.innerHTML = strategies.map(s => `<li>${s}</li>`).join('');
+
+            document.getElementById('resultsPanel').style.display = 'block';
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
